@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp.csproj", "{AF4CBFA2-FC31-DE5F-F389-735F10822B12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
