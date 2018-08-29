@@ -22,6 +22,8 @@ public class MoveTowardsScript : MonoBehaviour {
 
 	private bool targetIsOnTheRight = false;
 
+	public bool adjustExactFinalPosition = true; //if true put right on target position, on reach target true
+
 	public bool isVerticalMovent = false;
 
 	public float delay = 0f;
@@ -105,14 +107,15 @@ public class MoveTowardsScript : MonoBehaviour {
 			if(transform.position.x < target.position.x) {
 
 				if(!targetIsOnTheRight) {
-						transform.GetComponent<SpriteRenderer>().flipX = !transform.GetComponent<SpriteRenderer>().flipX;
+						FlipSprite();
+						
 				}
 				targetIsOnTheRight = true;
 			}
 			else {
 
 				if(targetIsOnTheRight) {
-						transform.GetComponent<SpriteRenderer>().flipX = !transform.GetComponent<SpriteRenderer>().flipX;
+						FlipSprite();
 				}
 				targetIsOnTheRight = false;
 			}
@@ -152,11 +155,39 @@ public class MoveTowardsScript : MonoBehaviour {
 		}
 	 }
 
+	 //put exactly in place
+	  if(reachedTarget) {
+
+			if(adjustExactFinalPosition && transform.position != targetPosition) {
+				transform.position = targetPosition;
+			}
+			
+			//notify the handler that we reached target
+			DelegateHandler actionHandler = GetComponent<DelegateHandler>();
+			if(actionHandler!=null) {
+				actionHandler.ActionCompleted();
+			}
+	  }
+
 	}
 
+	void FlipSprite() {
+		SpriteRenderer sprite = transform.GetComponent<SpriteRenderer>();
+		if(sprite==null) {
+			sprite = transform.GetComponentInChildren<SpriteRenderer>();
+		}
+		if(sprite!=null) {
+			sprite.flipX = !sprite.flipX;
+		}
+	}
+	
 
 	public void StartMovingTowards(bool start) {
 		startMoveTowards = start;
+
+		if(targetPosition == null && target !=null) {
+			targetPosition = target.position;
+		}
 		//*********************************************************
 		Vector3 aux = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 		//maybe adjust to make smoother transitions, and avoid jumps if in top of platform collider...

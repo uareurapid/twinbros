@@ -1,15 +1,16 @@
-﻿<Properties StartupConfiguration="{AF4CBFA2-FC31-DE5F-F389-735F10822B12}|Unit Tests">
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LevelManager.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/DelegateHandler.cs">
     <Files>
+      <File FileName="Assets/CameraZoomInOutScript.cs" Line="72" Column="14" />
       <File FileName="Assets/LevelManager.cs" Line="30" Column="14" />
       <File FileName="Assets/Movement.cs" Line="239" Column="25" />
       <File FileName="Assets/GUIManager.cs" Line="32" Column="26" />
-      <File FileName="Assets/CameraZoomInOutScript.cs" Line="120" Column="26" />
-      <File FileName="Assets/MoveTowardsScript.cs" Line="127" Column="30" />
-      <File FileName="Assets/Portal.cs" Line="27" Column="49" />
+      <File FileName="Assets/MoveTowardsScript.cs" Line="157" Column="25" />
+      <File FileName="Assets/Portal.cs" Line="61" Column="27" />
       <File FileName="Assets/SideCollider.cs" Line="33" Column="3" />
       <File FileName="Assets/Level.cs" Line="7" Column="23" />
+      <File FileName="Assets/DontGoThroughThings.cs" Line="16" Column="17" />
+      <File FileName="Assets/DelegateHandler.cs" Line="19" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

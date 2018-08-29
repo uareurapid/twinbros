@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+//Player class TODO refactor
 public class Movement : MonoBehaviour {
 
     public float speed = 2.0f;
@@ -57,12 +58,16 @@ public class Movement : MonoBehaviour {
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 
+		DelegateHandler.actionDelegate += ReEnableCollidersOnNewLevel;
+    	//TODO undelegate on destroy
+
     }
 
     void FixedUpdate()
     {
 
 		if(associatedLevel.level != levelManager.currentLevel) {
+			Debug.Log("DO NOTHING BECAUSE: associatedLevel.level " + associatedLevel.level + " levelManager.currentLevel? " + levelManager.currentLevel);
 			return;
 		}
 
@@ -357,4 +362,53 @@ public class Movement : MonoBehaviour {
 			 }
          
      }*/
+
+	void ReEnableCollidersOnNewLevel() {
+
+		if(associatedLevel.level == levelManager.currentLevel) {
+			return; //already done this!!
+		}
+		Debug.Log("######## ReEnableColliders ######");
+		Collider2D[] coll = GetComponents<Collider2D>();
+		foreach(Collider2D col in coll) {
+			col.enabled = true;
+		}
+
+		Collider2D[] coll2 = GetComponentsInChildren<Collider2D>();
+		foreach(Collider2D col in coll2) {
+			col.enabled = true;
+		}
+
+		ResetLevel();
+		
+	}
+	
+	void ResetLevel() {
+
+		//allow play/move again
+		associatedLevel.level = levelManager.currentLevel;
+		reachedTarget = false;
+		isUpMovement = isDownMovement = isLeftMovement = isRightMovement = false;
+	}
+
+	public void DisableColliders() {
+		Collider2D[] coll = GetComponents<Collider2D>();
+		foreach(Collider2D col in coll) {
+			col.enabled = false;
+		}
+
+		Collider2D[] coll2 = GetComponentsInChildren<Collider2D>();
+		foreach(Collider2D col in coll2) {
+			col.enabled = false;
+		}
+
+		reachedTarget = true;
+		canMoveLeft = canMoveDown = canMoveUp = canMoveRight = true;
+	}
+
+	// Unsubscribing Delegate ALWAYS!!!
+    void OnDisable()
+    {
+      DelegateHandler.actionDelegate -= ReEnableCollidersOnNewLevel;
+    }
 }
