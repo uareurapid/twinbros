@@ -35,6 +35,7 @@ public class Portal : MonoBehaviour {
 
 		levelManager.setCurrentLevel(nextLevel);
 		guiManager.SetLevelText(nextLevel);
+		guiManager.ResetMoves();
 		
 	}
 

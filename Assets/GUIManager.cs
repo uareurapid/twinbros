@@ -35,4 +35,10 @@ public class GUIManager : MonoBehaviour {
 		}
 		
 	}
+
+	public void ResetMoves() {
+		foreach(UnityEngine.UI.Image image in movesImage) {
+			image.enabled = true;
+		}
+	}
 }

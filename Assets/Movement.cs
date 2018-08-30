@@ -31,6 +31,8 @@ public class Movement : MonoBehaviour {
 	private enum HitDirection { None, Top, Bottom, Forward, Back, Left, Right };
 
 	private float tileSize = 0;
+
+	private bool isMovingBetweenLevels = false;
 	/************************************************************
      ** Make sure to add rigidbodies to your objects.
      ** Place this script on your object not object being hit
@@ -55,6 +57,8 @@ public class Movement : MonoBehaviour {
 		tileSize = 1f;//bounds.size.x;
 		reachedTarget = false;
 
+		isMovingBetweenLevels = false;
+
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 
@@ -66,8 +70,8 @@ public class Movement : MonoBehaviour {
     void FixedUpdate()
     {
 
-		if(associatedLevel.level != levelManager.currentLevel) {
-			Debug.Log("DO NOTHING BECAUSE: associatedLevel.level " + associatedLevel.level + " levelManager.currentLevel? " + levelManager.currentLevel);
+		if(associatedLevel.level != levelManager.currentLevel || isMovingBetweenLevels) {
+			Debug.Log("DO NOTHING BECAUSE: isMovingBetweenLevels? " + isMovingBetweenLevels +" associatedLevel.level " + associatedLevel.level + " levelManager.currentLevel? " + levelManager.currentLevel);
 			return;
 		}
 
@@ -85,6 +89,7 @@ public class Movement : MonoBehaviour {
             targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 			isRightMovement = true;
 			isLeftMovement = isUpMovement = isDownMovement = false;
+			Debug.Log("WILL MOVE RIGHT");
         }
         else if (Input.GetKey(KeyCode.DownArrow) && (theTransform.position == targetPosition || reachedTarget) && canMoveDown)
         {
@@ -122,6 +127,10 @@ public class Movement : MonoBehaviour {
 			|| (isLeftMovement && canMoveLeft ) ||	(isRightMovement && canMoveRight) )
 		{
 			transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
+		}
+		else if(associatedLevel.level == 2){
+			Debug.Log("STUCK HERE......canMoveUp " + canMoveUp + " canMoveDown " + canMoveDown + "canMoveLeft " + canMoveLeft + "canMoveRight" + canMoveRight);  ;
+			Debug.Log("STUCK HERE......isUpMovement " + isUpMovement + " isDownMovement " + isDownMovement + "isLeftMovement " + isLeftMovement + "isRightMovement" + isRightMovement);
 		}
 
     }
@@ -368,6 +377,7 @@ public class Movement : MonoBehaviour {
 		if(associatedLevel.level == levelManager.currentLevel) {
 			return; //already done this!!
 		}
+
 		Debug.Log("######## ReEnableColliders ######");
 		Collider2D[] coll = GetComponents<Collider2D>();
 		foreach(Collider2D col in coll) {
@@ -378,7 +388,6 @@ public class Movement : MonoBehaviour {
 		foreach(Collider2D col in coll2) {
 			col.enabled = true;
 		}
-
 		ResetLevel();
 		
 	}
@@ -387,11 +396,15 @@ public class Movement : MonoBehaviour {
 
 		//allow play/move again
 		associatedLevel.level = levelManager.currentLevel;
-		reachedTarget = false;
-		isUpMovement = isDownMovement = isLeftMovement = isRightMovement = false;
+		isMovingBetweenLevels = false;
+		reachedTarget = true;
+		targetPosition = transform.position;
 	}
 
 	public void DisableColliders() {
+
+		isMovingBetweenLevels = true;
+
 		Collider2D[] coll = GetComponents<Collider2D>();
 		foreach(Collider2D col in coll) {
 			col.enabled = false;
@@ -402,8 +415,9 @@ public class Movement : MonoBehaviour {
 			col.enabled = false;
 		}
 
-		reachedTarget = true;
+		reachedTarget = false;
 		canMoveLeft = canMoveDown = canMoveUp = canMoveRight = true;
+		isUpMovement = isDownMovement = isLeftMovement = isRightMovement = false;
 	}
 
 	// Unsubscribing Delegate ALWAYS!!!
