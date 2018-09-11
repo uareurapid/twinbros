@@ -8,6 +8,8 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image [] movesImage;
 
 	public UnityEngine.UI.Text levelText;
+	public UnityEngine.UI.Text gameOverText;
+	public UnityEngine.UI.Text restartText;
 	//public UnityEngine.UI.Text movesText;
 
 	// Use this for initialization
@@ -34,6 +36,22 @@ public class GUIManager : MonoBehaviour {
 			movesImage[remainining].enabled = false;
 		}
 		
+	}
+
+	public void ShowGameOver() {
+		if(gameOverText!=null) {
+			gameOverText.GetComponent<EnableDisableMonobehaviour>().enabled = true;
+		}
+		gameOverText.enabled = true;
+		StartCoroutine(ShowRestartText());
+	}
+
+	IEnumerator ShowRestartText() {
+		yield return new WaitForSeconds(2f);
+		restartText.enabled = true;
+	}
+	public void HideGameOver() {
+		gameOverText.enabled = false;
 	}
 
 	public void ResetMoves() {

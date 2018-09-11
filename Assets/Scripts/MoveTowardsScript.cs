@@ -33,9 +33,17 @@ public class MoveTowardsScript : MonoBehaviour {
 	public bool goBackAndFourth = false;
 	private bool isGoingBack = false;
 	private Vector3 secondTargetPosition;
+
+	private bool isLeftTwin = false;
+
+
+	private LevelManager levelManager;
 	// Use this for initialization
 	void Start () {
 
+	  GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+	  levelManager = scripts.GetComponent<LevelManager>();
+	  
 	  if(delay > 0f) {
 			Invoke("CheckPositions", delay);
 	  }
@@ -71,6 +79,8 @@ public class MoveTowardsScript : MonoBehaviour {
 			if(!adjustZOnStart) {
 				targetPosition.z = transform.position.z;
 			}
+
+			CheckIfAdjustPositions();
 		}
 	 }
 
@@ -102,7 +112,23 @@ public class MoveTowardsScript : MonoBehaviour {
 			// The step size is equal to speed times frame time.
 		 	var step = moveTowardsSpeed * Time.deltaTime;
 		 	// Move our position a step closer to the target.
-		 	transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+
+			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+			//BLOCK one coord!!
+			//https://answers.unity.com/questions/861010/movetowards-only-in-x-coordinates.html
+			if(adjustXOnStart) {
+				transform.position = Vector3.MoveTowards(transform.position, 
+					new Vector3(transform.position.x,targetPosition.y,targetPosition.z), step);
+			}
+			else if(adjustYOnStart) {
+				transform.position = Vector3.MoveTowards(transform.position, 
+					new Vector3(targetPosition.x,transform.position.y,targetPosition.z), step);
+			}
+			else if(adjustZOnStart) {
+				transform.position = Vector3.MoveTowards(transform.position, 
+					new Vector3(targetPosition.x,targetPosition.y,transform.position.z), step);
+			}
+		 	
 
 			if(transform.position.x < target.position.x) {
 
@@ -127,13 +153,15 @@ public class MoveTowardsScript : MonoBehaviour {
 
 		 }
 
-		if(  (!isVerticalMovent && Mathf.Abs(transform.position.x - targetPosition.x) < 0.1f) || (isVerticalMovent && Mathf.Abs(transform.position.y - targetPosition.y) < 0.1f)  ){
+		if(  (!isVerticalMovent && Mathf.Abs(transform.position.x - targetPosition.x) < 0.1f) 
+
+			|| (isVerticalMovent && Mathf.Abs(transform.position.y - targetPosition.y) < 0.1f)  ){
  			//It is within ~0.1f range, do stuff
 			reachedTarget = true;
 			if(isGoingBack) {
 				isGoingBack = false;
 			}
-			Debug.Log("Reached position");
+			Debug.Log("Reached target position " + targetPosition.ToString() + " " + (isLeftTwin ? " LEFT TWIN": "RIGHT TWIN"));
 			if(destroyWhenReach) { //destroy this object
 			  Destroy(gameObject);
 			}
@@ -158,15 +186,34 @@ public class MoveTowardsScript : MonoBehaviour {
 	 //put exactly in place
 	  if(reachedTarget) {
 
-			if(adjustExactFinalPosition && transform.position != targetPosition) {
-				transform.position = targetPosition;
-			}
+			//if( (isLeftTwin && !levelManager.HasLeftTwinReachedNewLevel() ) || 
+			//	(!isLeftTwin && !levelManager.HasRightTwinReachedNewLevel()) ) {
+
+				Debug.Log("WILL CALL HANDLER FOR isleft? " + isLeftTwin);
+
+				//no more velocity
+				GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+	
+				if(adjustExactFinalPosition && transform.position != targetPosition) {
+					transform.position = targetPosition;
+				}
+	
+				if(isLeftTwin) {
+					levelManager.LeftTwinReachedNewLevel(true, this, target.GetComponent<LevelCheckPoint>());
+				}
+				else {
+					levelManager.RightTwinReachedNewLevel(true, this, target.GetComponent<LevelCheckPoint>());
+				}
+			//} 
+
+			
 			
 			//notify the handler that we reached target
-			DelegateHandler actionHandler = GetComponent<DelegateHandler>();
-			if(actionHandler!=null) {
-				actionHandler.ActionCompleted();
-			}
+			//DelegateHandler actionHandler = GetComponent<DelegateHandler>();
+			//if(actionHandler!=null) {
+				//need to disable this script or it will compete withe the movement one
+			//	actionHandler.ActionCompleted(this);
+			//}
 	  }
 
 	}
@@ -181,14 +228,8 @@ public class MoveTowardsScript : MonoBehaviour {
 		}
 	}
 	
+	void CheckIfAdjustPositions() {
 
-	public void StartMovingTowards(bool start) {
-		startMoveTowards = start;
-
-		if(targetPosition == null && target !=null) {
-			targetPosition = target.position;
-		}
-		//*********************************************************
 		Vector3 aux = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 		//maybe adjust to make smoother transitions, and avoid jumps if in top of platform collider...
 		if (adjustYOnStart) {
@@ -204,23 +245,44 @@ public class MoveTowardsScript : MonoBehaviour {
 		}
 		
 		transform.position = aux;
-		//*********************************************************
+	}
 
-		/*bool isOnLeft = transform.position.x < target.position.x;
-		if(isOnLeft && !player.IsPlayerFacingRight()) {
-		  player.Flip();
+	public void StartMovingTowards(bool start, bool isLeft) {
+
+		if(!startMoveTowards) {
+			isLeftTwin = isLeft;
+			Debug.Log("!!!!!!!START MOVING TOWRADS!!!!!!!!!!!!!!!!!!!!!!!! isLeft? " + isLeftTwin + " target pos: " + target.position.ToString());
+			if(targetPosition == null && target !=null) {
+				targetPosition = target.position;
+			}
+			//*********************************************************
+	
+			//Debug.Log("TARGET POSITION X: " + targetPosition.x);
+	
+			CheckIfAdjustPositions();
+	
+			//Debug.Log("TRANSFORM POSITION X: " + transform.position.x);
+			//*********************************************************
+	
+			startMoveTowards = start;
+			/*bool isOnLeft = transform.position.x < target.position.x;
+			if(isOnLeft && !player.IsPlayerFacingRight()) {
+			  player.Flip();
+			}
+			else if(!isOnLeft && player.IsPlayerFacingRight()) { //is on the right and facing right, also need to flip
+			  player.Flip();
+			}*/
 		}
-		else if(!isOnLeft && player.IsPlayerFacingRight()) { //is on the right and facing right, also need to flip
-		  player.Flip();
-		}*/
+		
 	}
 
 	public bool HasReachedTarget() {
 	  return reachedTarget;
 	}
 
-	void OnEnable() {
-		StartMovingTowards(true);
-	}
+	//void OnEnable() {
+	//	Debug.Log("############## oN ENABLE CALLED!!!");
+	//	StartMovingTowards(true, false);
+	//}
 
 }

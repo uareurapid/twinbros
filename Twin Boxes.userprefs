@@ -1,16 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraZoomInOutScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SideCollider.cs">
     <Files>
-      <File FileName="Assets/Movement.cs" Line="1" Column="1" />
-      <File FileName="Assets/CameraZoomInOutScript.cs" Line="72" Column="14" />
-      <File FileName="Assets/LevelManager.cs" Line="30" Column="14" />
-      <File FileName="Assets/GUIManager.cs" Line="32" Column="26" />
-      <File FileName="Assets/MoveTowardsScript.cs" Line="98" Column="43" />
-      <File FileName="Assets/Portal.cs" Line="66" Column="47" />
-      <File FileName="Assets/SideCollider.cs" Line="33" Column="3" />
-      <File FileName="Assets/Level.cs" Line="7" Column="23" />
-      <File FileName="Assets/DontGoThroughThings.cs" Line="16" Column="17" />
-      <File FileName="Assets/DelegateHandler.cs" Line="9" Column="26" />
+      <File FileName="Assets/Scripts/DontGoThroughThings.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Level.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="43" Column="3" />
+      <File FileName="Assets/Scripts/SideCollider.cs" Line="101" Column="1" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="153" Column="12" />
+      <File FileName="Assets/Scripts/LevelCheckPoint.cs" Line="10" Column="25" />
+      <File FileName="Assets/Scripts/MoveTowardsScript.cs" Line="95" Column="1" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="132" Column="58" />
+      <File FileName="Assets/Scripts/EnemyBox.cs" Line="23" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

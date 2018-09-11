@@ -15,6 +15,7 @@ TagManager:
   - level_10
   - Portal
   - Scripts
+  - Enemy
   layers:
   - Default
   - TransparentFX

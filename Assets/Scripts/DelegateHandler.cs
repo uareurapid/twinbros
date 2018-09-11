@@ -8,9 +8,11 @@ public class DelegateHandler : MonoBehaviour
      public delegate void OnActionFinishedDelegate ();
      public static event OnActionFinishedDelegate actionDelegate;
       
-     public void ActionCompleted()
+     public void ActionCompleted(MonoBehaviour caller)
      {
        actionDelegate ();
+	  //disable the MoveTowardsScript
+	   caller.enabled = false;
      }
  
 }

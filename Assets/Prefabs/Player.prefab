@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4040952422332634}
-  - component: {fileID: 114439145631191112}
+  - component: {fileID: 114439688667865516}
   - component: {fileID: 50148584591043470}
   - component: {fileID: 61837280125828898}
   - component: {fileID: 114695860674315978}
@@ -373,7 +373,7 @@ MonoBehaviour:
   isBottom: 1
   associatedLevel: {fileID: 0}
   levelManager: {fileID: 0}
---- !u!114 &114439145631191112
+--- !u!114 &114439688667865516
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -381,16 +381,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1483167902755302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27094ab70f2f64c75a5eae2c9fd6f1e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c358bcd5c06549908fa049c7434e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
   maxTilesMovement: 10
+  isLeftTwin: 1
   canMoveLeft: 0
   canMoveRight: 1
   canMoveUp: 1
   canMoveDown: 0
   associatedLevel: {fileID: 0}
+  otherTwin: {fileID: 0}
 --- !u!114 &114651208165497868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,9 +470,9 @@ MonoBehaviour:
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   startMoveTowards: 0
-  moveTowardsSpeed: 7
+  moveTowardsSpeed: 14
   adjustYOnStart: 0
-  adjustXOnStart: 0
+  adjustXOnStart: 1
   adjustZOnStart: 1
   destroyWhenReach: 0
   allowManualMovement: 0
