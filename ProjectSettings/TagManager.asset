@@ -16,6 +16,8 @@ TagManager:
   - Portal
   - Scripts
   - Enemy
+  - Wall
+  - Box
   layers:
   - Default
   - TransparentFX

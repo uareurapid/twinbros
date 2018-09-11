@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector2 bottomLeftBound = Vector2.zero;
 	private Vector2 bottomRightBound = Vector2.zero;
 
-	private bool reachedTarget = false;
+	private bool reachedTarget = true;
 
 	private Bounds bounds;
 
@@ -68,11 +68,11 @@ public class PlayerMovement : MonoBehaviour {
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
-        targetPosition = transform.position;
+        
         //theTransform = transform;
 		tileSize = 1f;//bounds.size.x;
-		reachedTarget = false;
-
+		reachedTarget = true;
+		targetPosition = transform.position;
 		previousPosition = transform.position;
 
 		isMovingBetweenLevels = false;
@@ -139,45 +139,82 @@ public class PlayerMovement : MonoBehaviour {
 		if(IsMovingRight() && !CanMoveOnOppositeDirection() ) {
 			canMoveLeft = false;
 		}
-
-		//targetPosition = transform.position;
-        //theTransform = transform;
-
 		
 
-		if ( (Input.GetKey(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) && (transform.position == targetPosition || reachedTarget)  && canMoveUp )
+		if ( (Input.GetKey(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
         {
 
-			isUpMovement = true;
-            targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
-			isLeftMovement = isRightMovement = isDownMovement = false;
-			SoundEffectsHelper.Instance.PlayMoveSound();
+
+			if( (transform.position == targetPosition || reachedTarget)  && canMoveUp) {
+
+				isUpMovement = true;
+            	targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
+				isLeftMovement = isRightMovement = isDownMovement = false;
+				SoundEffectsHelper.Instance.PlayMoveSound();
+			}
+			else {
+
+				Debug.Log("NO CAN MOVE UP? " + canMoveUp + " RECAHED TARGET? " + reachedTarget);
+			}
+
+			
         }
-        else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe) && (transform.position == targetPosition || reachedTarget) && canMoveRight ) 
+        else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
         {
+			Debug.Log("AM INSIDE, can move right? " + canMoveRight);
+			Debug.Log("AM INSIDE, reachedTarget? " + reachedTarget);
+			Debug.Log("AM INSIDE, transform.position == targetPosition? " + (transform.position == targetPosition));
 			//do not let move to right and kill right away
-			 if(touchingEnemy != null && touchingEnemy.killPlayerOnTouch && touchingEnemy.GetTile().blockRightMovement) {
+			 /*if(touchingEnemy != null && touchingEnemy.killPlayerOnTouch && touchingEnemy.GetTile().blockRightMovement) {
 				levelManager.KillPlayer();
 				return;
+			 }*/
+
+			 if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
+ 				isRightMovement = true;
+			 	targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
+			 	isLeftMovement = isUpMovement = isDownMovement = false;
+			 	SoundEffectsHelper.Instance.PlayMoveSound();
+
 			 }
-			 isRightMovement = true;
-			 targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
-			 isLeftMovement = isUpMovement = isDownMovement = false;
-			 SoundEffectsHelper.Instance.PlayMoveSound();
+			 else {
+
+				Debug.Log("NO CAN MOVE RIGHT? " + canMoveRight + " RECAHED TARGET? " + reachedTarget);
+			 }
+
+			
         }
-        else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) && (transform.position == targetPosition || reachedTarget) && canMoveDown)
+        else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
         {
-			isDownMovement = true;
-            targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
-			isUpMovement = isLeftMovement = isRightMovement = false;
-			SoundEffectsHelper.Instance.PlayMoveSound();
+
+			if((transform.position == targetPosition || reachedTarget) && canMoveDown) {
+
+				isDownMovement = true;
+            	targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
+				isUpMovement = isLeftMovement = isRightMovement = false;
+				SoundEffectsHelper.Instance.PlayMoveSound();
+			
+			}
+			else {
+
+				Debug.Log("NO CAN MOVE DOWN? " + canMoveDown + " RECAHED TARGET? " + reachedTarget);
+			}
+			
         }
-        else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) && (transform.position == targetPosition || reachedTarget) && canMoveLeft)
+        else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
         {  
-			isLeftMovement = true;
-            targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
-			isRightMovement = isDownMovement = isUpMovement = false;
-			SoundEffectsHelper.Instance.PlayMoveSound();
+
+			if((transform.position == targetPosition || reachedTarget) && canMoveLeft) {
+
+				isLeftMovement = true;
+            	targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
+				isRightMovement = isDownMovement = isUpMovement = false;
+				SoundEffectsHelper.Instance.PlayMoveSound();
+			}
+			else {
+				Debug.Log("NO CAN MOVE LEFT? " + canMoveLeft + " RECAHED TARGET? " + reachedTarget);
+			}
+			
 			//if(associatedLevel.level == 2)Debug.Log("WILL MOVE LEFT");
         }
 
@@ -234,6 +271,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedLeft() {
 		Debug.Log("LEFT " + (isLeftTwin ? " left twin " : "right twin"));
 		canMoveLeft = false;
+		canMoveRight = true;
 
 		if(isLeftMovement) {
 
@@ -265,6 +303,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedRight() {
 		Debug.Log("RIGHT " + (isLeftTwin ? " left twin " : "right twin") );
 		canMoveRight = false;
+		canMoveLeft = true;
 
 		if(isRightMovement) {
 
@@ -295,6 +334,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedTop() {
 		Debug.Log("TOP" + (isLeftTwin ? " left twin " : "right twin"));
 		canMoveUp = false;
+		canMoveDown = true;
 
 		if(isUpMovement) {
 
@@ -322,6 +362,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedBottom() {
 		Debug.Log("BOTTOM" + (isLeftTwin ? " left twin " : "right twin"));
 		canMoveDown = false;
+		canMoveUp = true;
 	
 		if(isDownMovement) {
 
@@ -350,6 +391,12 @@ public class PlayerMovement : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D other)
 	{
 
+		Debug.Log("EXIT COLLISION WITH SOMETHING " + other.transform.tag);
+		Tile tile = other.transform.GetComponent<Tile>();
+		if(tile!=null) {
+			Debug.Log("IT IS A TILE, LET HIM HANDLE THE EXIT ");
+			tile.HandleTileExitCollisions(this);
+		}
 		//AllowAllMovementsAgain();
 		
 	}
@@ -357,20 +404,49 @@ public class PlayerMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other)
 	{
 
-		Debug.Log("COLLIDED WITH SOMETHING");
-		StopMovementVelocity();
-		if(isRightMovement) {
-			canMoveRight = false;
+		Debug.Log("COLLIDED WITH SOMETHING " + other.transform.tag);
+
+		Tile tile = other.transform.GetComponent<Tile>();
+		if(tile!=null) {
+			Debug.Log("IT IS A TILE, LET HIM HANDLE IT ");
+			tile.HandleTileCollisions(this);
 		}
-		else if(isLeftMovement) {
-			canMoveLeft = false;
+		else {
+			Debug.Log("IS SOMETHING ELSE COLLIDING ");
+			if(isRightMovement) {
+						Debug.Log("BLOCK FURTHER RIGHT MOVEMENT");
+						canMoveRight = false;
+						StopMovementVelocity();
+						reachedTarget = true;
+						targetPosition = transform.position;
+					}
+					else if(isLeftMovement) {
+						Debug.Log("BLOCK FURTHER LEFT MOVEMENT");
+						canMoveLeft = false;
+						StopMovementVelocity();
+						reachedTarget = true;
+						targetPosition = transform.position;
+					}
+					else if(isUpMovement) {
+						Debug.Log("BLOCK FURTHER UP MOVEMENT");
+						canMoveUp = false;
+						StopMovementVelocity();
+						reachedTarget = true;
+						targetPosition = transform.position;
+					}
+					else if(isDownMovement) {
+						Debug.Log("BLOCK FURTHER DOWN MOVEMENT");
+						canMoveDown = false;
+						StopMovementVelocity();
+						reachedTarget = true;
+						targetPosition = transform.position;
+					}
+					else {
+						Debug.Log("NOT DOING MOVEMENT");
+					}
+
 		}
-		else if(isUpMovement) {
-			canMoveUp = false;
-		}
-		else if(isDownMovement) {
-			canMoveDown = false;
-		}
+		
 		
 	}
 

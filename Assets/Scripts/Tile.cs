@@ -46,22 +46,9 @@ public class Tile : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 
+		/*if(other.transform.CompareTag("Player"))
 		Debug.Log("TILE COLLIDED WITH SOMETHING");
-		
-		
-	}
-
-
-	public void HandleTileCollisions(bool isTop, bool isRight, bool isLeft, bool isBottom, PlayerMovement movement) {
-
-
-			Debug.Log("################# HandleTileCollisions ##################");
-Debug.Log("################# is left: " + isLeft +" ##################");
-Debug.Log("################# is right: " + isRight +" ##################");
-Debug.Log("################# is Top: " + isTop +" ##################");
-Debug.Log("################# is Bottom: " + isBottom +" ##################");
-
-			if(blockUpMovement) {
+		if(blockUpMovement) {
 				Debug.Log("################# BLOCK UP ##################");
 				movement.canMoveUp = false;
 				if(movement.IsMovingUp()) {
@@ -88,6 +75,86 @@ Debug.Log("################# is Bottom: " + isBottom +" ##################");
 				if(movement.IsMovingRight()) {
 					movement.collidedRight();
 				}
+			}*/
+		
+		
+	}
+
+
+	public void HandleTileCollisions(PlayerMovement movement) {
+
+
+			Debug.Log("################# TIle HandleTileCollisions ################## " + gameObject.ToString());
+
+
+			if(blockUpMovement) {
+				Debug.Log("################# BLOCK UP ##################");
+				if(movement.IsMovingUp()) {
+					movement.collidedTop();
+				}
+				else {
+					movement.canMoveUp = false;
+				}
+				
+			}
+			if(blockDownMovement) {
+				Debug.Log("################# BLOCK DOWN ##################");
+				if(movement.IsMovingDown()) {
+					movement.collidedBottom();
+				}
+				else {
+					movement.canMoveDown = false;
+				}
+				
+			
+			}
+			if(blockLeftMovement) {
+				Debug.Log("################# BLOCK LEFT ##################");
+				if(movement.IsMovingLeft()) {
+					movement.collidedLeft();
+				}
+				else {
+					movement.canMoveLeft = false;
+				}
+				
+				
+			}
+			if(blockRightMovement) {
+				Debug.Log("################# BLOCK RIGHT ##################");
+				if(movement.IsMovingRight()) {
+					movement.collidedRight();
+				}
+				else {
+					movement.canMoveRight = false;
+				}
+				
+			}
+	}
+
+	public void HandleTileExitCollisions(PlayerMovement movement) {
+
+
+			Debug.Log("################# TIle HandleTileExitCollisions ################## " + gameObject.ToString());
+
+
+			if(blockUpMovement) {
+				Debug.Log("################# ALLOW UP ##################");
+				movement.canMoveUp = true;
+			}
+			if(blockDownMovement) {
+				Debug.Log("################# ALLOW DOWN ##################");
+				movement.canMoveDown = true;
+			
+			}
+			if(blockLeftMovement) {
+				Debug.Log("################# ALLOW LEFT ##################");
+				movement.canMoveLeft = true;
+				
+			}
+			if(blockRightMovement) {
+				Debug.Log("################# ALLOW RIGHT ##################");
+
+				movement.canMoveRight = true;
 			}
 	}
 

@@ -49,9 +49,9 @@ public class SideCollider : MonoBehaviour {
 				}
 
 				Tile tile = other.gameObject.GetComponent<Tile>();
-				if(tile!=null) {
-					tile.HandleTileCollisions(isTop, isRight, isLeft, isBottom,movement);
-				}
+				//if(tile!=null) {
+				//	tile.HandleTileCollisions(isTop, isRight, isLeft, isBottom,movement);
+				//}
 				
 				/*if(other.transform.CompareTag("Enemy") || other.GetComponent<EnemyBox>()!=null) {
 					

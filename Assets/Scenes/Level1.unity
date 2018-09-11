@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 35902008}
   m_Layer: 8
   m_Name: block (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,7 +725,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 35902002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 35902002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
@@ -2837,7 +2837,7 @@ GameObject:
   - component: {fileID: 172288942}
   m_Layer: 8
   m_Name: block (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7626,6 +7626,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 50148584591043470, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 50148584591043470, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50148584591043470, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
   m_IsPrefabParent: 0
@@ -9764,10 +9779,10 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   bottom: {fileID: 0}
-  blockLeftMovement: 1
-  blockRightMovement: 1
-  blockDownMovement: 1
-  blockUpMovement: 1
+  blockLeftMovement: 0
+  blockRightMovement: 0
+  blockDownMovement: 0
+  blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
 --- !u!1 &607626333
@@ -17295,7 +17310,7 @@ GameObject:
   - component: {fileID: 1153669099}
   m_Layer: 8
   m_Name: block (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17364,7 +17379,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1153669094}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -17389,7 +17404,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1153669094}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
@@ -17398,10 +17413,10 @@ MonoBehaviour:
   right: {fileID: 0}
   top: {fileID: 0}
   bottom: {fileID: 0}
-  blockLeftMovement: 1
-  blockRightMovement: 1
+  blockLeftMovement: 0
+  blockRightMovement: 0
   blockDownMovement: 1
-  blockUpMovement: 1
+  blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
 --- !u!1 &1156663115
@@ -19919,10 +19934,9 @@ GameObject:
   - component: {fileID: 1366628878}
   - component: {fileID: 1366628880}
   - component: {fileID: 1366628881}
-  - component: {fileID: 1366628879}
   m_Layer: 8
   m_Name: block (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19985,26 +19999,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!50 &1366628879
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1366628876}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1366628880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22660,7 +22654,7 @@ GameObject:
   - component: {fileID: 1510196123}
   m_Layer: 8
   m_Name: block (14)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24273,6 +24267,25 @@ Prefab:
     - target: {fileID: 1211128221896098, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_Name
       value: Box (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 50211506998715708, guid: 97ffe6769858e42268a45a8427ae8195,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50211506998715708, guid: 97ffe6769858e42268a45a8427ae8195,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 50211506998715708, guid: 97ffe6769858e42268a45a8427ae8195,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211128221896098, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
+      propertyPath: m_TagString
+      value: Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
