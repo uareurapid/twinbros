@@ -105,6 +105,29 @@ public class CameraZoomInOutScript : MonoBehaviour {
 
 		}
 	}
+
+	public void MoveToRespawnLevel(int respawnLevel) {
+
+
+		if (isMovementComplete) {
+		
+			isMovementComplete = false;
+			canMove = true;
+
+			if(respawnLevel == 1) {
+				previousLevel = 0;
+				nextLevel = 1;
+			}
+			else {
+				previousLevel = respawnLevel - 1;
+				nextLevel = respawnLevel + 1;
+			}
+			
+
+			UpdatePosition (respawnLevel);
+
+		}
+	}
 	
 
     //-1 for left, 1 for right

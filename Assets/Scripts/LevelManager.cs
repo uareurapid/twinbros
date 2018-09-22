@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
-	public int currentLevel = 1;
+	public Level currentLevel;
+	public Level respawnLevel; //in wich level to restart the game after dying?
+
+	public bool respawnOnDyingLevel = false; //TODO IN-APP
+	//if true will respawn on the same level that previously was
+	//otherwise if respawnLevel !=null set it as the currentLevel
+
 	private int numMoves = 10;
 	public int MAX_MOVES = 10;
+	public bool hasExtraMoves = false; //TODO IN-APP
 
 	private GUIManager guiManager;
 	private bool isDead = false;
@@ -69,9 +76,9 @@ public class LevelManager : MonoBehaviour {
 		return rightTwinMoved;
 	}
 
-	public void setCurrentLevel(int level) {
+	public void setCurrentLevel(Level level) {
 		currentLevel = level;
-		guiManager.SetLevelText(currentLevel);
+		guiManager.SetLevelText(currentLevel.level);
 	}
 
 	public void ResetMoves() {
@@ -91,12 +98,16 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void KillPlayer() {
-		numMoves = 0;
-		guiManager.SetMovesText(numMoves);
-		Debug.Log("IS DEAD");
-		isDead = true;
-		gameStarted = false;
-		guiManager.ShowGameOver();
+
+		if(!isDead && gameStarted) {
+			numMoves = 0;
+			guiManager.SetMovesText(numMoves);
+			Debug.Log("IS DEAD");
+			isDead = true;
+			gameStarted = false;
+			guiManager.ShowGameOver();
+		}
+		
 	}
 
 	public bool isPlayerDead() {
@@ -104,9 +115,22 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void RestartLevel() {
+
+		Debug.Log("######## RESTART LEVEL #############");
 		isDead = false;
 		numMoves = MAX_MOVES;
 		gameStarted = true;
+		guiManager.ResetAllMovesText();
+		guiManager.HideGameOver();
+		foreach(PlayerMovement player in twins) {
+			player.ResetOriginalSprite();
+			player.ResetOriginalPosition();
+		}
+
+		if(!respawnOnDyingLevel && currentLevel.level != respawnLevel.level ) {
+			MoveToRespawnLevel(respawnLevel);			
+		}
+		
 	}
 
 	void FixedUpdate() {
@@ -114,7 +138,7 @@ public class LevelManager : MonoBehaviour {
 			decreaseMove();
 			leftTwinMoved = rightTwinMoved = false;
 		}
-		if( (leftTwinReady && rightTwinReady) && currentLevel > 1) { //don´t do this at first start
+		if( (leftTwinReady && rightTwinReady)/*&& currentLevel.level > 1*/) { //don´t do this at first start
 			
 			foreach(PlayerMovement player in twins) {
 
@@ -130,8 +154,7 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("#################### LEFT TWIN REACHED " + leftTwinReady);
 		twins[0].SetReachedNewLevel(true, restrictions);
 		move.gameObject.GetComponent<PlayerMovement>().SetReachedNewLevel(true,restrictions);
-
-		
+		move.startMoveTowards = false;
 		move.enabled = false;
 	}
 
@@ -140,6 +163,7 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("################### RIGHT TWIN REACHED " + rightTwinReady);
 		twins[1].SetReachedNewLevel(true, restrictions);
 		move.gameObject.GetComponent<PlayerMovement>().SetReachedNewLevel(true, restrictions);
+		move.startMoveTowards = false;
 		move.enabled = false;
 	}
 
@@ -154,10 +178,11 @@ public class LevelManager : MonoBehaviour {
 
 	public void TwinCollidedWithPortal(GameObject twin) {
 
+		//Debug.Log("TWIN COLLIDED WITH PORTAL: isLeftTwin? ");
 		PlayerMovement player = twin.GetComponent<PlayerMovement>();
 		if(player!=null) {
 
-			Debug.Log("TWIN COLLIDED WITH PORTAL: isLeftTwin? " + player.isLeftTwin);
+			//Debug.Log("TWIN COLLIDED WITH PORTAL: isLeftTwin? " + player.isLeftTwin);
 			player.SetIsMovingBetweenLevels(true);
 			//do the same for the twin
 			player.otherTwin.SetIsMovingBetweenLevels(true);
@@ -166,35 +191,67 @@ public class LevelManager : MonoBehaviour {
 
 	//this was on portal before 
     //this is called after TwinCollidedWithPortal(twin)
-	public void MoveToNextLevel(int nextLevel) {
+	public void MoveToNextLevel(Level nextLevel) {
 		
 		Debug.Log("COLLIDED WITH PORTAL, move to level" + nextLevel);
+		
 		CameraZoomInOutScript scr = Camera.main.GetComponent<CameraZoomInOutScript>();
-		scr.currentLevel = currentLevel;
-		scr.nextLevel = nextLevel;
+		//Move the camera to next level position
+		scr.currentLevel = currentLevel.level;
+		scr.nextLevel = nextLevel.level;
 		scr.MoveToNextLevel();
-
-		StartMovePlayersIntoPosition();
-
+		//Move the players
+		StartMovePlayersIntoPosition(nextLevel);
 		setCurrentLevel(nextLevel);
 		ResetMoves();
 		
 		
 	}
 
-	void StartMovePlayersIntoPosition() {
+	public void MoveToRespawnLevel(Level respawnLevel) {
 		
-		StartCoroutine(MoveTwins());
+		Debug.Log("###### RESPAWN MoveToRespawnLevel, move to level" + respawnLevel);
+
+		twins[0].SetIsMovingBetweenLevels(true);
+		twins[0].otherTwin.SetIsMovingBetweenLevels(true);
+		twins[1].SetIsMovingBetweenLevels(true);
+		twins[1].otherTwin.SetIsMovingBetweenLevels(true);
+		
+		CameraZoomInOutScript scr = Camera.main.GetComponent<CameraZoomInOutScript>();
+		//Move the camera to next level position
+		scr.currentLevel = currentLevel.level;
+		scr.nextLevel = respawnLevel.level;
+		scr.MoveToRespawnLevel(respawnLevel.level);
+		//Move the players
+		StartMovePlayersIntoPosition(respawnLevel);
+		setCurrentLevel(respawnLevel);
+		ResetMoves();
+		
+		
 	}
 
-	IEnumerator MoveTwins() {
-		yield return new WaitForSeconds(1.2f);
+	void StartMovePlayersIntoPosition(Level nextLevel) {
+		
+
+		LevelCheckPoint[] checkpoints = nextLevel.gameObject.GetComponentsInChildren<LevelCheckPoint>();
+	//	yield return new WaitForSeconds(1.2f);
 		SoundEffectsHelper.Instance.PlayTeleportSound();
+
+		
 
 		foreach(PlayerMovement moveScript in twins) {
 
+			bool isLeft = moveScript.isLeftTwin;
 			MoveTowardsScript moveTowards = moveScript.gameObject.GetComponent<MoveTowardsScript>();
 			if(moveTowards!=null) {
+
+				foreach(LevelCheckPoint check in checkpoints) {
+					if( (check.isLeftCheckpoint && isLeft) || (!check.isLeftCheckpoint && !isLeft) ) {
+						moveTowards.target = check.gameObject.transform;	
+					}
+				}
+
+				moveTowards.startMoveTowards = false;
 				moveTowards.enabled = true;
 				moveTowards.StartMovingTowards(true, moveScript.isLeftTwin);
 			}

@@ -18,6 +18,10 @@ TagManager:
   - Enemy
   - Wall
   - Box
+  - right_door
+  - left_door
+  - Bomb
+  - level_1
   layers:
   - Default
   - TransparentFX
@@ -29,7 +33,7 @@ TagManager:
   - 
   - Walls
   - Player
-  - 
+  - Boxes
   - 
   - 
   - 

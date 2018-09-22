@@ -23,11 +23,11 @@ GameObject:
   - component: {fileID: 114329878037465066}
   m_Layer: 9
   m_Name: collider_bottom
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1297067930360908
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +38,8 @@ GameObject:
   - component: {fileID: 4918924936490326}
   - component: {fileID: 212705254650647942}
   - component: {fileID: 114651208165497868}
+  - component: {fileID: 95824182773752206}
+  - component: {fileID: 114914164225874112}
   m_Layer: 9
   m_Name: sprite
   m_TagString: Untagged
@@ -57,11 +59,11 @@ GameObject:
   - component: {fileID: 114934024467695572}
   m_Layer: 9
   m_Name: collider_top
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1483167902755302
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,11 +97,11 @@ GameObject:
   - component: {fileID: 114734775068597910}
   m_Layer: 9
   m_Name: collider_right
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1773485621600658
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,11 +114,11 @@ GameObject:
   - component: {fileID: 114739982131357632}
   m_Layer: 9
   m_Name: collider_left
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4040952422332634
 Transform:
   m_ObjectHideFlags: 1
@@ -207,7 +209,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483167902755302}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -215,10 +217,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61599766289982398
 BoxCollider2D:
@@ -345,6 +347,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95824182773752206
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297067930360908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4979bd4f104724739a2353c47a7d95a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114156512677668770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,8 +411,11 @@ MonoBehaviour:
   canMoveRight: 1
   canMoveUp: 1
   canMoveDown: 0
+  ignoreCollisionInterval: 0.15
   associatedLevel: {fileID: 0}
   otherTwin: {fileID: 0}
+  minDistanceForNeighbour: 0.55
+  burnedSprite: {fileID: 21300000, guid: 56ad7fba0cd6e4926a939a18c18c09be, type: 3}
 --- !u!114 &114651208165497868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -411,12 +434,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483167902755302}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91a2d3de812054ebcab86fbafcb8a147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sendTriggerMessage: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -482,6 +504,20 @@ MonoBehaviour:
   objectInCanvasUI: 0
   secondTarget: {fileID: 0}
   goBackAndFourth: 0
+--- !u!114 &114914164225874112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297067930360908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb3c73332edd4bc598f81bc165510fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 7400000, guid: f7a720a0f8f004cbf8efebbe1dd3351c, type: 2}
+  triggerName: Blink
+  intervalBetweenPlays: 5
 --- !u!114 &114934024467695572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -534,7 +570,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed529859973ec4ec196f10a2179317a9, type: 3}
+  m_Sprite: {fileID: 21300002, guid: a6604bba6bbba450a81d35a23254fbd6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

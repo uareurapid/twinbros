@@ -38,11 +38,20 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
+	public void ResetAllMovesText() {
+		foreach(UnityEngine.UI.Image img in movesImage) {
+			img.enabled = true;
+		}
+		
+	}
+
 	public void ShowGameOver() {
 		if(gameOverText!=null) {
+			gameOverText.text = "Game Over!";
 			gameOverText.GetComponent<EnableDisableMonobehaviour>().enabled = true;
+			gameOverText.enabled = true;
 		}
-		gameOverText.enabled = true;
+		
 		StartCoroutine(ShowRestartText());
 	}
 
@@ -50,8 +59,15 @@ public class GUIManager : MonoBehaviour {
 		yield return new WaitForSeconds(2f);
 		restartText.enabled = true;
 	}
+
 	public void HideGameOver() {
-		gameOverText.enabled = false;
+		if(gameOverText!=null) {
+			gameOverText.GetComponent<EnableDisableMonobehaviour>().enabled = false;
+			gameOverText.text = "";
+			gameOverText.enabled = false;
+		}
+		restartText.enabled = false;
+		
 	}
 
 	public void ResetMoves() {

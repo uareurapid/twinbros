@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool isUpMovement = false;
 	private bool isDownMovement = false;
 
+	public float ignoreCollisionInterval = 0.5f; //ignore if the distance is greater
 	public Level associatedLevel; //can only move on the associated Level
 	private LevelManager levelManager;
 
@@ -60,20 +61,39 @@ public class PlayerMovement : MonoBehaviour {
 
 	private SwipeDetector swipe;
 
+	private Rigidbody2D body;
 
-	private Vector3 previousPosition;
-	//can move down, up, left? etc?
+	private Vector3[] previousPosition = new Vector3[2];
+
+	private int collisionMasks = -1;
+	public float minDistanceForNeighbour = 0.55f; //how close i can be to another element/box
+												  //can move down, up, left? etc?
+
+	Animator anim;
+	private Sprite originalSprite;
+	public Sprite burnedSprite;
+
+	private Vector3 originalPositionInLevel;
+	void Awake() {
+		originalPositionInLevel = transform.position;
+		originalSprite = GetComponentInChildren<SpriteRenderer>().sprite;
+		anim = GetComponentInChildren<Animator>();
+		collisionMasks = (1 << LayerMask.NameToLayer("Walls") ) | ( 1 << LayerMask.NameToLayer("Boxes") );
+	}
     void Start()
     {
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
+
+		body = GetComponent<Rigidbody2D>();
         
         //theTransform = transform;
 		tileSize = 1f;//bounds.size.x;
 		reachedTarget = true;
 		targetPosition = transform.position;
-		previousPosition = transform.position;
+		previousPosition[1] = previousPosition[0] = body.position;
+		previousPosition[0] = body.position;
 
 		isMovingBetweenLevels = false;
 
@@ -108,7 +128,61 @@ public class PlayerMovement : MonoBehaviour {
     {
 
 
-        previousPosition = transform.position;
+		previousPosition[1] = previousPosition[0];
+		previousPosition[0] = body.position;
+
+		if(!isMovingBetweenLevels) {
+
+			//Fire some rays to check if we have anything on the left, right, up or down
+			RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 2.0f, collisionMasks  );
+	        if (hitLeft.collider != null) {
+	
+				float distance = Mathf.Abs(hitLeft.point.x - transform.position.x);
+				if(distance < minDistanceForNeighbour) {
+					canMoveLeft = false;
+				}
+				//else {
+				//	canMoveLeft = true;
+				//}
+	        }
+	
+			RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 2.0f, collisionMasks  );
+	        if (hitRight.collider != null) {
+	
+				float distance = Mathf.Abs(hitRight.point.x - transform.position.x);
+				if(distance < minDistanceForNeighbour) {
+					canMoveRight = false;
+				}
+				//else {
+				//	canMoveRight = true;
+				//}
+	        }
+	
+			RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, 2.0f, collisionMasks  );
+	        if (hitUp.collider != null) {
+	
+				float distance = Mathf.Abs(hitUp.point.y - transform.position.y);
+				if(distance < minDistanceForNeighbour) {
+					canMoveUp = false;
+				}
+				//else {
+				//	canMoveUp = true;
+				//}
+	        }
+	
+			RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, collisionMasks  );
+	        if (hitDown.collider != null) {
+	
+				float distance = Mathf.Abs(hitDown.point.y - transform.position.y);
+				if(distance < minDistanceForNeighbour) {
+					canMoveDown = false;
+				}
+				//else {
+				//	canMoveDown = true;
+				//}
+	        }
+		}
+		
 		
 
 		if (Input.GetMouseButtonDown(0) && !levelManager.IsGameStarted())
@@ -117,7 +191,7 @@ public class PlayerMovement : MonoBehaviour {
 			levelManager.StartGame();
 		}
 
-		if(associatedLevel.level != levelManager.currentLevel || isMovingBetweenLevels || levelManager.isPlayerDead() || levelManager.IsStillAwaitingLevelTransitions() ) {
+		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || levelManager.isPlayerDead() || levelManager.IsStillAwaitingLevelTransitions() ) {
 			//Debug.Log( (isLeftTwin? " LEFT->" : "RIGHT->") + "DO NOTHING BECAUSE: isMovingBetweenLevels? " + isMovingBetweenLevels +" associatedLevel.level " + associatedLevel.level + " levelManager.currentLevel? " + levelManager.currentLevel + 
 			//" levelManager IsStillAwaitingLevelTransitions() ? " + levelManager.IsStillAwaitingLevelTransitions());
 			return;
@@ -147,23 +221,20 @@ public class PlayerMovement : MonoBehaviour {
 
 			if( (transform.position == targetPosition || reachedTarget)  && canMoveUp) {
 
-				isUpMovement = true;
-            	targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
-				isLeftMovement = isRightMovement = isDownMovement = false;
-				SoundEffectsHelper.Instance.PlayMoveSound();
+				SlideUp();
 			}
 			else {
 
-				Debug.Log("NO CAN MOVE UP? " + canMoveUp + " RECAHED TARGET? " + reachedTarget);
+				//Debug.Log("NO CAN MOVE UP? " + canMoveUp + " RECAHED TARGET? " + reachedTarget);
 			}
 
 			
         }
         else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
         {
-			Debug.Log("AM INSIDE, can move right? " + canMoveRight);
-			Debug.Log("AM INSIDE, reachedTarget? " + reachedTarget);
-			Debug.Log("AM INSIDE, transform.position == targetPosition? " + (transform.position == targetPosition));
+			//Debug.Log("AM INSIDE, can move right? " + canMoveRight);
+			//Debug.Log("AM INSIDE, reachedTarget? " + reachedTarget);
+			//Debug.Log("AM INSIDE, transform.position == targetPosition? " + (transform.position == targetPosition));
 			//do not let move to right and kill right away
 			 /*if(touchingEnemy != null && touchingEnemy.killPlayerOnTouch && touchingEnemy.GetTile().blockRightMovement) {
 				levelManager.KillPlayer();
@@ -171,15 +242,12 @@ public class PlayerMovement : MonoBehaviour {
 			 }*/
 
 			 if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
- 				isRightMovement = true;
-			 	targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
-			 	isLeftMovement = isUpMovement = isDownMovement = false;
-			 	SoundEffectsHelper.Instance.PlayMoveSound();
+				SlideRight();
 
 			 }
 			 else {
 
-				Debug.Log("NO CAN MOVE RIGHT? " + canMoveRight + " RECAHED TARGET? " + reachedTarget);
+				//Debug.Log("NO CAN MOVE RIGHT? " + canMoveRight + " RECAHED TARGET? " + reachedTarget + " canMoveRight? " + canMoveRight);
 			 }
 
 			
@@ -189,15 +257,12 @@ public class PlayerMovement : MonoBehaviour {
 
 			if((transform.position == targetPosition || reachedTarget) && canMoveDown) {
 
-				isDownMovement = true;
-            	targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
-				isUpMovement = isLeftMovement = isRightMovement = false;
-				SoundEffectsHelper.Instance.PlayMoveSound();
+				SlideDown();
 			
 			}
 			else {
 
-				Debug.Log("NO CAN MOVE DOWN? " + canMoveDown + " RECAHED TARGET? " + reachedTarget);
+				//Debug.Log("NO CAN MOVE DOWN? " + canMoveDown + " RECAHED TARGET? " + reachedTarget);
 			}
 			
         }
@@ -206,13 +271,10 @@ public class PlayerMovement : MonoBehaviour {
 
 			if((transform.position == targetPosition || reachedTarget) && canMoveLeft) {
 
-				isLeftMovement = true;
-            	targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
-				isRightMovement = isDownMovement = isUpMovement = false;
-				SoundEffectsHelper.Instance.PlayMoveSound();
+				SlideLeft();
 			}
 			else {
-				Debug.Log("NO CAN MOVE LEFT? " + canMoveLeft + " RECAHED TARGET? " + reachedTarget);
+				//Debug.Log("NO CAN MOVE LEFT? " + canMoveLeft + " RECAHED TARGET? " + reachedTarget);
 			}
 			
 			//if(associatedLevel.level == 2)Debug.Log("WILL MOVE LEFT");
@@ -252,6 +314,40 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
+	void SlideUp() {
+		isUpMovement = true;
+		reachedTarget = false;
+        targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
+		isLeftMovement = isRightMovement = isDownMovement = false;
+		SoundEffectsHelper.Instance.PlayMoveSound();
+	}
+
+	void SlideRight() {
+		isRightMovement = true;
+		reachedTarget = false;
+		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
+		isLeftMovement = isUpMovement = isDownMovement = false;
+		SoundEffectsHelper.Instance.PlayMoveSound();
+	}
+
+	void SlideDown() {
+		isDownMovement = true;
+		reachedTarget = false;
+        targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
+		isUpMovement = isLeftMovement = isRightMovement = false;
+		SoundEffectsHelper.Instance.PlayMoveSound();
+	}
+
+	void SlideLeft() {
+
+		isLeftMovement = true;
+		reachedTarget = false;
+        targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
+		isRightMovement = isDownMovement = isUpMovement = false;
+		SoundEffectsHelper.Instance.PlayMoveSound();
+	}
+
+
 	public bool IsMovingLeft() {
 		return isLeftMovement;
 	}
@@ -271,13 +367,16 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedLeft() {
 		Debug.Log("LEFT " + (isLeftTwin ? " left twin " : "right twin"));
 		canMoveLeft = false;
-		canMoveRight = true;
+		//canMoveRight = true;
 
 		if(isLeftMovement) {
 
+			
 			StopMovementVelocity();
+			canMoveRight = true;
 			canMoveUp = canMoveDown = canMoveRight = true;
-			//transform.position = previousPosition;
+			//transform.position = previousPosition[1];
+			transform.Translate(-body.velocity);
 
 			if(!reachedTarget) {
 
@@ -303,13 +402,14 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedRight() {
 		Debug.Log("RIGHT " + (isLeftTwin ? " left twin " : "right twin") );
 		canMoveRight = false;
-		canMoveLeft = true;
+		//canMoveLeft = true;
 
 		if(isRightMovement) {
 
 			StopMovementVelocity();
+			canMoveLeft = true;
 			canMoveLeft = canMoveUp = canMoveDown = true;
-			//transform.position = previousPosition;
+			transform.Translate(-body.velocity);
 
 			if(!reachedTarget) {
 
@@ -334,13 +434,15 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedTop() {
 		Debug.Log("TOP" + (isLeftTwin ? " left twin " : "right twin"));
 		canMoveUp = false;
-		canMoveDown = true;
+		//canMoveDown = true;
 
 		if(isUpMovement) {
 
 			StopMovementVelocity();
+			canMoveDown = true;
 			canMoveDown = canMoveLeft = canMoveRight = true;
-			//transform.position = previousPosition;
+			//transform.position = previousPosition[1];
+			transform.Translate(-body.velocity);
 
 			if(!reachedTarget) {
 				//levelManager.decreaseMove();
@@ -362,13 +464,15 @@ public class PlayerMovement : MonoBehaviour {
 	public void collidedBottom() {
 		Debug.Log("BOTTOM" + (isLeftTwin ? " left twin " : "right twin"));
 		canMoveDown = false;
-		canMoveUp = true;
+		//canMoveUp = true;
 	
 		if(isDownMovement) {
 
 			StopMovementVelocity();
+			canMoveUp = true;
 			canMoveUp = canMoveLeft = canMoveRight = true;
-			//transform.position = previousPosition;
+			//transform.position = previousPosition[1];
+			transform.Translate(-body.velocity);
 
 			if(!reachedTarget) {
 				//levelManager.decreaseMove();
@@ -391,60 +495,114 @@ public class PlayerMovement : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D other)
 	{
 
-		Debug.Log("EXIT COLLISION WITH SOMETHING " + other.transform.tag);
+		if(other.transform.CompareTag("Bomb")) {
+
+			//avoid getting killed by the bomb
+		}
+		/*Debug.Log("EXIT COLLISION WITH SOMETHING " + other.transform.tag);
 		Tile tile = other.transform.GetComponent<Tile>();
 		if(tile!=null) {
 			Debug.Log("IT IS A TILE, LET HIM HANDLE THE EXIT ");
 			tile.HandleTileExitCollisions(this);
-		}
+		}*/
 		//AllowAllMovementsAgain();
 		
 	}
 
+	public Rigidbody2D GetBody() {
+		return body;
+	}
+
     void OnCollisionEnter2D(Collision2D other)
 	{
-
-		Debug.Log("COLLIDED WITH SOMETHING " + other.transform.tag);
+		string otherTag = other.transform.tag;
+		bool isPortal = otherTag.Equals("Portal");
+		bool isEnemy = otherTag.Equals("Enemy");
+		bool isBox = otherTag.Equals("Box");
+		bool isBomb = otherTag.Equals("Bomb");
 
 		Tile tile = other.transform.GetComponent<Tile>();
 		if(tile!=null) {
-			Debug.Log("IT IS A TILE, LET HIM HANDLE IT ");
-			tile.HandleTileCollisions(this);
+			//Debug.Log("IT IS A TILE, LET HIM HANDLE IT ");
+			tile.HandlePlayerCollision(this);
+		}
+		//portal collision
+		else if (isPortal)
+		{
+
+			if (isMovingBetweenLevels)
+			{
+				//ignore this collision
+				return;
+			}
+			else {
+				//TODO keep coding me
+				levelManager.TwinCollidedWithPortal(gameObject);
+				Portal portal = other.gameObject.GetComponent<Portal>();
+				portal.MoveToNextLevel();
+			}
+
 		}
 		else {
-			Debug.Log("IS SOMETHING ELSE COLLIDING ");
-			if(isRightMovement) {
-						Debug.Log("BLOCK FURTHER RIGHT MOVEMENT");
-						canMoveRight = false;
-						StopMovementVelocity();
-						reachedTarget = true;
-						targetPosition = transform.position;
-					}
-					else if(isLeftMovement) {
-						Debug.Log("BLOCK FURTHER LEFT MOVEMENT");
-						canMoveLeft = false;
-						StopMovementVelocity();
-						reachedTarget = true;
-						targetPosition = transform.position;
-					}
-					else if(isUpMovement) {
-						Debug.Log("BLOCK FURTHER UP MOVEMENT");
-						canMoveUp = false;
-						StopMovementVelocity();
-						reachedTarget = true;
-						targetPosition = transform.position;
-					}
-					else if(isDownMovement) {
-						Debug.Log("BLOCK FURTHER DOWN MOVEMENT");
-						canMoveDown = false;
-						StopMovementVelocity();
-						reachedTarget = true;
-						targetPosition = transform.position;
-					}
-					else {
-						Debug.Log("NOT DOING MOVEMENT");
-					}
 
+			Debug.Log("IS SOMETHING ELSE COLLIDING " +  other.transform.tag);
+			if(isRightMovement) {
+				Debug.Log("BLOCK FURTHER RIGHT MOVEMENT");
+				if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval) {
+					collidedRight();
+				}
+				
+			}
+		
+			else if(isLeftMovement) {
+				Debug.Log("BLOCK FURTHER LEFT MOVEMENT");
+				if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval)
+				{
+					collidedLeft();
+				}
+				
+			}
+			else if(isUpMovement) {
+				Debug.Log("BLOCK FURTHER UP MOVEMENT");
+
+				//otherwise just ignore this one
+				if( Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval) {
+					collidedTop();
+				}
+					
+			}
+			else if(isDownMovement) {
+				Debug.Log("BLOCK FURTHER DOWN MOVEMENT");
+				if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
+				{
+					collidedBottom();
+					
+				}
+				
+			}
+
+			if(isEnemy) {
+				 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+				 enemy.HandlePlayerCollision();
+			}
+			else if(isBomb) {
+
+				Bomb bomb = other.gameObject.GetComponent<Bomb>();
+				bomb.HandlePlayerCollision(this);
+			}	
+			else if(isBox) {
+				Box box = other.gameObject.GetComponent<Box>();
+				//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+				if(box!=null && box.isSurpriseBox) {
+
+					FadeSprite fade = box.gameObject.GetComponent<FadeSprite>();
+						if(fade!=null) {
+							fade.FadeSpriteNow(true);
+						}
+				}
+			}	
+
+			
 		}
 		
 		
@@ -541,6 +699,7 @@ public class PlayerMovement : MonoBehaviour {
 			Debug.Log("#### Already done this!! is left?" + isLeftTwin);
 			return; //already done this!!
 		}
+		originalPositionInLevel = transform.position; //this becames the original position on level
 		AllowAllMovementsAgain();
 		EnableColliders();
 		ResetLevel();
@@ -563,7 +722,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		Debug.Log("###### ResetLevel ON isLeft? " + isLeftTwin);
 		//allow play/move again
-		associatedLevel.level = levelManager.currentLevel;
+		associatedLevel = levelManager.currentLevel;
 		reachedTarget = true;
 		targetPosition = transform.position;
 		//TODO added this prop
@@ -639,4 +798,20 @@ public class PlayerMovement : MonoBehaviour {
       //DelegateHandler.actionDelegate -= ReEnableCollidersOnNewLevel;
     }
 
+
+	public void ShowBurnSpriteAnimation() {
+		anim.enabled = false;
+		GetComponentInChildren<SpriteRenderer>().sprite = burnedSprite;
+		levelManager.KillPlayer();
+	}
+
+	public void ResetOriginalSprite() {
+
+		GetComponentInChildren<SpriteRenderer>().sprite = originalSprite;
+		anim.enabled = true;
+	}
+
+	public void ResetOriginalPosition() {
+		transform.position = originalPositionInLevel;
+	}
 }

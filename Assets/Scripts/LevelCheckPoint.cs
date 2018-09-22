@@ -8,6 +8,7 @@ public class LevelCheckPoint : MonoBehaviour {
 	public bool canMoveRight = true;
 	public bool canMoveUp = true;
 	public bool canMoveDown = true;
+	public bool isLeftCheckpoint = true;
 	// Use this for initialization
 	void Start () {
 		

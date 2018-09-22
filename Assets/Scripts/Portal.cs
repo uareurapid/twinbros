@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour {
 
-	public int currentLevel = 0;
-	public int nextLevel = 0;
+	public Level currentLevel;
+	public Level nextLevel;
 
 	//GUIManager guiManager;
 	LevelManager levelManager;
@@ -23,6 +23,9 @@ public class Portal : MonoBehaviour {
 
 
 	public void MoveToNextLevel() {
-		levelManager.MoveToNextLevel(nextLevel);
+		if(nextLevel!=null) {
+			levelManager.MoveToNextLevel(nextLevel);
+		}//else, on last level
+		
 	}
 }

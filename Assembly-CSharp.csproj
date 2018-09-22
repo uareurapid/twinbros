@@ -53,14 +53,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AnimationController.cs" />
+     <Compile Include="Assets\Scripts\AutoDestroy.cs" />
      <Compile Include="Assets\Scripts\AutoDisableSprite.cs" />
      <Compile Include="Assets\Scripts\AutoRotate.cs" />
+     <Compile Include="Assets\Scripts\Bomb.cs" />
+     <Compile Include="Assets\Scripts\Box.cs" />
      <Compile Include="Assets\Scripts\CameraZoomInOutScript.cs" />
      <Compile Include="Assets\Scripts\DelegateHandler.cs" />
      <Compile Include="Assets\Scripts\DontGoThroughThings.cs" />
      <Compile Include="Assets\Scripts\DSPixelPerfectCamera.cs" />
      <Compile Include="Assets\Scripts\EnableDisableMonobehaviour.cs" />
      <Compile Include="Assets\Scripts\EnemyBox.cs" />
+     <Compile Include="Assets\Scripts\Explodable.cs" />
+     <Compile Include="Assets\Scripts\FadeSprite.cs" />
      <Compile Include="Assets\Scripts\GUIManager.cs" />
      <Compile Include="Assets\Scripts\Level.cs" />
      <Compile Include="Assets\Scripts\LevelCheckPoint.cs" />
@@ -68,12 +74,15 @@
      <Compile Include="Assets\Scripts\MoveTowardsScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Portal.cs" />
+     <Compile Include="Assets\Scripts\RepeatAnimationClip.cs" />
      <Compile Include="Assets\Scripts\ResetableBehaviours.cs" />
      <Compile Include="Assets\Scripts\ResetablePosition.cs" />
      <Compile Include="Assets\Scripts\ResetBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\SideCollider.cs" />
      <Compile Include="Assets\Scripts\SnapToPixelGrid.cs" />
      <Compile Include="Assets\Scripts\SoundEffectsHelper.cs" />
+     <Compile Include="Assets\Scripts\SpecialEffectsHelper.cs" />
+     <Compile Include="Assets\Scripts\SwapSpriteScript.cs" />
      <Compile Include="Assets\Scripts\SwipeDetector.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\TileRow.cs" />

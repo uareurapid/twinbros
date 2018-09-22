@@ -81,8 +81,10 @@ public class Tile : MonoBehaviour {
 	}
 
 
-	public void HandleTileCollisions(PlayerMovement movement) {
+	public virtual void HandlePlayerCollision(PlayerMovement movement) {
 
+
+			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();
 
 			Debug.Log("################# TIle HandleTileCollisions ################## " + gameObject.ToString());
 
@@ -101,6 +103,9 @@ public class Tile : MonoBehaviour {
 				Debug.Log("################# BLOCK DOWN ##################");
 				if(movement.IsMovingDown()) {
 					movement.collidedBottom();
+					if(enemy!=null) {
+					enemy.HandlePlayerCollision();
+					}
 				}
 				else {
 					movement.canMoveDown = false;

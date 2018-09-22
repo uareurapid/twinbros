@@ -31,24 +31,28 @@ public class SideCollider : MonoBehaviour {
 	{
 
 		//only affects if on the same level
-		if(levelManager.currentLevel == associatedLevel.level) {
-				//portal collision
-				if(other.transform.CompareTag("Portal")) {
+		/*if (levelManager.currentLevel.level == associatedLevel.level)
+		{
+			//portal collision
+			if (other.transform.CompareTag("Portal"))
+			{
 
-					if(movement.GetIsMovingBetweenLevels()) {
-						//ignore this collision
-						return;
-					}
-					else {
-						//TODO keep coding me
-						levelManager.TwinCollidedWithPortal(transform.parent.gameObject);
-						Portal portal = other.GetComponent<Portal>();
-						portal.MoveToNextLevel();
-					}
-				
+				if (movement.GetIsMovingBetweenLevels())
+				{
+					//ignore this collision
+					return;
+				}
+				else {
+					//TODO keep coding me
+					levelManager.TwinCollidedWithPortal(transform.parent.gameObject);
+					Portal portal = other.GetComponent<Portal>();
+					portal.MoveToNextLevel();
 				}
 
-				Tile tile = other.gameObject.GetComponent<Tile>();
+			}
+		}*/
+
+				//Tile tile = other.gameObject.GetComponent<Tile>();
 				//if(tile!=null) {
 				//	tile.HandleTileCollisions(isTop, isRight, isLeft, isBottom,movement);
 				//}
@@ -60,9 +64,9 @@ public class SideCollider : MonoBehaviour {
 					movement.SetIsTouchingEnemy(enemy);					
 					
 				}*/
-
+/*
 				HandleCollisions();
-		}
+		}*/
 
 		
 		
