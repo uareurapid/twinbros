@@ -84,9 +84,17 @@ public class MoveTowardsScript : MonoBehaviour {
 		}
 	 }
 
-	  if(secondTarget!=null && goBackAndFourth) {
-		 secondTargetPosition = secondTarget.transform.position;
-	  }
+		CheckSecondTarget();
+	}
+
+	void CheckSecondTarget() {
+	
+		if(secondTarget!=null && goBackAndFourth) {
+	
+			secondTargetPosition = secondTarget.transform.position;
+		 		
+		 }			
+
 	}
 	
 	// Update is called once per frame
@@ -161,14 +169,15 @@ public class MoveTowardsScript : MonoBehaviour {
 			if(isGoingBack) {
 				isGoingBack = false;
 			}
-			Debug.Log("Reached target position " + targetPosition.ToString() + " " + (isLeftTwin ? " LEFT TWIN": "RIGHT TWIN"));
+			Debug.Log("############# Reached target position " + targetPosition.ToString() + " " + (isLeftTwin ? " LEFT TWIN": "RIGHT TWIN"));
 			if(destroyWhenReach) { //destroy this object
 			  Destroy(gameObject);
 			}
 			else if(goBackAndFourth && secondTarget!=null) {
 
+			   Debug.Log("GO BACK AND FOURTH!!!!!");	
 			   if(!isGoingBack) {
-					Vector3 inicial = targetPosition;
+					Vector3 inicial = targetPosition; //whe
 					targetPosition = secondTargetPosition;
 					secondTargetPosition = inicial;
 					isGoingBack = true;

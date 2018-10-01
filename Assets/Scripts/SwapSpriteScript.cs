@@ -12,6 +12,8 @@ public class SwapSpriteScript : MonoBehaviour {
 	public float maxSwaps = 0; //0 means forever
 	private int numSwaps = 0;
 
+	public bool isUIImage = false;
+
 	public bool isController = false; 
 	public float controllerSwitchDelay = 0.5f;//only applies if is controller
 	
@@ -56,8 +58,14 @@ public class SwapSpriteScript : MonoBehaviour {
 	//swap time
 	public void SwapSprites() {
 		
-		SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-		renderer.sprite = sprites[lastUsedSprite];
+		if(isUIImage) {
+			UnityEngine.UI.Image image = gameObject.GetComponent<UnityEngine.UI.Image>();
+			image.sprite = sprites[lastUsedSprite];
+		}
+		else {
+			SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+			renderer.sprite = sprites[lastUsedSprite];
+		}
 		//if is controller, swicth it at the same time of the sprite swap
 		if (isController) {
 			Invoke("SwitchController",controllerSwitchDelay);
@@ -76,8 +84,17 @@ public class SwapSpriteScript : MonoBehaviour {
 	public void SwapSprites(int index) {
 		
 		if(index<sprites.Length) {
-			SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-			renderer.sprite = sprites[index];
+
+			if(isUIImage) {
+				UnityEngine.UI.Image image = gameObject.GetComponent<UnityEngine.UI.Image>();
+				image.sprite = sprites[index];
+			}
+			else {
+				SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+				renderer.sprite = sprites[index];
+			}
+	
+			
 		}
 		
 		

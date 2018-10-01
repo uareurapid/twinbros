@@ -1,21 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveTowardsScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GoogleMobileAds/Api/CustomNativeEventArgs.cs">
     <Files>
-      <File FileName="Assets/Scripts/AutoDestroy.cs" Line="7" Column="27" />
-      <File FileName="Assets/Scripts/DSPixelPerfectCamera.cs" Line="49" Column="1" />
-      <File FileName="Assets/Scripts/Bomb.cs" Line="62" Column="50" />
-      <File FileName="Assets/Scripts/FadeSprite.cs" Line="29" Column="30" />
-      <File FileName="Assets/Scripts/Box.cs" Line="19" Column="47" />
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="123" Column="53" />
-      <File FileName="Assets/Scripts/Tile.cs" Line="89" Column="1" />
-      <File FileName="Assets/Scripts/SpecialEffectsHelper.cs" Line="364" Column="4" />
-      <File FileName="Assets/Scripts/AnimationController.cs" Line="22" Column="23" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="141" Column="42" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="50" Column="35" />
-      <File FileName="Assets/Scripts/Portal.cs" Line="27" Column="25" />
-      <File FileName="Assets/Scripts/CameraZoomInOutScript.cs" Line="109" Column="32" />
-      <File FileName="Assets/Scripts/Explodable.cs" Line="14" Column="30" />
-      <File FileName="Assets/Scripts/MoveTowardsScript.cs" Line="192" Column="1" />
+      <File FileName="Assets/Scripts/GridController.cs" Line="12" Column="12" />
+      <File FileName="Assets/Scripts/DrawGizmoGrid.cs" Line="92" Column="2" />
+      <File FileName="Assets/Scripts/FadeSprite.cs" Line="12" Column="2" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="58" Column="5" />
+      <File FileName="Assets/Scripts/MoveWayPoint.cs" Line="34" Column="35" />
+      <File FileName="Assets/Scripts/RendererExtensions.cs" Line="53" Column="1" />
+      <File FileName="Assets/Scripts/VisibleOnScreen.cs" Line="33" Column="9" />
+      <File FileName="Assets/Scripts/FadeSpriteAlpha.cs" Line="25" Column="4" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="634" Column="27" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="145" Column="20" />
+      <File FileName="Assets/Scripts/Bomb.cs" Line="17" Column="17" />
+      <File FileName="Assets/Scripts/SpawnPosition.cs" Line="5" Column="27" />
+      <File FileName="Assets/Scripts/Box.cs" Line="7" Column="36" />
+      <File FileName="Assets/Scripts/SpawnableItem.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/GoogleMobileAdsScript.cs" Line="62" Column="71" />
+      <File FileName="Assets/GoogleMobileAds/Api/CustomNativeEventArgs.cs" Line="20" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

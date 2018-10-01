@@ -117,16 +117,55 @@ public class PlayerMovement : MonoBehaviour {
 		return reachedNewLevel;
 	}
 
-
 	private bool CanMoveOnOppositeDirection() {
 
 		return reachedTarget || targetPosition == transform.position;
 
 	}
 
+	//called from Level manager
+	public bool TrySlideUp() {
+		if( (transform.position == targetPosition || reachedTarget)  && canMoveUp) {
+
+			SlideUp();
+			return true;
+		}
+		return false;
+	}
+
+	public bool TrySlideDown() {
+		if((transform.position == targetPosition || reachedTarget) && canMoveDown) {
+
+			SlideDown();
+			return true;
+			
+		}
+		return false;
+	}
+
+	public bool TrySlideLeft() {
+		if((transform.position == targetPosition || reachedTarget) && canMoveLeft) {
+
+			SlideLeft();
+			return true;
+		}
+		return false;
+	}
+
+	public bool TrySlideRight() {
+		if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
+			SlideRight();
+			return true;
+		}
+		return false;
+	}
+
     void FixedUpdate()
     {
 
+		if(!levelManager.IsGameStarted()) {
+			return;
+		}
 
 		previousPosition[1] = previousPosition[0];
 		previousPosition[0] = body.position;
@@ -141,9 +180,7 @@ public class PlayerMovement : MonoBehaviour {
 				if(distance < minDistanceForNeighbour) {
 					canMoveLeft = false;
 				}
-				//else {
-				//	canMoveLeft = true;
-				//}
+				
 	        }
 	
 			RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 2.0f, collisionMasks  );
@@ -153,9 +190,7 @@ public class PlayerMovement : MonoBehaviour {
 				if(distance < minDistanceForNeighbour) {
 					canMoveRight = false;
 				}
-				//else {
-				//	canMoveRight = true;
-				//}
+			
 	        }
 	
 			RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, 2.0f, collisionMasks  );
@@ -165,9 +200,7 @@ public class PlayerMovement : MonoBehaviour {
 				if(distance < minDistanceForNeighbour) {
 					canMoveUp = false;
 				}
-				//else {
-				//	canMoveUp = true;
-				//}
+				
 	        }
 	
 			RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, collisionMasks  );
@@ -177,23 +210,19 @@ public class PlayerMovement : MonoBehaviour {
 				if(distance < minDistanceForNeighbour) {
 					canMoveDown = false;
 				}
-				//else {
-				//	canMoveDown = true;
-				//}
+				
 	        }
 		}
 		
 		
 
-		if (Input.GetMouseButtonDown(0) && !levelManager.IsGameStarted())
-		{
+		//if (Input.GetMouseButtonDown(0) && !levelManager.IsGameStarted())
+		//{
 			//game not started yet
-			levelManager.StartGame();
-		}
+		//	levelManager.StartGame();
+		//}
 
 		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || levelManager.isPlayerDead() || levelManager.IsStillAwaitingLevelTransitions() ) {
-			//Debug.Log( (isLeftTwin? " LEFT->" : "RIGHT->") + "DO NOTHING BECAUSE: isMovingBetweenLevels? " + isMovingBetweenLevels +" associatedLevel.level " + associatedLevel.level + " levelManager.currentLevel? " + levelManager.currentLevel + 
-			//" levelManager IsStillAwaitingLevelTransitions() ? " + levelManager.IsStillAwaitingLevelTransitions());
 			return;
 		}
 
@@ -214,7 +243,7 @@ public class PlayerMovement : MonoBehaviour {
 			canMoveLeft = false;
 		}
 		
-
+		/**
 		if ( (Input.GetKey(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
         {
 
@@ -229,8 +258,8 @@ public class PlayerMovement : MonoBehaviour {
 			}
 
 			
-        }
-        else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
+        }*/
+        /*else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
         {
 			//Debug.Log("AM INSIDE, can move right? " + canMoveRight);
 			//Debug.Log("AM INSIDE, reachedTarget? " + reachedTarget);
@@ -241,18 +270,18 @@ public class PlayerMovement : MonoBehaviour {
 				return;
 			 }*/
 
-			 if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
-				SlideRight();
+			 //if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
+			//	SlideRight();
 
-			 }
-			 else {
+			 //}
+			 //else {
 
 				//Debug.Log("NO CAN MOVE RIGHT? " + canMoveRight + " RECAHED TARGET? " + reachedTarget + " canMoveRight? " + canMoveRight);
-			 }
+			 //}
 
 			
-        }
-        else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
+        //}*/
+        /**else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
         {
 
 			if((transform.position == targetPosition || reachedTarget) && canMoveDown) {
@@ -265,8 +294,8 @@ public class PlayerMovement : MonoBehaviour {
 				//Debug.Log("NO CAN MOVE DOWN? " + canMoveDown + " RECAHED TARGET? " + reachedTarget);
 			}
 			
-        }
-        else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
+        }*/
+        /*else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
         {  
 
 			if((transform.position == targetPosition || reachedTarget) && canMoveLeft) {
@@ -278,7 +307,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			
 			//if(associatedLevel.level == 2)Debug.Log("WILL MOVE LEFT");
-        }
+        }*/
 
 
 		//canMove = canMoveUp || canMoveDown || canMoveLeft || canMoveRight;
@@ -380,6 +409,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(!reachedTarget) {
 
+				reachedTarget = true;
 
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
@@ -413,6 +443,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(!reachedTarget) {
 
+				reachedTarget = true;
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
 				}
@@ -445,7 +476,8 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate(-body.velocity);
 
 			if(!reachedTarget) {
-				//levelManager.decreaseMove();
+
+				reachedTarget = true;
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
 				}
@@ -475,7 +507,8 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate(-body.velocity);
 
 			if(!reachedTarget) {
-				//levelManager.decreaseMove();
+				
+				reachedTarget = true;
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
 				}
@@ -595,9 +628,10 @@ public class PlayerMovement : MonoBehaviour {
 				//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 				if(box!=null && box.isSurpriseBox) {
 
-					FadeSprite fade = box.gameObject.GetComponent<FadeSprite>();
+					Debug.Log("FADE SURPRISE BOX");
+					FadeSpriteAlpha fade = box.gameObject.GetComponent<FadeSpriteAlpha>();
 						if(fade!=null) {
-							fade.FadeSpriteNow(true);
+							fade.enabled = true;
 						}
 				}
 			}	

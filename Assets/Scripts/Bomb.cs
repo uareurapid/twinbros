@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb: MonoBehaviour {
+public class Bomb: SpawnableItem {
 
 	public float delayBeforeBurn = 1.0f;
 	public float delayBeforeExplosion = 2.0f;
@@ -12,15 +12,12 @@ public class Bomb: MonoBehaviour {
 
 	private Explodable explodeAction;
 
+
 	// Use this for initialization
 	void Start () {
+		
 		anim = GetComponentInChildren<Animator>();
 		explodeAction = GetComponent<Explodable>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 

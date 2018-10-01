@@ -14,6 +14,8 @@ public class FadeSprite : MonoBehaviour {
     // starting value for the Lerp
     static float interpolater = 0.0f;
 
+	public bool isUIImage = false;
+    UnityEngine.UI.Image image;
 
 	private bool fadeIn = false;
 	private bool started = false;
@@ -23,14 +25,28 @@ public class FadeSprite : MonoBehaviour {
 	public bool doBoth = true;
 	private int countCycle = 0;
 	// Use this for initialization
+
+	public float duration = 4.0f; //4 seconds
+
+	private bool isDone = false;
+	float speed = 0;
+
 	void Start () {
 
-		spRend = GetComponent<SpriteRenderer>();
-		//some might be in children
-		if(spRend==null) {
-			spRend = GetComponentInChildren<SpriteRenderer>();
+		if(isUIImage) {
+			image = GetComponent<UnityEngine.UI.Image>();
+			col = image.color;
 		}
-		col = spRend.color;
+		else {
+
+			spRend = GetComponent<SpriteRenderer>();
+			//some might be in children
+			if(spRend==null) {
+				spRend = GetComponentInChildren<SpriteRenderer>();
+			}
+			col = spRend.color;
+		}
+		
 		countCycle = 0;
 	}
 	
@@ -39,28 +55,30 @@ public class FadeSprite : MonoBehaviour {
 	
 		if(started) {
 
+			col = isUIImage ? image.color : spRend.color;
+
 			if(fadeIn) {
 				// store a reference to the SpriteRenderer on the current GameObject
 				
 				// copy the SpriteRenderer's color property
-				col = spRend.color;
 				//  change col's alpha value (0 = invisible, 1 = fully opaque)
 				//col.a = 0f; // 0.5f = half transparent
+
+				col.a +=  fullyTransparent + speed;
 	
-				col.a = Mathf.Lerp(fullyOpaque,fullyTransparent, interpolater);
+				//col.a = Mathf.Lerp(fullyOpaque,fullyTransparent, interpolater);
 				// change the SpriteRenderer's color property to match the copy with the altered alpha value
-				spRend.color = col;
+				
 			}
 			else {
 				// store a reference to the SpriteRenderer on the current GameObject
 				// copy the SpriteRenderer's color property
-				col = spRend.color;
+				
 				//  change col's alpha value (0 = invisible, 1 = fully opaque)
-				col.a = Mathf.Lerp(fullyTransparent, fullyOpaque, interpolater);
+				col.a += fullyOpaque + speed;
 	
 				//col.a = 1f; // 0.5f = half transparent
 				// change the SpriteRenderer's color property to match the copy with the altered alpha value
-				spRend.color = col;
 	
 				// now check if the interpolator has reached 1.0
 	        	// and swap maximum and minimum so game object moves
@@ -68,8 +86,26 @@ public class FadeSprite : MonoBehaviour {
 			        
 			}
 
-			if (interpolater > 1.0f || interpolater < 0f)
+			if(col.a > 1.0f) {
+				col.a = 1.0f;
+				isDone = true;
+			}
+			else if(col.a < 0) {
+				col.a = 0;
+				isDone = true;
+			}
+
+			if(isUIImage) {
+				image.color = col;
+			}
+			else {
+				spRend.color = col;
+			}
+
+			if ( isDone )
 			{
+
+				Debug.Log("$$$$$$$$$$$$$$$$$ IS DONE $$$$$$$$$$$$$$$$$$");
 
 				if(doBoth && countCycle == 0) {
 					countCycle += 1;
@@ -81,8 +117,8 @@ public class FadeSprite : MonoBehaviour {
 					}
 				}
 				else {
+					Debug.Log(" STOPPPING!!!!!!!!");
 					started = false;
-					interpolater = 0.0f;
 					countCycle = 0;
 				}
 
@@ -91,19 +127,17 @@ public class FadeSprite : MonoBehaviour {
 			}
 	
 			if(disableColliderIfTransparent) {
-				if(fadeIn && col.a < 0.5) {
+				if(fadeIn && col.a < 0.4f) {
 					//becaming transparent
 					Collider2D coll = GetComponent<Collider2D>();
 					coll.enabled = false;
 				}
-				else if(!fadeIn && col.a > 0.5) {
+				else if(!fadeIn && col.a > 0.6f) {
 					Collider2D coll = GetComponent<Collider2D>();
 					coll.enabled = true;
 				}
 			}
 				
-        	// .. and increase the t interpolater
-        	interpolater += 0.25f * Time.deltaTime;
 			
 		}
 		
@@ -114,17 +148,11 @@ public class FadeSprite : MonoBehaviour {
 	}
 
 	public void FadeSpriteNow(bool fadeIn) {
+		isDone = false;
 		this.fadeIn = fadeIn;
-		if(fadeIn) {
-			
-			col.a = 1f;
-			interpolater = 0.1f;
-		}
-		else {
-			interpolater = 0.1f;
-			col.a = 0f;
-		}
-
-		this.started = true;
+		float startTime = Time.time;
+		//speed = (Time.time - startTime) / duration;
+		speed = 0.01f;
+		started = true;
 	}
 }

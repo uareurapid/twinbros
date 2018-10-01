@@ -30,12 +30,19 @@ public class LevelManager : MonoBehaviour {
 
 	private bool gameStarted = false;
 
+	private SwipeDetector swipe;
+
 	void Start () {
+
+		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android && swipe==null) {
+			swipe = gameObject.AddComponent<SwipeDetector>();
+		}
+
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
 		leftTwinMoved = rightTwinMoved = false;
 		gameStarted = false;
-		Invoke("StartGame", 1f);
+		//Invoke("StartGame", 1f);
 	}
 
 
@@ -134,19 +141,70 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if(leftTwinMoved || rightTwinMoved) {
-			decreaseMove();
-			leftTwinMoved = rightTwinMoved = false;
-		}
-		if( (leftTwinReady && rightTwinReady)/*&& currentLevel.level > 1*/) { //don´t do this at first start
-			
-			foreach(PlayerMovement player in twins) {
 
-				player.ResetPlayerOnNewLevel(); //will also set the new associated level for both twins
+		if(gameStarted) {
+			int moved = 0;
+			if ( (Input.GetKey(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
+	        {
+	
+				
+				foreach(PlayerMovement player in twins) {
+					if(player.TrySlideUp()) {
+						moved++;
+					}
+				}
+	
+				
+	        }
+	        else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
+	        {
+				
+				foreach(PlayerMovement player in twins) {
+					if(player.TrySlideRight()) {
+						moved++;
+					}
+				}
+				
+	        }
+	        else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
+	        {
+	
+				foreach(PlayerMovement player in twins) {
+					if(player.TrySlideDown()) {
+						moved++;
+					}
+				}
+				
+	        }
+	        else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
+	        {  
+	
+				foreach(PlayerMovement player in twins) {
+					if(player.TrySlideLeft()) {
+						moved++;
+					}
+				}
+	        }
+	
+			
+			if(moved > 0) {
+				//leftTwinMoved = rightTwinMoved = false;
+				decreaseMove();
+				
+			}
+	
+			if( (leftTwinReady && rightTwinReady)/*&& currentLevel.level > 1*/) { //don´t do this at first start
+				
+				foreach(PlayerMovement player in twins) {
+	
+					player.ResetPlayerOnNewLevel(); //will also set the new associated level for both twins
+				}
+	
+				leftTwinReady = rightTwinReady = false;
 			}
 
-			leftTwinReady = rightTwinReady = false;
 		}
+		
 	}
 
 	public void LeftTwinReachedNewLevel(bool reached, MoveTowardsScript move, LevelCheckPoint restrictions) {
