@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp.csproj", "{AF4CBFA2-FC31-DE5F-F389-735F10822B12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp-firstpass.csproj", "{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp-Editor-firstpass.csproj", "{7587656F-E73C-933F-69DD-CEDB27394931}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF4CBFA2-FC31-DE5F-F389-735F10822B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7587656F-E73C-933F-69DD-CEDB27394931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7587656F-E73C-933F-69DD-CEDB27394931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7587656F-E73C-933F-69DD-CEDB27394931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7587656F-E73C-933F-69DD-CEDB27394931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

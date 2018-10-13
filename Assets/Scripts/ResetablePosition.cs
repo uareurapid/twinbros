@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class ResetablePosition : MonoBehaviour, ResetBehaviourScript {
 	
 	    private Vector3 startPosition;

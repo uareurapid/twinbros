@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114709665095138768}
   - component: {fileID: 61449026160381668}
   - component: {fileID: 114659029550571250}
+  - component: {fileID: 114330375647352958}
   m_Layer: 0
   m_Name: bomb_burning
   m_TagString: Bomb
@@ -145,6 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelsPerUnit: 32
+--- !u!114 &114330375647352958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606508246861192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88444b05294d4f03a9863013e38c361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiallyActive: 1
 --- !u!114 &114659029550571250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068cca238b65146829653473c10c08b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleSpawnPositions: []
   delayBeforeBurn: 1
   delayBeforeExplosion: 2
   isLightUp: 1

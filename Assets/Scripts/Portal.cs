@@ -10,10 +10,13 @@ public class Portal : MonoBehaviour {
 	//GUIManager guiManager;
 	LevelManager levelManager;
 
+	SceneLoader loader;
+
 	// Use this for initialization
 	void Start () {
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
+		loader = scripts.GetComponent<SceneLoader>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,14 @@ public class Portal : MonoBehaviour {
 		if(nextLevel!=null) {
 			levelManager.MoveToNextLevel(nextLevel);
 		}//else, on last level
+		else {
+			if(loader!=null) {
+				loader.LoadNextScene();
+			}
+			else {
+				levelManager.KillPlayer();
+			}
+		}
 		
 	}
 }

@@ -25,8 +25,17 @@ public class FadeSpriteAlpha : MonoBehaviour {
 	//public bool isOpaque = false;
      
     Collider2D coll;
+
+	Color color;
      // Invisible on Awake
      void Start() {
+
+
+		 //isTransparent = sprite.color.a < 0.1f;
+		 //isOpaque = sprite.color.a > 0.9f;
+     }
+
+	 void OnEnable() {
 
 		coll = GetComponent<Collider2D>();
 		sprite = GetComponent<SpriteRenderer>();
@@ -34,26 +43,29 @@ public class FadeSpriteAlpha : MonoBehaviour {
 		if (sprite == null)
 		{
  			sprite = GetComponentInChildren<SpriteRenderer>();
+			//color = sprite.color;
 		}
 		
 		if(sprite==null) {
 			image = GetComponent<UnityEngine.UI.Image>();
+			color = image.color;
 		}
 
 		 startTime = Time.time;
-
-		 //isTransparent = sprite.color.a < 0.1f;
-		 //isOpaque = sprite.color.a > 0.9f;
-     }
+	}
      
      // Update is called once per frame
      void Update () {
 		
 		float t = (Time.time - startTime) / duration;
 
-		sprite.color = new Color(1f,1f,1f,Mathf.SmoothStep(minimum,maximum, t));
+		//Color c = new Color(1f,1f,1f,Mathf.SmoothStep(minimum,maximum, t));
+		if(image!=null) {
+			image.color = new Color(1f,1f,1f,Mathf.SmoothStep(minimum,maximum, t));
+		}
+		
 
-		if(disableColliderIfTransparent) {
+		/*if(disableColliderIfTransparent) {
 
 
 			if(sprite.color.a > 0.5f) {
@@ -63,7 +75,7 @@ public class FadeSpriteAlpha : MonoBehaviour {
 			else {
 				coll.enabled = false;
 			}
-		}
+		}*/
 
 		//isTransparent = sprite.color.a < 0.1f;
 		//isOpaque = sprite.color.a > 0.9f;

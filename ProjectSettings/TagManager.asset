@@ -22,6 +22,7 @@ TagManager:
   - left_door
   - Bomb
   - level_1
+  - Electric
   layers:
   - Default
   - TransparentFX

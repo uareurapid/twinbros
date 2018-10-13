@@ -65,13 +65,16 @@ public class Bomb: SpawnableItem {
 	{
 		yield return new WaitForSeconds(delayBeforeExplosion);
 		SpecialEffectsHelper.Instance.PlayExplosionEffect(transform.position);
-		Destroy(gameObject);
 
 		//only if it is in range of the explosion
 		if (explodeAction.ExplodePlayer()) {
 			movement.ShowBurnSpriteAnimation();
+			//movement.ShowElectrocutedSpriteAnimation();
 		}
+
+		gameObject.SetActive(false);
 		
 		
 	}
+
 }

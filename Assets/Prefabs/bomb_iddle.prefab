@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114382382866759824}
   - component: {fileID: 61942837951006142}
   - component: {fileID: 114871692053623820}
+  - component: {fileID: 114845248541161654}
   m_Layer: 0
   m_Name: bomb_iddle
   m_TagString: Bomb
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068cca238b65146829653473c10c08b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleSpawnPositions: []
   delayBeforeBurn: 1
   delayBeforeExplosion: 2
   isLightUp: 0
@@ -148,6 +150,18 @@ MonoBehaviour:
   param2Name: burn
   param1Value: 0
   param2Value: 0
+--- !u!114 &114845248541161654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181444384386708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88444b05294d4f03a9863013e38c361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiallyActive: 1
 --- !u!114 &114871692053623820
 MonoBehaviour:
   m_ObjectHideFlags: 1

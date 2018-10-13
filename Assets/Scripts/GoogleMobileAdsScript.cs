@@ -6,13 +6,16 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
     //README https://developers.google.com/admob/unity/rewarded-video
 	private RewardBasedVideoAd rewardBasedVideo;
+
+	private InterstitialAd interstitialAd;
 	// Use this for initialization
 	public void Start()
     {
         #if UNITY_ANDROID
             string appId = "ca-app-pub-3940256099942544~3347511713";
         #elif UNITY_IPHONE
-            string appId = "ca-app-pub-3940256099942544~1458002511";
+            string appId = "ca-app-pub-9531252796858598~9251777791";
+			//"ca-app-pub-3940256099942544~1458002511";
         #else
             string appId = "unexpected_platform";
         #endif
@@ -46,18 +49,29 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	public bool IsRewardVideoReady() {
 		return rewardBasedVideo.IsLoaded();
 	}
+
+	public bool IsInterstitialReady() {
+		return interstitialAd.IsLoaded();
+	}
 	
 	public void ShowRewardVideo() {
 
 		rewardBasedVideo.Show();
 	}
 
+	public void ShowInterstitialAd() {
+
+		interstitialAd.Show();
+	}
+
+	//TODO get the ids for Android (only after trying unique release on IOS)
 	private void RequestRewardBasedVideo()
     {
-        #if UNITY_ANDROID
+		#if UNITY_ANDROID
             string adUnitId = "ca-app-pub-3940256099942544/5224354917";
-        #elif UNITY_IPHONE
-            string adUnitId = "ca-app-pub-3940256099942544/1712485313";
+		#elif UNITY_IPHONE
+			string adUnitId = "ca-app-pub-9531252796858598/3913311894";
+		//"ca-app-pub-3940256099942544/1712485313";
         #else
             string adUnitId = "unexpected_platform";
         #endif
@@ -67,6 +81,16 @@ public class GoogleMobileAdsScript : MonoBehaviour {
         // Load the rewarded video ad with the request.
         this.rewardBasedVideo.LoadAd(request, adUnitId);
     }
+
+	public void RequestInterstitialAd() {
+
+
+		#if UNITY_IPHONE
+			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
+		#else
+            string adUnitId = "unexpected_platform";
+        #endif
+	}
 	
 	    public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
     {

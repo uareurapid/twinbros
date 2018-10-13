@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour {
 	private EnemyBox touchingEnemy = null;
 
 	private bool isMovingBetweenLevels = false;
+	private bool isMovingBetweenTeleportPoints = false;
 	/************************************************************
      ** Make sure to add rigidbodies to your objects.
      ** Place this script on your object not object being hit
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour {
 	Animator anim;
 	private Sprite originalSprite;
 	public Sprite burnedSprite;
+	public Sprite electrocutedSprite;
 
 	private Vector3 originalPositionInLevel;
 	void Awake() {
@@ -125,7 +127,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	//called from Level manager
 	public bool TrySlideUp() {
-		if( (transform.position == targetPosition || reachedTarget)  && canMoveUp) {
+		if( (transform.position == targetPosition || reachedTarget)  && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 
 			SlideUp();
 			return true;
@@ -134,7 +136,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool TrySlideDown() {
-		if((transform.position == targetPosition || reachedTarget) && canMoveDown) {
+
+		
+		if((transform.position == targetPosition || reachedTarget) && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 
 			SlideDown();
 			return true;
@@ -144,16 +148,19 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool TrySlideLeft() {
-		if((transform.position == targetPosition || reachedTarget) && canMoveLeft) {
-
+		Debug.Log("TRY SLIDE LEFT");
+		if((transform.position == targetPosition || reachedTarget) && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+			
 			SlideLeft();
 			return true;
 		}
+		Debug.Log("LEFT ONE? " + isLeftTwin + " I CANNOT!!!" + "transform.position == targetPosition?" + (transform.position == targetPosition) + " reachedTarget? " + reachedTarget + " canMoveLeft? " + canMoveLeft) ;
 		return false;
+
 	}
 
 	public bool TrySlideRight() {
-		if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
+		if( (transform.position == targetPosition || reachedTarget) && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 			SlideRight();
 			return true;
 		}
@@ -214,15 +221,10 @@ public class PlayerMovement : MonoBehaviour {
 	        }
 		}
 		
-		
 
-		//if (Input.GetMouseButtonDown(0) && !levelManager.IsGameStarted())
-		//{
-			//game not started yet
-		//	levelManager.StartGame();
-		//}
-
-		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || levelManager.isPlayerDead() || levelManager.IsStillAwaitingLevelTransitions() ) {
+		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || 
+					isMovingBetweenTeleportPoints || levelManager.isPlayerDead() || 
+					levelManager.IsStillAwaitingLevelTransitions() ) {
 			return;
 		}
 
@@ -242,73 +244,6 @@ public class PlayerMovement : MonoBehaviour {
 		if(IsMovingRight() && !CanMoveOnOppositeDirection() ) {
 			canMoveLeft = false;
 		}
-		
-		/**
-		if ( (Input.GetKey(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
-        {
-
-
-			if( (transform.position == targetPosition || reachedTarget)  && canMoveUp) {
-
-				SlideUp();
-			}
-			else {
-
-				//Debug.Log("NO CAN MOVE UP? " + canMoveUp + " RECAHED TARGET? " + reachedTarget);
-			}
-
-			
-        }*/
-        /*else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
-        {
-			//Debug.Log("AM INSIDE, can move right? " + canMoveRight);
-			//Debug.Log("AM INSIDE, reachedTarget? " + reachedTarget);
-			//Debug.Log("AM INSIDE, transform.position == targetPosition? " + (transform.position == targetPosition));
-			//do not let move to right and kill right away
-			 /*if(touchingEnemy != null && touchingEnemy.killPlayerOnTouch && touchingEnemy.GetTile().blockRightMovement) {
-				levelManager.KillPlayer();
-				return;
-			 }*/
-
-			 //if( (transform.position == targetPosition || reachedTarget) && canMoveRight) {
-			//	SlideRight();
-
-			 //}
-			 //else {
-
-				//Debug.Log("NO CAN MOVE RIGHT? " + canMoveRight + " RECAHED TARGET? " + reachedTarget + " canMoveRight? " + canMoveRight);
-			 //}
-
-			
-        //}*/
-        /**else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
-        {
-
-			if((transform.position == targetPosition || reachedTarget) && canMoveDown) {
-
-				SlideDown();
-			
-			}
-			else {
-
-				//Debug.Log("NO CAN MOVE DOWN? " + canMoveDown + " RECAHED TARGET? " + reachedTarget);
-			}
-			
-        }*/
-        /*else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
-        {  
-
-			if((transform.position == targetPosition || reachedTarget) && canMoveLeft) {
-
-				SlideLeft();
-			}
-			else {
-				//Debug.Log("NO CAN MOVE LEFT? " + canMoveLeft + " RECAHED TARGET? " + reachedTarget);
-			}
-			
-			//if(associatedLevel.level == 2)Debug.Log("WILL MOVE LEFT");
-        }*/
-
 
 		//canMove = canMoveUp || canMoveDown || canMoveLeft || canMoveRight;
 
@@ -340,10 +275,18 @@ public class PlayerMovement : MonoBehaviour {
 			
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
 		}
+		else {
+			reachedTarget = true;
+		}
 
     }
 
-	void SlideUp() {
+	public bool IsMovingInAnyDirection() {
+		return IsMovingUp() || IsMovingLeft() || IsMovingDown() || IsMovingRight();
+	}
+
+	public void SlideUp() {
+		Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
 		isUpMovement = true;
 		reachedTarget = false;
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
@@ -351,7 +294,7 @@ public class PlayerMovement : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlayMoveSound();
 	}
 
-	void SlideRight() {
+	public void SlideRight() {
 		isRightMovement = true;
 		reachedTarget = false;
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
@@ -359,7 +302,7 @@ public class PlayerMovement : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlayMoveSound();
 	}
 
-	void SlideDown() {
+	public void SlideDown() {
 		isDownMovement = true;
 		reachedTarget = false;
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
@@ -367,8 +310,7 @@ public class PlayerMovement : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlayMoveSound();
 	}
 
-	void SlideLeft() {
-
+	public void SlideLeft() {
 		isLeftMovement = true;
 		reachedTarget = false;
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
@@ -394,9 +336,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void collidedLeft() {
-		Debug.Log("LEFT " + (isLeftTwin ? " left twin " : "right twin"));
+
 		canMoveLeft = false;
-		//canMoveRight = true;
 
 		if(isLeftMovement) {
 
@@ -430,7 +371,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	}
 	public void collidedRight() {
-		Debug.Log("RIGHT " + (isLeftTwin ? " left twin " : "right twin") );
+
 		canMoveRight = false;
 		//canMoveLeft = true;
 
@@ -463,7 +404,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 	public void collidedTop() {
-		Debug.Log("TOP" + (isLeftTwin ? " left twin " : "right twin"));
+
 		canMoveUp = false;
 		//canMoveDown = true;
 
@@ -494,7 +435,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 	public void collidedBottom() {
-		Debug.Log("BOTTOM" + (isLeftTwin ? " left twin " : "right twin"));
+	
 		canMoveDown = false;
 		//canMoveUp = true;
 	
@@ -528,16 +469,15 @@ public class PlayerMovement : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D other)
 	{
 
-		if(other.transform.CompareTag("Bomb")) {
+		//if(other.transform.CompareTag("Bomb")) {
 
 			//avoid getting killed by the bomb
-		}
-		/*Debug.Log("EXIT COLLISION WITH SOMETHING " + other.transform.tag);
+		//}
+		
 		Tile tile = other.transform.GetComponent<Tile>();
 		if(tile!=null) {
-			Debug.Log("IT IS A TILE, LET HIM HANDLE THE EXIT ");
 			tile.HandleTileExitCollisions(this);
-		}*/
+		}
 		//AllowAllMovementsAgain();
 		
 	}
@@ -553,10 +493,12 @@ public class PlayerMovement : MonoBehaviour {
 		bool isEnemy = otherTag.Equals("Enemy");
 		bool isBox = otherTag.Equals("Box");
 		bool isBomb = otherTag.Equals("Bomb");
+		bool isElectric = otherTag.Equals("Electric");
 
 		Tile tile = other.transform.GetComponent<Tile>();
 		if(tile!=null) {
-			//Debug.Log("IT IS A TILE, LET HIM HANDLE IT ");
+
+			Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
 			tile.HandlePlayerCollision(this);
 		}
 		//portal collision
@@ -572,15 +514,20 @@ public class PlayerMovement : MonoBehaviour {
 				//TODO keep coding me
 				levelManager.TwinCollidedWithPortal(gameObject);
 				Portal portal = other.gameObject.GetComponent<Portal>();
-				portal.MoveToNextLevel();
+				StartCoroutine(MoveToNextLevel(portal));
 			}
 
 		}
 		else {
 
-			Debug.Log("IS SOMETHING ELSE COLLIDING " +  other.transform.tag);
+			if(other.gameObject.GetComponent<ObjectActivator>()!=null) {
+
+				Debug.Log("FFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCCCCK!!!!!");
+			}
+
+			Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
 			if(isRightMovement) {
-				Debug.Log("BLOCK FURTHER RIGHT MOVEMENT");
+
 				if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval) {
 					collidedRight();
 				}
@@ -588,7 +535,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		
 			else if(isLeftMovement) {
-				Debug.Log("BLOCK FURTHER LEFT MOVEMENT");
+
 				if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval)
 				{
 					collidedLeft();
@@ -596,16 +543,16 @@ public class PlayerMovement : MonoBehaviour {
 				
 			}
 			else if(isUpMovement) {
-				Debug.Log("BLOCK FURTHER UP MOVEMENT");
 
 				//otherwise just ignore this one
-				if( Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval) {
+				if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
+				{
 					collidedTop();
 				}
 					
 			}
 			else if(isDownMovement) {
-				Debug.Log("BLOCK FURTHER DOWN MOVEMENT");
+
 				if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
 				{
 					collidedBottom();
@@ -622,8 +569,14 @@ public class PlayerMovement : MonoBehaviour {
 
 				Bomb bomb = other.gameObject.GetComponent<Bomb>();
 				bomb.HandlePlayerCollision(this);
+			}
+			else if(isElectric) {
+
+				ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
+				wire.ElectrocutePlayer(this);
 			}	
 			else if(isBox) {
+				Debug.Log("------ COLLIDED WITH BOX, LEFT TWIN? " + isLeftTwin);
 				Box box = other.gameObject.GetComponent<Box>();
 				//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 				if(box!=null && box.isSurpriseBox) {
@@ -640,6 +593,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 		
+	}
+
+	IEnumerator MoveToNextLevel(Portal portal) {
+		yield return new WaitForSeconds(0.5f);
+		portal.MoveToNextLevel();
 	}
 
 	public void AllowAllMovementsAgain() {
@@ -663,6 +621,13 @@ public class PlayerMovement : MonoBehaviour {
 		reachedTarget = false;
 
 	}
+
+	public void AllowAllMovementsAgainV2()
+	{
+		canMoveUp = canMoveLeft = canMoveRight = canMoveDown = true;
+		isUpMovement = isDownMovement = isRightMovement = false;
+	}
+
 
 	public void AllowUpMovementAgain()
 	{
@@ -764,7 +729,7 @@ public class PlayerMovement : MonoBehaviour {
 		isMovingBetweenLevels = false;
 	}
 
-	void EnableColliders() {
+	public void EnableColliders() {
 
 		Collider2D[] coll = GetComponents<Collider2D>();
 		foreach(Collider2D col in coll) {
@@ -778,13 +743,22 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     //this is called when is flying to another level
-	public void DisableColliders() {
+	public void DisableCollidersAndMovements() {
 
 		Debug.Log("DISABLED COLLIDER ON isLeft? " + isLeftTwin);
 		isMovingBetweenLevels = true;
 		reachedTarget = false;
 		canMoveLeft = canMoveDown = canMoveUp = canMoveRight = false; //TODO was true
-		isUpMovement = isDownMovement = isLeftMovement = isRightMovement = false;
+
+		DisableAllMovements();
+
+
+		DisableColliders();
+		
+		
+	}
+
+	public void DisableColliders() {
 
 		Collider2D[] coll = GetComponents<Collider2D>();
 		foreach(Collider2D col in coll) {
@@ -795,17 +769,23 @@ public class PlayerMovement : MonoBehaviour {
 		foreach(Collider2D col in coll2) {
 			col.enabled = false;
 		}
-
-		
-		
+	}
+	public void SetReachTargetPosition(Vector3 position) {
+		targetPosition = position;
+		transform.position = targetPosition;
+		reachedTarget = true;
 	}
 
-	void StopMovementVelocity() {
+	public void StopMovementVelocity() {
 
-		Rigidbody2D body = GetComponent<Rigidbody2D>();
 		if(body!=null) {
 			body.velocity = Vector3.zero;
 		}
+	}
+
+	public void DisableAllMovements() {
+
+		isUpMovement = isDownMovement = isLeftMovement = isRightMovement = false;
 	}
 
 	public void SetIsMovingBetweenLevels(bool moving) {
@@ -815,10 +795,14 @@ public class PlayerMovement : MonoBehaviour {
 			//disable the rigidbody
 			StopMovementVelocity();
 			//disable all the colliders, parent and children
-			DisableColliders();
+			DisableCollidersAndMovements();
 
 		}
 		
+	}
+
+	public void SetIsMovingBetweenTeleportPoints(bool moving) {
+		isMovingBetweenTeleportPoints = moving;
 	}
 
 	public bool GetIsMovingBetweenLevels() {
@@ -839,6 +823,22 @@ public class PlayerMovement : MonoBehaviour {
 		levelManager.KillPlayer();
 	}
 
+	public void ShowElectrocutedSpriteAnimation() {
+		anim.enabled = false;
+		GetComponentInChildren<SpriteRenderer>().sprite = electrocutedSprite;
+		StartCoroutine(Electrocussion());
+	}
+
+	IEnumerator Electrocussion() {
+		yield return new WaitForSeconds(0.12f);
+		GetComponentInChildren<SpriteRenderer>().sprite = originalSprite;
+		yield return new WaitForSeconds(0.12f);
+		GetComponentInChildren<SpriteRenderer>().sprite = electrocutedSprite;
+		yield return new WaitForSeconds(0.12f);
+		GetComponentInChildren<SpriteRenderer>().sprite = originalSprite;
+		levelManager.KillPlayer();
+		
+	}
 	public void ResetOriginalSprite() {
 
 		GetComponentInChildren<SpriteRenderer>().sprite = originalSprite;

@@ -20,13 +20,21 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image playButton;
 	public Sprite[] playButtonImages;
 
+	public UnityEngine.UI.Image countdownImage;
+	public UnityEngine.UI.Image continueImage;
+	public Sprite[] continueTimeImages;
+
 	GoogleMobileAdsScript adsScript;
 
 	private LevelManager levelManager;
+	private MyStoreClass store;
+
+	private int continueTimer = 0;
 	// Use this for initialization
 	void Start () {
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
+		store = scripts.GetComponent<MyStoreClass>();
 		levelManager = scripts.GetComponent<LevelManager>();
 	}
 	
@@ -95,6 +103,17 @@ public class GUIManager : MonoBehaviour {
 			gameOverImage.enabled = true;
 		}
 
+		//ONLY AFTER GAME OVER, AND IN CASE WE HAVE A VIDEO READY? (or also in app purchase???)
+		continueTimer = 0;
+
+		if(continueImage!=null) {
+			continueImage.enabled = true;
+			UpdateCountdownImage();
+			countdownImage.enabled = true;
+			InvokeRepeating("IncreaseTimer", 0, 1.0f);
+		}
+		
+
 		if(adsScript!=null && adsScript.IsRewardVideoReady()) {
 
 			adsScript.ShowRewardVideo();
@@ -105,7 +124,33 @@ public class GUIManager : MonoBehaviour {
 			gameOverText.enabled = true;
 		}*/
 		
-		StartCoroutine(ShowRestartText());
+	}
+
+	void UpdateCountdownImage() {
+		if(continueTimer < continueTimeImages.Length) {
+			countdownImage.sprite = continueTimeImages[continueTimer];
+		}
+		
+	}
+
+	
+
+	void IncreaseTimer() {
+
+		if(continueTimer <= 9) {
+			continueTimer += 1;
+			UpdateCountdownImage();
+		}
+		else {
+			CancelInvoke("IncreaseTimer");
+			continueImage.enabled = false;
+			countdownImage.enabled = false;
+			continueTimer = 0;
+			StartCoroutine(ShowRestartText());
+			
+		}
+		
+		
 	}
 
 	//only when the courtain opens and the titles hae finished
@@ -141,6 +186,14 @@ public class GUIManager : MonoBehaviour {
 	public void ResetMoves() {
 		foreach(UnityEngine.UI.Image image in movesImage) {
 			image.enabled = true;
+		}
+	}
+
+	public void PurchaseInfiniteRevives() {
+
+		Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
+		if(store!=null) {
+			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES);
 		}
 	}
 }

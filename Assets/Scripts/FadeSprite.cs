@@ -105,8 +105,6 @@ public class FadeSprite : MonoBehaviour {
 			if ( isDone )
 			{
 
-				Debug.Log("$$$$$$$$$$$$$$$$$ IS DONE $$$$$$$$$$$$$$$$$$");
-
 				if(doBoth && countCycle == 0) {
 					countCycle += 1;
 					if(fadeIn) {
@@ -117,7 +115,6 @@ public class FadeSprite : MonoBehaviour {
 					}
 				}
 				else {
-					Debug.Log(" STOPPPING!!!!!!!!");
 					started = false;
 					countCycle = 0;
 				}

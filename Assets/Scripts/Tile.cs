@@ -42,7 +42,6 @@ public class Tile : MonoBehaviour {
 		return bottom != null;
 	}
 
-
 	void OnCollisionEnter2D(Collision2D other)
 	{
 
@@ -83,14 +82,24 @@ public class Tile : MonoBehaviour {
 
 	public virtual void HandlePlayerCollision(PlayerMovement movement) {
 
+			/*if(isWalkable) {
+
+				Collider2D col = GetComponent<Collider2D>();
+				if(col!=null) {
+					col.enabled = false;
+				}
+			}*/
 
 			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();
 
-			Debug.Log("################# TIle HandleTileCollisions ################## " + gameObject.ToString());
+			TeletransportPoint point = gameObject.GetComponent<TeletransportPoint>();
 
-
-			if(blockUpMovement) {
-				Debug.Log("################# BLOCK UP ##################");
+			if(point!=null) {
+				Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## " + gameObject.ToString());
+				point.Teletransport(movement);
+			}
+			else if(blockUpMovement) {
+				//Debug.Log("################# BLOCK UP ##################");
 				if(movement.IsMovingUp()) {
 					movement.collidedTop();
 				}
@@ -99,8 +108,8 @@ public class Tile : MonoBehaviour {
 				}
 				
 			}
-			if(blockDownMovement) {
-				Debug.Log("################# BLOCK DOWN ##################");
+			else if(blockDownMovement) {
+				//Debug.Log("################# BLOCK DOWN ##################");
 				if(movement.IsMovingDown()) {
 					movement.collidedBottom();
 					if(enemy!=null) {
@@ -113,8 +122,8 @@ public class Tile : MonoBehaviour {
 				
 			
 			}
-			if(blockLeftMovement) {
-				Debug.Log("################# BLOCK LEFT ##################");
+			else if(blockLeftMovement) {
+				//Debug.Log("################# BLOCK LEFT ##################");
 				if(movement.IsMovingLeft()) {
 					movement.collidedLeft();
 				}
@@ -124,8 +133,8 @@ public class Tile : MonoBehaviour {
 				
 				
 			}
-			if(blockRightMovement) {
-				Debug.Log("################# BLOCK RIGHT ##################");
+			else if(blockRightMovement) {
+				//Debug.Log("################# BLOCK RIGHT ##################");
 				if(movement.IsMovingRight()) {
 					movement.collidedRight();
 				}
@@ -134,30 +143,39 @@ public class Tile : MonoBehaviour {
 				}
 				
 			}
-	}
+
+	}	
 
 	public void HandleTileExitCollisions(PlayerMovement movement) {
 
+
+			/*if(isWalkable) {
+
+				Collider2D col = GetComponent<Collider2D>();
+				if(col!=null) {
+					col.enabled = true;
+				}
+			}*/
 
 			Debug.Log("################# TIle HandleTileExitCollisions ################## " + gameObject.ToString());
 
 
 			if(blockUpMovement) {
-				Debug.Log("################# ALLOW UP ##################");
+				//Debug.Log("################# ALLOW UP ##################");
 				movement.canMoveUp = true;
 			}
 			if(blockDownMovement) {
-				Debug.Log("################# ALLOW DOWN ##################");
+				//Debug.Log("################# ALLOW DOWN ##################");
 				movement.canMoveDown = true;
 			
 			}
 			if(blockLeftMovement) {
-				Debug.Log("################# ALLOW LEFT ##################");
+				Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
 				movement.canMoveLeft = true;
 				
 			}
 			if(blockRightMovement) {
-				Debug.Log("################# ALLOW RIGHT ##################");
+				//Debug.Log("################# ALLOW RIGHT ##################");
 
 				movement.canMoveRight = true;
 			}

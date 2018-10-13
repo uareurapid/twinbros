@@ -6,17 +6,8 @@ public class Box : SpawnableItem {
 
 	public bool isSurpriseBox = false;
 
-	void OnCollisionEnter2D(Collision2D other) {
-		Debug.Log("###################### COLLISION WITH THE BOXXX");
-		//PlayerMovement move = other.gameObject.GetComponent<PlayerMovement>();
+	//void OnCollisionEnter2D(Collision2D other) {
+	//	Debug.Log("###################### COLLISION WITH THE BOXXX");
 
-		//if(move!=null) {
-		//	if(move.IsMovingLeft()) {
-		//		Debug.Log("###################### WITH THE BOXXX LEFTTTTTTTTT");
-		//		Rigidbody2D body = move.GetBody();
-		//		move.transform.Translate(-body.velocity); 
-		//	}
-		//}
-
-	}
+	//}
 }

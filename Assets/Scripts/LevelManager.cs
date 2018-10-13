@@ -32,11 +32,15 @@ public class LevelManager : MonoBehaviour {
 
 	private SwipeDetector swipe;
 
+	public List<ResetBehaviourScript> listOfBehaviours;
+
 	void Start () {
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android && swipe==null) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
+
+		listOfBehaviours = new List<ResetBehaviourScript>();
 
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
@@ -52,9 +56,23 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+	public void AddResetableBehaviourObject(ResetBehaviourScript script) {
+		if(listOfBehaviours == null) {
+			listOfBehaviours = new List<ResetBehaviourScript>();
+		}
+		listOfBehaviours.Add(script);
+	}
+
+	public void ResetAllBehaviours() {
+		foreach(ResetableBehaviours script in listOfBehaviours) {
+			script.ResetOriginalBehaviour();
+		}
+	}
+
 	public void StartGame() {
 
 		RestartLevel();
+		ResetAllBehaviours();
 		gameStarted = true;
 	}
 
@@ -142,9 +160,14 @@ public class LevelManager : MonoBehaviour {
 
 	void FixedUpdate() {
 
+		// if (m_lastPressed != Time.time) {
+     	//m_lastPressed = Time.time;
+     	// Code here.
+ 		//}
+
 		if(gameStarted) {
 			int moved = 0;
-			if ( (Input.GetKey(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
+			if ( (Input.GetKeyDown(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
 	        {
 	
 				
@@ -156,7 +179,7 @@ public class LevelManager : MonoBehaviour {
 	
 				
 	        }
-	        else if ( (Input.GetKey(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
+	        else if ( (Input.GetKeyDown(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
 	        {
 				
 				foreach(PlayerMovement player in twins) {
@@ -166,7 +189,7 @@ public class LevelManager : MonoBehaviour {
 				}
 				
 	        }
-	        else if ( (Input.GetKey(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
+	        else if ( (Input.GetKeyDown(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
 	        {
 	
 				foreach(PlayerMovement player in twins) {
@@ -176,7 +199,7 @@ public class LevelManager : MonoBehaviour {
 				}
 				
 	        }
-	        else if ( (Input.GetKey(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
+	        else if ( (Input.GetKeyDown(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
 	        {  
 	
 				foreach(PlayerMovement player in twins) {
