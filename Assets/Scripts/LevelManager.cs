@@ -7,7 +7,10 @@ public class LevelManager : MonoBehaviour {
 	public Level currentLevel;
 	public Level respawnLevel; //in wich level to restart the game after dying?
 
-	public bool respawnOnDyingLevel = false; //TODO IN-APP
+	//1 stage is a scene that has many levels
+	public int stage = 1;
+	public bool respawnOnDyingLevel = false; 
+	//TODO IN-APP
 	//if true will respawn on the same level that previously was
 	//otherwise if respawnLevel !=null set it as the currentLevel
 
@@ -38,6 +41,7 @@ public class LevelManager : MonoBehaviour {
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android && swipe==null) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
+			swipe.detectSwipeOnlyAfterRelease = true;
 		}
 
 		listOfBehaviours = new List<ResetBehaviourScript>();
@@ -46,6 +50,10 @@ public class LevelManager : MonoBehaviour {
 		guiManager = scripts.GetComponent<GUIManager>();
 		leftTwinMoved = rightTwinMoved = false;
 		gameStarted = false;
+
+		if(stage > 1) {
+			Invoke("StartGame", 1.5f);
+		}
 		//Invoke("StartGame", 1f);
 	}
 
@@ -156,6 +164,13 @@ public class LevelManager : MonoBehaviour {
 			MoveToRespawnLevel(respawnLevel);			
 		}
 		
+	}
+
+	public void NewStageLoaded() {
+		isDead = false;
+		numMoves = MAX_MOVES;
+		gameStarted = true;
+		guiManager.ResetAllMovesText();
 	}
 
 	void FixedUpdate() {
@@ -311,6 +326,19 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+	public void StageCleared() {
+		gameStarted = false;
+		guiManager.ShowStageClearedImage();
+		StartCoroutine("HideStageClearedImage");
+	}
+
+	IEnumerator HideStageClearedImage() {
+
+		yield return new WaitForSeconds(2.5f);
+		guiManager.HideStageClearedImage();
+		yield return new WaitForSeconds(2.5f);
+		guiManager.DisableStageClearedImage();
+	}
 	void StartMovePlayersIntoPosition(Level nextLevel) {
 		
 

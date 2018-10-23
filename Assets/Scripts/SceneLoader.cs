@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class SceneLoader : MonoBehaviour {
 
+	public MoveWayPoint[] courtineDoors;
 
 	public string nextScene = "";
+	AsyncOperation asyncOperation;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,20 +19,43 @@ public class SceneLoader : MonoBehaviour {
 		
 	}
 
-	public void LoadNextScene() {
+	public void LoadNextScene(LevelManager levelManager) {
 		if (nextScene != null && nextScene != "")
 		{
-			StartCoroutine(LoadScene(nextScene));
+			StartCoroutine(LoadScene(nextScene,levelManager));
 		}
 		
 	}
 
-	IEnumerator LoadScene(string scene) {
+	IEnumerator LoadScene(string scene,LevelManager levelManager) {
 
-		AsyncOperation operation = SceneManager.LoadSceneAsync(nextScene); 
-		while(!operation.isDone) {
+		asyncOperation = SceneManager.LoadSceneAsync(nextScene);
+		asyncOperation.allowSceneActivation = false;
+	
+		foreach(MoveWayPoint point in courtineDoors) {
+			point.stopAfterXPassages = 2;
+			point.justOnce = false;
+			point.ContinueMovement();
+		}
+		while(!asyncOperation.isDone) {
+
+			// Check if the load has finished
+            if (asyncOperation.progress >= 0.9f)
+            {
+                
+				if(courtineDoors[0].GetNumPassages()==1 && courtineDoors[1].GetNumPassages()==1) {
+					//Activate the Scene
+					//scene is ready now
+					Debug.Log("####################  scene is ready now");
+                    asyncOperation.allowSceneActivation = true;
+				}
+                    
+            }
 			yield return null;
 		}
 		
+		
 	}
+
+	
 }

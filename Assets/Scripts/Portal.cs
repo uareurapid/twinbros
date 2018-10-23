@@ -31,7 +31,9 @@ public class Portal : MonoBehaviour {
 		}//else, on last level
 		else {
 			if(loader!=null) {
-				loader.LoadNextScene();
+				levelManager.StageCleared();
+				loader.LoadNextScene(levelManager);
+				
 			}
 			else {
 				levelManager.KillPlayer();

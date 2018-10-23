@@ -6,7 +6,7 @@ public class SwipeDetector : MonoBehaviour
 {
     private Vector2 fingerDown;
     private Vector2 fingerUp;
-    public bool detectSwipeOnlyAfterRelease = false;
+    public bool detectSwipeOnlyAfterRelease = true;
 
     public float SWIPE_THRESHOLD = 20f;
 
@@ -16,11 +16,13 @@ public class SwipeDetector : MonoBehaviour
 	public bool upSwipe = false;
 	public bool downSwipe = false;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
-        foreach (Touch touch in Input.touches)
-        {
+		if(Input.touches.Length == 1) {
+
+			Touch touch = Input.touches[0];
+        
             if (touch.phase == TouchPhase.Began)
             {
                 fingerUp = touch.position;
@@ -28,13 +30,11 @@ public class SwipeDetector : MonoBehaviour
             }
 
             //Detects Swipe while finger is still moving
-            if (touch.phase == TouchPhase.Moved)
+            if (touch.phase == TouchPhase.Moved && !detectSwipeOnlyAfterRelease)
             {
-                if (!detectSwipeOnlyAfterRelease)
-                {
-                    fingerDown = touch.position;
-                    checkSwipe();
-                }
+                fingerDown = touch.position;
+                checkSwipe();
+               
             }
 
             //Detects swipe after finger is released
@@ -43,7 +43,16 @@ public class SwipeDetector : MonoBehaviour
                 fingerDown = touch.position;
                 checkSwipe();
             }
-        }
+			else {
+				OnNoSwipe();
+			}
+      }
+	  else {
+			OnNoSwipe();
+	  }	
+
+		
+        
     }
 
     void checkSwipe()
@@ -96,9 +105,15 @@ public class SwipeDetector : MonoBehaviour
     }
 
     //////////////////////////////////CALLBACK FUNCTIONS/////////////////////////////
+
+	void OnNoSwipe() {
+		upSwipe = false;
+		downSwipe = false;
+		leftSwipe = false;
+		rightSwipe = false;
+	}
     void OnSwipeUp()
     {
-        Debug.Log("Swipe UP");
 		upSwipe = true;
 		downSwipe = false;
 		leftSwipe = false;
@@ -107,7 +122,6 @@ public class SwipeDetector : MonoBehaviour
 
     void OnSwipeDown()
     {
-        Debug.Log("Swipe Down");
 		upSwipe = false;
 		downSwipe = true;
 		leftSwipe = false;
@@ -116,7 +130,6 @@ public class SwipeDetector : MonoBehaviour
 
     void OnSwipeLeft()
     {
-        Debug.Log("Swipe Left");
 		upSwipe = false;
 		downSwipe = false;
 		leftSwipe = true;
@@ -125,7 +138,6 @@ public class SwipeDetector : MonoBehaviour
 
     void OnSwipeRight()
     {
-        Debug.Log("Swipe Right");
 		upSwipe = false;
 		downSwipe = false;
 		leftSwipe = false;

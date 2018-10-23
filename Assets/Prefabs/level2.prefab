@@ -9310,6 +9310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
+  nextLevel: {fileID: 0}
 --- !u!114 &114086336998788062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9775,8 +9776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733614429f464420b8779750798618b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
-  nextLevel: 2
+  currentLevel: {fileID: 0}
+  nextLevel: {fileID: 0}
 --- !u!114 &114275263012532678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9983,6 +9984,7 @@ MonoBehaviour:
   canMoveRight: 1
   canMoveUp: 1
   canMoveDown: 1
+  isLeftCheckpoint: 1
 --- !u!114 &114357533287960590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10060,6 +10062,7 @@ MonoBehaviour:
   canMoveRight: 1
   canMoveUp: 1
   canMoveDown: 1
+  isLeftCheckpoint: 1
 --- !u!114 &114418539827199518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10282,6 +10285,9 @@ MonoBehaviour:
   ignoreCollisionInterval: 0.5
   associatedLevel: {fileID: 114062932511392164}
   otherTwin: {fileID: 0}
+  minDistanceForNeighbour: 0.55
+  burnedSprite: {fileID: 0}
+  electrocutedSprite: {fileID: 0}
 --- !u!114 &114480667359439790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10394,7 +10400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a2d3de812054ebcab86fbafcb8a147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sendTriggerMessage: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -10882,8 +10887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733614429f464420b8779750798618b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
-  nextLevel: 2
+  currentLevel: {fileID: 0}
+  nextLevel: {fileID: 0}
 --- !u!114 &114768208072319870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11271,8 +11276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733614429f464420b8779750798618b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
-  nextLevel: 2
+  currentLevel: {fileID: 0}
+  nextLevel: {fileID: 0}
 --- !u!114 &114894025205747968
 MonoBehaviour:
   m_ObjectHideFlags: 1

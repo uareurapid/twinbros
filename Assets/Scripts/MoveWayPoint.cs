@@ -41,9 +41,9 @@ public class MoveWayPoint : MonoBehaviour
 
 	private void StartMovement() {
 
-		
+		currentIndex = 0;
 		if(wayPoints.Length > 0) {
-			currentWaypoint = wayPoints[0];
+			currentWaypoint = wayPoints[currentIndex];
 			isPaused = false;
 		}
 	}
@@ -76,9 +76,10 @@ public class MoveWayPoint : MonoBehaviour
 	}
 
 
-	public void ContinueMovement(bool move) {
-		isPaused = !move;
+	public void ContinueMovement() {
+		isPaused = false;
 		numPassages = 0;
+		StartMovement();
 	}
 	
 	/**
@@ -164,5 +165,9 @@ public class MoveWayPoint : MonoBehaviour
 		}
 
 		currentWaypoint = wayPoints[currentIndex];
+	}
+
+	public int GetNumPassages() {
+		return numPassages;
 	}
 }

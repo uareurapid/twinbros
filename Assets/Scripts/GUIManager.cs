@@ -11,6 +11,9 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Text gameOverText;
 	public UnityEngine.UI.Image gameOverImage;
 	public UnityEngine.UI.Text restartText;
+
+	public UnityEngine.UI.Image stageClearedImage;
+	public UnityEngine.UI.Image stageLevelImage;
 	public GameObject titleScreenRedPart;
 	public GameObject titleScreenBluePart;
 
@@ -29,17 +32,25 @@ public class GUIManager : MonoBehaviour {
 	private LevelManager levelManager;
 	private MyStoreClass store;
 
+	private bool playPressed = false;
 	private int continueTimer = 0;
 	// Use this for initialization
 	void Start () {
+		playPressed = false;
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
 		store = scripts.GetComponent<MyStoreClass>();
 		levelManager = scripts.GetComponent<LevelManager>();
+
+		if(levelManager.stage > 1) {
+			Invoke("DoStageTransitionEffect", 2f);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+	 if(levelManager.stage == 1) {
 
 		//title screen at center
 		MoveWayPoint red = titleScreenRedPart.GetComponent<MoveWayPoint>();
@@ -52,6 +63,9 @@ public class GUIManager : MonoBehaviour {
 		if(!levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()) {
 			CanShowPlayButton();
 		}
+
+	 }
+		
 	}
 
 	public void disableMove(int num) {
@@ -62,21 +76,37 @@ public class GUIManager : MonoBehaviour {
 	public void PlayPressed() {
 
 		//only if the button is opaque
-		//if(playButton.GetComponent<SpriteRenderer>().color.a > 0.80f) {
+		if(!playPressed) {
+			playPressed = true;
 			playButton.sprite = playButtonImages[1];
 			StartCoroutine(StartGameRoutine());
-		//}
+		}
 		
 	}
 
 	IEnumerator StartGameRoutine() {
 
-		yield return new WaitForSeconds(1.2f);
-		playButton.sprite = playButtonImages[0]; //restore
+		yield return new WaitForSeconds(0.4f);
 		playButton.enabled = false;
+		playButton.sprite = playButtonImages[0]; //restore for later usage
 		titleScreenRedPart.SetActive(false);
-		titleScreenBluePart.SetActive(false); 
+		titleScreenBluePart.SetActive(false);
+		StartCoroutine(HandleStageImageTransition());
 		levelManager.StartGame();
+	}
+
+	IEnumerator HandleStageImageTransition() {
+		//start fade out
+		ShowStageImage();
+		yield return new WaitForSeconds(2.0f);
+		HideStageImage();
+		yield return new WaitForSeconds(2.0f);
+		DisableStageImage();
+	}
+
+	//call this when loading a new screen
+	public void DoStageTransitionEffect() {
+		StartCoroutine(HandleStageImageTransition());
 	}
 
 	public void SetLevelText(int level) {
@@ -181,6 +211,40 @@ public class GUIManager : MonoBehaviour {
 		
 		
 		
+	}
+
+	public void ShowStageClearedImage() {
+		stageClearedImage.color = new Color(stageClearedImage.color.r,stageClearedImage.color.b,stageClearedImage.color.g,0);
+		stageClearedImage.enabled = true;
+		//fade in
+		stageClearedImage.GetComponent<FadeSprite>().FadeSpriteNow(true);
+	}
+
+	public void HideStageClearedImage() {
+		// fade out
+		stageClearedImage.GetComponent<FadeSprite>().FadeSpriteNow(false);
+	}
+
+	public void DisableStageClearedImage() {
+		stageClearedImage.enabled = false;
+		stageClearedImage.color = new Color(stageClearedImage.color.r,stageClearedImage.color.b,stageClearedImage.color.g,0);
+	}
+
+	public void ShowStageImage() {
+		stageLevelImage.color = new Color(stageLevelImage.color.r,stageLevelImage.color.b,stageLevelImage.color.g,0);
+		stageLevelImage.enabled = true;
+		//fade in
+		stageLevelImage.GetComponent<FadeSprite>().FadeSpriteNow(true);
+	}
+
+	public void HideStageImage() {
+		// fade out
+		stageLevelImage.GetComponent<FadeSprite>().FadeSpriteNow(false);
+	}
+
+	void DisableStageImage() {
+		stageLevelImage.enabled = false;
+		stageLevelImage.color = new Color(stageLevelImage.color.r,stageLevelImage.color.b,stageLevelImage.color.g,0);
 	}
 
 	public void ResetMoves() {
