@@ -80,15 +80,9 @@ public class Tile : MonoBehaviour {
 	}
 
 
-	public virtual void HandlePlayerCollision(PlayerMovement movement) {
+	public bool HandlePlayerCollision(PlayerMovement movement) {
 
-			/*if(isWalkable) {
-
-				Collider2D col = GetComponent<Collider2D>();
-				if(col!=null) {
-					col.enabled = false;
-				}
-			}*/
+		bool ignoredCollision = true; 
 
 			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();
 
@@ -102,6 +96,7 @@ public class Tile : MonoBehaviour {
 				//Debug.Log("################# BLOCK UP ##################");
 				if(movement.IsMovingUp()) {
 					movement.collidedTop();
+					ignoredCollision = false;
 				}
 				else {
 					movement.canMoveUp = false;
@@ -113,8 +108,9 @@ public class Tile : MonoBehaviour {
 				if(movement.IsMovingDown()) {
 					movement.collidedBottom();
 					if(enemy!=null) {
-					enemy.HandlePlayerCollision();
+						enemy.HandlePlayerCollision();
 					}
+					ignoredCollision = false;
 				}
 				else {
 					movement.canMoveDown = false;
@@ -126,6 +122,7 @@ public class Tile : MonoBehaviour {
 				//Debug.Log("################# BLOCK LEFT ##################");
 				if(movement.IsMovingLeft()) {
 					movement.collidedLeft();
+					ignoredCollision = false;
 				}
 				else {
 					movement.canMoveLeft = false;
@@ -137,12 +134,15 @@ public class Tile : MonoBehaviour {
 				//Debug.Log("################# BLOCK RIGHT ##################");
 				if(movement.IsMovingRight()) {
 					movement.collidedRight();
+					ignoredCollision = false;
 				}
 				else {
 					movement.canMoveRight = false;
 				}
 				
 			}
+
+		return ignoredCollision;
 
 	}	
 

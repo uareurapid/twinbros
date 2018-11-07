@@ -6,13 +6,22 @@ public class GUIManager : MonoBehaviour {
 
 
 	public UnityEngine.UI.Image [] movesImage;
+	public UnityEngine.UI.Image [] extraMovesImage;
+	public Sprite [] purchaseInfiniteRevivesImage;
+	public Sprite [] watchRewardVideoImages;
 
 	public UnityEngine.UI.Text levelText;
 	public UnityEngine.UI.Text gameOverText;
 	public UnityEngine.UI.Image gameOverImage;
 	public UnityEngine.UI.Text restartText;
 
+	public UnityEngine.UI.Image levelNumImage;
+	public UnityEngine.UI.Image[] levelNumChildImages;
+
+	public UnityEngine.UI.Image purchaseRevivesImage;
+	public UnityEngine.UI.Image rewardVideoImage;
 	public UnityEngine.UI.Image stageClearedImage;
+	public UnityEngine.UI.Image levelClearedImage;
 	public UnityEngine.UI.Image stageLevelImage;
 	public GameObject titleScreenRedPart;
 	public GameObject titleScreenBluePart;
@@ -60,7 +69,7 @@ public class GUIManager : MonoBehaviour {
 		MoveWayPoint leftDoor = leftDoorPart.GetComponent<MoveWayPoint>();
 		MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();
 
-		if(!levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()) {
+		if(!levelManager.isPlayerDead() && !levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()) {
 			CanShowPlayButton();
 		}
 
@@ -75,18 +84,38 @@ public class GUIManager : MonoBehaviour {
 
 	public void PlayPressed() {
 
+		//still counting time?
+		if(continueTimer != 0 && !playPressed) {
+			CancelInvoke("IncreaseTimer");
+			HideContinueImageAndClearTimer();
+			if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) {
+				playPressed = true;
+				playButton.sprite = playButtonImages[1];
+				StartCoroutine(HidePlayButton());
+				levelManager.RestartFromDyingLevel();
+			}
+			
+		}
 		//only if the button is opaque
-		if(!playPressed) {
+		else if(!playPressed) {
 			playPressed = true;
 			playButton.sprite = playButtonImages[1];
+			levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
 		}
 		
 	}
 
+	IEnumerator HidePlayButton() {
+		yield return new WaitForSeconds(0.4f);
+		playButton.enabled = false;
+		playButton.sprite = playButtonImages[0]; //restore for later usage
+	}
+
 	IEnumerator StartGameRoutine() {
 
 		yield return new WaitForSeconds(0.4f);
+		//same as HidePlayButton
 		playButton.enabled = false;
 		playButton.sprite = playButtonImages[0]; //restore for later usage
 		titleScreenRedPart.SetActive(false);
@@ -102,6 +131,7 @@ public class GUIManager : MonoBehaviour {
 		HideStageImage();
 		yield return new WaitForSeconds(2.0f);
 		DisableStageImage();
+		levelManager.ShowLevelNum();
 	}
 
 	//call this when loading a new screen
@@ -113,18 +143,30 @@ public class GUIManager : MonoBehaviour {
 		levelText.text = string.Format("Level: {0}", level);
 	}
 
-	public void SetMovesText(int remainining) {
-		if(remainining >= 0) {
+	public void SetMovesText(int remainining, bool hasExtraMoves) {
+		if(hasExtraMoves && remainining >=10) {
+			extraMovesImage[remainining-10].enabled = false;
+		}
+		else if(remainining >= 0) {
 			movesImage[remainining].enabled = false;
 		}
 		
 	}
-
-	public void ResetAllMovesText() {
+	//the default ones
+	public void ResetRegularMoves() {
 		foreach(UnityEngine.UI.Image img in movesImage) {
 			img.enabled = true;
 		}
 		
+	}
+	//and the extra ones
+	public void ResetExtraMoves() {
+
+		foreach (UnityEngine.UI.Image img in extraMovesImage)
+		{
+			img.color = new Color(img.color.r,img.color.b,img.color.g,1);
+			img.enabled = true;
+		}
 	}
 
 	public void ShowGameOver() {
@@ -136,26 +178,101 @@ public class GUIManager : MonoBehaviour {
 		//ONLY AFTER GAME OVER, AND IN CASE WE HAVE A VIDEO READY? (or also in app purchase???)
 		continueTimer = 0;
 
+		playPressed = false;
+
 		if(continueImage!=null) {
 			continueImage.enabled = true;
 			UpdateCountdownImage();
 			countdownImage.enabled = true;
 			InvokeRepeating("IncreaseTimer", 0, 1.0f);
 		}
-		
 
-		if(adsScript!=null && adsScript.IsRewardVideoReady()) {
-
-			adsScript.ShowRewardVideo();
+		//check if purchased infite revives
+		if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) {
+			// show the option to continue
+			StartCoroutine(ShowRestartText());
+		}// preferably show ads
+		else if(adsScript!=null && adsScript.IsRewardVideoReady() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
+			ShowVideoRewardToEnableContinue();
+		}//otherwise show purchase option
+		else {
+			//TODO when show the moves purchase or ads removal? (add on settings only)
+			ShowPurchaseRevivesButton();
 		}
-		/*if(gameOverText!=null) {
-			gameOverText.text = "Game Over!";
-			gameOverText.GetComponent<EnableDisableMonobehaviour>().enabled = true;
-			gameOverText.enabled = true;
-		}*/
 		
 	}
 
+	public void ShowLevelNumImages(int level) {
+		// pos[0] = 9, pos[9] = 0
+		switch(level) {
+			case 1: levelNumChildImages[0].sprite = continueTimeImages[8]; break;
+			case 2: levelNumChildImages[0].sprite = continueTimeImages[7]; break;
+			case 3: levelNumChildImages[0].sprite = continueTimeImages[6]; break;
+			case 4: levelNumChildImages[0].sprite = continueTimeImages[5]; break;
+			case 5: levelNumChildImages[0].sprite = continueTimeImages[4]; break;
+			case 6: levelNumChildImages[0].sprite = continueTimeImages[3]; break;
+			case 7: levelNumChildImages[0].sprite = continueTimeImages[2]; break;
+			case 8: levelNumChildImages[0].sprite = continueTimeImages[1]; break;
+			case 9: levelNumChildImages[0].sprite = continueTimeImages[0]; break;
+			default: levelNumChildImages[0].sprite = continueTimeImages[8]; break;
+		}
+		if(level > 9) {
+			levelNumChildImages[1].sprite = continueTimeImages[9];
+		}
+		//only show the 2nd image if on level 10
+		levelNumChildImages[1].enabled = (level > 9);
+		levelNumChildImages[0].enabled = true;
+		levelNumImage.enabled = true;
+		
+	}
+
+	public void HideLevelNumImages() {
+		levelNumChildImages[1].enabled = false;
+		levelNumChildImages[0].enabled = false;
+		levelNumImage.enabled = false;
+	}
+
+	public void ShowPurchaseRevivesButton() {
+		//TODO animation
+		purchaseRevivesImage.enabled = true;
+		
+	}
+
+	public void ShowVideoRewardToEnableContinue() {
+		rewardVideoImage.enabled = true;	
+	}
+
+	public void RewardVideoPressed() {
+		rewardVideoImage.sprite = watchRewardVideoImages[1];
+		if (adsScript != null && adsScript.IsRewardVideoReady())
+		{
+			Time.timeScale = 0;
+			adsScript.ShowRewardVideo(this);
+		}
+
+		StartCoroutine(HideRewardedVideoImage());
+		
+	}
+	//called when the video was watched or closed
+	public void WatchedRewardedVideo(bool watched) {
+
+		Time.timeScale = 1.0f;
+
+		if(watched) {
+			Debug.Log("YES REWARD, Saw the video, otherwise, not");
+
+			if(continueTimer != 0) {
+			   CancelInvoke("IncreaseTimer");
+			   HideContinueImageAndClearTimer();
+			   levelManager.RestartFromDyingLevel();
+			}
+			
+		}
+		else {
+			Debug.Log("NO REWARD FOR YOU");
+		}
+		rewardVideoImage.enabled = false;	
+	}
 	void UpdateCountdownImage() {
 		if(continueTimer < continueTimeImages.Length) {
 			countdownImage.sprite = continueTimeImages[continueTimer];
@@ -173,14 +290,19 @@ public class GUIManager : MonoBehaviour {
 		}
 		else {
 			CancelInvoke("IncreaseTimer");
-			continueImage.enabled = false;
-			countdownImage.enabled = false;
-			continueTimer = 0;
-			StartCoroutine(ShowRestartText());
-			
+			HideContinueImageAndClearTimer();
+			CanShowPlayButton();
+			purchaseRevivesImage.enabled = false;
+			rewardVideoImage.enabled = false;
 		}
 		
 		
+	}
+
+	void HideContinueImageAndClearTimer() {
+		continueImage.enabled = false;
+		countdownImage.enabled = false;
+		continueTimer = 0;
 	}
 
 	//only when the courtain opens and the titles hae finished
@@ -192,8 +314,7 @@ public class GUIManager : MonoBehaviour {
 
 	IEnumerator ShowRestartText() {
 		yield return new WaitForSeconds(2f);
-		//restartText.enabled = true;
-		playButton.enabled = true;
+		CanShowPlayButton();
 	}
 
 	public void HideGameOver() {
@@ -213,6 +334,14 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
+	public void ShowLevelClearedImage() {
+		levelClearedImage.enabled = true;
+	}
+
+	public void HideLevelClearedImage() {
+		levelClearedImage.enabled = false;
+	}
+
 	public void ShowStageClearedImage() {
 		stageClearedImage.color = new Color(stageClearedImage.color.r,stageClearedImage.color.b,stageClearedImage.color.g,0);
 		stageClearedImage.enabled = true;
@@ -229,7 +358,7 @@ public class GUIManager : MonoBehaviour {
 		stageClearedImage.enabled = false;
 		stageClearedImage.color = new Color(stageClearedImage.color.r,stageClearedImage.color.b,stageClearedImage.color.g,0);
 	}
-
+	//show it
 	public void ShowStageImage() {
 		stageLevelImage.color = new Color(stageLevelImage.color.r,stageLevelImage.color.b,stageLevelImage.color.g,0);
 		stageLevelImage.enabled = true;
@@ -237,27 +366,71 @@ public class GUIManager : MonoBehaviour {
 		stageLevelImage.GetComponent<FadeSprite>().FadeSpriteNow(true);
 	}
 
+	// fade out
 	public void HideStageImage() {
-		// fade out
 		stageLevelImage.GetComponent<FadeSprite>().FadeSpriteNow(false);
 	}
-
+	//disable it
 	void DisableStageImage() {
 		stageLevelImage.enabled = false;
 		stageLevelImage.color = new Color(stageLevelImage.color.r,stageLevelImage.color.b,stageLevelImage.color.g,0);
 	}
 
-	public void ResetMoves() {
-		foreach(UnityEngine.UI.Image image in movesImage) {
-			image.enabled = true;
+	public void ResetMoves(bool hasExtraMoves) {
+		ResetRegularMoves();
+		if(hasExtraMoves) {
+			ResetExtraMoves();
 		}
 	}
 
-	public void PurchaseInfiniteRevives() {
+	public void PurchaseInfiniteRevivesPressed() {
 
-		Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
-		if(store!=null) {
-			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES);
+		purchaseRevivesImage.sprite = purchaseInfiniteRevivesImage[1];
+		Debug.Log("PurchaseInfiniteRevivesPressed clicked");
+		if(store!=null && store.IsInitialized() ) {
+			Time.timeScale = 0;
+			Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
+			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
 		}
+	}
+
+	public void PurchaseCompleted(string productID) {
+
+
+		PlayerPrefs.SetInt(productID, 1);
+
+		if(productID == GameConstants.PRODUCT_INFINITE_REVIVES) {
+
+			Debug.Log("PURCHASE completed for ID " + productID);
+			// hide the purchase button & the continue button
+			Time.timeScale = 1.0f;
+			StartCoroutine(HidePurchaseRevivesImage());
+			if(continueTimer != 0) {
+				CancelInvoke("IncreaseTimer");
+				HideContinueImageAndClearTimer();
+				levelManager.RestartFromDyingLevel();
+			}
+			
+		}
+		
+		
+	}
+
+	public void PurchaseFailed() {
+		Debug.Log("PURCHASE PurchaseFailed");
+		Time.timeScale = 1.0f;
+	}
+
+	IEnumerator HideRewardedVideoImage() {
+		yield return new WaitForSeconds(1.2f);
+		rewardVideoImage.enabled = false;
+		rewardVideoImage.sprite = watchRewardVideoImages[0];
+	}
+
+	IEnumerator HidePurchaseRevivesImage() {
+		Debug.Log("HidePurchaseRevivesImage CALLED");
+		yield return new WaitForSeconds(1.2f);
+		purchaseRevivesImage.sprite = purchaseInfiniteRevivesImage[0];
+		purchaseRevivesImage.enabled = false;
 	}
 }

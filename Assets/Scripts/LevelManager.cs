@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
 
 	public Level currentLevel;
 	public Level respawnLevel; //in wich level to restart the game after dying?
+	public Level currentStageFirstLevel;
 
 	//1 stage is a scene that has many levels
 	public int stage = 1;
@@ -39,15 +40,24 @@ public class LevelManager : MonoBehaviour {
 
 	void Start () {
 
+		if(CheckHasExtraMoves() || hasExtraMoves) {
+			numMoves = MAX_MOVES + 2;
+		}
+
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android && swipe==null) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 			swipe.detectSwipeOnlyAfterRelease = true;
 		}
 
+		currentStageFirstLevel = respawnLevel;
+
 		listOfBehaviours = new List<ResetBehaviourScript>();
 
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
+		if(CheckHasExtraMoves() || hasExtraMoves) {
+			guiManager.ResetExtraMoves();
+		}
 		leftTwinMoved = rightTwinMoved = false;
 		gameStarted = false;
 
@@ -115,62 +125,89 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void ResetMoves() {
-		numMoves = MAX_MOVES;
-		guiManager.ResetMoves();
+		bool hasExtra = CheckHasExtraMoves();
+		numMoves = hasExtra ? MAX_MOVES + 2 : MAX_MOVES;
+		guiManager.ResetMoves(hasExtra);
 	}
 
 	public void decreaseMove() {
-		if(numMoves > 0) {
+		if(numMoves > 0 ) {
 			numMoves -= 1;
 		}
 		else {
 			KillPlayer();
 		}
 
-		guiManager.SetMovesText(numMoves);
+		guiManager.SetMovesText(numMoves, CheckHasExtraMoves());
+	}
+
+	public bool CheckIfBothAreDead() {
+
+		if(twins[0].IsStopped() && twins[1].IsStopped() && numMoves == 0) {
+			KillPlayer();
+			return true;
+		}
+		return false;
 	}
 
 	public void KillPlayer() {
 
 		if(!isDead && gameStarted) {
-			numMoves = 0;
-			guiManager.SetMovesText(numMoves);
-			Debug.Log("IS DEAD");
 			isDead = true;
+			numMoves = 0;
+			guiManager.SetMovesText(numMoves, CheckHasExtraMoves());
 			gameStarted = false;
 			guiManager.ShowGameOver();
 		}
 		
 	}
 
+	//after watching the video or purchasing the revives
+	public void RestartFromDyingLevel() {
+		SoundEffectsHelper.Instance.PlayTeleportSound(); //TODO change sound
+		respawnOnDyingLevel = true;
+		respawnLevel = currentLevel;
+		RestartLevel();
+	}
+
 	public bool isPlayerDead() {
 		return isDead;
+	}
+
+	private bool CheckHasExtraMoves() {
+		return (PlayerPrefs.GetInt(GameConstants.PRODUCT_EXTRA_MOVES, 0) == 1) || hasExtraMoves;
 	}
 
 	public void RestartLevel() {
 
 		Debug.Log("######## RESTART LEVEL #############");
 		isDead = false;
-		numMoves = MAX_MOVES;
+		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : MAX_MOVES;
 		gameStarted = true;
-		guiManager.ResetAllMovesText();
+		guiManager.ResetRegularMoves();
+		if(hasExtraMoves || CheckHasExtraMoves()) {
+			guiManager.ResetExtraMoves();
+		}
 		guiManager.HideGameOver();
 		foreach(PlayerMovement player in twins) {
 			player.ResetOriginalSprite();
 			player.ResetOriginalPosition();
 		}
 
-		if(!respawnOnDyingLevel && currentLevel.level != respawnLevel.level ) {
+		if(respawnOnDyingLevel) {
 			MoveToRespawnLevel(respawnLevel);			
+		}
+		else {
+			MoveToRespawnLevel(currentStageFirstLevel);
 		}
 		
 	}
 
 	public void NewStageLoaded() {
 		isDead = false;
-		numMoves = MAX_MOVES;
+		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : MAX_MOVES;
 		gameStarted = true;
-		guiManager.ResetAllMovesText();
+		guiManager.ResetRegularMoves();
 	}
 
 	void FixedUpdate() {
@@ -181,6 +218,8 @@ public class LevelManager : MonoBehaviour {
  		//}
 
 		if(gameStarted) {
+
+			
 			int moved = 0;
 			if ( (Input.GetKeyDown(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
 	        {
@@ -237,6 +276,10 @@ public class LevelManager : MonoBehaviour {
 	
 					player.ResetPlayerOnNewLevel(); //will also set the new associated level for both twins
 				}
+
+				if(currentLevel.level > 1) {
+					ShowLevelNum();
+				} //else called from GUIManager after the stage image
 	
 				leftTwinReady = rightTwinReady = false;
 			}
@@ -326,10 +369,34 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+	//show the num of the new level
+	public void ShowLevelNum() {
+		guiManager.ShowLevelNumImages(this.currentLevel.level);
+		StartCoroutine(HideLevelNumImages());
+	}
+
+	//when i finish all levels on 1 stage
 	public void StageCleared() {
-		gameStarted = false;
+		//gameStarted = false;
 		guiManager.ShowStageClearedImage();
 		StartCoroutine("HideStageClearedImage");
+	}
+
+	public void LevelCleared() {
+		//gameStarted = false;
+		guiManager.ShowLevelClearedImage();
+		StartCoroutine("HideLevelClearedImage");
+	}
+
+	IEnumerator HideLevelNumImages() {
+		yield return new WaitForSeconds(1.2f);
+		guiManager.HideLevelNumImages();
+	}
+
+	IEnumerator HideLevelClearedImage() {
+
+		yield return new WaitForSeconds(1.2f);
+		guiManager.HideLevelClearedImage();
 	}
 
 	IEnumerator HideStageClearedImage() {

@@ -27,6 +27,8 @@ public class Portal : MonoBehaviour {
 
 	public void MoveToNextLevel() {
 		if(nextLevel!=null) {
+			levelManager.LevelCleared();
+			SoundEffectsHelper.Instance.PlayPowerupSound();
 			levelManager.MoveToNextLevel(nextLevel);
 		}//else, on last level
 		else {

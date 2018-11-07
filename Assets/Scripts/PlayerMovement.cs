@@ -167,6 +167,10 @@ public class PlayerMovement : MonoBehaviour {
 		return false;
 	}
 
+	public bool IsStopped() {
+		return body.velocity == Vector2.zero;
+	}
+
     void FixedUpdate()
     {
 
@@ -495,16 +499,97 @@ public class PlayerMovement : MonoBehaviour {
 		bool isBomb = otherTag.Equals("Bomb");
 		bool isElectric = otherTag.Equals("Electric");
 
-		Tile tile = other.transform.GetComponent<Tile>();
-		if(tile!=null) {
+		bool ignoreCollision = true;
+		if(!isPortal) {
+				Tile tile = other.transform.GetComponent<Tile>();
+				if(tile!=null) {
+					Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
+					ignoreCollision = tile.HandlePlayerCollision(this);
+				}
+				else {
+					if(other.gameObject.GetComponent<ObjectActivator>()!=null) {
 
-			Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
-			tile.HandlePlayerCollision(this);
-		}
-		//portal collision
-		else if (isPortal)
-		{
+						Debug.Log("FFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCCCCK!!!!!");
+					}
 
+					Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
+					if(isRightMovement) {
+		
+						if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval) {
+							collidedRight();
+							ignoreCollision = false;
+						}
+						
+					}
+				
+					else if(isLeftMovement) {
+		
+						if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval)
+						{
+							collidedLeft();
+							ignoreCollision = false;
+						}
+						
+					}
+					else if(isUpMovement) {
+		
+						//otherwise just ignore this one
+						if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
+						{
+							collidedTop();
+							ignoreCollision = false;
+						}
+							
+					}
+					else if(isDownMovement) {
+		
+						if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
+						{
+							collidedBottom();
+							ignoreCollision = false;
+							
+						}
+						
+					}
+
+					if(isEnemy) {
+						 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+						 enemy.HandlePlayerCollision();
+					}
+					else if(isBomb) {
+		
+						Bomb bomb = other.gameObject.GetComponent<Bomb>();
+						bomb.HandlePlayerCollision(this);
+					}
+					else if(isElectric) {
+		
+						ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
+						wire.ElectrocutePlayer(this);
+					}	
+					else if(isBox) {
+						Debug.Log("------ COLLIDED WITH BOX, LEFT TWIN? " + isLeftTwin);
+						Box box = other.gameObject.GetComponent<Box>();
+						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+						if(box!=null && box.isSurpriseBox) {
+		
+							Debug.Log("FADE SURPRISE BOX");
+							FadeSpriteAlpha fade = box.gameObject.GetComponent<FadeSpriteAlpha>();
+								if(fade!=null) {
+									fade.enabled = true;
+								}
+						}
+					}	
+				}
+
+				//death by moves
+				if(!ignoreCollision && levelManager.CheckIfBothAreDead()) {
+					return;
+				}
+
+			
+		}//yes, is a portal collision
+		else {
+			//is portal
 			if (isMovingBetweenLevels)
 			{
 				//ignore this collision
@@ -516,81 +601,8 @@ public class PlayerMovement : MonoBehaviour {
 				Portal portal = other.gameObject.GetComponent<Portal>();
 				StartCoroutine(MoveToNextLevel(portal));
 			}
-
 		}
-		else {
 
-			if(other.gameObject.GetComponent<ObjectActivator>()!=null) {
-
-				Debug.Log("FFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCCCCK!!!!!");
-			}
-
-			Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
-			if(isRightMovement) {
-
-				if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval) {
-					collidedRight();
-				}
-				
-			}
-		
-			else if(isLeftMovement) {
-
-				if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval)
-				{
-					collidedLeft();
-				}
-				
-			}
-			else if(isUpMovement) {
-
-				//otherwise just ignore this one
-				if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
-				{
-					collidedTop();
-				}
-					
-			}
-			else if(isDownMovement) {
-
-				if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
-				{
-					collidedBottom();
-					
-				}
-				
-			}
-
-			if(isEnemy) {
-				 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-				 enemy.HandlePlayerCollision();
-			}
-			else if(isBomb) {
-
-				Bomb bomb = other.gameObject.GetComponent<Bomb>();
-				bomb.HandlePlayerCollision(this);
-			}
-			else if(isElectric) {
-
-				ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
-				wire.ElectrocutePlayer(this);
-			}	
-			else if(isBox) {
-				Debug.Log("------ COLLIDED WITH BOX, LEFT TWIN? " + isLeftTwin);
-				Box box = other.gameObject.GetComponent<Box>();
-				//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
-				if(box!=null && box.isSurpriseBox) {
-
-					Debug.Log("FADE SURPRISE BOX");
-					FadeSpriteAlpha fade = box.gameObject.GetComponent<FadeSpriteAlpha>();
-						if(fade!=null) {
-							fade.enabled = true;
-						}
-				}
-			}	
-
-			
-		}
 		
 		
 	}

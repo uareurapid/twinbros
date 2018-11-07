@@ -8,6 +8,8 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	private RewardBasedVideoAd rewardBasedVideo;
 
 	private InterstitialAd interstitialAd;
+
+	private GUIManager guiManager;
 	// Use this for initialization
 	public void Start()
     {
@@ -54,8 +56,9 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 		return interstitialAd.IsLoaded();
 	}
 	
-	public void ShowRewardVideo() {
+	public void ShowRewardVideo(GUIManager guiManager) {
 
+		this.guiManager = guiManager;
 		rewardBasedVideo.Show();
 	}
 
@@ -117,6 +120,9 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
+		if(guiManager!=null) {
+			guiManager.WatchedRewardedVideo(false);
+		}
     }
 
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
@@ -126,6 +132,9 @@ public class GoogleMobileAdsScript : MonoBehaviour {
         MonoBehaviour.print(
             "HandleRewardBasedVideoRewarded event received for "
                         + amount.ToString() + " " + type);
+		if(guiManager!=null) {
+			guiManager.WatchedRewardedVideo(true);
+		}
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)

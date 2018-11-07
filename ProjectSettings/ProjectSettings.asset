@@ -150,7 +150,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    iOS: com.pcdreams.twins
+    iOS: com.crackedegggames.twins
   buildNumber:
     iOS: 1.0.0
   AndroidBundleVersionCode: 1
