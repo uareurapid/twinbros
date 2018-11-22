@@ -134,19 +134,29 @@
      <Compile Include="Assets\Scripts\ResetBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\SideCollider.cs" />
+     <Compile Include="Assets\Scripts\SlugController.cs" />
      <Compile Include="Assets\Scripts\SnapToPixelGrid.cs" />
+     <Compile Include="Assets\Scripts\SocialAPI.cs" />
      <Compile Include="Assets\Scripts\SoundEffectsHelper.cs" />
      <Compile Include="Assets\Scripts\SpawnableItem.cs" />
      <Compile Include="Assets\Scripts\SpawnPosition.cs" />
      <Compile Include="Assets\Scripts\SpecialEffectsHelper.cs" />
      <Compile Include="Assets\Scripts\SwapSpriteScript.cs" />
+     <Compile Include="Assets\Scripts\SwichPositionsElement.cs" />
      <Compile Include="Assets\Scripts\SwipeDetector.cs" />
      <Compile Include="Assets\Scripts\TeletransportPoint.cs" />
+     <Compile Include="Assets\Scripts\TextLocalizationManager.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\TileRow.cs" />
+     <Compile Include="Assets\Scripts\TutorialController.cs" />
      <Compile Include="Assets\Scripts\VisibleOnScreen.cs" />
      <Compile Include="Assets\Scripts\WayPoint.cs" />
      <Compile Include="Assets\Sprites\ElectricWire.cs" />
+     <None Include="Assets\Resources\Language_fr.txt" />
+     <None Include="Assets\Resources\Language_zh.txt" />
+     <None Include="Assets\Resources\Language_en.txt" />
+     <None Include="Assets\Resources\Language_pt.txt" />
+     <None Include="Assets\Resources\Language_es.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/Users/paulocristo/workspace/SEVERAL_GAME_RELATED_CONTENT/2DPlatforms/Twin Boxes/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

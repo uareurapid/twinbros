@@ -22,6 +22,7 @@ public class SceneLoader : MonoBehaviour {
 	public void LoadNextScene(LevelManager levelManager) {
 		if (nextScene != null && nextScene != "")
 		{
+			levelManager.DisableMusic();
 			StartCoroutine(LoadScene(nextScene,levelManager));
 		}
 		

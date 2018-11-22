@@ -1,0 +1,5 @@
+level=Level
+buy_remove_ads=Remove ads
+buy_extra_moves=Extra moves
+buy_infinite_revives=Unlimited revives
+

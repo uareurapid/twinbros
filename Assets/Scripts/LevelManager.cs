@@ -38,6 +38,9 @@ public class LevelManager : MonoBehaviour {
 
 	public List<ResetBehaviourScript> listOfBehaviours;
 
+	private AudioSource music;
+	//keep a reference for this
+	private GameObject scripts;
 	void Start () {
 
 		if(CheckHasExtraMoves() || hasExtraMoves) {
@@ -53,8 +56,18 @@ public class LevelManager : MonoBehaviour {
 
 		listOfBehaviours = new List<ResetBehaviourScript>();
 
-		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+		scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
+		music = scripts.GetComponent<AudioSource>();
+		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+		if(musicOff == 0) {
+			EnableMusic();
+		}
+		//RESET HIGH SCORE
+		if(currentLevel.level == 1 && stage == 1) {
+			PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, 0);
+		}
+
 		if(CheckHasExtraMoves() || hasExtraMoves) {
 			guiManager.ResetExtraMoves();
 		}
@@ -68,6 +81,17 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+	public void DisableMusic() {
+		if(music != null){
+			music.Stop();
+		}
+	}
+
+	public void EnableMusic() {
+		if(music != null){
+			music.Play();
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -92,6 +116,11 @@ public class LevelManager : MonoBehaviour {
 		RestartLevel();
 		ResetAllBehaviours();
 		gameStarted = true;
+
+		if (stage == 1 && currentLevel.level == 1)
+		{
+			scripts.GetComponent<TutorialController>().showPartOne();
+		}
 	}
 
 	public bool IsGameStarted() {
@@ -378,6 +407,14 @@ public class LevelManager : MonoBehaviour {
 	//when i finish all levels on 1 stage
 	public void StageCleared() {
 		//gameStarted = false;
+		//Report the achievement
+		SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
+		//add 500 extra points
+		int currentScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+		currentScore += 500;
+		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, currentScore);
+		SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+
 		guiManager.ShowStageClearedImage();
 		StartCoroutine("HideStageClearedImage");
 	}
@@ -401,9 +438,9 @@ public class LevelManager : MonoBehaviour {
 
 	IEnumerator HideStageClearedImage() {
 
-		yield return new WaitForSeconds(2.5f);
+		yield return new WaitForSeconds(3f);
 		guiManager.HideStageClearedImage();
-		yield return new WaitForSeconds(2.5f);
+		yield return new WaitForSeconds(3f);
 		guiManager.DisableStageClearedImage();
 	}
 	void StartMovePlayersIntoPosition(Level nextLevel) {

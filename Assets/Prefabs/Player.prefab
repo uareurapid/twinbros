@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c358bcd5c06549908fa049c7434e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   maxTilesMovement: 10
   isLeftTwin: 1
   canMoveLeft: 0

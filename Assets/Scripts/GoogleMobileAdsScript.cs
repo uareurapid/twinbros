@@ -7,7 +7,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     //README https://developers.google.com/admob/unity/rewarded-video
 	private RewardBasedVideoAd rewardBasedVideo;
 
-	private InterstitialAd interstitialAd;
+	private InterstitialAd interstitial;
 
 	private GUIManager guiManager;
 	// Use this for initialization
@@ -28,7 +28,6 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 		// Get singleton reward based video ad reference.
         this.rewardBasedVideo = RewardBasedVideoAd.Instance;
 
-
 		// Called when an ad request has successfully loaded.
         rewardBasedVideo.OnAdLoaded += HandleRewardBasedVideoLoaded;
         // Called when an ad request failed to load.
@@ -46,6 +45,9 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 
 		this.RequestRewardBasedVideo();
+
+		//also request interstitial
+		this.RequestInterstitialAd();
     }
 
 	public bool IsRewardVideoReady() {
@@ -53,18 +55,29 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	}
 
 	public bool IsInterstitialReady() {
-		return interstitialAd.IsLoaded();
+		Debug.Log("IsInterstitialReady????? "+ (this.interstitial == null));
+		if(this.interstitial == null) {
+			RequestInterstitialAd();
+		}
+		return this.interstitial!=null && this.interstitial.IsLoaded();
+	}
+
+	public bool DecideIfShowInterstitial() {
+		int rand = UnityEngine.Random.Range(0, 10); //between 0 and 9
+		Debug.Log("Interstitial RAND ?" + rand);
+		return (rand == 1 || rand == 5 || rand == 9);
 	}
 	
 	public void ShowRewardVideo(GUIManager guiManager) {
 
 		this.guiManager = guiManager;
-		rewardBasedVideo.Show();
+		this.rewardBasedVideo.Show();
 	}
 
-	public void ShowInterstitialAd() {
+	public void ShowInterstitialAd(GUIManager guiManager) {
 
-		interstitialAd.Show();
+		this.guiManager = guiManager;
+		this.interstitial.Show();
 	}
 
 	//TODO get the ids for Android (only after trying unique release on IOS)
@@ -85,14 +98,45 @@ public class GoogleMobileAdsScript : MonoBehaviour {
         this.rewardBasedVideo.LoadAd(request, adUnitId);
     }
 
+	//TODO change from test to configured
 	public void RequestInterstitialAd() {
 
-
+		Debug.Log("RequestInterstitialAd() CALLED");
 		#if UNITY_IPHONE
 			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
+			string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
 		#else
             string adUnitId = "unexpected_platform";
         #endif
+
+		// Initialize an InterstitialAd.
+    		this.interstitial = new InterstitialAd(testAdsUnitId);
+			Debug.Log("RequestInterstitialAd() IS IT NULL -> " + (this.interstitial == null) + ":" + testAdsUnitId);
+
+			SetInterstitialEventsHandler();
+    		// Create an empty ad request.
+    		AdRequest request = new AdRequest.Builder().Build();
+    		// Load the interstitial with the request.
+    		this.interstitial.LoadAd(request);
+	}
+
+	void SetInterstitialEventsHandler() {
+
+		if(this.interstitial!=null) {
+
+			//interstitial events
+			// Called when an ad request has successfully loaded.
+	    	this.interstitial.OnAdLoaded += HandleOnAdLoaded;
+	    	// Called when an ad request failed to load.
+	    	this.interstitial.OnAdFailedToLoad += HandleOnAdFailedToLoad;
+	    	// Called when an ad is shown.
+	    	this.interstitial.OnAdOpening += HandleOnAdOpened;
+	    	// Called when the ad is closed.
+	    	this.interstitial.OnAdClosed += HandleOnAdClosed;
+	    	// Called when the ad click caused the user to leave the application.
+	    	this.interstitial.OnAdLeavingApplication += HandleOnAdLeavingApplication;
+		}
+		
 	}
 	
 	    public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
@@ -140,5 +184,39 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
+    }
+
+	//events for insterstitial ads
+	public void HandleOnAdLoaded(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdLoaded event received");
+    }
+
+    public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    {
+        MonoBehaviour.print("HandleFailedToReceiveAd event received with message: "
+                            + args.Message);
+    }
+
+    public void HandleOnAdOpened(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdOpened event received");
+    }
+
+    public void HandleOnAdClosed(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdClosed event received");
+		if(guiManager!=null) {
+			guiManager.AdFinished();
+			this.RequestInterstitialAd(); //request anothe rone
+		}
+    }
+
+    public void HandleOnAdLeavingApplication(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdLeavingApplication event received");
+		if(guiManager!=null) {
+			guiManager.AdFinished();
+		}
     }
 }

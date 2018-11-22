@@ -5,20 +5,47 @@ using UnityEngine;
 public class GUIManager : MonoBehaviour {
 
 
+	public Sprite [] musicSettingsImages;
+	public UnityEngine.UI.Image musicSettingsButton;
+
 	public UnityEngine.UI.Image [] movesImage;
 	public UnityEngine.UI.Image [] extraMovesImage;
-	public Sprite [] purchaseInfiniteRevivesImage;
+	public Sprite [] purchaseInfiniteRevivesSprites;
+	public Sprite [] purchaseExtraMovesSprites;
+	public Sprite [] purchaseRemoveAdsSprites;
+	public Sprite [] achievementsSprites;
 	public Sprite [] watchRewardVideoImages;
+
+	public UnityEngine.UI.Image achievementsButtonImage;
+	public UnityEngine.UI.Image leaderboardButtonImage;
+	public Sprite [] leaderboardsImages;
+
+	public GameObject settingsPanel;
+
+	public UnityEngine.UI.Text purchaseRevivesText;
+	public UnityEngine.UI.Text purchaseMovesText;
+	public UnityEngine.UI.Text purchaseRemoveAdsText;
+
+	public UnityEngine.UI.Text purchaseRevivesPriceText;
+	public UnityEngine.UI.Text purchaseMovesPriceText;
+	public UnityEngine.UI.Text purchaseRemoveAdsPriceText;
 
 	public UnityEngine.UI.Text levelText;
 	public UnityEngine.UI.Text gameOverText;
 	public UnityEngine.UI.Image gameOverImage;
 	public UnityEngine.UI.Text restartText;
 
+	public UnityEngine.UI.Image pauseButton;
+	public UnityEngine.UI.Image unpauseButton;
+
 	public UnityEngine.UI.Image levelNumImage;
 	public UnityEngine.UI.Image[] levelNumChildImages;
 
 	public UnityEngine.UI.Image purchaseRevivesImage;
+	public UnityEngine.UI.Image purchaseExtraMovesImage;
+	public UnityEngine.UI.Image purchaseRemoveAdsImage;
+
+
 	public UnityEngine.UI.Image rewardVideoImage;
 	public UnityEngine.UI.Image stageClearedImage;
 	public UnityEngine.UI.Image levelClearedImage;
@@ -43,11 +70,21 @@ public class GUIManager : MonoBehaviour {
 
 	private bool playPressed = false;
 	private int continueTimer = 0;
+
+	private bool shouldShowInterstitial = false;
+	private bool showedInterstitial = false;
+
+	private bool stopTimer = false;
+
+	private TextLocalizationManager translationManager;
 	// Use this for initialization
 	void Start () {
 		playPressed = false;
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
+		translationManager = TextLocalizationManager.Instance;
+		translationManager.LoadSystemLanguage(Application.systemLanguage);
+		LoadAllGUITranslations();
 		store = scripts.GetComponent<MyStoreClass>();
 		levelManager = scripts.GetComponent<LevelManager>();
 
@@ -56,6 +93,12 @@ public class GUIManager : MonoBehaviour {
 		}
 	}
 	
+	void LoadAllGUITranslations() {
+		purchaseMovesText.text = translationManager.GetText(GameConstants.TXT_EXTRA_MOVES_KEY);
+		purchaseRevivesText.text = translationManager.GetText(GameConstants.TXT_INFINITE_REVIVES_KEY);
+		purchaseRemoveAdsText.text = translationManager.GetText(GameConstants.TXT_REMOVE_ADS_KEY);
+		//public const string TXT_LEVEL_KEY = "level";
+	}
 	// Update is called once per frame
 	void Update () {
 
@@ -74,12 +117,48 @@ public class GUIManager : MonoBehaviour {
 		}
 
 	 }
+
+	 if (shouldShowInterstitial && !showedInterstitial) {
+			if (adsScript.IsInterstitialReady())
+			{
+				stopTimer = true;
+				showedInterstitial = true;
+				shouldShowInterstitial = false;
+				adsScript.ShowInterstitialAd(this);
+			}
+
+	 }
 		
 	}
 
 	public void disableMove(int num) {
 
 		
+	}
+
+	public void PausePressed() {
+		pauseButton.enabled = false;
+		unpauseButton.enabled = true;
+		ShowSettingsPanel();
+		Time.timeScale = 0;
+	}
+
+	public void UnPausePressed() {
+		pauseButton.enabled = true;
+		unpauseButton.enabled = false;
+		HideSettingsPanel();
+		Time.timeScale = 1f;
+	}
+
+	public void ShowSettingsPanel() {
+		//set the music button On/Off
+		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+		musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+		settingsPanel.SetActive(true);
+	}
+
+	public void HideSettingsPanel() {
+		settingsPanel.SetActive(false);
 	}
 
 	public void PlayPressed() {
@@ -184,15 +263,27 @@ public class GUIManager : MonoBehaviour {
 			continueImage.enabled = true;
 			UpdateCountdownImage();
 			countdownImage.enabled = true;
-			InvokeRepeating("IncreaseTimer", 0, 1.0f);
+			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
+		
+		//if not purchased product and is time for ads
+		if(PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0 && adsScript.IsInterstitialReady() && adsScript.DecideIfShowInterstitial() )  {
+
+			shouldShowInterstitial = true;
+			stopTimer = true;
+			showedInterstitial = true;
+			// avoid show it again
+			shouldShowInterstitial = false;
+			adsScript.ShowInterstitialAd(this);
+			
+		}
 		//check if purchased infite revives
-		if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) {
+		else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) {
 			// show the option to continue
-			StartCoroutine(ShowRestartText());
+			StartCoroutine(ShowRestartText(1.0f));
 		}// preferably show ads
-		else if(adsScript!=null && adsScript.IsRewardVideoReady() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
+		else if(adsScript.IsRewardVideoReady() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
 			ShowVideoRewardToEnableContinue();
 		}//otherwise show purchase option
 		else {
@@ -242,11 +333,54 @@ public class GUIManager : MonoBehaviour {
 		rewardVideoImage.enabled = true;	
 	}
 
+	public void LeaderboardsPressed()
+	{
+		leaderboardButtonImage.sprite = leaderboardsImages[1];
+		SocialAPI.Instance.AuthenticateAndShowLeaderboards();
+		StartCoroutine(RestoreLeaderBoardsImage());
+	}
+
+	public void AchievementsPressed()
+	{
+		achievementsButtonImage.sprite = achievementsSprites[1];
+		SocialAPI.Instance.AuthenticateAndShowAchievements();
+		StartCoroutine(RestoreAchievementsImage());
+	}
+	
+	IEnumerator RestoreAchievementsImage() {
+		//WaitForSecondsRealtime is not affected by timescale 0
+		yield return new WaitForSecondsRealtime(1f);
+		achievementsButtonImage.sprite = achievementsSprites[0];
+	}
+
+	IEnumerator RestoreLeaderBoardsImage() {
+		//WaitForSecondsRealtime is not affected by timescale 0
+		yield return new WaitForSecondsRealtime(1f);
+		leaderboardButtonImage.sprite = leaderboardsImages[0];
+	}
+
+	//TODO on load panel set the correct image
+	public void MusicSettingsPressed() {
+		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+		if(musicOff == 0) {
+			musicOff = 1;
+			levelManager.DisableMusic();
+		}
+		else {
+			musicOff = 0;
+			levelManager.EnableMusic();
+			
+		}
+		PlayerPrefs.SetInt("MUSIC_OFF", musicOff);
+		musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+		
+	}
+
 	public void RewardVideoPressed() {
 		rewardVideoImage.sprite = watchRewardVideoImages[1];
 		if (adsScript != null && adsScript.IsRewardVideoReady())
 		{
-			Time.timeScale = 0;
+			stopTimer = true;
 			adsScript.ShowRewardVideo(this);
 		}
 
@@ -256,7 +390,7 @@ public class GUIManager : MonoBehaviour {
 	//called when the video was watched or closed
 	public void WatchedRewardedVideo(bool watched) {
 
-		Time.timeScale = 1.0f;
+		stopTimer = false;
 
 		if(watched) {
 			Debug.Log("YES REWARD, Saw the video, otherwise, not");
@@ -280,21 +414,24 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-	
-
 	void IncreaseTimer() {
+		if(!stopTimer) {
 
-		if(continueTimer <= 9) {
-			continueTimer += 1;
-			UpdateCountdownImage();
+				if(continueTimer <= 9) {
+					continueTimer += 1;
+					UpdateCountdownImage();
+				}
+				else {
+					shouldShowInterstitial = false;
+					showedInterstitial = false;
+					CancelInvoke("IncreaseTimer");
+					HideContinueImageAndClearTimer();
+					CanShowPlayButton();
+					purchaseRevivesImage.enabled = false;
+					rewardVideoImage.enabled = false;
+				}
 		}
-		else {
-			CancelInvoke("IncreaseTimer");
-			HideContinueImageAndClearTimer();
-			CanShowPlayButton();
-			purchaseRevivesImage.enabled = false;
-			rewardVideoImage.enabled = false;
-		}
+		
 		
 		
 	}
@@ -312,8 +449,8 @@ public class GUIManager : MonoBehaviour {
 		playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
 	}
 
-	IEnumerator ShowRestartText() {
-		yield return new WaitForSeconds(2f);
+	IEnumerator ShowRestartText(float wait) {
+		yield return new WaitForSeconds(wait);
 		CanShowPlayButton();
 	}
 
@@ -385,13 +522,52 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseInfiniteRevivesPressed() {
 
-		purchaseRevivesImage.sprite = purchaseInfiniteRevivesImage[1];
+		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[1];
 		Debug.Log("PurchaseInfiniteRevivesPressed clicked");
+		StartCoroutine(PressDownPurchaseInfiniteRevives());
 		if(store!=null && store.IsInitialized() ) {
-			Time.timeScale = 0;
+			stopTimer = true;
 			Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
 			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
 		}
+	}
+
+	IEnumerator PressDownPurchaseInfiniteRevives() {
+		yield return new WaitForSecondsRealtime(1f);
+		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[0];
+	}
+
+	public void PurchaseRemoveAdsPressed() {
+
+		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[1];
+		Debug.Log("PRODUCT_REMOVE_ADS clicked");
+		StartCoroutine(PressDownPurchaseRemoveAds());
+		if(store!=null && store.IsInitialized() ) {
+			stopTimer = true;
+			Debug.Log("TRY TO PURCHASE PRODUCT_REMOVE_ADS ");
+			store.PurchaseProduct(GameConstants.PRODUCT_REMOVE_ADS, this);
+		}
+	}
+
+	IEnumerator PressDownPurchaseRemoveAds() {
+		yield return new WaitForSecondsRealtime(1f);
+		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[0];
+	}
+
+	public void PurchaseExtraMovesPressed() {
+
+		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[1];
+		Debug.Log("PRODUCT_EXTRA_MOVES clicked");
+		if(store!=null && store.IsInitialized() ) {
+			stopTimer = true;
+			Debug.Log("TRY TO PURCHASE PRODUCT_EXTRA_MOVES ");
+			store.PurchaseProduct(GameConstants.PRODUCT_EXTRA_MOVES, this);
+		}
+	}
+
+	IEnumerator PressDownPurchaseExtraMoves() {
+		yield return new WaitForSecondsRealtime(1f);
+		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[0];
 	}
 
 	public void PurchaseCompleted(string productID) {
@@ -399,26 +575,44 @@ public class GUIManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt(productID, 1);
 
-		if(productID == GameConstants.PRODUCT_INFINITE_REVIVES) {
+		if (productID == GameConstants.PRODUCT_INFINITE_REVIVES)
+		{
 
 			Debug.Log("PURCHASE completed for ID " + productID);
 			// hide the purchase button & the continue button
-			Time.timeScale = 1.0f;
 			StartCoroutine(HidePurchaseRevivesImage());
-			if(continueTimer != 0) {
+			if (continueTimer != 0)
+			{
 				CancelInvoke("IncreaseTimer");
 				HideContinueImageAndClearTimer();
 				levelManager.RestartFromDyingLevel();
 			}
-			
+
 		}
+		else if (productID == GameConstants.PRODUCT_REMOVE_ADS)
+		{
+			// DO NOTHING
+			StartCoroutine(HidePurchaseRemoveAdsImage());
+		}
+		else if (productID == GameConstants.PRODUCT_EXTRA_MOVES)
+		{
+			// TODO unlock the 2 extra moves
+			StartCoroutine(HidePurchaseExtraMovesImage());
+		}
+		stopTimer = false;
 		
 		
 	}
 
+	//after an ad
+	public void AdFinished() {
+		Debug.Log("AdFinished()");
+		stopTimer = false;
+	}
+
 	public void PurchaseFailed() {
 		Debug.Log("PURCHASE PurchaseFailed");
-		Time.timeScale = 1.0f;
+		stopTimer = false;
 	}
 
 	IEnumerator HideRewardedVideoImage() {
@@ -430,7 +624,21 @@ public class GUIManager : MonoBehaviour {
 	IEnumerator HidePurchaseRevivesImage() {
 		Debug.Log("HidePurchaseRevivesImage CALLED");
 		yield return new WaitForSeconds(1.2f);
-		purchaseRevivesImage.sprite = purchaseInfiniteRevivesImage[0];
+		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[0];
 		purchaseRevivesImage.enabled = false;
+	}
+
+	IEnumerator HidePurchaseExtraMovesImage() {
+		Debug.Log("HidePurchaseExtraMovesImage CALLED");
+		yield return new WaitForSeconds(1.2f);
+		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[0];
+		purchaseExtraMovesImage.enabled = false;
+	}
+
+	IEnumerator HidePurchaseRemoveAdsImage() {
+		Debug.Log("HidePurchaseRemoveAdsImage CALLED");
+		yield return new WaitForSeconds(1.2f);
+		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[0];
+		purchaseRemoveAdsImage.enabled = false;
 	}
 }

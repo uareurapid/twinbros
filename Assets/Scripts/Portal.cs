@@ -28,6 +28,12 @@ public class Portal : MonoBehaviour {
 	public void MoveToNextLevel() {
 		if(nextLevel!=null) {
 			levelManager.LevelCleared();
+			//------------------ 100 points per level finished
+			int currentScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+			currentScore += 100;
+			PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, currentScore);
+			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+			//---------------------------
 			SoundEffectsHelper.Instance.PlayPowerupSound();
 			levelManager.MoveToNextLevel(nextLevel);
 		}//else, on last level
