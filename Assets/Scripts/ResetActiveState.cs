@@ -11,7 +11,13 @@ using UnityEngine;
 		void Start()
 		{
 
-			GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+			StartCoroutine(AddToResetableList());
+			
+		}
+
+		IEnumerator AddToResetableList() {
+		yield return new WaitForSecondsRealtime(2f);
+		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 			if(scripts!=null) {
 
 				LevelManager levelManager = scripts.GetComponent<LevelManager>();
@@ -20,13 +26,6 @@ using UnityEngine;
 				}
 				
 			}
-			
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
 		}
 
 		public void ResetOriginalBehaviour()

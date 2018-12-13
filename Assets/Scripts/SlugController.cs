@@ -23,16 +23,17 @@ public class SlugController : MonoBehaviour {
 
 	void SpawnOnNextposition() {
 		nexPosition = nextPositions[nextPositionIndex++].transform.position;
-		instantiateTransform(spawnShadow, nexPosition);
+		Transform shadow = instantiateTransform(spawnShadow, nexPosition);
 		if(nextPositionIndex > nextPositions.Length - 1) {
 			nextPositionIndex = 0;
 		}
-		StartCoroutine(MoveSlugIntoPosition());
+		StartCoroutine(MoveSlugIntoPosition(shadow));
 		
 	}
 
-	IEnumerator MoveSlugIntoPosition() {
+	IEnumerator MoveSlugIntoPosition(Transform shadow) {
 		yield return new WaitForSeconds(0.8f);
+		Destroy(shadow.gameObject);
 		transform.position = nexPosition;
 	}
 

@@ -85,6 +85,11 @@ public class Tile : MonoBehaviour {
 		bool ignoredCollision = true; 
 
 			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();
+			if(enemy!=null) {
+				enemy.HandlePlayerCollision(movement);
+				return false;
+			}
+						 
 
 			TeletransportPoint point = gameObject.GetComponent<TeletransportPoint>();
 
@@ -107,9 +112,9 @@ public class Tile : MonoBehaviour {
 				//Debug.Log("################# BLOCK DOWN ##################");
 				if(movement.IsMovingDown()) {
 					movement.collidedBottom();
-					if(enemy!=null) {
-						enemy.HandlePlayerCollision();
-					}
+					//if(enemy!=null) {
+					//	enemy.HandlePlayerCollision();
+					//}
 					ignoredCollision = false;
 				}
 				else {
@@ -157,7 +162,7 @@ public class Tile : MonoBehaviour {
 				}
 			}*/
 
-			Debug.Log("################# TIle HandleTileExitCollisions ################## " + gameObject.ToString());
+			//Debug.Log("################# TIle HandleTileExitCollisions ################## " + gameObject.ToString());
 
 
 			if(blockUpMovement) {
@@ -170,7 +175,7 @@ public class Tile : MonoBehaviour {
 			
 			}
 			if(blockLeftMovement) {
-				Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
+				//Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
 				movement.canMoveLeft = true;
 				
 			}

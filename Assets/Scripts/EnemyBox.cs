@@ -23,16 +23,29 @@ public class EnemyBox : MonoBehaviour {
 		return associatedTile;
 	}
 
-	public void HandlePlayerCollision() {
+	//bool isLeftMovement, bool isRightMovement, bool isUpMovement, bool isDownMovement
+	public void HandlePlayerCollision(PlayerMovement player) {
 		if(levelmanager==null) {
 			GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 			levelmanager = scripts.GetComponent<LevelManager>();
 
 		}
 
-		if(killPlayerOnTouch  ) {
-			//TODO i am killing disregard of the direction  of movmenet CHECKE!!!!!!
-			levelmanager.KillPlayer();
+		//TODO this is duplicated
+		if(killPlayerOnTouch) {
+			if(player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y)) {
+				levelmanager.KillPlayer();
+			}
+			else if(player.IsMovingLeft() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y)) {
+				levelmanager.KillPlayer();
+			}
+			else if(player.IsMovingUp() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x)) {
+				levelmanager.KillPlayer();
+			}
+			else if(player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x)) {
+				levelmanager.KillPlayer();
+			}
+			
 		}
 	}
 

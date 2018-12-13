@@ -39,6 +39,8 @@ public class LevelManager : MonoBehaviour {
 	public List<ResetBehaviourScript> listOfBehaviours;
 
 	private AudioSource music;
+
+	private long lastMovementTime = 0;
 	//keep a reference for this
 	private GameObject scripts;
 	void Start () {
@@ -106,7 +108,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void ResetAllBehaviours() {
-		foreach(ResetableBehaviours script in listOfBehaviours) {
+		foreach(ResetBehaviourScript script in listOfBehaviours) {
 			script.ResetOriginalBehaviour();
 		}
 	}
@@ -197,6 +199,7 @@ public class LevelManager : MonoBehaviour {
 		respawnOnDyingLevel = true;
 		respawnLevel = currentLevel;
 		RestartLevel();
+		ResetAllBehaviours();
 	}
 
 	public bool isPlayerDead() {

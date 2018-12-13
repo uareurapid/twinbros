@@ -169,13 +169,13 @@ public class MoveTowardsScript : MonoBehaviour {
 			if(isGoingBack) {
 				isGoingBack = false;
 			}
-			Debug.Log("############# Reached target position " + targetPosition.ToString() + " " + (isLeftTwin ? " LEFT TWIN": "RIGHT TWIN"));
+			//Debug.Log("############# Reached target position " + targetPosition.ToString() + " " + (isLeftTwin ? " LEFT TWIN": "RIGHT TWIN"));
 			if(destroyWhenReach) { //destroy this object
 			  Destroy(gameObject);
 			}
 			else if(goBackAndFourth && secondTarget!=null) {
 
-			   Debug.Log("GO BACK AND FOURTH!!!!!");	
+			   //Debug.Log("GO BACK AND FOURTH!!!!!");	
 			   if(!isGoingBack) {
 					Vector3 inicial = targetPosition; //whe
 					targetPosition = secondTargetPosition;
@@ -198,7 +198,6 @@ public class MoveTowardsScript : MonoBehaviour {
 			//if( (isLeftTwin && !levelManager.HasLeftTwinReachedNewLevel() ) || 
 			//	(!isLeftTwin && !levelManager.HasRightTwinReachedNewLevel()) ) {
 
-				Debug.Log("WILL CALL HANDLER FOR isleft? " + isLeftTwin);
 
 				//no more velocity
 				GetComponent<Rigidbody2D>().velocity = Vector3.zero;

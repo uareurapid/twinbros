@@ -14,9 +14,10 @@ public class SpawnableItem : MonoBehaviour {
 	}
 
 	void CalculateRandomSpawnPosition() {
-
-		transform.position = possibleSpawnPositions[Random.Range(0, possibleSpawnPositions.Length)].transform.position;
-
+		if(transform !=null) {
+			transform.position = possibleSpawnPositions[Random.Range(0, possibleSpawnPositions.Length)].transform.position;
+		}
+		
 	}
 	// Update is called once per frame
 	void Update () {

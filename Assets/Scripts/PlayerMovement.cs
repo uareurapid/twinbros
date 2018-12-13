@@ -110,7 +110,6 @@ public class PlayerMovement : MonoBehaviour {
 	public void SetReachedNewLevel(bool reached, LevelCheckPoint newLevelRestrictions) {
 		reachedNewLevel = reached;
 		levelRestrictions = newLevelRestrictions;
-		Debug.Log("### SetReachedNewLevel isLeft? " + isLeftTwin);
 		isMovingBetweenLevels = false;
 	}
 
@@ -181,7 +180,8 @@ public class PlayerMovement : MonoBehaviour {
 		previousPosition[1] = previousPosition[0];
 		previousPosition[0] = body.position;
 
-		if(!isMovingBetweenLevels) {
+		//only check for raycast hits if not movement is blocked
+		if(!isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 
 			//Fire some rays to check if we have anything on the left, right, up or down
 			RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 2.0f, collisionMasks  );
@@ -226,6 +226,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 
+		//block any position updates if any of these is happening
 		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || 
 					isMovingBetweenTeleportPoints || levelManager.isPlayerDead() || 
 					levelManager.IsStillAwaitingLevelTransitions() ) {
@@ -256,6 +257,10 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			reachedTarget = false;
 
+			//if(isLeftTwin) {
+			//	Debug.Log("LEFT TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
+			//}
+
 			if(isLeftMovement && canMoveLeft) {
 				//only move in x
 				transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x,transform.position.y,transform.position.z), Time.deltaTime * speed);
@@ -270,6 +275,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			if(isDownMovement && canMoveDown) {
 				//y
+				//Debug.Log("SHOULD BE MOVING HERE isLeft " + isLeftTwin);
 				transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x,targetPosition.y,transform.position.z), Time.deltaTime * speed);
 			}
 			
@@ -280,6 +286,7 @@ public class PlayerMovement : MonoBehaviour {
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
 		}
 		else {
+			//Debug.Log("REACHED TARGET true -> isLeft? " + isLeftTwin);
 			reachedTarget = true;
 		}
 
@@ -290,33 +297,34 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SlideUp() {
-		Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
-		isUpMovement = true;
+		//Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
 		reachedTarget = false;
+		isUpMovement = true;
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
 	}
 
 	public void SlideRight() {
-		isRightMovement = true;
 		reachedTarget = false;
+		isRightMovement = true;
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
 	}
 
 	public void SlideDown() {
-		isDownMovement = true;
 		reachedTarget = false;
+		//Debug.Log("SLIDE DOWN called will move: " + (Vector3.down)*tileSize*maxTilesMovement);
+		isDownMovement = true;
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
 		isUpMovement = isLeftMovement = isRightMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
 	}
 
 	public void SlideLeft() {
-		isLeftMovement = true;
 		reachedTarget = false;
+		isLeftMovement = true;
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
 		isRightMovement = isDownMovement = isUpMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -490,8 +498,16 @@ public class PlayerMovement : MonoBehaviour {
 		return body;
 	}
 
+	public bool IsIgnoreCollision(float pos1, float pos2) {
+		return !(Mathf.Abs(pos1 - pos2) < ignoreCollisionInterval);
+	}
+
     void OnCollisionEnter2D(Collision2D other)
 	{
+		//ignore it
+		if(isMovingBetweenLevels || otherTwin.isMovingBetweenLevels) {
+			return;
+		}
 		string otherTag = other.transform.tag;
 		bool isPortal = otherTag.Equals("Portal");
 		bool isEnemy = otherTag.Equals("Enemy");
@@ -507,15 +523,15 @@ public class PlayerMovement : MonoBehaviour {
 					ignoreCollision = tile.HandlePlayerCollision(this);
 				}
 				else {
-					if(other.gameObject.GetComponent<ObjectActivator>()!=null) {
+					//if(other.gameObject.GetComponent<ObjectActivator>()!=null) {
 
-						Debug.Log("FFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCCCCK!!!!!");
-					}
+					//	Debug.Log("FFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCCCCK!!!!!");
+					//}
 
-					Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
+					//Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
 					if(isRightMovement) {
-		
-						if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval) {
+						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
+						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y)) {
 							collidedRight();
 							ignoreCollision = false;
 						}
@@ -523,8 +539,8 @@ public class PlayerMovement : MonoBehaviour {
 					}
 				
 					else if(isLeftMovement) {
-		
-						if (Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval)
+						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
+						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y))
 						{
 							collidedLeft();
 							ignoreCollision = false;
@@ -534,7 +550,8 @@ public class PlayerMovement : MonoBehaviour {
 					else if(isUpMovement) {
 		
 						//otherwise just ignore this one
-						if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
+						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+						if (!IsIgnoreCollision(other.transform.position.x, transform.position.x))
 						{
 							collidedTop();
 							ignoreCollision = false;
@@ -542,8 +559,8 @@ public class PlayerMovement : MonoBehaviour {
 							
 					}
 					else if(isDownMovement) {
-		
-						if (Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval)
+						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+						if (!IsIgnoreCollision(other.transform.position.x, transform.position.x))
 						{
 							collidedBottom();
 							ignoreCollision = false;
@@ -554,7 +571,7 @@ public class PlayerMovement : MonoBehaviour {
 
 					if(isEnemy) {
 						 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-						 enemy.HandlePlayerCollision();
+						 enemy.HandlePlayerCollision(this);
 					}
 					else if(isBomb) {
 		
@@ -581,16 +598,17 @@ public class PlayerMovement : MonoBehaviour {
 					}	
 				}
 
+				//this code is not reachable
 				//death by moves
-				if(!ignoreCollision && levelManager.CheckIfBothAreDead()) {
-					return;
-				}
+				//if(!ignoreCollision && levelManager.CheckIfBothAreDead()) {
+				//	return;
+				//}
 
 			
 		}//yes, is a portal collision
 		else {
 			//is portal
-			if (isMovingBetweenLevels)
+			if (isMovingBetweenLevels || levelManager.isPlayerDead())
 			{
 				//ignore this collision
 				return;
@@ -612,6 +630,7 @@ public class PlayerMovement : MonoBehaviour {
 		portal.MoveToNextLevel();
 	}
 
+	//TODO this is not doing what the name suggests, is just reversing things DOUBLE CHECK
 	public void AllowAllMovementsAgain() {
 
         targetPosition = transform.position;

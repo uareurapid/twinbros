@@ -1,12 +1,19 @@
-﻿<Properties StartupConfiguration="{7587656F-E73C-933F-69DD-CEDB27394931}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ResetActiveState.cs">
     <Files>
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="489" Column="14" />
-      <File FileName="Assets/Scripts/TutorialController.cs" Line="23" Column="3" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="441" Column="39" />
-      <File FileName="Assets/Scripts/SlugController.cs" Line="35" Column="38" />
-      <File FileName="Assets/Scripts/SpecialEffectsHelper.cs" Line="305" Column="2" />
-      <File FileName="Assets/Scripts/Portal.cs" Line="42" Column="25" />
+      <File FileName="Assets/Scripts/PositionMarker.cs" Line="11" Column="24" />
+      <File FileName="Assets/Scripts/TeletransportPoint.cs" Line="21" Column="6" />
+      <File FileName="Assets/Scripts/GridController.cs" Line="11" Column="11" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="225" Column="1" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="98" Column="18" />
+      <File FileName="Assets/Scripts/ObjectActivator.cs" Line="146" Column="1" />
+      <File FileName="Assets/Scripts/Explodable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Bomb.cs" Line="5" Column="33" />
+      <File FileName="Assets/Scripts/SpawnableItem.cs" Line="16" Column="35" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="83" Column="3" />
+      <File FileName="Assets/Scripts/ResetActiveState.cs" Line="25" Column="53" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="110" Column="36" />
+      <File FileName="Assets/Scripts/MoveTowardsScript.cs" Line="178" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -14,5 +21,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor-firstpass PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

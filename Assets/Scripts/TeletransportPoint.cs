@@ -15,9 +15,10 @@ public class TeletransportPoint : MonoBehaviour {
 			player.SetIsMovingBetweenTeleportPoints(true);
 			player.StopMovementVelocity();
 
-			Debug.Log("%%%%%%%%%%%%%%%%%%% TELETRANSPORT $$$$$$$$$$$$$$$$$$$$");
+			//Debug.Log("%%%%%%%%%%%%%%%%%%% TELETRANSPORT $$$$$$$$$$$$$$$$$$$$");
 			Collider2D col = destination.GetComponent<Collider2D>();
 			if(col!=null) {
+			//	Debug.Log("disable the collider on the destination, so it can be on top of it");
 				col.enabled = false; 
 				//disable the collider on the destination, so it can be on top of it
 			}
@@ -38,20 +39,31 @@ public class TeletransportPoint : MonoBehaviour {
 				Debug.Log("TELETRANSPORT SLIDE LEFT");
 				//player.EnableColliders();
 				player.SetIsMovingBetweenTeleportPoints(false);
+				player.canMoveLeft = true;
 				player.SlideLeft();
 				player.AllowAllMovementsAgainV2();
 			}
 			else if(wasMovingRight) {
+				Debug.Log("########################### YES WAS MOVING RIGHT #############################");
+				Debug.Log("TELETRANSPORT SLIDE RIGHT");
 				player.SetIsMovingBetweenTeleportPoints(false);
+				player.canMoveRight = true;
 				player.SlideRight();
 				player.AllowAllMovementsAgain();
 			}
 			else if(wasMovingDown) {
+				Debug.Log("########################### YES WAS MOVING DOWN #############################");
+				Debug.Log("TELETRANSPORT SLIDE DOWN");
 				player.SetIsMovingBetweenTeleportPoints(false);
-				player.SlideDown();player.AllowAllMovementsAgain();
+				player.canMoveDown = true;
+				player.SlideDown();
+				//player.AllowAllMovementsAgain();
 			}
 			else if(wasMovingUp) {
+				Debug.Log("########################### YES WAS MOVING UP #############################");
+				Debug.Log("TELETRANSPORT SLIDE UP");
 				player.SetIsMovingBetweenTeleportPoints(false);
+				player.canMoveUp = true;
 				player.SlideUp();
 				player.AllowAllMovementsAgain();
 			}
