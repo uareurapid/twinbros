@@ -41,6 +41,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 	
 	public Transform explosionEffect;
 
+	public ParticleSystem electricityEffect;	
 	public ParticleSystem checkpointEffect;	
 
 	public ParticleSystem invincibilityEffect;
@@ -65,8 +66,9 @@ public class SpecialEffectsHelper : MonoBehaviour
 
 	public Transform riseEffectTransform;
 
-    public GameObject impactEffect;
+    public ParticleSystem impactEffect;
 
+	public ParticleSystem boxCollisionEffect;
 	
 	void Awake()
 	{
@@ -149,6 +151,11 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(speedupEffect, position);
 	}
 
+	public ParticleSystem PlayBoxCollisionEffect(Vector3 position)
+	{
+		return instantiate(boxCollisionEffect, position);
+	}
+
 	public ParticleSystem PlayInvincibilityEffect(Vector3 position)
 	{
 		return instantiate(invincibilityEffect, position);
@@ -201,13 +208,17 @@ public class SpecialEffectsHelper : MonoBehaviour
 	public ParticleSystem PlayDieAndSplitEffect(Vector3 position) {
 		return instantiate(dieAndSplitEffect, position);
 	}
+
+	public ParticleSystem PlayElectricityEffect(Vector3 position) {
+		return instantiate(electricityEffect, position);
+	}
 	
 	public Transform PlayExplosionEffect(Vector3 position) {
 		return instantiateTransform(explosionEffect, position);
 	}
 
-	public GameObject PlayImpactEffect(Vector3 position, Quaternion rotation) {
-		return instantiateGameObject(impactEffect, position, rotation);
+	public ParticleSystem PlayImpactEffect(Vector3 position) {
+		return instantiate(impactEffect, position);
 	}
 
 	//TRANSFORMS

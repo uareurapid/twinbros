@@ -622,6 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 5
   speedOut: 0
+  enableCollidersOnPlay: 0
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -952,6 +953,7 @@ MonoBehaviour:
   justOnce: 0
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!1 &17428783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4642,7 +4644,7 @@ Transform:
   - {fileID: 172288938}
   - {fileID: 1072834573}
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &96212677
 GameObject:
@@ -4691,6 +4693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 0.25
+  enableCollidersOnPlay: 0
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -6558,6 +6561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 1
+  enableCollidersOnPlay: 0
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7212,7 +7216,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4733961136221574, guid: 09e267e565e6e43068d04b8c1333fee0, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114838283487979444, guid: 09e267e565e6e43068d04b8c1333fee0,
         type: 2}
@@ -8590,6 +8594,7 @@ MonoBehaviour:
   justOnce: 0
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!1 &180157603
 GameObject:
   m_ObjectHideFlags: 0
@@ -12650,6 +12655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 1
+  enableCollidersOnPlay: 0
 --- !u!1 &209448903
 GameObject:
   m_ObjectHideFlags: 0
@@ -15926,7 +15932,7 @@ Transform:
   - {fileID: 1904715187}
   - {fileID: 1552228385}
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &273696911
 GameObject:
@@ -21305,7 +21311,7 @@ Transform:
   - {fileID: 947332978}
   - {fileID: 236988841}
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &386572750
 SpriteRenderer:
@@ -22797,7 +22803,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4040952422332634, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114439688667865516, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
         type: 2}
@@ -24601,6 +24607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 3
+  enableCollidersOnPlay: 0
 --- !u!1 &440238689
 GameObject:
   m_ObjectHideFlags: 0
@@ -27688,6 +27695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 0.5
+  enableCollidersOnPlay: 0
 --- !u!1 &497687862
 GameObject:
   m_ObjectHideFlags: 0
@@ -41771,6 +41779,7 @@ MonoBehaviour:
   justOnce: 1
   isPaused: 1
   delay: 1
+  doMoveOnlyOnEnable: 0
 --- !u!1001 &703500452
 Prefab:
   m_ObjectHideFlags: 0
@@ -43591,6 +43600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 0.5
+  enableCollidersOnPlay: 0
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46238,6 +46248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 3
+  enableCollidersOnPlay: 0
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46463,6 +46474,7 @@ MonoBehaviour:
   justOnce: 0
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!114 &809944554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49461,6 +49473,7 @@ MonoBehaviour:
   justOnce: 1
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!1 &883757395
 GameObject:
   m_ObjectHideFlags: 0
@@ -56836,6 +56849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 0.5
+  enableCollidersOnPlay: 0
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -59437,6 +59451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 3
+  enableCollidersOnPlay: 0
 --- !u!1 &1053619859
 GameObject:
   m_ObjectHideFlags: 0
@@ -59953,6 +59968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 3
+  enableCollidersOnPlay: 0
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -67963,6 +67979,7 @@ Transform:
   m_LocalPosition: {x: 0.5, y: 2.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1549483653}
   - {fileID: 1651050308}
   - {fileID: 1784704415}
   - {fileID: 96116661}
@@ -71425,6 +71442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 0.25
+  enableCollidersOnPlay: 0
 --- !u!1 &1284402093
 GameObject:
   m_ObjectHideFlags: 0
@@ -71673,6 +71691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 3
+  enableCollidersOnPlay: 0
 --- !u!1 &1289222419
 GameObject:
   m_ObjectHideFlags: 0
@@ -78547,6 +78566,7 @@ MonoBehaviour:
   justOnce: 0
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!1 &1359554394
 GameObject:
   m_ObjectHideFlags: 0
@@ -92958,6 +92978,7 @@ MonoBehaviour:
   justOnce: 1
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!1 &1501833080
 GameObject:
   m_ObjectHideFlags: 0
@@ -93400,6 +93421,7 @@ MonoBehaviour:
   justOnce: 0
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!114 &1503944394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96669,6 +96691,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367153d61b0cd484fa0b577f56466d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1549483652
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1221477107}
+    m_Modifications:
+    - target: {fileID: 114171823573289928, guid: d30398372aacf4408bbc7eaa073dd872,
+        type: 2}
+      propertyPath: nextPositions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -20.539999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114171823573289928, guid: d30398372aacf4408bbc7eaa073dd872,
+        type: 2}
+      propertyPath: nextPositions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1750387749}
+    - target: {fileID: 114171823573289928, guid: d30398372aacf4408bbc7eaa073dd872,
+        type: 2}
+      propertyPath: nextPositions.Array.data[1]
+      value: 
+      objectReference: {fileID: 377498106}
+    - target: {fileID: 114171823573289928, guid: d30398372aacf4408bbc7eaa073dd872,
+        type: 2}
+      propertyPath: nextPositions.Array.data[2]
+      value: 
+      objectReference: {fileID: 1680681379}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d30398372aacf4408bbc7eaa073dd872, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1549483653 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4752806192726564, guid: d30398372aacf4408bbc7eaa073dd872,
+    type: 2}
+  m_PrefabInternal: {fileID: 1549483652}
 --- !u!1 &1549543055
 GameObject:
   m_ObjectHideFlags: 0
@@ -100041,7 +100130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1211128221896098, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_Name
@@ -101514,7 +101603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1651050309
 MonoBehaviour:
@@ -108934,7 +109023,7 @@ Transform:
   - {fileID: 1435246019}
   - {fileID: 1796816847}
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785324818
 GameObject:
@@ -113065,6 +113154,7 @@ MonoBehaviour:
   justOnce: 1
   isPaused: 1
   delay: 1
+  doMoveOnlyOnEnable: 0
 --- !u!114 &1851097923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114172,6 +114262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 0
   speedOut: 0.5
+  enableCollidersOnPlay: 0
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -118369,7 +118460,7 @@ Transform:
   - {fileID: 35902003}
   - {fileID: 1366628877}
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1960245149
 GameObject:
@@ -119176,7 +119267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1221477107}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1975398587
 BoxCollider2D:
@@ -119909,6 +120000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitSeconds: 5
   speedOut: 0
+  enableCollidersOnPlay: 0
 --- !u!1 &2002713879
 GameObject:
   m_ObjectHideFlags: 0
@@ -124247,6 +124339,7 @@ MonoBehaviour:
   justOnce: 0
   isPaused: 0
   delay: 0
+  doMoveOnlyOnEnable: 0
 --- !u!114 &2047535915
 MonoBehaviour:
   m_ObjectHideFlags: 0

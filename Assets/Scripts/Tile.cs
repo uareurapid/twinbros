@@ -147,6 +147,9 @@ public class Tile : MonoBehaviour {
 				
 			}
 
+		if(!ignoredCollision) {
+			SpecialEffectsHelper.Instance.PlayImpactEffect(movement.transform.position);
+		}
 		return ignoredCollision;
 
 	}	

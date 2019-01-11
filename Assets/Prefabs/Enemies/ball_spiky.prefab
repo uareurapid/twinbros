@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4257545933070022}
   - component: {fileID: 212658090786396716}
   - component: {fileID: 114442276404731472}
+  - component: {fileID: 114926453174822318}
   m_Layer: 0
   m_Name: sprite
   m_TagString: Untagged
@@ -122,6 +123,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelmanager: {fileID: 0}
   killPlayerOnTouch: 1
+  shrinkPlayer: 0
+  isMovingEnemy: 0
+--- !u!114 &114926453174822318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764743162555690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swapInterval: 0.12
+  sprites:
+  - {fileID: 21300000, guid: 54015f6cf667c430b8033d6e45f78a90, type: 3}
+  - {fileID: 21300002, guid: 54015f6cf667c430b8033d6e45f78a90, type: 3}
+  - {fileID: 21300004, guid: 54015f6cf667c430b8033d6e45f78a90, type: 3}
+  - {fileID: 21300006, guid: 54015f6cf667c430b8033d6e45f78a90, type: 3}
+  canSwap: 1
+  swapDelay: 0
+  maxSwaps: 0
+  isUIImage: 0
+  isController: 0
+  controllerSwitchDelay: 0.5
 --- !u!212 &212658090786396716
 SpriteRenderer:
   m_ObjectHideFlags: 1

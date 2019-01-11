@@ -38,7 +38,8 @@ GameObject:
   - component: {fileID: 4785314364057188}
   - component: {fileID: 61823047772937740}
   - component: {fileID: 114515041457349338}
-  - component: {fileID: 114741166256119712}
+  - component: {fileID: 114791407874680674}
+  - component: {fileID: 114905663791608328}
   m_Layer: 10
   m_Name: Box_Surpise
   m_TagString: Box
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1608771607872494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4785314364057188}
@@ -66,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827938441660030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.45, y: -2.3000002, z: 0}
+  m_LocalPosition: {x: -12.017918, y: -98.639366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4559243612568150}
@@ -111,7 +112,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
   isSurpriseBox: 1
---- !u!114 &114741166256119712
+  possibleSurprises:
+  - {fileID: 4478172726004680, guid: e9c84938c0f2f4ab787f1b58f4b664de, type: 2}
+  - {fileID: 4838884044038236, guid: f5d6e53f2e9204bf4aae5d18a922b1c2, type: 2}
+  - {fileID: 4266195839078664, guid: c42e07f6cf8e14c02ab1380dd68cd6a1, type: 2}
+  - {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
+  - {fileID: 4733961136221574, guid: 09e267e565e6e43068d04b8c1333fee0, type: 2}
+  - {fileID: 4070139323150308, guid: bb2fce2f3d56c4c3296016fc5a082f4a, type: 2}
+  - {fileID: 4318460107253152, guid: 29624e8f44f1140f7b02d29cfc624190, type: 2}
+  - {fileID: 4985948482548354, guid: 898839b2249a54d8c8bcd728c9260c58, type: 2}
+  - {fileID: 4441642524738494, guid: cd1a369daedd74b878d1b8b970528d73, type: 2}
+  - {fileID: 4022497881443438, guid: 5ccbb25484a19411ea4ed500a378606e, type: 2}
+  - {fileID: 4536000314815502, guid: 8ddbcfff168dc4ddaa40d7204c6844c5, type: 2}
+  - {fileID: 4607277177744578, guid: e988cf60adc6a4072bde9eb2d15a0999, type: 2}
+  - {fileID: 4770539338107270, guid: fa3629355cca741c79536965b624c837, type: 2}
+  - {fileID: 4916001911968188, guid: 857b40d0744b14fd8a4e5cb53af877b1, type: 2}
+  - {fileID: 4396453942190966, guid: b41d7a550cc6040778233d5a3ace04d8, type: 2}
+  dropSurpriseAfterNumCollisions: 2
+--- !u!114 &114791407874680674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827938441660030}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090dde8216b4d4e1294973af5c090683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableColliderIfTransparent: 1
+  isUIImage: 0
+  doBoth: 1
+  duration: 4
+  speed: 0.01
+--- !u!114 &114905663791608328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -119,14 +153,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1827938441660030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 090dde8216b4d4e1294973af5c090683, type: 3}
+  m_Script: {fileID: 11500000, guid: f88444b05294d4f03a9863013e38c361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableColliderIfTransparent: 0
-  isUIImage: 0
-  doBoth: 1
-  duration: 4
-  speed: 0.01
+  initiallyActive: 1
 --- !u!114 &114911623992132100
 MonoBehaviour:
   m_ObjectHideFlags: 1

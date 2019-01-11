@@ -446,6 +446,7 @@ public class GUIManager : MonoBehaviour {
 	public void CanShowPlayButton() {
 
 		playButton.enabled = true;
+		playButton.GetComponent<MoveWayPoint>().enabled = true;
 		playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
 	}
 

@@ -7,7 +7,10 @@ public class EnemyBox : MonoBehaviour {
 	public LevelManager levelmanager;
 	public bool killPlayerOnTouch = true; //if not just dcrease a move or something
 
+	public bool shrinkPlayer = false;
 	private Tile associatedTile;
+	//if moving do not count for the collision marging
+	public bool isMovingEnemy = false;
 	// Use this for initialization
 	void Start () {
 		associatedTile = GetComponent<Tile>();
@@ -33,20 +36,47 @@ public class EnemyBox : MonoBehaviour {
 
 		//TODO this is duplicated
 		if(killPlayerOnTouch) {
-			if(player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y)) {
+			if(isMovingEnemy || (player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) ) ) {
 				levelmanager.KillPlayer();
 			}
-			else if(player.IsMovingLeft() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y)) {
+			else if(isMovingEnemy || (player.IsMovingLeft() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) ) ) {
 				levelmanager.KillPlayer();
 			}
-			else if(player.IsMovingUp() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x)) {
+			else if(isMovingEnemy || (player.IsMovingUp() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) ) ) {
 				levelmanager.KillPlayer();
 			}
-			else if(player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x)) {
+			else if(isMovingEnemy || (player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) ) ) {
 				levelmanager.KillPlayer();
 			}
 			
+		} else if(shrinkPlayer) {
+			MakeShrinkEnemy shrinkScript = GetComponent<MakeShrinkEnemy>();
+			if(shrinkScript!=null) {
+
+				if (player.IsMovingUp())
+				{
+					player.collidedTop();
+				}
+				else if (player.IsMovingDown())
+				{
+					player.collidedBottom();
+				}
+				if (player.IsMovingRight())
+				{
+					player.collidedRight();
+				}
+				if (player.IsMovingLeft())
+				{
+					player.collidedLeft();
+				}
+				shrinkScript.enabled = true;
+				shrinkScript.SetObjectToShrink(player, levelmanager, this);
+			}
 		}
+	}
+
+	public void CallBack(MakeShrinkEnemy shrink) {
+		shrink.enabled = false;
 	}
 
 }

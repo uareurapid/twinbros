@@ -23,6 +23,7 @@ TagManager:
   - Bomb
   - level_1
   - Electric
+  - Fruit
   layers:
   - Default
   - TransparentFX

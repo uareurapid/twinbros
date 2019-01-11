@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour {
 
 	private GUIManager guiManager;
 	private bool isDead = false;
-
+	private bool isDying = false;
 
 	private bool leftTwinMoved = false;
 	private bool rightTwinMoved = false;
@@ -37,6 +37,9 @@ public class LevelManager : MonoBehaviour {
 	private SwipeDetector swipe;
 
 	public List<ResetBehaviourScript> listOfBehaviours;
+
+	//when i loose
+	public List<Destroyable> listOfDestroyables;
 
 	private AudioSource music;
 
@@ -57,6 +60,7 @@ public class LevelManager : MonoBehaviour {
 		currentStageFirstLevel = respawnLevel;
 
 		listOfBehaviours = new List<ResetBehaviourScript>();
+		listOfDestroyables = new List<Destroyable>();
 
 		scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
@@ -100,11 +104,27 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+	public void AddDestroyableObject(Destroyable script)
+	{
+		if(listOfDestroyables == null) {
+			listOfDestroyables = new List<Destroyable>();
+		}
+
+		if(!listOfDestroyables.Contains(script)) {
+			listOfDestroyables.Add(script);
+		}
+		
+	}
+
 	public void AddResetableBehaviourObject(ResetBehaviourScript script) {
 		if(listOfBehaviours == null) {
 			listOfBehaviours = new List<ResetBehaviourScript>();
 		}
-		listOfBehaviours.Add(script);
+		//TODO check this
+		if(!listOfBehaviours.Contains(script)) {
+			listOfBehaviours.Add(script);
+		}
+		
 	}
 
 	public void ResetAllBehaviours() {
@@ -113,10 +133,21 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	public void DestroyAllDestroyables() {
+		foreach(Destroyable script in listOfDestroyables) {
+			if(script!=null && script.gameObject!=null) {
+				Destroy(script.gameObject);
+			}
+			
+		}
+		listOfDestroyables.Clear();
+	}
+
 	public void StartGame() {
 
 		RestartLevel();
 		ResetAllBehaviours();
+		DestroyAllDestroyables();
 		gameStarted = true;
 
 		if (stage == 1 && currentLevel.level == 1)
@@ -200,6 +231,7 @@ public class LevelManager : MonoBehaviour {
 		respawnLevel = currentLevel;
 		RestartLevel();
 		ResetAllBehaviours();
+		DestroyAllDestroyables();
 	}
 
 	public bool isPlayerDead() {
@@ -213,7 +245,12 @@ public class LevelManager : MonoBehaviour {
 	public void RestartLevel() {
 
 		Debug.Log("######## RESTART LEVEL #############");
+		//set initial rotation and scale
+		foreach(PlayerMovement twin in twins) {
+			twin.ResetPlayer();
+		}
 		isDead = false;
+		isDying = false;
 		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : MAX_MOVES;
 		gameStarted = true;
 		guiManager.ResetRegularMoves();
@@ -233,6 +270,14 @@ public class LevelManager : MonoBehaviour {
 			MoveToRespawnLevel(currentStageFirstLevel);
 		}
 		
+	}
+
+	public void SetIsDying(bool willDie) {
+		isDying = willDie;
+	}
+
+	public bool IsAboutToDie() {
+		return isDying;
 	}
 
 	public void NewStageLoaded() {
@@ -381,7 +426,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void MoveToRespawnLevel(Level respawnLevel) {
 		
-		Debug.Log("###### RESPAWN MoveToRespawnLevel, move to level" + respawnLevel);
+		//Debug.Log("###### RESPAWN MoveToRespawnLevel, move to level" + respawnLevel);
 
 		twins[0].SetIsMovingBetweenLevels(true);
 		twins[0].otherTwin.SetIsMovingBetweenLevels(true);

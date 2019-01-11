@@ -23,6 +23,7 @@ public class MoveWayPoint : MonoBehaviour
 
 	public float delay = 0f;
 
+	public bool doMoveOnlyOnEnable = false;
 	/**
 	 * Initialisation
 	 * 
@@ -30,12 +31,16 @@ public class MoveWayPoint : MonoBehaviour
 	void Start () {
 		numPassages = 0;
 
-		if(delay > 0f) {
-			Invoke("StartMovement", delay);
+		if(!doMoveOnlyOnEnable) {
+			if(delay > 0f) {
+				Invoke("StartMovement", delay);
+			}
+			else {
+				StartMovement();
+			}
 		}
-		else {
-			StartMovement();
-		}
+
+		
 		
 	}
 
@@ -51,6 +56,17 @@ public class MoveWayPoint : MonoBehaviour
 	public bool IsPaused() {
 
 		return isPaused;
+	}
+
+	void OnEnable() {
+		if(doMoveOnlyOnEnable) {
+			if(delay > 0f) {
+				Invoke("StartMovement", delay);
+			}
+			else {
+				StartMovement();
+			}
+		}
 	}
 
 	/**

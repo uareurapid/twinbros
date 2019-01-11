@@ -20,6 +20,10 @@ public class EnlargeShrinkScript : MonoBehaviour {
 
 	private Vector3 initialScale;	
 	void Start () {
+		StartChecks();
+	}
+
+	public void StartChecks() {
 		initialScale = gameObject.transform.localScale;
 		currentScale = initialScale;
 		if(isText) {

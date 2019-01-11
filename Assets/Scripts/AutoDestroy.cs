@@ -7,7 +7,10 @@ public class AutoDestroy : MonoBehaviour {
 	public float lifeTime = 3f;
 	// Use this for initialization
 	void Start () {
-		Invoke("DestroyMe", lifeTime);
+		if(lifeTime > 0) {
+			Invoke("DestroyMe", lifeTime);
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -15,7 +18,7 @@ public class AutoDestroy : MonoBehaviour {
 		
 	}
 
-	void DestroyMe() {
+	public void DestroyMe() {
 		Destroy(gameObject);
 	}
 }

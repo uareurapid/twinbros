@@ -1,19 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ResetActiveState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpecialEffectsHelper.cs">
     <Files>
-      <File FileName="Assets/Scripts/PositionMarker.cs" Line="11" Column="24" />
-      <File FileName="Assets/Scripts/TeletransportPoint.cs" Line="21" Column="6" />
-      <File FileName="Assets/Scripts/GridController.cs" Line="11" Column="11" />
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="225" Column="1" />
-      <File FileName="Assets/Scripts/Tile.cs" Line="98" Column="18" />
-      <File FileName="Assets/Scripts/ObjectActivator.cs" Line="146" Column="1" />
-      <File FileName="Assets/Scripts/Explodable.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Bomb.cs" Line="5" Column="33" />
-      <File FileName="Assets/Scripts/SpawnableItem.cs" Line="16" Column="35" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="83" Column="3" />
-      <File FileName="Assets/Scripts/ResetActiveState.cs" Line="25" Column="53" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="110" Column="36" />
-      <File FileName="Assets/Scripts/MoveTowardsScript.cs" Line="178" Column="9" />
+      <File FileName="Assets/Scripts/Box.cs" Line="44" Column="4" />
+      <File FileName="Assets/Scripts/SpecialEffectsHelper.cs" Line="69" Column="26" />
+      <File FileName="Assets/Scripts/FruitSpawner.cs" Line="26" Column="61" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="542" Column="57" />
+      <File FileName="Assets/Scripts/FadeSprite.cs" Line="199" Column="14" />
+      <File FileName="Assets/Scripts/SpawnableItem.cs" Line="10" Column="2" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Fruit.cs" Line="19" Column="34" />
+      <File FileName="Assets/Scripts/ElectricWire.cs" Line="21" Column="75" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="151" Column="69" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="107" Column="20" />
+      <File FileName="Assets/Scripts/ResetBehaviourScript.cs" Line="10" Column="3" />
+      <File FileName="Assets/Scripts/ResetActiveState.cs" Line="25" Column="32" />
+      <File FileName="Assets/Scripts/AutoDestroy.cs" Line="14" Column="3" />
+      <File FileName="Assets/Scripts/Destroyable.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

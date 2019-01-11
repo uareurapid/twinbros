@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SpawnableItem : MonoBehaviour {
@@ -14,8 +15,15 @@ public class SpawnableItem : MonoBehaviour {
 	}
 
 	void CalculateRandomSpawnPosition() {
-		if(transform !=null) {
-			transform.position = possibleSpawnPositions[Random.Range(0, possibleSpawnPositions.Length)].transform.position;
+
+		try
+		{
+			if (transform != null && possibleSpawnPositions.Length > 0)
+			{
+				transform.position = possibleSpawnPositions[UnityEngine.Random.Range(0, possibleSpawnPositions.Length - 1)].transform.position;
+		}
+		}catch(Exception e) {
+			Debug.Log("GOT ERROR HERE " + gameObject.name);
 		}
 		
 	}

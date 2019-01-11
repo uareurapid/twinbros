@@ -31,6 +31,10 @@ public class FadeSprite : MonoBehaviour {
 	private bool isDone = false;
 	public float speed = 0.01f;
 
+	private Box scriptCaller;
+	//the collider
+	Collider2D coll;
+
 	void Start () {
 
 		if(isUIImage) {
@@ -64,7 +68,7 @@ public class FadeSprite : MonoBehaviour {
 				//  change col's alpha value (0 = invisible, 1 = fully opaque)
 				//col.a = 0f; // 0.5f = half transparent
 
-				col.a +=  fullyTransparent + speed;
+				col.a += speed;
 	
 				//col.a = Mathf.Lerp(fullyOpaque,fullyTransparent, interpolater);
 				// change the SpriteRenderer's color property to match the copy with the altered alpha value
@@ -102,38 +106,86 @@ public class FadeSprite : MonoBehaviour {
 				spRend.color = col;
 			}
 
+			//completed 1 fade cycle (either in or out)
 			if ( isDone )
 			{
 
 				if(doBoth && countCycle == 0) {
 					countCycle += 1;
 					if(fadeIn) {
+						Debug.Log("DO 2ND PASS, false");
 						FadeSpriteNow(false);
 					}
 					else {
+						Debug.Log("DO 2ND PASS, true");
 						FadeSpriteNow(true);
 					}
 				}
 				else {
+
+					if(started) {
+						Debug.Log("I AM DONE HERE!");
+					}
 					started = false;
 					countCycle = 0;
+					//TODO fix this TODAY!!!
+					/*if (disableColliderIfTransparent)
+					{
+						Collider2D coll = GetComponent<Collider2D>();
+						if(coll!=null && !coll.enabled) {
+							//will re-enable
+							if (scriptCaller != null)
+							{
+								Debug.Log("RE-ENABLE HERE ###########################");
+								//only if they are not touching
+								PlayerMovement player = scriptCaller.GetTwin();
+								if(!player.GetComponent<Collider2D>().IsTouching(coll)) {
+									coll.enabled = true;
+								}
+							}
+						}
+						else {
+							//just do it
+							coll.enabled = !coll.enabled;
+						}
+						
+					}*/
 				}
 
-	
-
 			}
-	
-			if(disableColliderIfTransparent) {
-				if(fadeIn && col.a < 0.4f) {
+			else {
+				//NO, this is not done yet!
+				if(disableColliderIfTransparent) {
+
 					//becaming transparent
-					Collider2D coll = GetComponent<Collider2D>();
-					coll.enabled = false;
-				}
-				else if(!fadeIn && col.a > 0.6f) {
-					Collider2D coll = GetComponent<Collider2D>();
-					coll.enabled = true;
-				}
-			}
+					if(!fadeIn && col.a < 0.4f) {
+						Debug.Log("1 OPTION DISABLE HERE ###########################");
+						coll.enabled = false;
+						if(scriptCaller!=null) {
+							scriptCaller.FadeCompletedCallback();
+						}
+					}
+					else if(fadeIn && col.a > 0.6f) {
+						//becaming opaque
+
+						PlayerMovement player = scriptCaller.GetTwin();
+						if(player!=null && coll!=null && !coll.enabled) {
+							if(!player.GetComponent<Collider2D>().IsTouching(coll)) {
+									Debug.Log("2 OPTION RE-ENABLE HERE ###########################");
+									coll.enabled = true;
+								}
+						}
+
+						else if(player==null && coll!=null && !coll.enabled) {
+							Debug.Log("3 OPTION RE-ENABLE HERE ###########################");
+							coll.enabled = true;
+						}
+					}
+				} // end if disableColliderIfTransparent
+				
+			} //end else !done
+	
+			
 				
 			
 		}
@@ -144,11 +196,25 @@ public class FadeSprite : MonoBehaviour {
 
 	}
 
+	public bool IsFadingInOrOut() {
+		return started && !isDone;
+	}
+
 	public void FadeSpriteNow(bool fadeIn) {
 		isDone = false;
 		this.fadeIn = fadeIn;
 		float startTime = Time.time;
 		//speed = (Time.time - startTime) / duration;
+		started = true;
+	}
+
+	public void FadeSpriteNow(bool fadeIn, Box boxScriptCaller) {
+		isDone = false;
+		this.scriptCaller = boxScriptCaller;
+		this.fadeIn = fadeIn;
+		float startTime = Time.time;
+		//speed = (Time.time - startTime) / duration;
+		coll = scriptCaller.GetColliderBox();
 		started = true;
 	}
 }

@@ -9927,6 +9927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelmanager: {fileID: 0}
   killPlayerOnTouch: 1
+  shrinkPlayer: 0
 --- !u!114 &114339324616408348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11291,6 +11292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelmanager: {fileID: 0}
   killPlayerOnTouch: 1
+  shrinkPlayer: 0
 --- !u!114 &114894046518427150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11304,6 +11306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelmanager: {fileID: 0}
   killPlayerOnTouch: 1
+  shrinkPlayer: 0
 --- !u!114 &114920447848434854
 MonoBehaviour:
   m_ObjectHideFlags: 1

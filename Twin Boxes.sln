@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp-firstpass.csproj", "{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp-Editor.csproj", "{B1624381-F859-B1B1-0137-85AA3FC59375}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twin Boxes", "Assembly-CSharp-Editor-firstpass.csproj", "{7587656F-E73C-933F-69DD-CEDB27394931}"
 EndProject
 Global
@@ -21,6 +23,10 @@ Global
 		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDD0697C-2F4C-1E5A-1A05-B323ACE6E9F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1624381-F859-B1B1-0137-85AA3FC59375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1624381-F859-B1B1-0137-85AA3FC59375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1624381-F859-B1B1-0137-85AA3FC59375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1624381-F859-B1B1-0137-85AA3FC59375}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7587656F-E73C-933F-69DD-CEDB27394931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7587656F-E73C-933F-69DD-CEDB27394931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7587656F-E73C-933F-69DD-CEDB27394931}.Release|Any CPU.ActiveCfg = Release|Any CPU

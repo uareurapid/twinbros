@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 old;
     Transform theTransform;
 
+	Vector3 initialScale;
+	Quaternion initialRotation;
+
 	private bool canMove = true;
 
 	public int maxTilesMovement = 10;
@@ -88,6 +91,9 @@ public class PlayerMovement : MonoBehaviour {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
 
+		initialScale = transform.localScale;
+		initialRotation = transform.localRotation;
+
 		body = GetComponent<Rigidbody2D>();
         
         //theTransform = transform;
@@ -102,11 +108,20 @@ public class PlayerMovement : MonoBehaviour {
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 
+		ResetPlayer();
 		//DelegateHandler.actionDelegate += ReEnableCollidersOnNewLevel;
     	//TODO undelegate on destroy
 
     }
 
+	public void ResetPlayer() {
+		AutoRotate rotate = GetComponent<AutoRotate>();
+		if(rotate!=null) {
+			rotate.enabled = false;
+		}
+		transform.localScale = initialScale;
+		transform.localRotation = initialRotation;
+	}
 	public void SetReachedNewLevel(bool reached, LevelCheckPoint newLevelRestrictions) {
 		reachedNewLevel = reached;
 		levelRestrictions = newLevelRestrictions;
@@ -147,13 +162,13 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool TrySlideLeft() {
-		Debug.Log("TRY SLIDE LEFT");
+		//Debug.Log("TRY SLIDE LEFT");
 		if((transform.position == targetPosition || reachedTarget) && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 			
 			SlideLeft();
 			return true;
 		}
-		Debug.Log("LEFT ONE? " + isLeftTwin + " I CANNOT!!!" + "transform.position == targetPosition?" + (transform.position == targetPosition) + " reachedTarget? " + reachedTarget + " canMoveLeft? " + canMoveLeft) ;
+		//Debug.Log("LEFT ONE? " + isLeftTwin + " I CANNOT!!!" + "transform.position == targetPosition?" + (transform.position == targetPosition) + " reachedTarget? " + reachedTarget + " canMoveLeft? " + canMoveLeft) ;
 		return false;
 
 	}
@@ -173,7 +188,7 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate()
     {
 
-		if(!levelManager.IsGameStarted()) {
+		if(!levelManager.IsGameStarted() || levelManager.isPlayerDead() || levelManager.IsAboutToDie()) {
 			return;
 		}
 
@@ -229,7 +244,7 @@ public class PlayerMovement : MonoBehaviour {
 		//block any position updates if any of these is happening
 		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || 
 					isMovingBetweenTeleportPoints || levelManager.isPlayerDead() || 
-					levelManager.IsStillAwaitingLevelTransitions() ) {
+					levelManager.IsStillAwaitingLevelTransitions() || HasAllMovementsBlocked() ) {
 			return;
 		}
 
@@ -505,7 +520,7 @@ public class PlayerMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other)
 	{
 		//ignore it
-		if(isMovingBetweenLevels || otherTwin.isMovingBetweenLevels) {
+		if(isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.isPlayerDead()) {
 			return;
 		}
 		string otherTag = other.transform.tag;
@@ -514,35 +529,36 @@ public class PlayerMovement : MonoBehaviour {
 		bool isBox = otherTag.Equals("Box");
 		bool isBomb = otherTag.Equals("Bomb");
 		bool isElectric = otherTag.Equals("Electric");
+		bool colUp = false;
+		bool colDown = false;
+		bool colLeft = false;
+		bool colRight = false;
 
 		bool ignoreCollision = true;
 		if(!isPortal) {
 				Tile tile = other.transform.GetComponent<Tile>();
 				if(tile!=null) {
-					Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
+					//Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
 					ignoreCollision = tile.HandlePlayerCollision(this);
 				}
 				else {
-					//if(other.gameObject.GetComponent<ObjectActivator>()!=null) {
-
-					//	Debug.Log("FFFFFFUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCCCCCCCCCCCCCCCCCK!!!!!");
-					//}
 
 					//Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
 					if(isRightMovement) {
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y)) {
 							collidedRight();
+							colRight = true;
 							ignoreCollision = false;
 						}
 						
 					}
-				
 					else if(isLeftMovement) {
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y))
 						{
 							collidedLeft();
+							colLeft = true;
 							ignoreCollision = false;
 						}
 						
@@ -554,6 +570,7 @@ public class PlayerMovement : MonoBehaviour {
 						if (!IsIgnoreCollision(other.transform.position.x, transform.position.x))
 						{
 							collidedTop();
+							colUp = true;
 							ignoreCollision = false;
 						}
 							
@@ -563,6 +580,7 @@ public class PlayerMovement : MonoBehaviour {
 						if (!IsIgnoreCollision(other.transform.position.x, transform.position.x))
 						{
 							collidedBottom();
+							colDown = true;
 							ignoreCollision = false;
 							
 						}
@@ -582,19 +600,16 @@ public class PlayerMovement : MonoBehaviour {
 		
 						ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
 						wire.ElectrocutePlayer(this);
-					}	
+					}
 					else if(isBox) {
-						Debug.Log("------ COLLIDED WITH BOX, LEFT TWIN? " + isLeftTwin);
 						Box box = other.gameObject.GetComponent<Box>();
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 						if(box!=null && box.isSurpriseBox) {
 		
 							Debug.Log("FADE SURPRISE BOX");
-							FadeSpriteAlpha fade = box.gameObject.GetComponent<FadeSpriteAlpha>();
-								if(fade!=null) {
-									fade.enabled = true;
-								}
+							box.FadeSurpriseBox(colUp,colRight,colDown,colLeft, this);
 						}
+						SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
 					}	
 				}
 
@@ -656,7 +671,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void AllowAllMovementsAgainV2()
 	{
 		canMoveUp = canMoveLeft = canMoveRight = canMoveDown = true;
-		isUpMovement = isDownMovement = isRightMovement = false;
+		isLeftMovement = isUpMovement = isDownMovement = isRightMovement = false;
 	}
 
 
@@ -779,7 +794,6 @@ public class PlayerMovement : MonoBehaviour {
 		Debug.Log("DISABLED COLLIDER ON isLeft? " + isLeftTwin);
 		isMovingBetweenLevels = true;
 		reachedTarget = false;
-		canMoveLeft = canMoveDown = canMoveUp = canMoveRight = false; //TODO was true
 
 		DisableAllMovements();
 
@@ -817,6 +831,16 @@ public class PlayerMovement : MonoBehaviour {
 	public void DisableAllMovements() {
 
 		isUpMovement = isDownMovement = isLeftMovement = isRightMovement = false;
+		canMoveLeft = canMoveDown = canMoveUp = canMoveRight = false;
+		
+	}
+
+	bool HasAllMovementsBlocked() {
+
+		if(!canMoveLeft && !canMoveRight && !canMoveDown && !canMoveUp) {
+			return true;
+		}
+		return false;
 	}
 
 	public void SetIsMovingBetweenLevels(bool moving) {

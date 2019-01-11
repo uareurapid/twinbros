@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 114695860674315978}
   - component: {fileID: 114744871638017276}
   - component: {fileID: 114156512677668770}
+  - component: {fileID: 114447876069466840}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -196,7 +197,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297067930360908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4040952422332634}
@@ -417,6 +418,19 @@ MonoBehaviour:
   minDistanceForNeighbour: 0.55
   burnedSprite: {fileID: 21300000, guid: 56ad7fba0cd6e4926a939a18c18c09be, type: 3}
   electrocutedSprite: {fileID: 21300000, guid: d0f1c2b6f3a104b06b8dc31af0dac1b2, type: 3}
+--- !u!114 &114447876069466840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483167902755302}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a47012e9ba2412c844e1f12c477d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpace: 1
+  RotationSpeed: {x: 0, y: 0, z: -300}
 --- !u!114 &114651208165497868
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -41,7 +41,7 @@ public class TeletransportPoint : MonoBehaviour {
 				player.SetIsMovingBetweenTeleportPoints(false);
 				player.canMoveLeft = true;
 				player.SlideLeft();
-				player.AllowAllMovementsAgainV2();
+				//player.AllowAllMovementsAgainV2();
 			}
 			else if(wasMovingRight) {
 				Debug.Log("########################### YES WAS MOVING RIGHT #############################");
@@ -49,7 +49,7 @@ public class TeletransportPoint : MonoBehaviour {
 				player.SetIsMovingBetweenTeleportPoints(false);
 				player.canMoveRight = true;
 				player.SlideRight();
-				player.AllowAllMovementsAgain();
+				//player.AllowAllMovementsAgain();
 			}
 			else if(wasMovingDown) {
 				Debug.Log("########################### YES WAS MOVING DOWN #############################");
@@ -65,7 +65,7 @@ public class TeletransportPoint : MonoBehaviour {
 				player.SetIsMovingBetweenTeleportPoints(false);
 				player.canMoveUp = true;
 				player.SlideUp();
-				player.AllowAllMovementsAgain();
+				//player.AllowAllMovementsAgain();
 			}
 
 		}
