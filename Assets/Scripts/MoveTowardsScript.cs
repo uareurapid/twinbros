@@ -260,7 +260,7 @@ public class MoveTowardsScript : MonoBehaviour {
 		if(!startMoveTowards) {
 			reachedTarget = false;
 			isLeftTwin = isLeft;
-			Debug.Log("!!!!!!!START MOVING TOWRADS!!!!!!!!!!!!!!!!!!!!!!!! isLeft? " + isLeftTwin + " target pos: " + target.position.ToString());
+			//Debug.Log("!!!!!!!START MOVING TOWRADS!!!!!!!!!!!!!!!!!!!!!!!! isLeft? " + isLeftTwin + " target pos: " + target.position.ToString());
 			if(targetPosition == null && target !=null) {
 				targetPosition = target.position;
 			}

@@ -30,7 +30,9 @@ using UnityEngine;
 
 		public void ResetOriginalBehaviour()
 		{
-			gameObject.SetActive(initiallyActive);
+			if(gameObject!=null) {
+				gameObject.SetActive(initiallyActive);
+			}
 		}
 	}
 

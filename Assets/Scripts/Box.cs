@@ -7,11 +7,6 @@ public class Box : SpawnableItem {
 	public bool isSurpriseBox = false;
 	public Transform[] possibleSurprises;
 
-	private bool collisionTop = false;
-	private bool collisionBottom = false;
-	private bool collisionLeft = false;
-	private bool collisionRight = false;
-
 	private PlayerMovement twinPlayer;
 
 	private int numCollisions = 0;
@@ -21,15 +16,11 @@ public class Box : SpawnableItem {
       numCollisions = 0;
 	}
 	// TODO use this to unlock the surprise
-	public void FadeSurpriseBox(bool colUp, bool colRight, bool colDown, bool colLeft, PlayerMovement twin) {
+	public void FadeSurpriseBox(PlayerMovement twin) {
 		FadeSprite fade = GetComponent<FadeSprite>();
 		numCollisions += 1;
 		if(fade!=null && !fade.IsFadingInOrOut()) {
 			fade.enabled = true;
-			collisionTop = colUp;
-			collisionLeft = colLeft;
-			collisionRight = colRight;
-			collisionBottom = colDown;
 			twinPlayer = twin;
 			fade.FadeSpriteNow(false, this);
 		}
@@ -79,24 +70,7 @@ public class Box : SpawnableItem {
 	}
 
 	public void FadeCompletedCallback() {
-		if(twinPlayer!=null) {
-			if(collisionTop) {
-				twinPlayer.canMoveUp = true;
-				twinPlayer.canMoveDown = true;
-			}
-			if(collisionBottom) {
-				twinPlayer.canMoveDown = true;
-				twinPlayer.canMoveUp = true;
-			}
-			if(collisionLeft) {
-				twinPlayer.canMoveLeft = true;
-				twinPlayer.canMoveRight = true;
-			}
-			if(collisionRight) {
-				twinPlayer.canMoveRight = true;
-				twinPlayer.canMoveLeft = true;
-			}
-		}
+		Debug.Log("FADE COMPLETED: " + numCollisions + "%=" + (numCollisions % dropSurpriseAfterNumCollisions));
 		if(numCollisions % dropSurpriseAfterNumCollisions == 0) {
 			InstantiateSurprise();
 			gameObject.SetActive(false);

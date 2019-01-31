@@ -16,7 +16,8 @@ public class SwapSpriteScript : MonoBehaviour {
 
 	public bool isController = false; 
 	public float controllerSwitchDelay = 0.5f;//only applies if is controller
-	
+	public bool pauseAfterEachCycle = false;
+	public float pauseTime = 0f;
 	// Use this for initialization
 	void Start () {
 		lastUsedSprite = 0;
@@ -70,7 +71,17 @@ public class SwapSpriteScript : MonoBehaviour {
 		if (isController) {
 			Invoke("SwitchController",controllerSwitchDelay);
 		}
+		if(pauseAfterEachCycle && pauseTime > 0f && (lastUsedSprite == 0) ) {
+
+			StartCoroutine(DoPause());
+		}
 		
+	}
+
+	IEnumerator DoPause() {
+		canSwap = false;
+		yield return new WaitForSeconds(pauseTime);
+		canSwap = true;
 	}
 
 	public void IncreaseSpriteIndex() {

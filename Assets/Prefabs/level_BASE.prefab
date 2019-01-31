@@ -7585,7 +7585,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1459148752148654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.555973, y: -112.62513, z: 0}
+  m_LocalPosition: {x: -30.199368, y: -16.121714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4396480519379384}
@@ -15380,10 +15380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114050033540909910}
+  right: {fileID: 114879644293085160}
+  top: {fileID: 114290550509329732}
+  bottom: {fileID: 114134636463387556}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15443,10 +15443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114853346379227074}
+  right: {fileID: 114217828095335156}
+  top: {fileID: 114901857084157478}
+  bottom: {fileID: 114736734716723086}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15543,10 +15543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114429191626409408}
+  right: {fileID: 114461474322447928}
+  top: {fileID: 114790256140263404}
+  bottom: {fileID: 114410443293765544}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15564,10 +15564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114556073185345282}
+  right: {fileID: 114736734716723086}
+  top: {fileID: 114853346379227074}
+  bottom: {fileID: 114193195950166400}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15606,10 +15606,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114933490799554916}
+  right: {fileID: 114017222145293232}
+  top: {fileID: 114996825313794306}
+  bottom: {fileID: 114451087655116408}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15795,10 +15795,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114952020180531436}
+  right: {fileID: 114546618401937632}
+  top: {fileID: 114225699119119768}
+  bottom: {fileID: 114837703854769424}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15870,10 +15870,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114150200494314962}
+  right: {fileID: 114353740400131236}
+  top: {fileID: 114449103189014816}
+  bottom: {fileID: 114609593846391620}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15912,10 +15912,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114451087655116408}
+  right: {fileID: 114855559929084092}
+  top: {fileID: 114017222145293232}
+  bottom: {fileID: 114348972323848066}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -15956,6 +15956,7 @@ MonoBehaviour:
   levelmanager: {fileID: 0}
   killPlayerOnTouch: 1
   shrinkPlayer: 0
+  isMovingEnemy: 0
 --- !u!114 &114150200494314962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15967,10 +15968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114837703854769424}
+  right: {fileID: 114126267386056930}
+  top: {fileID: 114546618401937632}
+  bottom: {fileID: 114380469190123916}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16132,10 +16133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114647859226951782}
+  right: {fileID: 114227540491772622}
+  top: {fileID: 114045445373263744}
+  bottom: {fileID: 114494538419716172}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16237,10 +16238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114031605446266498}
+  right: {fileID: 114225699119119768}
+  top: {fileID: 114947486512924338}
+  bottom: {fileID: 114952020180531436}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16299,10 +16300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114217828095335156}
+  right: {fileID: 114989749762778444}
+  top: {fileID: 114134430145921738}
+  bottom: {fileID: 114108147737448110}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16320,10 +16321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114193195950166400}
+  right: {fileID: 114410783881587920}
+  top: {fileID: 114736734716723086}
+  bottom: {fileID: 114790256140263404}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16651,10 +16652,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114821518222342926}
+  right: {fileID: 114528545007395850}
+  top: {fileID: 114561399787176030}
+  bottom: {fileID: 114906785643172940}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16693,10 +16694,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114353740400131236}
+  right: {fileID: 114334848654934448}
+  top: {fileID: 114134636463387556}
+  bottom: {fileID: 114561399787176030}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16735,10 +16736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114126267386056930}
+  right: {fileID: 114348972323848066}
+  top: {fileID: 114451087655116408}
+  bottom: {fileID: 114840913284171596}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16776,10 +16777,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114384263541647128}
+  right: {fileID: 114821518222342926}
+  top: {fileID: 114609593846391620}
+  bottom: {fileID: 114186654478435600}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16839,10 +16840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114691701454107620}
+  right: {fileID: 114609593846391620}
+  top: {fileID: 114150200494314962}
+  bottom: {fileID: 114384263541647128}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -16860,10 +16861,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114787136228598734}
+  right: {fileID: 114363786944913730}
+  top: {fileID: 114380469190123916}
+  bottom: {fileID: 114471235296379400}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17028,10 +17029,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114227540491772622}
+  right: {fileID: 114837703854769424}
+  top: {fileID: 114952020180531436}
+  bottom: {fileID: 114501684251997600}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17111,10 +17112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114653849496999626}
+  right: {fileID: 114043431470185356}
+  top: {fileID: 114494538419716172}
+  bottom: {fileID: 114688762843575558}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17153,10 +17154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114546618401937632}
+  right: {fileID: 114451087655116408}
+  top: {fileID: 114933490799554916}
+  bottom: {fileID: 114126267386056930}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17174,10 +17175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114449103189014816}
+  right: {fileID: 114134636463387556}
+  top: {fileID: 114050033540909910}
+  bottom: {fileID: 114353740400131236}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17195,10 +17196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114043431470185356}
+  right: {fileID: 114787136228598734}
+  top: {fileID: 114501684251997600}
+  bottom: {fileID: 114983334878051142}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17273,10 +17274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114006809272397310}
+  right: {fileID: 114790256140263404}
+  top: {fileID: 114193195950166400}
+  bottom: {fileID: 114429191626409408}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17315,10 +17316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114790256140263404}
+  right: {fileID: 114691701454107620}
+  top: {fileID: 114410783881587920}
+  bottom: {fileID: 114461474322447928}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17420,10 +17421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114108147737448110}
+  right: {fileID: 114449103189014816}
+  top: {fileID: 114989749762778444}
+  bottom: {fileID: 114150200494314962}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17504,10 +17505,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114840913284171596}
+  right: {fileID: 114917231765703512}
+  top: {fileID: 114348972323848066}
+  bottom: {fileID: 114319663838955374}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -17669,10 +17670,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114380469190123916}
+  right: {fileID: 114840913284171596}
+  top: {fileID: 114126267386056930}
+  bottom: {fileID: 114363786944913730}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18004,10 +18005,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114501684251997600}
+  right: {fileID: 114380469190123916}
+  top: {fileID: 114837703854769424}
+  bottom: {fileID: 114787136228598734}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18046,10 +18047,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114045445373263744}
+  right: {fileID: 114952020180531436}
+  top: {fileID: 114031605446266498}
+  bottom: {fileID: 114227540491772622}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18164,10 +18165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114461474322447928}
+  right: {fileID: 114384263541647128}
+  top: {fileID: 114691701454107620}
+  bottom: {fileID: 114504965763726270}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18185,10 +18186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114494538419716172}
+  right: {fileID: 114501684251997600}
+  top: {fileID: 114227540491772622}
+  bottom: {fileID: 114043431470185356}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18281,10 +18282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114363786944913730}
+  right: {fileID: 114319663838955374}
+  top: {fileID: 114840913284171596}
+  bottom: {fileID: 114819862016467570}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18428,10 +18429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114410783881587920}
+  right: {fileID: 114150200494314962}
+  top: {fileID: 114108147737448110}
+  bottom: {fileID: 114691701454107620}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18449,10 +18450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114609593846391620}
+  right: {fileID: 114561399787176030}
+  top: {fileID: 114353740400131236}
+  bottom: {fileID: 114821518222342926}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18512,10 +18513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114617134350243656}
+  right: {fileID: 114031605446266498}
+  top: {fileID: 114244200600393232}
+  bottom: {fileID: 114045445373263744}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -18659,6 +18660,7 @@ MonoBehaviour:
   levelmanager: {fileID: 0}
   killPlayerOnTouch: 1
   shrinkPlayer: 0
+  isMovingEnemy: 0
 --- !u!114 &114879644293085160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18975,10 +18977,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114989749762778444}
+  right: {fileID: 114050033540909910}
+  top: {fileID: 114225619842715664}
+  bottom: {fileID: 114449103189014816}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -19017,10 +19019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114736734716723086}
+  right: {fileID: 114108147737448110}
+  top: {fileID: 114217828095335156}
+  bottom: {fileID: 114410783881587920}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0
@@ -19184,10 +19186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39deb301f7ef4096a4c6a25da68c526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  left: {fileID: 114225699119119768}
+  right: {fileID: 114933490799554916}
+  top: {fileID: 114440718638003910}
+  bottom: {fileID: 114546618401937632}
   blockLeftMovement: 0
   blockRightMovement: 0
   blockDownMovement: 0

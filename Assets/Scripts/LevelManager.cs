@@ -367,8 +367,9 @@ public class LevelManager : MonoBehaviour {
 
 	public void LeftTwinReachedNewLevel(bool reached, MoveTowardsScript move, LevelCheckPoint restrictions) {
 		leftTwinReady = reached;
-		Debug.Log("#################### LEFT TWIN REACHED " + leftTwinReady);
+		//Debug.Log("#################### LEFT TWIN REACHED " + leftTwinReady);
 		twins[0].SetReachedNewLevel(true, restrictions);
+		twins[0].transform.parent = restrictions.transform.parent;
 		move.gameObject.GetComponent<PlayerMovement>().SetReachedNewLevel(true,restrictions);
 		move.startMoveTowards = false;
 		move.enabled = false;
@@ -376,8 +377,9 @@ public class LevelManager : MonoBehaviour {
 
 	public void RightTwinReachedNewLevel(bool reached, MoveTowardsScript move, LevelCheckPoint restrictions) {
 		rightTwinReady = reached;
-		Debug.Log("################### RIGHT TWIN REACHED " + rightTwinReady);
+		//Debug.Log("################### RIGHT TWIN REACHED " + rightTwinReady);
 		twins[1].SetReachedNewLevel(true, restrictions);
+		twins[0].transform.parent = restrictions.transform.parent;
 		move.gameObject.GetComponent<PlayerMovement>().SetReachedNewLevel(true, restrictions);
 		move.startMoveTowards = false;
 		move.enabled = false;
