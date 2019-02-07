@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61053316397016050}
   - component: {fileID: 114876271655176260}
   - component: {fileID: 114172006988232466}
+  - component: {fileID: 114989603193122604}
   m_Layer: 0
   m_Name: portal
   m_TagString: Portal
@@ -96,7 +97,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85, y: 0.85}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &114172006988232466
 MonoBehaviour:
@@ -161,6 +162,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
   nextLevel: {fileID: 0}
+--- !u!114 &114989603193122604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561768475295360}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a47012e9ba2412c844e1f12c477d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpace: 1
+  RotationSpeed: {x: 0, y: 0, z: -100}
 --- !u!212 &212604162661259762
 SpriteRenderer:
   m_ObjectHideFlags: 1
