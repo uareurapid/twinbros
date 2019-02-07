@@ -14,4 +14,11 @@ public class WayPoint : MonoBehaviour
 			childCol.enabled = enableCollidersOnPlay;
 		}
 	}
+
+	/*void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, 1);
+    }*/
 }

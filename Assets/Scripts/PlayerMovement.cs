@@ -305,9 +305,9 @@ public class PlayerMovement : MonoBehaviour {
 				//Debug.Log("SHOULD BE MOVING HERE isLeft " + isLeftTwin);
 				transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x,targetPosition.y,transform.position.z), Time.deltaTime * speed);
 			}
-			
-			
-			
+
+
+			body.isKinematic = !IsMovingInAnyDirection();
 
 			
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
@@ -327,7 +327,7 @@ public class PlayerMovement : MonoBehaviour {
 		//Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
 		reachedTarget = false;
 		isUpMovement = true;
-		body.isKinematic = false; //TODO FIXME
+		body.isKinematic = true; //TODO FIXME
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -336,7 +336,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void SlideRight() {
 		reachedTarget = false;
 		isRightMovement = true;
-		body.isKinematic = false;
+		body.isKinematic = true;
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -346,7 +346,7 @@ public class PlayerMovement : MonoBehaviour {
 		reachedTarget = false;
 		//Debug.Log("SLIDE DOWN called will move: " + (Vector3.down)*tileSize*maxTilesMovement);
 		isDownMovement = true;
-		body.isKinematic = false;
+		body.isKinematic = true;
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
 		isUpMovement = isLeftMovement = isRightMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -355,7 +355,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void SlideLeft() {
 		reachedTarget = false;
 		isLeftMovement = true;
-		body.isKinematic = false;
+		body.isKinematic = true;
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
 		isRightMovement = isDownMovement = isUpMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -548,6 +548,13 @@ public class PlayerMovement : MonoBehaviour {
 
 				canMoveRight = true;
 			}
+
+			//allow the block to move again
+			MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
+			if(move!=null && move.IsPaused()) {
+				move.ContinueMovement();
+			}
+						
 		}
 		//AllowAllMovementsAgain();
 		
@@ -573,6 +580,7 @@ public class PlayerMovement : MonoBehaviour {
 		bool isBox = otherTag.Equals("Box");
 		bool isBomb = otherTag.Equals("Bomb");
 		bool isElectric = otherTag.Equals("Electric");
+		bool isMovingBlock = other.gameObject.GetComponent<MoveWayPoint>() != null; 
 		//bool colUp = false;
 		//bool colDown = false;
 		//bool colLeft = false;
@@ -587,13 +595,13 @@ public class PlayerMovement : MonoBehaviour {
 				}
 				else {
 
-					Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + 
-					isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
+					//Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + 
+					//isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
 
 					if(isRightMovement) {
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x) {
-						Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
+						//Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
 							collidedRight();
 							//colRight = true;
 							ignoreCollision = false;
@@ -601,7 +609,7 @@ public class PlayerMovement : MonoBehaviour {
 						
 					}
 					else if(isLeftMovement) {
-						Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
+						//Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x )
 						{
@@ -635,9 +643,16 @@ public class PlayerMovement : MonoBehaviour {
 						
 					}
 
-					if(isEnemy && !ignoreCollision) {
+					if(isEnemy) {
 						 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-						 enemy.HandlePlayerCollision(this);
+						 if(enemy.isMovingEnemy || !ignoreCollision) {
+							enemy.HandlePlayerCollision(this);
+						 }
+					}
+					else if(isMovingBlock) {
+						//pause the moving block
+						MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
+						move.PauseMovement();
 					}
 					else if(isBomb && !ignoreCollision) {
 		
@@ -668,8 +683,9 @@ public class PlayerMovement : MonoBehaviour {
 
 				//this code is not reachable
 				//death by moves
-				//if(!ignoreCollision && levelManager.CheckIfBothAreDead()) {
+				//if(!ignoreCollision) {
 				//	return;
+				//TODO after one dies the other still gets affected by collisions (can be jumpy)
 				//}
 
 			

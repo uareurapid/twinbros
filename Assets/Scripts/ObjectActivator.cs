@@ -17,6 +17,7 @@ public class ObjectActivator : MonoBehaviour {
 
 	public float delay = 0f;
 
+	public bool deactivateItself = false;
 
 	public bool onlyEnableAnimation = false;
 
@@ -42,7 +43,15 @@ public class ObjectActivator : MonoBehaviour {
 
 	void PerformEnterActions()
 	{
+		//for the door triggers
+		if (deactivateItself )
+		{
+			Collider2D col = GetComponent<Collider2D>();
+			if(col!=null) {
+				col.enabled = false;
+			}
 
+		}
 	  foreach(GameObject obj in objectsToActivate) {
 
             if(obj!=null) {

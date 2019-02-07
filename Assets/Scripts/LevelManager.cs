@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
 	public Level currentLevel;
 	public Level respawnLevel; //in wich level to restart the game after dying?
 	public Level currentStageFirstLevel;
+	public Level debugLevel;
 
 	//1 stage is a scene that has many levels
 	public int stage = 1;
@@ -22,6 +23,8 @@ public class LevelManager : MonoBehaviour {
 	private GUIManager guiManager;
 	private bool isDead = false;
 	private bool isDying = false;
+
+	public bool isDebugMode = false;
 
 	private bool leftTwinMoved = false;
 	private bool rightTwinMoved = false;
@@ -85,7 +88,6 @@ public class LevelManager : MonoBehaviour {
 		}
 		//Invoke("StartGame", 1f);
 	}
-
 
 	public void DisableMusic() {
 		if(music != null){
@@ -213,14 +215,17 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void KillPlayer() {
-
-		if(!isDead && gameStarted) {
+	
+		if (!isDead && gameStarted)
+		{
+			Debug.Log("KillPlayer CALLED");
 			isDead = true;
 			numMoves = 0;
 			guiManager.SetMovesText(numMoves, CheckHasExtraMoves());
 			gameStarted = false;
 			guiManager.ShowGameOver();
 		}
+		else Debug.Log("OH NO!!!!!!");
 		
 	}
 
@@ -263,12 +268,19 @@ public class LevelManager : MonoBehaviour {
 			player.ResetOriginalPosition();
 		}
 
-		if(respawnOnDyingLevel) {
-			MoveToRespawnLevel(respawnLevel);			
+		if(isDebugMode && debugLevel!=null) {
+			MoveToRespawnLevel(debugLevel);
 		}
 		else {
-			MoveToRespawnLevel(currentStageFirstLevel);
+			if(respawnOnDyingLevel) {
+				MoveToRespawnLevel(respawnLevel);			
+			}
+			else {
+				MoveToRespawnLevel(currentStageFirstLevel);
+			}
 		}
+
+		
 		
 	}
 

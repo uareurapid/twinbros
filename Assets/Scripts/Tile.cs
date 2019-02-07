@@ -136,7 +136,7 @@ public class Tile : MonoBehaviour {
 				
 			}
 			else if(blockRightMovement) {
-				Debug.Log("################# BLOCK RIGHT ##################");
+				//Debug.Log("################# BLOCK RIGHT ##################");
 				if(movement.IsMovingRight()) {
 					movement.collidedRight();
 					ignoredCollision = false;

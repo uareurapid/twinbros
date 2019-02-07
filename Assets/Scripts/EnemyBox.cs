@@ -26,6 +26,25 @@ public class EnemyBox : MonoBehaviour {
 		return associatedTile;
 	}
 
+	bool CannotIgnoreRightCollision(PlayerMovement player) {
+
+		return (player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
+	}
+
+	bool CannotIgnoreLeftCollision(PlayerMovement player)
+	{
+		return (player.IsMovingLeft() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
+	}
+
+	bool CannotIgnoreUpCollision(PlayerMovement player) {
+		return (player.IsMovingUp() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
+	}
+
+	bool CannotIgnoreDownCollision(PlayerMovement player)
+	{
+		return (player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
+	}
+
 	//bool isLeftMovement, bool isRightMovement, bool isUpMovement, bool isDownMovement
 	public void HandlePlayerCollision(PlayerMovement player) {
 		if(levelmanager==null) {
@@ -35,23 +54,35 @@ public class EnemyBox : MonoBehaviour {
 		}
 
 		//TODO this is duplicated
-		if(killPlayerOnTouch) {
-			if(isMovingEnemy || (player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) ) ) {
+		if (killPlayerOnTouch)
+		{
+			if (isMovingEnemy || CannotIgnoreRightCollision(player))
+			{
+				//(player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x) 
 				levelmanager.KillPlayer();
 			}
-			else if(isMovingEnemy || (player.IsMovingLeft() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) ) ) {
+			else if (isMovingEnemy || CannotIgnoreLeftCollision(player))
+			{
 				levelmanager.KillPlayer();
 			}
-			else if(isMovingEnemy || (player.IsMovingUp() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) ) ) {
+			else if (isMovingEnemy || CannotIgnoreUpCollision(player))
+			{
+
+				//if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y)
 				levelmanager.KillPlayer();
 			}
-			else if(isMovingEnemy || (player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) ) ) {
+			else if (isMovingEnemy || CannotIgnoreDownCollision(player))
+			{
 				levelmanager.KillPlayer();
 			}
-			
-		} else if(shrinkPlayer) {
+
+		}
+		else if (shrinkPlayer)
+		{
 			MakeShrinkEnemy shrinkScript = GetComponent<MakeShrinkEnemy>();
-			if(shrinkScript!=null) {
+			Debug.Log("DO SHRNK IT?????");
+			if (shrinkScript != null)
+			{
 
 				if (player.IsMovingUp())
 				{
@@ -61,11 +92,11 @@ public class EnemyBox : MonoBehaviour {
 				{
 					player.collidedBottom();
 				}
-				if (player.IsMovingRight())
+				else if (player.IsMovingRight())
 				{
 					player.collidedRight();
 				}
-				if (player.IsMovingLeft())
+				else if (player.IsMovingLeft())
 				{
 					player.collidedLeft();
 				}
@@ -73,6 +104,7 @@ public class EnemyBox : MonoBehaviour {
 				shrinkScript.SetObjectToShrink(player, levelmanager, this);
 			}
 		}
+		else Debug.Log("DO NOTHING???");
 	}
 
 	public void CallBack(MakeShrinkEnemy shrink) {

@@ -50,6 +50,7 @@ public class MoveWayPoint : MonoBehaviour
 		if(wayPoints.Length > 0) {
 			currentWaypoint = wayPoints[currentIndex];
 			isPaused = false;
+			Debug.Log("START MOVEMENT!!!");
 		}
 	}
 	
@@ -78,22 +79,32 @@ public class MoveWayPoint : MonoBehaviour
 		if(currentWaypoint != null && !isWaiting && !isPaused) {
 			MoveTowardsWaypoint();
 		}
+		else if(isPaused) {
+			transform.Translate(new Vector3(0,0,0),Space.World);
+		}
 	}
 
 
-
+	public void PauseMovement() {
+		Debug.Log("PauseMovement CALLED %%%%%%%");
+		isPaused = true;
+		speedStorage = speed;
+		speed = 0;
+	}
 	/**
 	 * Pause the mover
 	 * 
 	 */
-	void Pause()
+	public void Wait()
 	{
 		isWaiting = !isWaiting;
 	}
 
 
 	public void ContinueMovement() {
+		Debug.Log("ContinueMovement");
 		isPaused = false;
+		speed = speedStorage;
 		numPassages = 0;
 		StartMovement();
 	}
@@ -104,26 +115,39 @@ public class MoveWayPoint : MonoBehaviour
 	 */
 	private void MoveTowardsWaypoint()
 	{
-		// Get the moving objects current position
-		Vector3 currentPosition = this.transform.position;
+		Debug.Log("MoveTowardsWaypoint");
+
+	 if(!isPaused) {
+			// Get the moving objects current position
+		Vector3 currentPosition = transform.position;
 		
 		// Get the target waypoints position
 		Vector3 targetPosition = currentWaypoint.transform.position;
-		
+
+		float distance = Vector3.Distance(currentPosition, targetPosition);
 		// If the moving object isn't that close to the waypoint
-		if(Vector3.Distance(currentPosition, targetPosition) > .1f) {
+		if( distance > 0.05f) { //TODO was .1
 
 			// Get the direction and normalize
 			Vector3 directionOfTravel = targetPosition - currentPosition;
 			directionOfTravel.Normalize();
-			
+			//the multiplier is to avoid big jumps
+			float multiplier = 1f;
+			if(distance < 0.05) {
+				multiplier = 0.01f;
+			}
 			//scale the movement on each axis by the directionOfTravel vector components
-			this.transform.Translate(
-				directionOfTravel.x * speed * Time.deltaTime,
-				directionOfTravel.y * speed * Time.deltaTime,
-				directionOfTravel.z * speed * Time.deltaTime,
-				Space.World
-			);
+			if(!isPaused) {
+				transform.Translate(
+				directionOfTravel.x * speed * Time.deltaTime * multiplier,
+				directionOfTravel.y * speed * Time.deltaTime * multiplier,
+				directionOfTravel.z * speed * Time.deltaTime * multiplier,
+				Space.World);
+			}
+			else {
+				//stop movement if paused
+				transform.Translate(new Vector3(0,0,0));
+			}
 		} else {
 
 			numPassages++;
@@ -136,22 +160,25 @@ public class MoveWayPoint : MonoBehaviour
 			//On wave point now
 			
 			// If the waypoint has a pause amount then wait a bit
-			if(currentWaypoint.waitSeconds > 0) {
-				Pause();
-				Invoke("Pause", currentWaypoint.waitSeconds);
+			if(currentWaypoint.waitSeconds > 0f) {
+				Wait();
+				Invoke("Wait", currentWaypoint.waitSeconds);
 			}
 
 			// If the current waypoint has a speed change then change to it
 			if(currentWaypoint.speedOut > 0) {
 				speedStorage = speed;
 				speed = currentWaypoint.speedOut;
-			} else if(speedStorage != 0) {
+			} else if(speedStorage >= 0f) {
 				speed = speedStorage;
 				speedStorage = 0;
 			}
 
 			NextWaypoint();
 		}
+
+	 }
+		
 	}
 
 

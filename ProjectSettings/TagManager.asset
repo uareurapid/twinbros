@@ -24,6 +24,7 @@ TagManager:
   - level_1
   - Electric
   - Fruit
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -60,4 +61,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 4109946453
     locked: 0

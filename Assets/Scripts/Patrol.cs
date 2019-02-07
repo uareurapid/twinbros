@@ -1,0 +1,44 @@
+﻿// Patrol.cs
+using UnityEngine;
+using System.Collections;
+using UnityEngine.AI;
+
+public class Patrol : MonoBehaviour {
+
+    public Transform[] points;
+    private int destPoint = 0;
+    private NavMeshAgent agent;
+
+
+    void Start () {
+        agent = GetComponent<NavMeshAgent>();
+
+        // Disabling auto-braking allows for continuous movement
+        // between points (ie, the agent doesn't slow down as it
+        // approaches a destination point).
+        agent.autoBraking = false;
+
+        GotoNextPoint();
+    }
+
+
+    void GotoNextPoint() {
+        // Returns if no points have been set up
+        if (points.Length == 0)
+            return;
+
+        // Set the agent to go to the currently selected destination.
+        agent.destination = points[destPoint].position;
+
+        //Just choosing the next point (different to tutorial)
+        destPoint = Mathf.Max(points.Length-1, ++destPoint);
+    }
+
+
+    void Update () {
+        // Choose the next destination point when the agent gets
+        // close to the current one.
+        if (agent.remainingDistance < 0.5f)
+            GotoNextPoint();
+    }
+}
