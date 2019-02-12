@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1182570201034436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8962207, y: -7.319637, z: 0.033991802}
+  m_LocalPosition: {x: -1.8962207, y: -7.319637, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4736069581622848}
@@ -146,6 +146,7 @@ MonoBehaviour:
   isNextLevelActivator: 0
   enableImmediatellyAfterDelay: 0
   delay: 0
+  deactivateItself: 0
   onlyEnableAnimation: 0
   onlyMakeShake: 0
   colliderObjectTag: Player
@@ -191,6 +192,8 @@ MonoBehaviour:
   isUIImage: 0
   isController: 0
   controllerSwitchDelay: 0.5
+  pauseAfterEachCycle: 0
+  pauseTime: 0
 --- !u!114 &114519819393395796
 MonoBehaviour:
   m_ObjectHideFlags: 1
