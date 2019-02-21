@@ -79,23 +79,47 @@ public class PlayerMovement : MonoBehaviour {
 	public Sprite electrocutedSprite;
 
 	private Vector3 originalPositionInLevel;
+
+	//for better collision checks
+	private Renderer boxRenderer;
+	float playerWidth = 0; 
+	float playerHeight = 0;
+	float playerLeft = 0;
+	float playerRight = 0;
+	float playerTop = 0;
+	float playerBottom = 0;
+
+
 	void Awake() {
 		originalPositionInLevel = transform.position;
 		originalSprite = GetComponentInChildren<SpriteRenderer>().sprite;
 		anim = GetComponentInChildren<Animator>();
 		collisionMasks = (1 << LayerMask.NameToLayer("Walls") ) | ( 1 << LayerMask.NameToLayer("Boxes") );
 	}
+
+	void CheckBounds() {
+
+		playerWidth = boxRenderer.bounds.size.x;
+		playerHeight = boxRenderer.bounds.size.y;
+		playerLeft = boxRenderer.bounds.center.x - (playerWidth / 2);
+		playerRight = boxRenderer.bounds.center.x + (playerWidth / 2);
+		playerTop = boxRenderer.bounds.center.y - (playerHeight / 2);
+		playerBottom = boxRenderer.bounds.center.y + (playerHeight / 2);
+	}
     void Start()
     {
+		body = GetComponent<Rigidbody2D>();
+
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
 
+		boxRenderer = GetComponentInChildren<Renderer>();
+		CheckBounds();
+
 		initialScale = transform.localScale;
 		initialRotation = transform.localRotation;
 
-		body = GetComponent<Rigidbody2D>();
-        
         //theTransform = transform;
 		tileSize = 1f;//bounds.size.x;
 		reachedTarget = true;
@@ -204,11 +228,19 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitLeft.point.x - transform.position.x);
 				if(distance < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x)) {
-					canMoveLeft = false;
-				}
-				if(hitLeft.transform.gameObject.name == "XPTO") {
-						Debug.Log("XPTO LEFT!");
+					
+					if(canMoveLeft) {
+						canMoveLeft = false;
+						if(!isLeftTwin) {
+							Debug.Log("BLOCK LEFT RAY " + hitLeft.transform.name);
+						}
+
+						if(isLeftMovement) {
+							collidedLeft();
+						}
 					}
+					
+				}
 				
 	        }
 	
@@ -217,11 +249,19 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitRight.point.x - transform.position.x);//make sure it is on the right of the player
 				if(distance < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x )) {
-					canMoveRight = false;
-				}
-				if(hitRight.transform.gameObject.name == "XPTO") {
-						Debug.Log("XPTO RIGHT!");
+					
+					if(canMoveRight) {
+						canMoveRight = false;
+						if(!isLeftTwin) {
+							Debug.Log("BLOCK RIGHT RAY "  + hitRight.transform.name);
+						}
+
+						if(isRightMovement) {
+							collidedRight();
+						}
 					}
+					
+				}
 			
 	        }
 	
@@ -230,10 +270,18 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitUp.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y)) {
-					canMoveUp = false;
-					if(hitUp.transform.gameObject.name == "XPTO") {
-						Debug.Log("XPTO UP!");
+						
+					if(canMoveUp) {
+						canMoveUp = false;
+						if(!isLeftTwin) {
+							Debug.Log("BLOCK UP RAY "  + hitUp.transform.name);
+						}
+
+						if(isUpMovement) {
+							collidedTop();
+						}
 					}
+					
 				}
 				
 	        }
@@ -243,10 +291,18 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitDown.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y)) {
-					canMoveDown = false;
-					if(hitDown.transform.gameObject.name == "XPTO") {
-						Debug.Log("XPTO DOWN!");
+					
+					if(canMoveDown) {
+						canMoveDown = false;
+						if(!isLeftTwin) {
+							Debug.Log("BLOCK DOWN RAY "   + hitDown.transform.name);
+						}
+
+						if(isDownMovement) {
+							collidedBottom();
+						}
 					}
+					
 				}
 				
 	        }
@@ -568,6 +624,66 @@ public class PlayerMovement : MonoBehaviour {
 		return !(Mathf.Abs(otherPosition - playerPosition) < ignoreCollisionInterval);
 	}
 
+	public bool IsIgnoreCollision(Transform otherObject) {
+		Renderer otherRenderer = otherObject.GetComponent<Renderer>();
+		if(otherRenderer == null) {
+			otherRenderer = otherObject.GetComponentInChildren<Renderer>();
+		}
+
+		if (otherRenderer != null && boxRenderer!=null)
+		{
+
+			float otherWidth = otherRenderer.bounds.size.x;
+			float otherHeight = otherRenderer.bounds.size.y;
+			float otherLeft = otherRenderer.bounds.center.x - (otherWidth / 2);
+			float otherRight = otherRenderer.bounds.center.x + (otherWidth / 2);
+			float otherTop = otherRenderer.bounds.center.y - (otherHeight / 2);
+		    float otherBottom = otherRenderer.bounds.center.y + (otherHeight / 2);
+
+			if(isRightMovement) {
+
+				//player right must be bigger than enemy left
+				if( ( (playerRight + ignoreCollisionInterval) > otherLeft) && 
+					( boxRenderer.bounds.center.y  > (otherTop + ignoreCollisionInterval) ) && 
+					( boxRenderer.bounds.center.y  < (otherBottom - ignoreCollisionInterval) ) )   {
+					if(!isLeftTwin) Debug.Log("RIGHT COLLISION WITH : " + otherObject.name);
+					return false;
+				}
+			}
+			else if(isLeftMovement) {
+
+				if( ( (playerLeft - ignoreCollisionInterval) > otherRight) && 
+					( boxRenderer.bounds.center.y  > (otherTop + ignoreCollisionInterval) ) && 
+					( boxRenderer.bounds.center.y  < (otherBottom - ignoreCollisionInterval) ) )   {
+					if(!isLeftTwin) Debug.Log("LEFT COLLISION WITH : " + otherObject.name);
+					return false;
+				}
+
+			}
+			else if(isUpMovement) {
+			
+				if( ( (playerTop - ignoreCollisionInterval) > otherBottom) && 
+					( boxRenderer.bounds.center.x  > (otherLeft + ignoreCollisionInterval) ) && 
+					( boxRenderer.bounds.center.x  < (otherRight - ignoreCollisionInterval) ) )   {
+					if(!isLeftTwin) Debug.Log("TOP COLLISION WITH : " + otherObject.name);
+					return false;
+				}
+			}
+			else if(isDownMovement) {
+			
+				if( ( (playerBottom + ignoreCollisionInterval) > otherTop) && 
+					( boxRenderer.bounds.center.x  > (otherLeft + ignoreCollisionInterval) ) && 
+					( boxRenderer.bounds.center.x  < (otherRight - ignoreCollisionInterval) ) )   {
+					if(!isLeftTwin) Debug.Log("BOTTOM COLLISION WITH : " + otherObject.name);
+					return false;
+				}
+			}
+			
+		}
+		return true;
+		//return !(Mathf.Abs(otherPosition - playerPosition) < ignoreCollisionInterval);
+	}
+
     void OnCollisionEnter2D(Collision2D other)
 	{
 		//ignore it
@@ -587,20 +703,20 @@ public class PlayerMovement : MonoBehaviour {
 		//bool colRight = false;
 
 		bool ignoreCollision = true;
-		if(!isPortal) {
-				Tile tile = other.transform.GetComponent<Tile>();
-				if(tile!=null) {
+		//if(!isPortal) {
+				//Tile tile = other.transform.GetComponent<Tile>();
+				//if(tile!=null) {
 					//Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
-					ignoreCollision = tile.HandlePlayerCollision(this);
-				}
-				else {
+				//	ignoreCollision = tile.HandlePlayerCollision(this);
+				//}
+				//else {
 
 					//Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + 
 					//isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
 
 					if(isRightMovement) {
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
-						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x) {
+						if (!IsIgnoreCollision( other.transform /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 						//Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
 							collidedRight();
 							//colRight = true;
@@ -611,7 +727,7 @@ public class PlayerMovement : MonoBehaviour {
 					else if(isLeftMovement) {
 						//Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
-						if (!IsIgnoreCollision(other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x )
+						if (!IsIgnoreCollision(other.transform /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 						{
 							collidedLeft();
 							//colLeft = true;
@@ -623,7 +739,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 						//otherwise just ignore this one
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
-						if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y)
+						if (!IsIgnoreCollision(other.transform /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
 						{
 							collidedTop();
 							//colUp = true;
@@ -633,7 +749,7 @@ public class PlayerMovement : MonoBehaviour {
 					}
 					else if(isDownMovement) {
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
-						if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y)
+						if (!IsIgnoreCollision(other.transform/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 						{
 							collidedBottom();
 							//colDown = true;
@@ -643,7 +759,31 @@ public class PlayerMovement : MonoBehaviour {
 						
 					}
 
-					if(isEnemy) {
+					Tile tile = other.transform.GetComponent<Tile>();
+					TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
+
+					if(point!=null) {
+						Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
+						point.HandlePlayerCollision(this);
+					}
+					else if(tile!=null && !ignoreCollision) {
+						tile.HandlePlayerCollision(this);
+					}
+					else if(isPortal && !ignoreCollision) {
+						//is portal
+						if (isMovingBetweenLevels || levelManager.isPlayerDead())
+						{
+							//ignore this collision
+							return;
+						}
+						else {
+							//TODO keep coding me
+							levelManager.TwinCollidedWithPortal(gameObject);
+							Portal portal = other.gameObject.GetComponent<Portal>();
+							StartCoroutine(MoveToNextLevel(portal));
+						}
+					}
+					else if(isEnemy) {
 						 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
 						 if(enemy.isMovingEnemy || !ignoreCollision) {
 							enemy.HandlePlayerCollision(this);
@@ -679,7 +819,7 @@ public class PlayerMovement : MonoBehaviour {
 							SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
 						}//TODO IS NOT DOING THE EFFECT ON THE BOX
 					}	
-				}
+				//}
 
 				//this code is not reachable
 				//death by moves
@@ -689,21 +829,21 @@ public class PlayerMovement : MonoBehaviour {
 				//}
 
 			
-		}//yes, is a portal collision
-		else {
+		//}//yes, is a portal collision
+		//else {
 			//is portal
-			if (isMovingBetweenLevels || levelManager.isPlayerDead())
-			{
+		//	if (isMovingBetweenLevels || levelManager.isPlayerDead())
+		//	{
 				//ignore this collision
-				return;
-			}
-			else {
+		//		return;
+		//	}
+		//	else {
 				//TODO keep coding me
-				levelManager.TwinCollidedWithPortal(gameObject);
-				Portal portal = other.gameObject.GetComponent<Portal>();
-				StartCoroutine(MoveToNextLevel(portal));
-			}
-		}
+		//		levelManager.TwinCollidedWithPortal(gameObject);
+		//		Portal portal = other.gameObject.GetComponent<Portal>();
+		//		StartCoroutine(MoveToNextLevel(portal));
+		//	}
+		//}
 
 		
 		

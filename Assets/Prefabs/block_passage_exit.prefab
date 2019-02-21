@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114307611419266684}
   - component: {fileID: 114519819393395796}
   - component: {fileID: 114391604588637440}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: block_passage_exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

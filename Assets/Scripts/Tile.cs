@@ -90,14 +90,8 @@ public class Tile : MonoBehaviour {
 				return false;
 			}
 						 
-
-			TeletransportPoint point = gameObject.GetComponent<TeletransportPoint>();
-
-			if(point!=null) {
-				Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## " + gameObject.ToString());
-				point.Teletransport(movement);
-			}
-			else if(blockUpMovement) {
+			
+			if(blockUpMovement) {
 				//Debug.Log("################# BLOCK UP ##################");
 				if(movement.IsMovingUp()) {
 					movement.collidedTop();

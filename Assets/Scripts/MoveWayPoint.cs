@@ -115,7 +115,7 @@ public class MoveWayPoint : MonoBehaviour
 	 */
 	private void MoveTowardsWaypoint()
 	{
-		Debug.Log("MoveTowardsWaypoint");
+		//Debug.Log("MoveTowardsWaypoint");
 
 	 if(!isPaused) {
 			// Get the moving objects current position

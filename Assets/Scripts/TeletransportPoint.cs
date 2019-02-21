@@ -8,7 +8,8 @@ public class TeletransportPoint : MonoBehaviour {
 	public Transform destination;
 	public bool continueMovingSameDirection = true;
 
-	public void Teletransport(PlayerMovement player) {
+	
+	public void HandlePlayerCollision(PlayerMovement player) {
 
 		if(destination!=null) {
 

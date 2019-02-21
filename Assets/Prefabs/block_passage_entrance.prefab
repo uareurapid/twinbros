@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114630887509746808}
   - component: {fileID: 114189425010779870}
   - component: {fileID: 114358422840327960}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: block_passage_entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
