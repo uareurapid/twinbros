@@ -27,6 +27,7 @@ public class Portal : MonoBehaviour {
 
 	public void MoveToNextLevel() {
 		if(nextLevel!=null) {
+			Debug.Log("MoveToNextLevel: " + nextLevel.level);
 			levelManager.LevelCleared();
 			//------------------ 100 points per level finished
 			int currentScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);

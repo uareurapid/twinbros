@@ -1,14 +1,13 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TeletransportPoint.cs">
+﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameConstants.cs">
     <Files>
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="764" Column="26" />
-      <File FileName="Assets/Scripts/Tile.cs" Line="94" Column="4" />
-      <File FileName="Assets/Scripts/EnemyBox.cs" Line="49" Column="14" />
-      <File FileName="Assets/Scripts/SwapSpriteScript.cs" Line="89" Column="1" />
-      <File FileName="Assets/Scripts/DontGoThroughThings.cs" Line="26" Column="1" />
-      <File FileName="Assets/Scripts/MoveWayPoint.cs" Line="118" Column="5" />
-      <File FileName="Assets/Scripts/TeletransportPoint.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TeletransportPoint.cs" Line="8" Column="16" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="168" Column="36" />
+      <File FileName="Assets/Scripts/Bomb.cs" Line="70" Column="28" />
+      <File FileName="Assets/Scripts/Explodable.cs" Line="23" Column="14" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="383" Column="23" />
+      <File FileName="Assets/Scripts/MoveTowardsScript.cs" Line="210" Column="34" />
+      <File FileName="Assets/Scripts/GameConstants.cs" Line="29" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -16,4 +15,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

@@ -26,4 +26,9 @@ public class GameConstants : MonoBehaviour {
 	public const string ACHIEVEMENT_STAGE_5_ID = "twins_stage_5";
 	public const string ACHIEVEMENT_STAGE_GENERIC_ID = "twins_stage_";
 
+	public const string LEFT_DIRECTION = "left";
+	public const string RIGHT_DIRECTION = "right";
+	public const string UP_DIRECTION = "up";
+	public const string DOWN_DIRECTION = "down";
+
 }
