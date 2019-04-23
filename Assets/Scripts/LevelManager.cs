@@ -514,7 +514,6 @@ public class LevelManager : MonoBehaviour {
 		
 		//high score
 		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
-		highScore += 500;
 
 		//new best
 		if(currentScore > highScore) {
@@ -542,7 +541,6 @@ public class LevelManager : MonoBehaviour {
 
 		//high score
 		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
-		highScore += 100 * numMoves;
 
 		//new best
 		if(currentScore > highScore) {

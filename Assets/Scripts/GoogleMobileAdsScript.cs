@@ -100,7 +100,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 	//TODO change from test to configured
 	public void RequestInterstitialAd() {
-
+        string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
 		Debug.Log("RequestInterstitialAd() CALLED");
 		#if UNITY_IPHONE
 			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
