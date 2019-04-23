@@ -61,8 +61,15 @@ public class Bomb: SpawnableItem {
 		anim.SetBool("fuse", false);
 	}
 
+	void StartBombRedAnimation() {
+		anim.SetBool("burn", false);
+		anim.SetBool("fuse", false);
+		anim.SetBool("red", true);
+	}
+
 	IEnumerator ExplodeBombAfterBurn(PlayerMovement movement)
 	{
+		StartBombRedAnimation();
 		yield return new WaitForSeconds(delayBeforeExplosion);
 		SpecialEffectsHelper.Instance.PlayExplosionEffect(transform.position);
 

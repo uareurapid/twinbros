@@ -29,12 +29,6 @@ public class Portal : MonoBehaviour {
 		if(nextLevel!=null) {
 			Debug.Log("MoveToNextLevel: " + nextLevel.level);
 			levelManager.LevelCleared();
-			//------------------ 100 points per level finished
-			int currentScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
-			currentScore += 100;
-			PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, currentScore);
-			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
-			//---------------------------
 			SoundEffectsHelper.Instance.PlayPowerupSound();
 			levelManager.MoveToNextLevel(nextLevel);
 		}//else, on last level
@@ -45,6 +39,7 @@ public class Portal : MonoBehaviour {
 				
 			}
 			else {
+				Debug.Log("WTF");
 				levelManager.KillPlayer();
 			}
 		}

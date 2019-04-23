@@ -36,7 +36,9 @@ public class MoveTowardsScript : MonoBehaviour {
 
 	private bool isLeftTwin = false;
 
-
+	//increase if the distance is bigger;
+	public float distanceMultiplier = 1.0f;
+	private float increaseFactor = 1.0f;
 	private LevelManager levelManager;
 	// Use this for initialization
 	void Start () {
@@ -117,8 +119,8 @@ public class MoveTowardsScript : MonoBehaviour {
 
 		 if(!allowManualMovement) {
 
-			// The step size is equal to speed times frame time.
-		 	var step = moveTowardsSpeed * Time.deltaTime;
+				// The step size is equal to speed times frame time.
+				var step = moveTowardsSpeed * Time.deltaTime;// * increaseFactor;
 		 	// Move our position a step closer to the target.
 
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
@@ -264,23 +266,15 @@ public class MoveTowardsScript : MonoBehaviour {
 			if(targetPosition == null && target !=null) {
 				targetPosition = target.position;
 			}
-			//*********************************************************
-	
-			//Debug.Log("TARGET POSITION X: " + targetPosition.x);
 	
 			CheckIfAdjustPositions();
-	
-			//Debug.Log("TRANSFORM POSITION X: " + transform.position.x);
-			//*********************************************************
-	
+
+			//float distance = Mathf.Abs(transform.position.y - targetPosition.y);
+
+			//increaseFactor = distance * distanceMultiplier;
+
 			startMoveTowards = start;
-			/*bool isOnLeft = transform.position.x < target.position.x;
-			if(isOnLeft && !player.IsPlayerFacingRight()) {
-			  player.Flip();
-			}
-			else if(!isOnLeft && player.IsPlayerFacingRight()) { //is on the right and facing right, also need to flip
-			  player.Flip();
-			}*/
+			
 		}
 		
 	}

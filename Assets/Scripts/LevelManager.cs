@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
 	public Level currentStageFirstLevel;
 	public Level debugLevel;
 
+	private Level[] allLevels;
 	//1 stage is a scene that has many levels
 	public int stage = 1;
 	public bool respawnOnDyingLevel = false; 
@@ -49,6 +50,10 @@ public class LevelManager : MonoBehaviour {
 	private long lastMovementTime = 0;
 	//keep a reference for this
 	private GameObject scripts;
+
+	public int currentScore = 0;
+	public int highScore = 0;
+
 	void Start () {
 
 		if(CheckHasExtraMoves() || hasExtraMoves) {
@@ -73,9 +78,18 @@ public class LevelManager : MonoBehaviour {
 			EnableMusic();
 		}
 		//RESET HIGH SCORE
-		if(currentLevel.level == 1 && stage == 1) {
-			PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, 0);
-		}
+		//if(currentLevel.level == 1 && stage == 1) {
+		//	PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, 0);
+		//}
+		//more points on higher levels
+		currentScore = 0;
+		PlayerPrefs.SetInt(GameConstants.CURRENT_SCORE, currentScore);
+		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+
+		guiManager.UpdateCurrentHighScore(highScore);
+		
+
+		LoadAllLevels(currentLevel);
 
 		if(CheckHasExtraMoves() || hasExtraMoves) {
 			guiManager.ResetExtraMoves();
@@ -83,12 +97,29 @@ public class LevelManager : MonoBehaviour {
 		leftTwinMoved = rightTwinMoved = false;
 		gameStarted = false;
 
+
 		if(stage > 1) {
 			Invoke("StartGame", 1.5f);
 		}
 		//Invoke("StartGame", 1f);
 	}
 
+	void LoadAllLevels(Level current) {
+		if(allLevels == null || allLevels.Length == 0) {
+			allLevels = FindObjectsOfType<Level>();
+		}
+		
+		/*if(allLevels != null && allLevels.Length > 0) {
+			foreach(Level level in allLevels) {
+				if(level.level != current.level) {
+					level.transform.gameObject.SetActive(false);
+				}
+				else {
+					level.transform.gameObject.SetActive(true);
+				}
+			}
+		}*/
+	}
 	public void DisableMusic() {
 		if(music != null){
 			music.Stop();
@@ -429,6 +460,7 @@ public class LevelManager : MonoBehaviour {
 		//Move the camera to next level position
 		scr.currentLevel = currentLevel.level;
 		scr.nextLevel = nextLevel.level;
+		LoadAllLevels(nextLevel);
 		scr.MoveToNextLevel();
 		//Move the players
 		StartMovePlayersIntoPosition(nextLevel);
@@ -451,6 +483,7 @@ public class LevelManager : MonoBehaviour {
 		//Move the camera to next level position
 		scr.currentLevel = currentLevel.level;
 		scr.nextLevel = respawnLevel.level;
+		LoadAllLevels(respawnLevel);
 		scr.MoveToRespawnLevel(respawnLevel.level);
 		//Move the players
 		StartMovePlayersIntoPosition(respawnLevel);
@@ -472,9 +505,26 @@ public class LevelManager : MonoBehaviour {
 		//Report the achievement
 		SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
 		//add 500 extra points
-		int currentScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
 		currentScore += 500;
-		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, currentScore);
+		//current score
+
+		PlayerPrefs.SetInt(GameConstants.CURRENT_SCORE, currentScore);
+		guiManager.UpdateCurrentScore(currentScore);
+		
+		//high score
+		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+		highScore += 500;
+
+		//new best
+		if(currentScore > highScore) {
+			highScore = currentScore;
+		}
+
+		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
+		guiManager.UpdateCurrentHighScore(highScore);
+
+		//also report it to the store
 		SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
 
 		guiManager.ShowStageClearedImage();
@@ -484,6 +534,28 @@ public class LevelManager : MonoBehaviour {
 	public void LevelCleared() {
 		//gameStarted = false;
 		guiManager.ShowLevelClearedImage();
+		//------------------ 100 points per level finished
+		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
+		currentScore += 100 * numMoves;
+		PlayerPrefs.SetInt(GameConstants.CURRENT_SCORE, currentScore);
+		guiManager.UpdateCurrentScore(currentScore);
+
+		//high score
+		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+		highScore += 100 * numMoves;
+
+		//new best
+		if(currentScore > highScore) {
+			highScore = currentScore;
+		}
+
+		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
+		guiManager.UpdateCurrentHighScore(highScore);
+
+		//also report it to the store
+		SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		//---------------------------
+		
 		StartCoroutine("HideLevelClearedImage");
 	}
 

@@ -30,6 +30,8 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Text purchaseMovesPriceText;
 	public UnityEngine.UI.Text purchaseRemoveAdsPriceText;
 
+	public UnityEngine.UI.Text currentScoreText;
+	public UnityEngine.UI.Text highScoreText;
 	public UnityEngine.UI.Text levelText;
 	public UnityEngine.UI.Text gameOverText;
 	public UnityEngine.UI.Image gameOverImage;
@@ -79,6 +81,7 @@ public class GUIManager : MonoBehaviour {
 	private TextLocalizationManager translationManager;
 	// Use this for initialization
 	void Start () {
+		
 		playPressed = false;
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
@@ -87,6 +90,9 @@ public class GUIManager : MonoBehaviour {
 		LoadAllGUITranslations();
 		store = scripts.GetComponent<MyStoreClass>();
 		levelManager = scripts.GetComponent<LevelManager>();
+
+		currentScoreText.text = "1UP: " + levelManager.currentScore.ToString("000000");
+		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
 		if(levelManager.stage > 1) {
 			Invoke("DoStageTransitionEffect", 2f);
@@ -178,11 +184,24 @@ public class GUIManager : MonoBehaviour {
 		//only if the button is opaque
 		else if(!playPressed) {
 			playPressed = true;
+			currentScoreText.text = "1UP: " + levelManager.currentScore.ToString("000000");
+			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
+
 			playButton.sprite = playButtonImages[1];
 			levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
 		}
 		
+	}
+
+	public void UpdateCurrentScore(int pts) {
+
+		currentScoreText.text = "1UP: " + pts.ToString("000000");
+	}
+
+	public void UpdateCurrentHighScore(int pts) {
+
+		highScoreText.text = "HI: " + pts.ToString("000000");
 	}
 
 	IEnumerator HidePlayButton() {
@@ -220,6 +239,13 @@ public class GUIManager : MonoBehaviour {
 
 	public void SetLevelText(int level) {
 		levelText.text = string.Format("Level: {0}", level);
+	}
+
+	public void IncreaseHighScore(int points, int currentHighScore) {
+
+		int total = currentHighScore + points;
+		highScoreText.text = total.ToString("000000");
+		
 	}
 
 	public void SetMovesText(int remainining, bool hasExtraMoves) {

@@ -721,6 +721,7 @@ public class PlayerMovement : MonoBehaviour {
 		//bool colDown = false;
 		//bool colLeft = false;
 		//bool colRight = false;
+		bool isSlider = otherTag.Equals("Slider");
 
 		bool ignoreCollision = true;
 
@@ -816,11 +817,15 @@ public class PlayerMovement : MonoBehaviour {
 							StartCoroutine(MoveToNextLevel(portal));
 						}
 					}
-					else if(isEnemy) {
+					else if(isEnemy && !ignoreCollision) {
 						 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-						 if(enemy.isMovingEnemy || !ignoreCollision) {
+						 //if(enemy.isMovingEnemy || !ignoreCollision) {
 							enemy.HandlePlayerCollision(this);
-						 }
+						 //}
+					}
+					else if(isSlider) {
+						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
+						slider.Slide(this);
 					}
 					else if(isMovingBlock) {
 						//pause the moving block

@@ -18,6 +18,7 @@ public class GameConstants : MonoBehaviour {
 	public const string TXT_INFINITE_REVIVES_KEY = "buy_infinite_revives";
 
 	public const string LEADERBOARD_ID = "twins_high_cores";
+	public const string CURRENT_SCORE = "twins_current_cores";
 
 	public const string ACHIEVEMENT_STAGE_1_ID = "twins_stage_1";
 	public const string ACHIEVEMENT_STAGE_2_ID = "twins_stage_2";

@@ -17,6 +17,8 @@ public class CameraZoomInOutScript : MonoBehaviour {
 	Vector3 velocity = Vector3.zero;
 	public float timeToReachTarget = 4f; //seconds
 
+	public float moveSpeed = 14f;//same as players
+
 	private float speed = 1.0f;
     private float cameraOriginalOrthographicSize = 0f;
     private Vector3 cameraOriginalPosition;
@@ -139,13 +141,36 @@ public class CameraZoomInOutScript : MonoBehaviour {
 
 	}
 	
+
+	//var dist = Vector3.Distance(waypoint1.position, waypoint2.position);
+    //for (i = 0.0; i < 1.0; i += (moveSpeed * Time.deltaTime) / dist) {
+    //    transform.position = Vector3.Lerp(waypoint1.position, waypoint2.position, i);
+    //    yield;
+    //}
+	//Thanks, I use both:
+	//transform.position = Vector3.MoveTowards (transform.position, other.position, Time.deltaTime * speed / 2);
+	//transform.position = Vector3.Lerp (transform.position, other.position, Time.deltaTime * speed / 2);
+	//to balance the Lerp acceleration and linear effects. Is there a better way of doing this?
+
 	
-	IEnumerator MoveToTarget(Transform target,int targetLevel) {
+	IEnumerator MoveToTarget(Transform targetObj,int targetLevel) {
 	
 		Vector3 sourcePos = transform.position;
-		Vector3 destPos = target.position - transform.forward * 2;
+		Vector3 destPos = targetObj.position - transform.forward * 2;
 		destPos.z = -10.0f;
 		float i = 0.0f;
+
+		
+		//NEW WAY
+		/*float distance = Mathf.Abs(sourcePos.y - destPos.y);
+		while (distance > 0.1f ) {
+			transform.position = Vector3.MoveTowards (sourcePos, destPos, Time.deltaTime * speed * 2);
+			sourcePos = transform.position;
+			distance = Mathf.Abs(sourcePos.y - destPos.y);
+			yield return 0;
+		}*/
+
+		//OLD WAY
 		while (i < 1.0f ) {
 			transform.position = Vector3.Lerp(sourcePos, destPos, Mathf.SmoothStep(0,1,i));
 			i += Time.deltaTime;

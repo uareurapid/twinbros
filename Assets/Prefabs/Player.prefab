@@ -575,6 +575,7 @@ MonoBehaviour:
   objectInCanvasUI: 0
   secondTarget: {fileID: 0}
   goBackAndFourth: 0
+  distanceMultiplier: 0.2
 --- !u!114 &114914164225874112
 MonoBehaviour:
   m_ObjectHideFlags: 1

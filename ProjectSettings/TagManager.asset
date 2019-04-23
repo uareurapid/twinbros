@@ -25,6 +25,7 @@ TagManager:
   - Electric
   - Fruit
   - FxTemporaire
+  - Slider
   layers:
   - Default
   - TransparentFX
