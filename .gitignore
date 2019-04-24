@@ -5,6 +5,8 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+Assembly-CSharp.csproj
+
 # Visual Studio cache directory
 .vs/
 

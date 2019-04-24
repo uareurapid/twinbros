@@ -70841,7 +70841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 71.600006, y: -18.8}
+  m_AnchoredPosition: {x: 77.5, y: -18.8}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1285187697
@@ -70876,7 +70876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1UP: 000000'
+  m_Text: 'SC: 000000'
 --- !u!222 &1285187698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -120927,7 +120927,7 @@ Prefab:
     - target: {fileID: 114467473043771362, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 2}
       propertyPath: canMoveDown
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1459148752148654, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 2}
       propertyPath: m_IsActive
@@ -121060,12 +121060,12 @@ Prefab:
     - target: {fileID: 114467473043771362, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 2}
       propertyPath: canMoveUp
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114467473043771362, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 2}
       propertyPath: canMoveRight
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212396208600699750, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 2}

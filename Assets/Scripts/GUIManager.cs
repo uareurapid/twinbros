@@ -91,7 +91,7 @@ public class GUIManager : MonoBehaviour {
 		store = scripts.GetComponent<MyStoreClass>();
 		levelManager = scripts.GetComponent<LevelManager>();
 
-		currentScoreText.text = "1UP: " + levelManager.currentScore.ToString("000000");
+		currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
 		if(levelManager.stage > 1) {
@@ -184,7 +184,7 @@ public class GUIManager : MonoBehaviour {
 		//only if the button is opaque
 		else if(!playPressed) {
 			playPressed = true;
-			currentScoreText.text = "1UP: " + levelManager.currentScore.ToString("000000");
+			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
 			playButton.sprite = playButtonImages[1];
@@ -196,7 +196,7 @@ public class GUIManager : MonoBehaviour {
 
 	public void UpdateCurrentScore(int pts) {
 
-		currentScoreText.text = "1UP: " + pts.ToString("000000");
+		currentScoreText.text = "SC: " + pts.ToString("000000");
 	}
 
 	public void UpdateCurrentHighScore(int pts) {
