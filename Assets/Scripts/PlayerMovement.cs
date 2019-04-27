@@ -706,40 +706,26 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
 	{
-		//ignore it
-		if(isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.isPlayerDead()) {
+        
+        //ignore it
+        if (isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.isPlayerDead() ) {
 			return;
 		}
-		string otherTag = other.transform.tag;
-		bool isPortal = otherTag.Equals("Portal");
+
+        string otherTag = other.transform.tag;
+        bool isPortal = otherTag.Equals("Portal");
+		
 		bool isEnemy = otherTag.Equals("Enemy");
 		bool isBox = otherTag.Equals("Box");
 		bool isBomb = otherTag.Equals("Bomb");
 		bool isElectric = otherTag.Equals("Electric");
 		bool isMovingBlock = other.gameObject.GetComponent<MoveWayPoint>() != null; 
-		//bool colUp = false;
-		//bool colDown = false;
-		//bool colLeft = false;
-		//bool colRight = false;
 		bool isSlider = otherTag.Equals("Slider");
 
 		bool ignoreCollision = true;
 
-						if(isPortal) {
-							Debug.Log("=====>>>>>> COLLIDED WITH PORTAL: ");
-						}
-		//if(!isPortal) {
-				//Tile tile = other.transform.GetComponent<Tile>();
-				//if(tile!=null) {
-					//Debug.Log("TILE COLLISION isLeft" + isLeftTwin + " name: " + other.transform.name);
-				//	ignoreCollision = tile.HandlePlayerCollision(this);
-				//}
-				//else {
 
-					//Debug.Log("----- IS SOMETHING ELSE COLLIDING box? " + isBox + " name" +  other.transform.name + " isLeftMovement? " + 
-					//isLeftMovement + " isRightMovement? " + isRightMovement + " isUpMovement? " + isUpMovement)  ;
-
-					if(isRightMovement) {
+                    if(isRightMovement && canMoveRight) {
 
 						
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
@@ -753,7 +739,7 @@ public class PlayerMovement : MonoBehaviour {
 						}
 						
 					}
-					else if(isLeftMovement) {
+                    else if(isLeftMovement && canMoveLeft) {
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 						if (!IsIgnoreCollision(other.transform /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 						{
@@ -765,7 +751,7 @@ public class PlayerMovement : MonoBehaviour {
 						}
 						
 					}
-					else if(isUpMovement) {
+                    else if(isUpMovement && canMoveUp) {
 						
 						//otherwise just ignore this one
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
@@ -779,7 +765,7 @@ public class PlayerMovement : MonoBehaviour {
 						}
 							
 					}
-					else if(isDownMovement) {
+                    else if(isDownMovement && canMoveDown) {
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 						if (!IsIgnoreCollision(other.transform/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 						{
@@ -842,46 +828,18 @@ public class PlayerMovement : MonoBehaviour {
 						ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
 						wire.ElectrocutePlayer(this);
 					}
-					else if(isBox && !ignoreCollision) {
+                    else if(isBox && !ignoreCollision) {
 						Box box = other.gameObject.GetComponent<Box>();
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 						if(box!=null && box.isSurpriseBox) {
 		
-							Debug.Log("FADE SURPRISE BOX");
-							if(isLeftTwin) {
-							Debug.Log("can move left? " + canMoveLeft + " canMove right? " + canMoveRight + " can move down? " + canMoveDown);  
-							}
 							box.FadeSurpriseBox(this);
 						}
 						if(!ignoreCollision) {
 							SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
 						}//TODO IS NOT DOING THE EFFECT ON THE BOX
 					}	
-				//}
-
-				//this code is not reachable
-				//death by moves
-				//if(!ignoreCollision) {
-				//	return;
-				//TODO after one dies the other still gets affected by collisions (can be jumpy)
-				//}
-
 			
-		//}//yes, is a portal collision
-		//else {
-			//is portal
-		//	if (isMovingBetweenLevels || levelManager.isPlayerDead())
-		//	{
-				//ignore this collision
-		//		return;
-		//	}
-		//	else {
-				//TODO keep coding me
-		//		levelManager.TwinCollidedWithPortal(gameObject);
-		//		Portal portal = other.gameObject.GetComponent<Portal>();
-		//		StartCoroutine(MoveToNextLevel(portal));
-		//	}
-		//}
 
 		
 		
