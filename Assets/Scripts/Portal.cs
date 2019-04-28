@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Portal : MonoBehaviour {
+public class Portal : MonoBehaviour, HandlePlayerCollision {
 
 	public Level currentLevel;
 	public Level nextLevel;
@@ -45,4 +45,25 @@ public class Portal : MonoBehaviour {
 		}
 		
 	}
+
+    public void HandleCollision(PlayerMovement player) {
+        //is portal
+        if (player.GetIsMovingBetweenLevels() || levelManager.isPlayerDead())
+        {
+            //ignore this collision
+            return;
+        }
+        else
+        {
+            //TODO keep coding me
+            levelManager.TwinCollidedWithPortal(gameObject);
+            StartCoroutine(MoveToNextLevelCoroutine());
+        }
+    }
+
+    IEnumerator MoveToNextLevelCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        MoveToNextLevel();
+    }
 }

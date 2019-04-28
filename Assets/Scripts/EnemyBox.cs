@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBox : MonoBehaviour {
+public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	public LevelManager levelmanager;
 	public bool killPlayerOnTouch = true; //if not just dcrease a move or something
@@ -46,7 +46,7 @@ public class EnemyBox : MonoBehaviour {
 	}
 
 	//bool isLeftMovement, bool isRightMovement, bool isUpMovement, bool isDownMovement
-	public void HandlePlayerCollision(PlayerMovement player) {
+	public void HandleCollision(PlayerMovement player) {
 		if(levelmanager==null) {
 			GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 			levelmanager = scripts.GetComponent<LevelManager>();

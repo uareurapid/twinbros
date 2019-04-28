@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb: SpawnableItem {
+public class Bomb: SpawnableItem, HandlePlayerCollision {
 
 	public float delayBeforeBurn = 1.0f;
 	public float delayBeforeExplosion = 2.0f;
@@ -21,7 +21,7 @@ public class Bomb: SpawnableItem {
 	}
 
 
-	public void HandlePlayerCollision(PlayerMovement movement)
+	public void HandleCollision(PlayerMovement movement)
 	{
 		Debug.Log("#### HandleBombCollisions CALLED IN BOMB!!!");
 		

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : SpawnableItem {
+public class Box : SpawnableItem, HandlePlayerCollision {
 
 	public bool isSurpriseBox = false;
 	public Transform[] possibleSurprises;
@@ -48,6 +48,19 @@ public class Box : SpawnableItem {
 				
 		}
 	}
+
+    public void HandleCollision(PlayerMovement player)
+    {
+     
+        //TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+        if (isSurpriseBox)
+        {
+
+            FadeSurpriseBox(player);
+        }
+        SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+
+    }
 
 	public Collider2D GetColliderBox() {
 

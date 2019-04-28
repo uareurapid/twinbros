@@ -784,29 +784,17 @@ public class PlayerMovement : MonoBehaviour {
 
 					if(point!=null) {
 						Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
-						point.HandlePlayerCollision(this);
+						point.HandleCollision(this);
 					}
 					else if(tile!=null && !ignoreCollision) {
-						tile.HandlePlayerCollision(this);
+						tile.HandleCollision(this);
 					}
 					else if(isPortal && !ignoreCollision) {
-						//is portal
-						if (isMovingBetweenLevels || levelManager.isPlayerDead())
-						{
-							//ignore this collision
-							return;
-						}
-						else {
-							//TODO keep coding me
-							levelManager.TwinCollidedWithPortal(gameObject);
-							Portal portal = other.gameObject.GetComponent<Portal>();
-							StartCoroutine(MoveToNextLevel(portal));
-						}
+                        other.gameObject.GetComponent<Portal>().HandleCollision(this);
 					}
 					else if(isEnemy && !ignoreCollision) {
-						 EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+                        other.gameObject.GetComponent<EnemyBox>().HandleCollision(this);;
 						 //if(enemy.isMovingEnemy || !ignoreCollision) {
-							enemy.HandlePlayerCollision(this);
 						 //}
 					}
 					else if(isSlider) {
@@ -820,8 +808,7 @@ public class PlayerMovement : MonoBehaviour {
 					}
 					else if(isBomb && !ignoreCollision) {
 		
-						Bomb bomb = other.gameObject.GetComponent<Bomb>();
-						bomb.HandlePlayerCollision(this);
+                        other.gameObject.GetComponent<Bomb>().HandleCollision(this);
 					}
 					else if(isElectric && !ignoreCollision) {
 		
@@ -829,15 +816,15 @@ public class PlayerMovement : MonoBehaviour {
 						wire.ElectrocutePlayer(this);
 					}
                     else if(isBox && !ignoreCollision) {
-						Box box = other.gameObject.GetComponent<Box>();
+                        other.gameObject.GetComponent<Box>().HandleCollision(this);
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
-						if(box!=null && box.isSurpriseBox) {
+						//if(box!=null && box.isSurpriseBox) {
 		
-							box.FadeSurpriseBox(this);
-						}
-						if(!ignoreCollision) {
-							SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
-						}//TODO IS NOT DOING THE EFFECT ON THE BOX
+						//	box.FadeSurpriseBox(this);
+						//}
+						//if(!ignoreCollision) {
+						//	SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+						//}//TODO IS NOT DOING THE EFFECT ON THE BOX
 					}	
 			
 
@@ -845,10 +832,6 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
-	IEnumerator MoveToNextLevel(Portal portal) {
-		yield return new WaitForSeconds(0.5f);
-		portal.MoveToNextLevel();
-	}
 
 	//TODO this is not doing what the name suggests, is just reversing things DOUBLE CHECK
 	public void AllowAllMovementsAgain() {

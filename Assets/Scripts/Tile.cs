@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour {
+public class Tile : MonoBehaviour, HandlePlayerCollision {
 
 	public Tile left;
 	public Tile right;
@@ -80,14 +80,13 @@ public class Tile : MonoBehaviour {
 	}
 
 
-	public bool HandlePlayerCollision(PlayerMovement movement) {
+	public void HandleCollision(PlayerMovement movement) {
 
 		bool ignoredCollision = true; 
 
 			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();
 			if(enemy!=null) {
-				enemy.HandlePlayerCollision(movement);
-				return false;
+				enemy.HandleCollision(movement);
 			}
 						 
 			
@@ -144,7 +143,6 @@ public class Tile : MonoBehaviour {
 		if(!ignoredCollision) {
 			SpecialEffectsHelper.Instance.PlayImpactEffect(movement.transform.position);
 		}
-		return ignoredCollision;
 
 	}	
 

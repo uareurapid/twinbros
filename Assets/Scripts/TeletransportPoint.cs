@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeletransportPoint : MonoBehaviour {
+public class TeletransportPoint : MonoBehaviour, HandlePlayerCollision {
 
 
 	public Transform destination;
@@ -11,7 +11,7 @@ public class TeletransportPoint : MonoBehaviour {
 	public bool overridePreviousDirection = false;
 	public string exitDirection = GameConstants.LEFT_DIRECTION;
 	
-	public void HandlePlayerCollision(PlayerMovement player) {
+	public void HandleCollision(PlayerMovement player) {
 
 		if(destination!=null) {
 
