@@ -56,7 +56,7 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
         else
         {
             //TODO keep coding me
-            levelManager.TwinCollidedWithPortal(gameObject);
+            levelManager.TwinCollidedWithPortal(player.gameObject);
             StartCoroutine(MoveToNextLevelCoroutine());
         }
     }

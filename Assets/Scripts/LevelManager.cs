@@ -189,6 +189,11 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	public void StartNextStage() {
+
+		guiManager.DoStageTransitionEffect();
+	}
+
 	public bool IsGameStarted() {
 		return gameStarted;
 	}

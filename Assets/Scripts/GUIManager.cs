@@ -235,6 +235,7 @@ public class GUIManager : MonoBehaviour {
 	//call this when loading a new screen
 	public void DoStageTransitionEffect() {
 		StartCoroutine(HandleStageImageTransition());
+		levelManager.StartGame();
 	}
 
 	public void SetLevelText(int level) {
