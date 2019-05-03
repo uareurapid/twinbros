@@ -46,6 +46,10 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
 		
 	}
 
+	public void HandleExitCollision(PlayerMovement player) {
+
+	}
+
     public void HandleCollision(PlayerMovement player) {
         //is portal
         if (player.GetIsMovingBetweenLevels() || levelManager.isPlayerDead())

@@ -79,7 +79,6 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 		
 	}
 
-
 	public void HandleCollision(PlayerMovement movement) {
 
 		bool ignoredCollision = true; 
@@ -146,7 +145,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 
 	}	
 
-	public void HandleTileExitCollisions(PlayerMovement movement) {
+	public void HandleExitCollision(PlayerMovement movement) {
 
 
 			/*if(isWalkable) {

@@ -19,7 +19,10 @@ public class Bomb: SpawnableItem, HandlePlayerCollision {
 		anim = GetComponentInChildren<Animator>();
 		explodeAction = GetComponent<Explodable>();
 	}
+	
+	public void HandleExitCollision(PlayerMovement player) {
 
+	}
 
 	public void HandleCollision(PlayerMovement movement)
 	{

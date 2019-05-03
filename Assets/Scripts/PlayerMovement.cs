@@ -594,7 +594,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 		Tile tile = other.transform.GetComponent<Tile>();
 		if(tile!=null) {
-			tile.HandleTileExitCollisions(this);
+			tile.HandleExitCollision(this);
 		}
 		else {
 			if(!canMoveUp) {
@@ -781,7 +781,7 @@ public class PlayerMovement : MonoBehaviour {
 
 					Tile tile = other.transform.GetComponent<Tile>();
 					TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
-
+					
 					if(point!=null) {
 						Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
 						point.HandleCollision(this);
@@ -826,6 +826,13 @@ public class PlayerMovement : MonoBehaviour {
 						//	SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
 						//}//TODO IS NOT DOING THE EFFECT ON THE BOX
 					}	
+
+					else {
+						HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
+						if(handle!=null) {
+							handle.HandleCollision(this);
+						}
+					}
 			
 
 		

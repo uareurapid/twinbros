@@ -45,6 +45,9 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 		return (player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
 	}
 
+	public void HandleExitCollision(PlayerMovement player) {
+
+	}
 	//bool isLeftMovement, bool isRightMovement, bool isUpMovement, bool isDownMovement
 	public void HandleCollision(PlayerMovement player) {
 		if(levelmanager==null) {

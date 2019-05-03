@@ -11,6 +11,9 @@ public class TeletransportPoint : MonoBehaviour, HandlePlayerCollision {
 	public bool overridePreviousDirection = false;
 	public string exitDirection = GameConstants.LEFT_DIRECTION;
 	
+	public void HandleExitCollision(PlayerMovement player) {
+
+	}
 	public void HandleCollision(PlayerMovement player) {
 
 		if(destination!=null) {

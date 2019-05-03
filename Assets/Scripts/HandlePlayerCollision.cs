@@ -7,4 +7,5 @@ public interface HandlePlayerCollision {
 
     // Update is called once per frame
     void HandleCollision(PlayerMovement player);
+	void HandleExitCollision(PlayerMovement player);
 }

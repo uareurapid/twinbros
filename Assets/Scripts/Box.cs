@@ -49,6 +49,10 @@ public class Box : SpawnableItem, HandlePlayerCollision {
 		}
 	}
 
+	public void HandleExitCollision(PlayerMovement player) {
+
+	}
+
     public void HandleCollision(PlayerMovement player)
     {
      
