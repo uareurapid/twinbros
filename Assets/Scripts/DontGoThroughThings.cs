@@ -23,6 +23,10 @@ public class DontGoThroughThings : MonoBehaviour
         void Awake()
         {
             myRigidbody = this.GetComponent<Rigidbody2D>();
+			if(myRigidbody == null) {
+				Debug.Log("Something is WRONG WITH THIS OBJECT " + gameObject.name);
+				myRigidbody = GetComponentInParent<Rigidbody2D>();
+			}
             previousPosition = myRigidbody.position;
             minimumExtent = Mathf.Min(Mathf.Min(GetComponent<Collider2D>().bounds.extents.x, GetComponent<Collider2D>().bounds.extents.y), GetComponent<Collider2D>().bounds.extents.z);
             partialExtent = minimumExtent * (1.0f - skinWidth);

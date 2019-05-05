@@ -111,6 +111,8 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
 		body = GetComponent<Rigidbody2D>();
+		body.isKinematic = false; //should be true
+		body.gravityScale = 0;
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
@@ -379,7 +381,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 
 
-			body.isKinematic = !IsMovingInAnyDirection();
+			//body.isKinematic = !IsMovingInAnyDirection();
 
 			
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
@@ -399,7 +401,7 @@ public class PlayerMovement : MonoBehaviour {
 		//Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
 		reachedTarget = false;
 		isUpMovement = true;
-		body.isKinematic = true; //TODO FIXME
+		//body.isKinematic = true; //TODO FIXME
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -408,7 +410,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void SlideRight() {
 		reachedTarget = false;
 		isRightMovement = true;
-		body.isKinematic = true;
+		//body.isKinematic = true;
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -418,7 +420,7 @@ public class PlayerMovement : MonoBehaviour {
 		reachedTarget = false;
 		//Debug.Log("SLIDE DOWN called will move: " + (Vector3.down)*tileSize*maxTilesMovement);
 		isDownMovement = true;
-		body.isKinematic = true;
+		//body.isKinematic = true;
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
 		isUpMovement = isLeftMovement = isRightMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -427,7 +429,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void SlideLeft() {
 		reachedTarget = false;
 		isLeftMovement = true;
-		body.isKinematic = true;
+		//body.isKinematic = true;
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
 		isRightMovement = isDownMovement = isUpMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -458,7 +460,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
-			body.isKinematic = true; //avoid the bumping effect
+			//body.isKinematic = true; //avoid the bumping effect
 			canMoveRight = canMoveDown = canMoveRight = true;
 			//transform.position = previousPosition[1];
 			transform.Translate(-bodySpeed);
@@ -494,7 +496,7 @@ public class PlayerMovement : MonoBehaviour {
 			//TODO FIXME the velocity and the kinematic
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
-			body.isKinematic = true;
+			//body.isKinematic = true;
 			canMoveLeft = canMoveUp = canMoveDown = true;
 			transform.Translate(-bodySpeed);
 
@@ -528,7 +530,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
-			body.isKinematic = true;
+			//body.isKinematic = true;
 			canMoveDown = canMoveLeft = canMoveRight = true;
 			//transform.position = previousPosition[1];
 			transform.Translate(-bodySpeed);
@@ -560,7 +562,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
-			body.isKinematic = true;
+			//body.isKinematic = true;
 			canMoveUp = canMoveLeft = canMoveRight = true;
 			//transform.position = previousPosition[1];
 			transform.Translate(-bodySpeed);
@@ -724,6 +726,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
+		Debug.Log("isEnemy ? " + isEnemy +" ====> " + other.transform.name);
 
                     if(isRightMovement && canMoveRight) {
 
@@ -792,10 +795,13 @@ public class PlayerMovement : MonoBehaviour {
 					else if(isPortal && !ignoreCollision) {
                         other.gameObject.GetComponent<Portal>().HandleCollision(this);
 					}
-					else if(isEnemy && !ignoreCollision) {
-                        other.gameObject.GetComponent<EnemyBox>().HandleCollision(this);;
-						 //if(enemy.isMovingEnemy || !ignoreCollision) {
-						 //}
+					else if(isEnemy) {
+						EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+						Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
+						//i could not be moving but if the enemy is we cant ignore it
+						if(!ignoreCollision || ( (!IsMovingInAnyDirection() || IsStopped() ) && enemy.isMovingEnemy) ) {
+							enemy.HandleCollision(this);
+						}
 					}
 					else if(isSlider) {
 						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();

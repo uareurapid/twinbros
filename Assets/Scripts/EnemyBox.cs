@@ -48,6 +48,14 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 	public void HandleExitCollision(PlayerMovement player) {
 
 	}
+
+	/*void OnCollisionEnter2D(Collision2D other) {
+
+		if(other.gameObject.CompareTag("Player")) {
+			Debug.Log("COLLLLLLLLLLLLLLLL " + gameObject.tag);
+			HandleCollision(other.gameObject.GetComponent<PlayerMovement>());
+		}
+	}*/
 	//bool isLeftMovement, bool isRightMovement, bool isUpMovement, bool isDownMovement
 	public void HandleCollision(PlayerMovement player) {
 		if(levelmanager==null) {
@@ -59,26 +67,40 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 		//TODO this is duplicated
 		if (killPlayerOnTouch)
 		{
+
+			bool killed = false;
+
 			if (isMovingEnemy || CannotIgnoreRightCollision(player))
 			{
 				//(player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x) 
 				levelmanager.KillPlayer();
+				killed = true;
 			}
 			else if (isMovingEnemy || CannotIgnoreLeftCollision(player))
 			{
 				levelmanager.KillPlayer();
+				killed = true;
 			}
 			else if (isMovingEnemy || CannotIgnoreUpCollision(player))
 			{
 
 				//if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y)
 				levelmanager.KillPlayer();
+				killed = true;
 			}
 			else if (isMovingEnemy || CannotIgnoreDownCollision(player))
 			{
 				levelmanager.KillPlayer();
+				killed = true;
 			}
 
+			if(isMovingEnemy && killed) {
+				MoveWayPoint move = GetComponent<MoveWayPoint>();
+				if(move!=null) {
+					//StopMovement
+					move.PauseMovement();
+				}
+			}
 		}
 		else if (shrinkPlayer)
 		{
