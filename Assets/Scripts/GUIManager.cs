@@ -295,7 +295,7 @@ public class GUIManager : MonoBehaviour {
 
 		
 		//if not purchased product and is time for ads
-		if(PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0 && adsScript.IsInterstitialReady() && adsScript.DecideIfShowInterstitial() )  {
+        if(PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0 && adsScript.IsInterstitialReady() && adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() )  {
 
 			shouldShowInterstitial = true;
 			stopTimer = true;
@@ -306,14 +306,14 @@ public class GUIManager : MonoBehaviour {
 			
 		}
 		//check if purchased infite revives
-		else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) {
+        else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1 || levelManager.isDebugMode) {
 			// show the option to continue
 			StartCoroutine(ShowRestartText(1.0f));
 		}// preferably show ads
-		else if(adsScript.IsRewardVideoReady() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
+        else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
 			ShowVideoRewardToEnableContinue();
 		}//otherwise show purchase option
-		else {
+        else if(levelManager.GetIsPurchaseSupportingPlatform()) {
 			//TODO when show the moves purchase or ads removal? (add on settings only)
 			ShowPurchaseRevivesButton();
 		}
