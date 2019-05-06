@@ -22,12 +22,16 @@ public class SlugController : MonoBehaviour {
 	}
 
 	void SpawnOnNextposition() {
-		nexPosition = nextPositions[nextPositionIndex++].transform.position;
-		Transform shadow = instantiateTransform(spawnShadow, nexPosition);
-		if(nextPositionIndex > nextPositions.Length - 1) {
-			nextPositionIndex = 0;
+		//avoid errors if object not active
+		if(gameObject.activeSelf) {
+			nexPosition = nextPositions[nextPositionIndex++].transform.position;
+			Transform shadow = instantiateTransform(spawnShadow, nexPosition);
+			if(nextPositionIndex > nextPositions.Length - 1) {
+				nextPositionIndex = 0;
+			}
+			StartCoroutine(MoveSlugIntoPosition(shadow));
 		}
-		StartCoroutine(MoveSlugIntoPosition(shadow));
+		
 		
 	}
 

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114326465243306948}
   - component: {fileID: 114318360324967428}
   m_Layer: 8
-  m_Name: block_deadly 1
+  m_Name: block_deadly_bugs
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22,6 +22,8 @@ public class LevelManager : MonoBehaviour {
 	public bool hasExtraMoves = false; //TODO IN-APP
 
 	private GUIManager guiManager;
+
+	private GameManagerScript gameManager;
 	private bool isDead = false;
 	private bool isDying = false;
 
@@ -72,6 +74,7 @@ public class LevelManager : MonoBehaviour {
 
 		scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
+		gameManager = scripts.GetComponent<GameManagerScript>();
 		music = scripts.GetComponent<AudioSource>();
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
 		if(musicOff == 0) {
@@ -222,6 +225,9 @@ public class LevelManager : MonoBehaviour {
 	public void setCurrentLevel(Level level) {
 		currentLevel = level;
 		guiManager.SetLevelText(currentLevel.level);
+		//TODO LATER
+		//gameManager.DeactivateAllLevelsExcept(currentLevel);
+		//gameManager.ActivateNextLevel(currentLevel);
 	}
 
 	public void ResetMoves() {

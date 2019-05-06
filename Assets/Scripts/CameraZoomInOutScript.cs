@@ -41,7 +41,7 @@ public class CameraZoomInOutScript : MonoBehaviour {
 	public int previousLevel = 0;
 	public int numLevels = 6;
 
-
+	private GameManagerScript gameManager;
 	void Start () {
 
 	  Time.timeScale = 1.0f;
@@ -53,6 +53,11 @@ public class CameraZoomInOutScript : MonoBehaviour {
 	  //targetPosition.z = cameraOriginalPosition.z;
 	  isMovementComplete = true;
 	  canMove = false;
+
+	  GameObject scripts = GameObject.FindWithTag("Scripts");
+	  if(scripts!=null) {
+		gameManager = scripts.GetComponent<GameManagerScript>();
+	  }
 	  
 						
 	}
@@ -135,7 +140,13 @@ public class CameraZoomInOutScript : MonoBehaviour {
     //-1 for left, 1 for right
 	void UpdatePosition(int targetLevel) {
 
+		//TODO, need to activate the level first
+		//if(gameManager!=null) {
+		//	gameManager.ActivateNextLevelByNum(targetLevel);
+		//}
+
 		GameObject obj = GameObject.FindGameObjectWithTag ("level_" + targetLevel); //"start" + targetLevel
+
 		
 		StartCoroutine(MoveToTarget(obj.transform,targetLevel));
 

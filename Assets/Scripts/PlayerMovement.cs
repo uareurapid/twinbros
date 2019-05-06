@@ -589,10 +589,7 @@ public class PlayerMovement : MonoBehaviour {
 	void OnCollisionExit2D(Collision2D other)
 	{
 
-		//if(other.transform.CompareTag("Bomb")) {
-
-			//avoid getting killed by the bomb
-		//}
+		HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
 		
 		Tile tile = other.transform.GetComponent<Tile>();
 		if(tile!=null) {
@@ -623,6 +620,11 @@ public class PlayerMovement : MonoBehaviour {
 			MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
 			if(move!=null && move.IsPaused()) {
 				move.ContinueMovement();
+			}
+
+
+			if(handle!=null) {
+				handle.HandleExitCollision(this);
 			}
 						
 		}

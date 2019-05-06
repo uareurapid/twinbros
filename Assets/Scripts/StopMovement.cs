@@ -16,11 +16,15 @@ public class StopMovement : MonoBehaviour, HandlePlayerCollision {
 		
 	}
 
-	public void HandleExitCollision(PlayerMovement player) {
+	private void ReEnableCollider() {
+
 		Collider2D col = GetComponent<Collider2D>();
 		if(col!=null) {
 			col.enabled = true;
 		}
+	}
+	public void HandleExitCollision(PlayerMovement player) {
+		ReEnableCollider();
 	}
 
 	public void HandleCollision(PlayerMovement player)
@@ -66,7 +70,11 @@ public class StopMovement : MonoBehaviour, HandlePlayerCollision {
 			player.canMoveDown = true;
 			player.SlideDown();
 		}
-		
+
+		//in this case, if i disable the collider the OnColliderExit2D of the handle is not called
+		//so it needs to be done here
+		yield return new WaitForSeconds(1f);
+		ReEnableCollider();
 		
 	}
 }
