@@ -64,31 +64,31 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 		}
 
-		//TODO this is duplicated
+		//TODO if moving enemy should not be enough condition
 		if (killPlayerOnTouch)
 		{
 
 			bool killed = false;
+			//TODO WTF!!!
 
-			if (isMovingEnemy || CannotIgnoreRightCollision(player))
-			{
-				//(player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x) 
-				levelmanager.KillPlayer();
-				killed = true;
-			}
-			else if (isMovingEnemy || CannotIgnoreLeftCollision(player))
+			if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
 			}
-			else if (isMovingEnemy || CannotIgnoreUpCollision(player))
+			else if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreLeftCollision(player))
+			{
+				levelmanager.KillPlayer();
+				killed = true;
+			}
+			else if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreUpCollision(player))
 			{
 
 				//if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y)
 				levelmanager.KillPlayer();
 				killed = true;
 			}
-			else if (isMovingEnemy || CannotIgnoreDownCollision(player))
+			else if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreDownCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
