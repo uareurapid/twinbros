@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212645771781683866}
   - component: {fileID: 61761812720078956}
   - component: {fileID: 114413730997527234}
-  - component: {fileID: 114878186070614340}
   m_Layer: 8
   m_Name: block (16)
   m_TagString: Wall
@@ -1485,7 +1484,6 @@ GameObject:
   - component: {fileID: 212505420834127026}
   - component: {fileID: 61360750786653296}
   - component: {fileID: 114831658824987252}
-  - component: {fileID: 114144370050717734}
   m_Layer: 8
   m_Name: block (16)
   m_TagString: Wall
@@ -7585,7 +7583,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1459148752148654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.65, y: -89.679726, z: 0}
+  m_LocalPosition: {x: 22.869667, y: -29.602844, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4396480519379384}
@@ -15942,21 +15940,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &114144370050717734
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1316794533541810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4934e2539938a46f8917b7a85f803cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelmanager: {fileID: 0}
-  killPlayerOnTouch: 1
-  shrinkPlayer: 0
-  isMovingEnemy: 0
 --- !u!114 &114150200494314962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18646,21 +18629,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &114878186070614340
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1009006456574478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4934e2539938a46f8917b7a85f803cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelmanager: {fileID: 0}
-  killPlayerOnTouch: 1
-  shrinkPlayer: 0
-  isMovingEnemy: 0
 --- !u!114 &114879644293085160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21298,7 +21266,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 45552884000c14235b0e8187152f620f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb96f16d9f2ef414b97e2121526dc7ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -21928,7 +21896,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 45552884000c14235b0e8187152f620f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb96f16d9f2ef414b97e2121526dc7ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

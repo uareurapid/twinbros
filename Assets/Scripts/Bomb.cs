@@ -26,7 +26,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision {
 
 	public void HandleCollision(PlayerMovement movement)
 	{
-		Debug.Log("#### HandleBombCollisions CALLED IN BOMB!!!");
+		//Debug.Log("#### HandleBombCollisions CALLED IN BOMB!!!");
 		
 		if(isBurning) {
 			//explode

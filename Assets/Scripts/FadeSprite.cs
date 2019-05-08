@@ -117,7 +117,7 @@ public class FadeSprite : MonoBehaviour {
 						FadeSpriteNow(false);
 					}
 					else {
-						Debug.Log("DO 2ND PASS, true");
+						//Debug.Log("DO 2ND PASS, true");
 						FadeSpriteNow(true);
 					}
 				}
@@ -137,7 +137,7 @@ public class FadeSprite : MonoBehaviour {
 
 					//becaming transparent
 					if(!fadeIn && col.a < 0.4f && coll.enabled) {
-						Debug.Log("1 OPTION DISABLE HERE ###########################");
+						//Debug.Log("1 OPTION DISABLE HERE ###########################");
 						coll.enabled = false;
 						if(scriptCaller!=null) {
 							scriptCaller.FadeCompletedCallback();
@@ -149,13 +149,13 @@ public class FadeSprite : MonoBehaviour {
 						PlayerMovement player = scriptCaller.GetTwin();
 						if(player!=null) {
 							if(!player.GetComponent<Collider2D>().IsTouching(coll)) {
-									Debug.Log("2 OPTION RE-ENABLE HERE ###########################");
+									//Debug.Log("2 OPTION RE-ENABLE HERE ###########################");
 									coll.enabled = true;
 								}
 						}
 
 						else if(player==null) {
-							Debug.Log("3 OPTION RE-ENABLE HERE ###########################");
+							//Debug.Log("3 OPTION RE-ENABLE HERE ###########################");
 							coll.enabled = true;
 						}
 					}

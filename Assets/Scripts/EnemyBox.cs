@@ -28,34 +28,31 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	bool CannotIgnoreRightCollision(PlayerMovement player) {
 
-		return (player.IsMovingRight() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
+		return ( !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
 	}
 
 	bool CannotIgnoreLeftCollision(PlayerMovement player)
 	{
-		return (player.IsMovingLeft() && !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
+		return ( !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
 	}
 
 	bool CannotIgnoreUpCollision(PlayerMovement player) {
-		return (player.IsMovingUp() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
+		return ( !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
 	}
 
 	bool CannotIgnoreDownCollision(PlayerMovement player)
 	{
-		return (player.IsMovingDown() && !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
+		return ( !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
 	}
+
+    bool CannotIgnoreCollisionWhenNotMoving() {
+        return false;
+    }
 
 	public void HandleExitCollision(PlayerMovement player) {
 
 	}
 
-	/*void OnCollisionEnter2D(Collision2D other) {
-
-		if(other.gameObject.CompareTag("Player")) {
-			Debug.Log("COLLLLLLLLLLLLLLLL " + gameObject.tag);
-			HandleCollision(other.gameObject.GetComponent<PlayerMovement>());
-		}
-	}*/
 	//bool isLeftMovement, bool isRightMovement, bool isUpMovement, bool isDownMovement
 	public void HandleCollision(PlayerMovement player) {
 		if(levelmanager==null) {
@@ -63,38 +60,41 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			levelmanager = scripts.GetComponent<LevelManager>();
 
 		}
+        Debug.Log("HANDLE CALLED");
 
 		//TODO if moving enemy should not be enough condition
 		if (killPlayerOnTouch)
 		{
-
+            //levelmanager.KillPlayer();
 			bool killed = false;
-			//TODO WTF!!!
+            //TODO WTF!!!
 
-			if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player))
+
+            if ( player.IsMovingRight() && CannotIgnoreRightCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
 			}
-			else if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreLeftCollision(player))
+            else if ( player.IsMovingLeft() && CannotIgnoreLeftCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
 			}
-			else if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreUpCollision(player))
+            else if ( player.IsMovingUp() && CannotIgnoreUpCollision(player))
 			{
 
 				//if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y)
 				levelmanager.KillPlayer();
 				killed = true;
 			}
-			else if ( (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreDownCollision(player))
+            else if ( player.IsMovingDown() && CannotIgnoreDownCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
 			}
 
-			if(isMovingEnemy && killed) {
+            //also stop the enemy movement
+            if(isMovingEnemy && killed) {
 				MoveWayPoint move = GetComponent<MoveWayPoint>();
 				if(move!=null) {
 					//StopMovement

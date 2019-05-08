@@ -224,7 +224,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool IsStopped() {
-		return body.velocity == Vector2.zero;
+        //whne i movetowards it does not use physics, but the transform position directly, so the velocity is always zero, at least until it collides with something
+        return (body.velocity == Vector2.zero) && !IsMovingInAnyDirection();
 	}
 
     void FixedUpdate()
@@ -249,10 +250,7 @@ public class PlayerMovement : MonoBehaviour {
 					
 					if(canMoveLeft && IsStopped() && !isUpMovement && !isDownMovement && !isRightMovement) {
 						canMoveLeft = false;
-						if(!isLeftTwin) {
-							Debug.Log("BLOCK LEFT RAY " + hitLeft.transform.name + " stopped? "+ IsStopped() + " vel? " + body.velocity);
-						}
-
+						
 						if(isLeftMovement) {
 							collidedLeft();
 						}
@@ -270,9 +268,6 @@ public class PlayerMovement : MonoBehaviour {
 					
 					if(canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
 						canMoveRight = false;
-						if(!isLeftTwin) {
-							Debug.Log("BLOCK RIGHT RAY "  + hitRight.transform.name);
-						}
 
 						if(isRightMovement) {
 							collidedRight();
@@ -291,9 +286,6 @@ public class PlayerMovement : MonoBehaviour {
 						
 					if(canMoveUp && IsStopped() && !isLeftMovement && !isRightMovement && !isDownMovement) {
 						canMoveUp = false;
-						if(!isLeftTwin) {
-							Debug.Log("BLOCK UP RAY "  + hitUp.transform.name);
-						}
 
 						if(isUpMovement) {
 							collidedTop();
@@ -312,9 +304,6 @@ public class PlayerMovement : MonoBehaviour {
 					
 					if(canMoveDown && IsStopped() && !isLeftMovement && !isRightMovement && !isUpMovement) {
 						canMoveDown = false;
-						if(!isLeftTwin) {
-							Debug.Log("BLOCK DOWN RAY "   + hitDown.transform.name);
-						}
 
 						if(isDownMovement) {
 							collidedBottom();
@@ -408,6 +397,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SlideRight() {
+        Debug.Log("SLIDE RIGHT");
 		reachedTarget = false;
 		isRightMovement = true;
 		//body.isKinematic = true;
@@ -460,6 +450,9 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
+            //TODO cannot do this othewrise i loose the previous direction taken
+            //isLeftMovement = false;
+
 			//body.isKinematic = true; //avoid the bumping effect
 			canMoveRight = canMoveDown = canMoveRight = true;
 			//transform.position = previousPosition[1];
@@ -496,6 +489,8 @@ public class PlayerMovement : MonoBehaviour {
 			//TODO FIXME the velocity and the kinematic
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
+
+            //isRightMovement = false;
 			//body.isKinematic = true;
 			canMoveLeft = canMoveUp = canMoveDown = true;
 			transform.Translate(-bodySpeed);
@@ -530,6 +525,8 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
+
+            //isUpMovement = false; //TODO introduced this
 			//body.isKinematic = true;
 			canMoveDown = canMoveLeft = canMoveRight = true;
 			//transform.position = previousPosition[1];
@@ -562,6 +559,8 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
+
+            //isDownMovement = false;
 			//body.isKinematic = true;
 			canMoveUp = canMoveLeft = canMoveRight = true;
 			//transform.position = previousPosition[1];
@@ -666,7 +665,8 @@ public class PlayerMovement : MonoBehaviour {
 				if( ( (playerRight + ignoreCollisionInterval) > otherLeft) && 
 					( boxRenderer.bounds.center.y  > otherTop ) && 
 					( boxRenderer.bounds.center.y  < otherBottom ) )   {
-					//if(!isLeftTwin) Debug.Log("RIGHT COLLISION WITH : " + otherObject.name);
+                    Debug.Log("RIGHT COLLISION WITH : " + otherObject.name);
+                    Debug.Log("WWWWTWTWTTWTWTWTWTTWFFFFFF");
 					return false;
 				}
 			}
@@ -707,6 +707,22 @@ public class PlayerMovement : MonoBehaviour {
 		return true;
 		//return !(Mathf.Abs(otherPosition - playerPosition) < ignoreCollisionInterval);
 	}
+    //TODO maybe keep a reference foir the last object checked?? to avoid process the same again
+    /*void OnCollisionStay2D(Collision2D other) {
+        bool isEnemy = other.transform.Equals("Enemy");
+        if(isEnemy) {
+            bool ignoreCollision = IsIgnoreCollision(other.transform);
+            EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+            Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
+            //i could not be moving but if the enemy is we cant ignore it
+            if (!ignoreCollision || ((!IsMovingInAnyDirection() || IsStopped()) && enemy.isMovingEnemy))
+            {
+                enemy.HandleCollision(this);
+            }
+            else Debug.Log("HANDLE CALLED"); 
+        }
+
+    }*/
 
     void OnCollisionEnter2D(Collision2D other)
 	{
@@ -728,14 +744,19 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-		Debug.Log("isEnemy ? " + isEnemy +" ====> " + other.transform.name);
+        if(isEnemy) {
+            Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight);
+
+            Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft); 
+        }
+
+
 
                     if(isRightMovement && canMoveRight) {
-
 						
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 						if (!IsIgnoreCollision( other.transform /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
-						//Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
+				
 							collidedRight();
 							//colRight = true;
 							ignoreCollision = false;
@@ -760,6 +781,7 @@ public class PlayerMovement : MonoBehaviour {
 						
 						//otherwise just ignore this one
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+
 						if (!IsIgnoreCollision(other.transform /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
 						{
 							collidedTop();
@@ -772,6 +794,7 @@ public class PlayerMovement : MonoBehaviour {
 					}
                     else if(isDownMovement && canMoveDown) {
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+
 						if (!IsIgnoreCollision(other.transform/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 						{
 							collidedBottom();
@@ -782,7 +805,9 @@ public class PlayerMovement : MonoBehaviour {
 							
 						}
 						
-					}
+                    } else if(!IsMovingInAnyDirection() && isEnemy) {
+                        //even if not moving, if it is an enemy
+                    }
 
 					Tile tile = other.transform.GetComponent<Tile>();
 					TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
@@ -795,16 +820,17 @@ public class PlayerMovement : MonoBehaviour {
 						tile.HandleCollision(this);
 					}
 					else if(isPortal && !ignoreCollision) {
+            
                         other.gameObject.GetComponent<Portal>().HandleCollision(this);
-					}
-					else if(isEnemy) {
-						EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-						Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
-						//i could not be moving but if the enemy is we cant ignore it
-						if(!ignoreCollision || ( (!IsMovingInAnyDirection() || IsStopped() ) && enemy.isMovingEnemy) ) {
-							enemy.HandleCollision(this);
-						}
-					}
+
+                    }else if(isEnemy && !ignoreCollision ) {
+                        EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+                        Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
+                        //i could not be moving but if the enemy is we cant ignore it
+                        if(!ignoreCollision ) {
+                            enemy.HandleCollision(this);
+                        }else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
+                    }
 					else if(isSlider) {
 						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
 						slider.Slide(this);
@@ -826,13 +852,6 @@ public class PlayerMovement : MonoBehaviour {
                     else if(isBox && !ignoreCollision) {
                         other.gameObject.GetComponent<Box>().HandleCollision(this);
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
-						//if(box!=null && box.isSurpriseBox) {
-		
-						//	box.FadeSurpriseBox(this);
-						//}
-						//if(!ignoreCollision) {
-						//	SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
-						//}//TODO IS NOT DOING THE EFFECT ON THE BOX
 					}	
 
 					else {

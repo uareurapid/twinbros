@@ -295,7 +295,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void RestartLevel() {
 
-		Debug.Log("######## RESTART LEVEL #############");
+		//Debug.Log("######## RESTART LEVEL #############");
 		//set initial rotation and scale
 		foreach(PlayerMovement twin in twins) {
 			twin.ResetPlayer();

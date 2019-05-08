@@ -50,7 +50,7 @@ public class MoveWayPoint : MonoBehaviour
 		if(wayPoints.Length > 0) {
 			currentWaypoint = wayPoints[currentIndex];
 			isPaused = false;
-			Debug.Log("START MOVEMENT!!!");
+			//Debug.Log("START MOVEMENT!!!");
 		}
 	}
 	

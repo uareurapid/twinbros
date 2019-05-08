@@ -64,7 +64,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     }
 
 	public bool IsInterstitialReady() {
-		Debug.Log("IsInterstitialReady????? "+ (this.interstitial == null));
+		//Debug.Log("IsInterstitialReady????? "+ (this.interstitial == null));
 		if(this.interstitial == null) {
 			RequestInterstitialAd();
 		}
@@ -73,7 +73,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 	public bool DecideIfShowInterstitial() {
 		int rand = UnityEngine.Random.Range(0, 10); //between 0 and 9
-		Debug.Log("Interstitial RAND ?" + rand);
+		//Debug.Log("Interstitial RAND ?" + rand);
 		return (rand == 1 || rand == 5 || rand == 9);
 	}
 	
@@ -109,7 +109,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 	//TODO change from test to configured
 	public void RequestInterstitialAd() {
-        //string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
+        string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
 		Debug.Log("RequestInterstitialAd() CALLED");
 		#if UNITY_IPHONE
 			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
