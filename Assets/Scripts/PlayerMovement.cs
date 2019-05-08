@@ -823,13 +823,13 @@ public class PlayerMovement : MonoBehaviour {
             
                         other.gameObject.GetComponent<Portal>().HandleCollision(this);
 
-                    }else if(isEnemy && !ignoreCollision ) {
+                    }else if(isEnemy /*&& !ignoreCollision*/ ) {
                         EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
                         Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
                         //i could not be moving but if the enemy is we cant ignore it
-                        if(!ignoreCollision ) {
-                            enemy.HandleCollision(this);
-                        }else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
+                        //if(!ignoreCollision ) {
+                        enemy.HandleCollision(this);
+                        //}else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
                     }
 					else if(isSlider) {
 						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();

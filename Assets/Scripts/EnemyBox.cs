@@ -83,7 +83,6 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             else if ( player.IsMovingUp() && CannotIgnoreUpCollision(player))
 			{
 
-				//if (!IsIgnoreCollision(other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y)
 				levelmanager.KillPlayer();
 				killed = true;
 			}
@@ -95,6 +94,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
             //also stop the enemy movement
             if(isMovingEnemy && killed) {
+                Debug.Log("KILLEDDDDDDDDDDDDD");
 				MoveWayPoint move = GetComponent<MoveWayPoint>();
 				if(move!=null) {
 					//StopMovement
