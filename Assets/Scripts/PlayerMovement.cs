@@ -224,8 +224,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool IsStopped() {
-        //whne i movetowards it does not use physics, but the transform position directly, so the velocity is always zero, at least until it collides with something
-        return (body.velocity == Vector2.zero) && !IsMovingInAnyDirection();
+		//whne i movetowards it does not use physics, but the transform position directly, so the velocity is always zero, at least until it collides with something
+		return (body.velocity == Vector2.zero) || !IsMovingInAnyDirection();
+		//TODO NOTE, before was only checking velocity, but this is wrong anyway
 	}
 
     void FixedUpdate()
@@ -635,10 +636,6 @@ public class PlayerMovement : MonoBehaviour {
 		return body;
 	}
 
-	public bool IsIgnoreCollision(float otherPosition, float playerPosition) {
-		return !(Mathf.Abs(otherPosition - playerPosition) < ignoreCollisionInterval);
-	}
-
 	public bool IsIgnoreCollision(Transform otherObject) {
 
 		//boxRenderer = GetComponentInChildren<Renderer>();
@@ -745,9 +742,9 @@ public class PlayerMovement : MonoBehaviour {
 		bool ignoreCollision = true;
 
         if(isEnemy) {
-            Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight);
+            Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight +
+			" isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft);
 
-            Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft); 
         }
 
 

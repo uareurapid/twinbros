@@ -62359,7 +62359,7 @@ MonoBehaviour:
   respawnOnDyingLevel: 0
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 0
+  isDebugMode: 1
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -66747,6 +66747,10 @@ Prefab:
     - target: {fileID: 4041650869602844, guid: 3d9fdb8d93def451487aa037e67ee3e8, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640419916777574, guid: 3d9fdb8d93def451487aa037e67ee3e8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d9fdb8d93def451487aa037e67ee3e8, type: 2}

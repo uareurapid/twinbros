@@ -256,11 +256,6 @@ public class LevelManager : MonoBehaviour {
 		return false;
 	}
 
-    public bool GetIsPurchaseSupportingPlatform()
-    {
-        return Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
-    }
-
 	public void KillPlayer() {
 	
 		if (!isDead && gameStarted)

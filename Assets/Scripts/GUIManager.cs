@@ -313,9 +313,13 @@ public class GUIManager : MonoBehaviour {
         else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
 			ShowVideoRewardToEnableContinue();
 		}//otherwise show purchase option
-        else if(levelManager.GetIsPurchaseSupportingPlatform()) {
+        else if(adsScript.GetIsPurchaseSupportingPlatform()) {
 			//TODO when show the moves purchase or ads removal? (add on settings only)
 			ShowPurchaseRevivesButton();
+		} 
+		else {
+
+			StartCoroutine(ShowRestartText(1.0f));
 		}
 		
 	}

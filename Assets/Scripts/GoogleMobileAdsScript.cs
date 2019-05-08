@@ -11,24 +11,21 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 	private GUIManager guiManager;
 
-    private bool isAdsSupported = true;
 	// Use this for initialization
 	public void Start()
     {
         #if UNITY_ANDROID
             string appId = "ca-app-pub-3940256099942544~3347511713";
-            isAdsSupported = true;
         #elif UNITY_IPHONE
             string appId = "ca-app-pub-9531252796858598~9251777791";
 			//"ca-app-pub-3940256099942544~1458002511";
-            isAdsSupported = true;
-        #else
+		#else
             string appId = "unexpected_platform";
-            isAdsSupported = false;
-        #endif
+			return;
+		#endif
 
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(appId);
+		// Initialize the Google Mobile Ads SDK.
+		MobileAds.Initialize(appId);
 
 		// Get singleton reward based video ad reference.
         this.rewardBasedVideo = RewardBasedVideoAd.Instance;
@@ -60,7 +57,12 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	}
 
     public bool GetIsAdsSupportingPlatform() {
-        return isAdsSupported;
+        return Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
+    }
+
+	public bool GetIsPurchaseSupportingPlatform()
+    {
+        return Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
     }
 
 	public bool IsInterstitialReady() {
@@ -113,7 +115,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 		Debug.Log("RequestInterstitialAd() CALLED");
 		#if UNITY_IPHONE
 			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
-			string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
+			//string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
 		#else
             string adUnitId = "unexpected_platform";
         #endif

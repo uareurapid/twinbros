@@ -28,21 +28,21 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	bool CannotIgnoreRightCollision(PlayerMovement player) {
 
-		return ( !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
+		return ( !player.IsIgnoreCollision(player,transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
 	}
 
 	bool CannotIgnoreLeftCollision(PlayerMovement player)
 	{
-		return ( !player.IsIgnoreCollision(transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
+		return ( !player.IsIgnoreCollision(player,transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
 	}
 
 	bool CannotIgnoreUpCollision(PlayerMovement player) {
-		return ( !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
+		return ( !player.IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
 	}
 
 	bool CannotIgnoreDownCollision(PlayerMovement player)
 	{
-		return ( !player.IsIgnoreCollision(transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
+		return ( !player.IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
 	}
 
     bool CannotIgnoreCollisionWhenNotMoving() {
@@ -60,7 +60,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			levelmanager = scripts.GetComponent<LevelManager>();
 
 		}
-        Debug.Log("HANDLE CALLED");
+        Debug.Log("HANDLE CALLED move left " + player.IsMovingLeft() + " cannnotignore " + CannotIgnoreLeftCollision(player));
 
 		//TODO if moving enemy should not be enough condition
 		if (killPlayerOnTouch)
@@ -68,17 +68,21 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             //levelmanager.KillPlayer();
 			bool killed = false;
             //TODO WTF!!!
-
-
+			//ANTES ESTAVA --> (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player)
+			//e o player stopped só via a velocity, sempre a 0,0,0
             if ( player.IsMovingRight() && CannotIgnoreRightCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
 			}
-            else if ( player.IsMovingLeft() && CannotIgnoreLeftCollision(player))
+            else if ( player.IsMovingLeft()  )
 			{
-				levelmanager.KillPlayer();
-				killed = true;
+				//TODO check this SHIT, not working!!!
+				if (CannotIgnoreLeftCollision(player) || (isMovingEnemy && ( CannotIgnoreUpCollision(player) || CannotIgnoreDownCollision(player) || CannotIgnoreRightCollision(player) ) ) ) {
+					levelmanager.KillPlayer();
+					killed = true;
+				}
+				
 			}
             else if ( player.IsMovingUp() && CannotIgnoreUpCollision(player))
 			{
@@ -134,6 +138,11 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	public void CallBack(MakeShrinkEnemy shrink) {
 		shrink.enabled = false;
+	}
+
+	//TODO this if fucking wrong for sure
+	public bool IsIgnoreCollision(PlayerMovement player, float otherPosition, float playerPosition) {
+		return !(Mathf.Abs(otherPosition - playerPosition) < player.ignoreCollisionInterval);
 	}
 
 }
