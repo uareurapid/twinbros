@@ -151,14 +151,24 @@ public class MoveWayPoint : MonoBehaviour
 		} else {
 
 			numPassages++;
-			if( (justOnce  && currentIndex == wayPoints.Length - 1 )  || 
-									(numPassages == stopAfterXPassages && stopAfterXPassages > 0) ) {
+			if( (justOnce  && currentIndex == wayPoints.Length - 1 )  || (numPassages == stopAfterXPassages && stopAfterXPassages > 0) ) {
 				isPaused = true;
 				return;
-			}
+            } 
+            else if (wayPoints[currentIndex].isDirectTeleport)
+            {
+                //pause it
+                isPaused = true;
+                transform.Translate(new Vector3(0, 0, 0));
+                transform.position = wayPoints[currentIndex].transform.position; //put on the other one
+                NextWaypoint();
+                    Debug.Log("CURRENT TELEPORT? " + currentWaypoint.isDirectTeleport);
+                isPaused = false;
+            }
 
 			//On wave point now
-			
+
+
 			// If the waypoint has a pause amount then wait a bit
 			if(currentWaypoint.waitSeconds > 0f) {
 				Wait();
@@ -207,7 +217,10 @@ public class MoveWayPoint : MonoBehaviour
 
 		}
 
-		currentWaypoint = wayPoints[currentIndex];
+        //normal way
+        currentWaypoint = wayPoints[currentIndex];
+
+		
 	}
 
 	public int GetNumPassages() {

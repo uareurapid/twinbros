@@ -7,6 +7,8 @@ public class WayPoint : MonoBehaviour
     public float speedOut = 0;
 	//disable the collider on Start()
 	public bool enableCollidersOnPlay = false;
+    //instead of moving to the next
+    public bool isDirectTeleport = false;
 
 	void Start() {
 		Collider2D childCol = GetComponent<Collider2D>();
