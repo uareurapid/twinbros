@@ -381,11 +381,19 @@ public class PlayerMovement : MonoBehaviour {
 			reachedTarget = true;
 		}
 
+        if(IsPlayerStucked()) {
+            Debug.Log("STUCKED ........................................");
+        }
+
     }
 
 	public bool IsMovingInAnyDirection() {
 		return IsMovingUp() || IsMovingLeft() || IsMovingDown() || IsMovingRight();
 	}
+
+    public bool CanMoveInAnyDirection() {
+        return canMoveUp || canMoveDown || canMoveLeft || canMoveRight;
+    }
 
 	public void SlideUp() {
 		//Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
@@ -461,7 +469,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(!reachedTarget) {
 
-				reachedTarget = true;
+				//reachedTarget = true;
 
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
@@ -498,7 +506,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(!reachedTarget) {
 
-				reachedTarget = true;
+				//reachedTarget = true;
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
 				}
@@ -535,7 +543,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(!reachedTarget) {
 
-				reachedTarget = true;
+				//reachedTarget = true;
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
 				}
@@ -569,7 +577,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(!reachedTarget) {
 				
-				reachedTarget = true;
+				//reachedTarget = true;
 				if(isLeftTwin) {
 					levelManager.MoveLeftTwin();
 				}
@@ -820,7 +828,7 @@ public class PlayerMovement : MonoBehaviour {
             
                         other.gameObject.GetComponent<Portal>().HandleCollision(this);
 
-                    }else if(isEnemy /*&& !ignoreCollision*/ ) {
+                    } else if(isEnemy /*&& !ignoreCollision*/ ) {
                         EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
                         Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
                         //i could not be moving but if the enemy is we cant ignore it
@@ -1040,6 +1048,10 @@ public class PlayerMovement : MonoBehaviour {
 		reachedTarget = true;
 	}
 
+    public bool GetReachedTarget() {
+        return reachedTarget;
+    }
+
 	public void StopMovementVelocity() {
 
 		if(body!=null) {
@@ -1102,6 +1114,10 @@ public class PlayerMovement : MonoBehaviour {
     void OnDisable()
     {
       //DelegateHandler.actionDelegate -= ReEnableCollidersOnNewLevel;
+    }
+
+    public bool IsPlayerStucked() {
+        return reachedTarget && levelManager.IsGameStarted() && !levelManager.isPlayerDead() && !CanMoveInAnyDirection();
     }
 
 

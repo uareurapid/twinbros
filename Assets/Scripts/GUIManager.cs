@@ -178,7 +178,10 @@ public class GUIManager : MonoBehaviour {
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
 				levelManager.RestartFromDyingLevel();
-			}
+            } else {
+                //normal restart
+                levelManager.StartGame();
+            }
 			
 		}
 		//only if the button is opaque

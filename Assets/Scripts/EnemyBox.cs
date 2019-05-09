@@ -28,21 +28,21 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	bool CannotIgnoreRightCollision(PlayerMovement player) {
 
-		return ( !player.IsIgnoreCollision(player,transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
+		return ( !IsIgnoreCollision(player,transform.position.y, player.transform.position.y) && transform.position.x >= player.transform.position.x);
 	}
 
 	bool CannotIgnoreLeftCollision(PlayerMovement player)
 	{
-		return ( !player.IsIgnoreCollision(player,transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
+		return ( !IsIgnoreCollision(player,transform.position.y, player.transform.position.y) && transform.position.x <= player.transform.position.x);
 	}
 
 	bool CannotIgnoreUpCollision(PlayerMovement player) {
-		return ( !player.IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
+		return ( !IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y >= player.transform.position.y);
 	}
 
 	bool CannotIgnoreDownCollision(PlayerMovement player)
 	{
-		return ( !player.IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
+		return ( !IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
 	}
 
     bool CannotIgnoreCollisionWhenNotMoving() {
@@ -70,7 +70,12 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             //TODO WTF!!!
 			//ANTES ESTAVA --> (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player)
 			//e o player stopped só via a velocity, sempre a 0,0,0
-            if ( player.IsMovingRight() && CannotIgnoreRightCollision(player))
+
+            if(isMovingEnemy && !player.GetReachedTarget()) {
+                levelmanager.KillPlayer();
+                killed = true;
+            }
+            else if ( player.IsMovingRight() && CannotIgnoreRightCollision(player))
 			{
 				levelmanager.KillPlayer();
 				killed = true;
