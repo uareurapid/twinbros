@@ -623,6 +623,7 @@ MonoBehaviour:
   waitSeconds: 5
   speedOut: 0
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5026,6 +5027,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.25
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -6598,15 +6600,15 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 747059180}
+    m_TransformParent: {fileID: 1221477107}
     m_Modifications:
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.02
+      value: -3.52
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.904
+      value: 1.5139999
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6630,7 +6632,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
@@ -6988,6 +6990,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13436,6 +13439,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1001 &209273855
 Prefab:
   m_ObjectHideFlags: 0
@@ -16918,6 +16922,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 6
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &268682183
 GameObject:
   m_ObjectHideFlags: 0
@@ -27032,6 +27037,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &439504912 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1310252356114866, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -30503,6 +30509,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1001 &497673481
 Prefab:
   m_ObjectHideFlags: 0
@@ -39880,15 +39887,15 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 747059180}
+    m_TransformParent: {fileID: 1221477107}
     m_Modifications:
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.05
+      value: -4.55
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.93
+      value: 0.53999996
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_LocalPosition.z
@@ -39912,7 +39919,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1211128221896098, guid: 97ffe6769858e42268a45a8427ae8195, type: 2}
       propertyPath: m_Name
@@ -46020,7 +46027,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 698991576}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -48292,10 +48299,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 956261450}
-  - {fileID: 668479041}
   - {fileID: 1221477107}
   - {fileID: 1316827351}
-  - {fileID: 585982338}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48408,6 +48413,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51631,6 +51637,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55214,6 +55221,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 6
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &879957238
 GameObject:
   m_ObjectHideFlags: 0
@@ -56341,6 +56349,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 4
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &901877689
 GameObject:
   m_ObjectHideFlags: 0
@@ -60916,6 +60925,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &975852481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62359,7 +62369,7 @@ MonoBehaviour:
   respawnOnDyingLevel: 0
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 1
+  isDebugMode: 0
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -63633,6 +63643,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -66508,6 +66519,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1053619859
 GameObject:
   m_ObjectHideFlags: 0
@@ -67024,6 +67036,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -75121,8 +75134,10 @@ Transform:
   - {fileID: 386572749}
   - {fileID: 155780120}
   - {fileID: 990453091}
+  - {fileID: 668479041}
+  - {fileID: 585982338}
   m_Father: {fileID: 747059180}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1223236745 stripped
 Transform:
@@ -77952,6 +77967,7 @@ MonoBehaviour:
   waitSeconds: 1
   speedOut: 2
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!114 &1275577055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78019,7 +78035,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 286342002}
-  m_RootOrder: 1
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275598879
 GameObject:
@@ -78739,6 +78755,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.25
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1284402093
 GameObject:
   m_ObjectHideFlags: 0
@@ -78988,6 +79005,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1289222419
 GameObject:
   m_ObjectHideFlags: 0
@@ -80578,7 +80596,7 @@ Transform:
   - {fileID: 543622845}
   - {fileID: 1549756875}
   m_Father: {fileID: 747059180}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1318350283
 GameObject:
@@ -81293,6 +81311,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &1328684368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103007,6 +103026,7 @@ MonoBehaviour:
   waitSeconds: 1
   speedOut: 4
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1516769182 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1459471108475612, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -109640,6 +109660,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &1629454292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -111078,6 +111099,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &1655267792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123255,7 +123277,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1851097920}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -124464,6 +124486,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -129801,6 +129824,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 2
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!114 &1979010480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129868,7 +129892,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 286342002}
-  m_RootOrder: 2
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1980215458
 GameObject:
@@ -130765,6 +130789,7 @@ MonoBehaviour:
   waitSeconds: 5
   speedOut: 0
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &2002713879
 GameObject:
   m_ObjectHideFlags: 0

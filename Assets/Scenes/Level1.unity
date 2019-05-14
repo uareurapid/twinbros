@@ -611,6 +611,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 0
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1191,7 +1192,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -185020843
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &21499769
@@ -4233,6 +4234,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 6
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &88049631
 GameObject:
   m_ObjectHideFlags: 0
@@ -4652,6 +4654,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.25
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -5722,6 +5725,7 @@ MonoBehaviour:
   waitSeconds: 5
   speedOut: 8
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &129903833
 GameObject:
   m_ObjectHideFlags: 0
@@ -5752,7 +5756,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2108593745}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &129903835
 SpriteRenderer:
@@ -5849,6 +5853,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &130871704
 GameObject:
   m_ObjectHideFlags: 0
@@ -6763,6 +6768,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12535,6 +12541,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &209448903
 GameObject:
   m_ObjectHideFlags: 0
@@ -16301,7 +16308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2108593745}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &282771441
 SpriteRenderer:
@@ -16398,6 +16405,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &283323424
 GameObject:
   m_ObjectHideFlags: 0
@@ -17424,6 +17432,7 @@ MonoBehaviour:
   waitSeconds: 0.5
   speedOut: 5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!4 &311705538
 Transform:
   m_ObjectHideFlags: 0
@@ -22853,6 +22862,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &412809729
 GameObject:
   m_ObjectHideFlags: 0
@@ -24647,6 +24657,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &440238689
 GameObject:
   m_ObjectHideFlags: 0
@@ -27766,6 +27777,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1001 &497613412
 Prefab:
   m_ObjectHideFlags: 0
@@ -35802,6 +35814,7 @@ MonoBehaviour:
   waitSeconds: 5
   speedOut: 8
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &600145812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40539,6 +40552,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &689361369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40606,7 +40620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2021703783}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &694672141
 GameObject:
@@ -43083,6 +43097,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45859,6 +45874,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46080,6 +46096,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 4
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!4 &811539068 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195,
@@ -47548,6 +47565,7 @@ MonoBehaviour:
   waitSeconds: 0.5
   speedOut: 5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!114 &840987770 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491,
@@ -47619,6 +47637,7 @@ MonoBehaviour:
   waitSeconds: 1
   speedOut: 5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!114 &846245402 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491,
@@ -48351,6 +48370,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1001 &866021984
 Prefab:
   m_ObjectHideFlags: 0
@@ -56457,6 +56477,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -58190,6 +58211,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1037591047
 GameObject:
   m_ObjectHideFlags: 0
@@ -59041,6 +59063,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1053619859
 GameObject:
   m_ObjectHideFlags: 0
@@ -59587,6 +59610,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70807,6 +70831,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.25
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1284402093
 GameObject:
   m_ObjectHideFlags: 0
@@ -71123,6 +71148,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1289222419
 GameObject:
   m_ObjectHideFlags: 0
@@ -81631,6 +81657,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &1407667686
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81698,7 +81725,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2021703783}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1411245883
 GameObject:
@@ -93372,6 +93399,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &1515644967
 RectTransform:
   m_ObjectHideFlags: 0
@@ -110632,6 +110660,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &1823276616
 RectTransform:
   m_ObjectHideFlags: 0
@@ -111765,7 +111794,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2108593745}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1837981152
 SpriteRenderer:
@@ -111862,6 +111891,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1839860897
 GameObject:
   m_ObjectHideFlags: 0
@@ -112158,6 +112188,7 @@ MonoBehaviour:
   waitSeconds: 1
   speedOut: 5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &1847739974
 GameObject:
   m_ObjectHideFlags: 0
@@ -113777,6 +113808,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 0.5
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -114986,6 +115018,7 @@ MonoBehaviour:
   waitSeconds: 0.5
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &1898970902
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115508,6 +115541,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 3
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!114 &1904338523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120078,6 +120112,7 @@ MonoBehaviour:
   waitSeconds: 2
   speedOut: 0
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1001 &1998452760
 Prefab:
   m_ObjectHideFlags: 0
@@ -124181,6 +124216,7 @@ MonoBehaviour:
   waitSeconds: 1
   speedOut: 2
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &2025692871
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126886,6 +126922,7 @@ MonoBehaviour:
   waitSeconds: 0
   speedOut: 1
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!1 &2083706915
 GameObject:
   m_ObjectHideFlags: 0
@@ -128524,6 +128561,7 @@ MonoBehaviour:
   waitSeconds: 0.5
   speedOut: 2
   enableCollidersOnPlay: 0
+  isDirectTeleport: 0
 --- !u!212 &2116051096
 SpriteRenderer:
   m_ObjectHideFlags: 0

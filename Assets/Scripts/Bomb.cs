@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb: SpawnableItem, HandlePlayerCollision {
+public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript { 
+//we do not add the behaviour but use the interface anyway
 
 	public float delayBeforeBurn = 1.0f;
 	public float delayBeforeExplosion = 2.0f;
@@ -13,11 +14,22 @@ public class Bomb: SpawnableItem, HandlePlayerCollision {
 	private Explodable explodeAction;
 
 
+	private bool originallyLightUp = false;
+	private bool originallyBurning = false;
+	private AnimationController bombController;
+	private Sprite initialSprite;
 	// Use this for initialization
 	void Start () {
 		
 		anim = GetComponentInChildren<Animator>();
 		explodeAction = GetComponent<Explodable>();
+		//get the initial values for reset after player death
+		bombController = GetComponentInChildren<AnimationController>();
+
+		initialSprite = GetComponentInChildren<SpriteRenderer>().sprite;
+
+		originallyLightUp = isLightUp;
+		originallyBurning = isBurning;
 	}
 	
 	public void HandleExitCollision(PlayerMovement player) {
@@ -83,8 +95,26 @@ public class Bomb: SpawnableItem, HandlePlayerCollision {
 		}
 
 		gameObject.SetActive(false);
+		Debug.Log("STILL IN BOMB!!!!");
+		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
 		
 		
+	}
+
+	//called from ResetActiveState TODO find a better way, still not working all the time!
+	public void ResetOriginalBehaviour() {
+		isLightUp = originallyLightUp;
+		isBurning = originallyBurning;
+
+		Debug.Log("RESETTING BOMB!!!!");
+
+		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
+
+		//restore also the controller parameters
+		Dictionary <string,bool> parameters = bombController.GetOriginalParameters();
+	 	foreach( KeyValuePair<string, bool> keyValue in parameters) {
+			bombController.SetAnimationParameter(keyValue.Key, keyValue.Value);
+		}
 	}
 
 }

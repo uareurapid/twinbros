@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//sets the original state of the attached MonoBehaviour scripts (either active or not)
 public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 	{
 		List<MonoBehaviour> list;

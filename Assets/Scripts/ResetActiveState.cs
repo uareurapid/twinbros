@@ -32,6 +32,12 @@ using UnityEngine;
 		{
 			if(gameObject!=null) {
 				gameObject.SetActive(initiallyActive);
+
+				//TODO this reset the bomb to initial state and animation,
+				//but should be done with a reset bomb script or something
+				if(gameObject.GetComponent<Bomb>()) {
+					gameObject.GetComponent<Bomb>().ResetOriginalBehaviour();
+				}
 			}
 		}
 	}

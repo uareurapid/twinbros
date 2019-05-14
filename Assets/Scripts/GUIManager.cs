@@ -321,7 +321,6 @@ public class GUIManager : MonoBehaviour {
 			ShowPurchaseRevivesButton();
 		} 
 		else {
-
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		

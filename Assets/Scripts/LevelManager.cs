@@ -181,6 +181,8 @@ public class LevelManager : MonoBehaviour {
 
 	public void StartGame() {
 
+		//TODO eu não posso carregar e começar  nivel antes do resetbehaviours
+		//primeiro o reset e quando terminar é que posso clicar no botão!!!
 		RestartLevel();
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
