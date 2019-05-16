@@ -8,9 +8,11 @@ public class GameManagerScript : MonoBehaviour {
 	//list of all levels
 	public Level[] levels;
 
+    private GameObject starField;
+
 	// Use this for initialization
 	void Start () {
-		
+        starField = GameObject.FindGameObjectWithTag("StarField");
 	}
 	
 	// Update is called once per frame
@@ -43,4 +45,17 @@ public class GameManagerScript : MonoBehaviour {
 		//TODO disable the others?
 		//need to address other cases, like restarting, continue, respawning levels, etc.. for later..
 	}
+
+    public void DisableStarField() {
+        if(starField!=null) {
+            starField.SetActive(false); 
+        }
+    }
+
+    public void EnableStarFieldOnLocation(Vector3 position) {
+        if(starField!=null) {
+            starField.transform.position = position;
+            starField.SetActive(true);
+        }
+    }
 }

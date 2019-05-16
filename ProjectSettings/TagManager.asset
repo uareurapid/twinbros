@@ -26,6 +26,7 @@ TagManager:
   - Fruit
   - FxTemporaire
   - Slider
+  - StarField
   layers:
   - Default
   - TransparentFX

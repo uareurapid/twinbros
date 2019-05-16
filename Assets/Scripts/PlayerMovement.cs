@@ -836,9 +836,9 @@ public class PlayerMovement : MonoBehaviour {
                         enemy.HandleCollision(this);
                         //}else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
                     }
-					else if(isSlider) {
+                    else if(isSlider && !ignoreCollision) {
 						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
-						slider.Slide(this);
+                        slider.HandleCollision(this);
 					}
 					else if(isMovingBlock) {
 						//pause the moving block

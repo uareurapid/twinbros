@@ -56,8 +56,9 @@ public class LevelManager : MonoBehaviour {
 	public int currentScore = 0;
 	public int highScore = 0;
 
-	void Start () {
 
+	void Start () {
+                  
 		if(CheckHasExtraMoves() || hasExtraMoves) {
 			numMoves = MAX_MOVES + 2;
 		}
@@ -474,6 +475,9 @@ public class LevelManager : MonoBehaviour {
 		scr.nextLevel = nextLevel.level;
 		LoadAllLevels(nextLevel);
 		scr.MoveToNextLevel();
+
+        //gameManager.DisableStarField();
+
 		//Move the players
 		StartMovePlayersIntoPosition(nextLevel);
 		setCurrentLevel(nextLevel);

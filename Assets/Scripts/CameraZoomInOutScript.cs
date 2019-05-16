@@ -42,6 +42,8 @@ public class CameraZoomInOutScript : MonoBehaviour {
 	public int numLevels = 6;
 
 	private GameManagerScript gameManager;
+
+    private Vector3 nextPosition;//next target position
 	void Start () {
 
 	  Time.timeScale = 1.0f;
@@ -146,6 +148,7 @@ public class CameraZoomInOutScript : MonoBehaviour {
 		//}
 
 		GameObject obj = GameObject.FindGameObjectWithTag ("level_" + targetLevel); //"start" + targetLevel
+        nextPosition = obj.transform.position;
 
 		
 		StartCoroutine(MoveToTarget(obj.transform,targetLevel));
@@ -189,6 +192,7 @@ public class CameraZoomInOutScript : MonoBehaviour {
 		}
 		isMovementComplete = true;
 		currentLevel = targetLevel;
+        //gameManager.EnableStarFieldOnLocation(nextPosition);
 	}
 	
 	// Update is called once per frame
