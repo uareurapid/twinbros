@@ -192,7 +192,7 @@ public class CameraZoomInOutScript : MonoBehaviour {
 		}
 		isMovementComplete = true;
 		currentLevel = targetLevel;
-        //gameManager.EnableStarFieldOnLocation(nextPosition);
+        gameManager.EnableStarFieldOnLocation(nextPosition.y);
 	}
 	
 	// Update is called once per frame

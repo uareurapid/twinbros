@@ -296,9 +296,12 @@ public class GUIManager : MonoBehaviour {
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
-		
+		if(levelManager.isTestMode) {
+
+			StartCoroutine(ShowRestartText(1.0f));
+		}
 		//if not purchased product and is time for ads
-        if(PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0 && adsScript.IsInterstitialReady() && adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() )  {
+        else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0 && adsScript.IsInterstitialReady() && adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() )  {
 
 			shouldShowInterstitial = true;
 			stopTimer = true;

@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour {
 
 	public bool isDebugMode = false;
 
+	public bool isTestMode = false;
+
 	private bool leftTwinMoved = false;
 	private bool rightTwinMoved = false;
 
@@ -410,6 +412,7 @@ public class LevelManager : MonoBehaviour {
 					player.ResetPlayerOnNewLevel(); //will also set the new associated level for both twins
 				}
 
+				//TODO show if level 1, but if i just died than do not show the stage image
 				if(currentLevel.level > 1) {
 					ShowLevelNum();
 				} //else called from GUIManager after the stage image
@@ -476,7 +479,7 @@ public class LevelManager : MonoBehaviour {
 		LoadAllLevels(nextLevel);
 		scr.MoveToNextLevel();
 
-        //gameManager.DisableStarField();
+        gameManager.DisableStarField();
 
 		//Move the players
 		StartMovePlayersIntoPosition(nextLevel);

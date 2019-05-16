@@ -9,10 +9,13 @@ public class GameManagerScript : MonoBehaviour {
 	public Level[] levels;
 
     private GameObject starField;
-
+	private Vector3 starFieldInitialPosition;
 	// Use this for initialization
 	void Start () {
         starField = GameObject.FindGameObjectWithTag("StarField");
+		if(starField!=null) {
+			starFieldInitialPosition = starField.transform.position;
+		}
 	}
 	
 	// Update is called once per frame
@@ -48,14 +51,15 @@ public class GameManagerScript : MonoBehaviour {
 
     public void DisableStarField() {
         if(starField!=null) {
-            starField.SetActive(false); 
+            starField.GetComponent<StarFieldManagerComponent>().enabled = false; 
         }
     }
 
-    public void EnableStarFieldOnLocation(Vector3 position) {
+    public void EnableStarFieldOnLocation(float yPosition) {
         if(starField!=null) {
-            starField.transform.position = position;
-            starField.SetActive(true);
+			Debug.Log("RE_ENABLE STAR FIELD");
+            starField.transform.position = new Vector3(starFieldInitialPosition.x,yPosition, starFieldInitialPosition.z);
+            starField.GetComponent<StarFieldManagerComponent>().enabled = true; 
         }
     }
 }
