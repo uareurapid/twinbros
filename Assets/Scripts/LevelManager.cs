@@ -413,7 +413,7 @@ public class LevelManager : MonoBehaviour {
 				}
 
 				//TODO show if level 1, but if i just died than do not show the stage image
-				if(currentLevel.level > 1) {
+				if(currentLevel.level >= 1) {
 					ShowLevelNum();
 				} //else called from GUIManager after the stage image
 	
@@ -514,6 +514,7 @@ public class LevelManager : MonoBehaviour {
 
 	//show the num of the new level
 	public void ShowLevelNum() {
+
 		guiManager.ShowLevelNumImages(this.currentLevel.level);
 		StartCoroutine(HideLevelNumImages());
 	}
