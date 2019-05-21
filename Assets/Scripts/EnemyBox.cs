@@ -45,8 +45,15 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 		return ( !IsIgnoreCollision(player,transform.position.x, player.transform.position.x) && transform.position.y <= player.transform.position.y);
 	}
 
-    bool CannotIgnoreCollisionWhenNotMoving() {
-        return false;
+    bool CannotIgnoreCollisionWhenNotMoving(PlayerMovement player) {
+        return ( player.IsMovingUp() && CannotIgnoreUpCollision(player) ) || 
+			(player.IsMovingDown() && CannotIgnoreDownCollision(player) ) || 
+			(player.IsMovingLeft() && CannotIgnoreLeftCollision(player) ) || 
+			(player.IsMovingRight() && CannotIgnoreRightCollision(player) );
+    }
+
+	bool CannotIgnoreCollisionWhenMoving(PlayerMovement player) {
+        return CannotIgnoreUpCollision(player) || CannotIgnoreDownCollision(player) || CannotIgnoreLeftCollision(player) || CannotIgnoreRightCollision(player);
     }
 
 	public void HandleExitCollision(PlayerMovement player) {
@@ -62,6 +69,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 		}
         Debug.Log("HANDLE CALLED move left " + player.IsMovingLeft() + " cannnotignore " + CannotIgnoreLeftCollision(player));
 
+		//TODO THIS SHIT NEEDS A RE-WRITE!!!
 		//TODO if moving enemy should not be enough condition
 		if (killPlayerOnTouch)
 		{
@@ -71,7 +79,12 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			//ANTES ESTAVA --> (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player)
 			//e o player stopped só via a velocity, sempre a 0,0,0
 
-            if(isMovingEnemy && !player.GetReachedTarget()) {
+			//means player is moving
+            if(isMovingEnemy && !player.GetReachedTarget() && CannotIgnoreCollisionWhenNotMoving(player)) {
+                levelmanager.KillPlayer();
+                killed = true;
+            }//player is stopped, but object is moving
+			if( (isMovingEnemy && player.GetReachedTarget()) && CannotIgnoreCollisionWhenNotMoving(player) ) {
                 levelmanager.KillPlayer();
                 killed = true;
             }

@@ -1,17 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BlinkSpriteScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SliderBlock.cs">
     <Files>
-      <File FileName="Assets/Scripts/AutoDisableSprite.cs" Line="71" Column="21" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="235" Column="3" />
-      <File FileName="Assets/Scripts/StarFieldManagerComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Starfield.cs" Line="61" Column="20" />
-      <File FileName="Assets/Scripts/FixedScroll.cs" Line="10" Column="12" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="517" Column="1" />
-      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="60" Column="38" />
-      <File FileName="Assets/Scripts/CameraZoomInOutScript.cs" Line="181" Column="48" />
-      <File FileName="Assets/Scripts/FadeSprite.cs" Line="136" Column="53" />
-      <File FileName="Assets/Scripts/FadeSpriteAlpha.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BlinkSpriteScript.cs" Line="30" Column="30" />
+      <File FileName="Assets/Scripts/EnemyBox.cs" Line="72" Column="39" />
+      <File FileName="Assets/Scripts/TeletransportPoint.cs" Line="118" Column="50" />
+      <File FileName="Assets/Scripts/GameConstants.cs" Line="30" Column="22" />
+      <File FileName="Assets/Scripts/SliderBlock.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
