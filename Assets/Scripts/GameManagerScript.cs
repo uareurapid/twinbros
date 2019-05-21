@@ -51,15 +51,13 @@ public class GameManagerScript : MonoBehaviour {
 
     public void DisableStarField() {
         if(starField!=null) {
-            starField.GetComponent<StarFieldManagerComponent>().enabled = false; 
+            starField.GetComponent<StarFieldManagerComponent>().MoveStarFieldToNextLevel(); 
         }
     }
 
-    public void EnableStarFieldOnLocation(float yPosition) {
+    public void EnableStarFieldOnLocation(Transform parent, Vector3 position) {
         if(starField!=null) {
-			Debug.Log("RE_ENABLE STAR FIELD");
-            starField.transform.position = new Vector3(starFieldInitialPosition.x,yPosition, starFieldInitialPosition.z);
-            starField.GetComponent<StarFieldManagerComponent>().enabled = true; 
+            starField.GetComponent<StarFieldManagerComponent>().RestartStarFieldOnNewLocation(parent); 
         }
     }
 }
