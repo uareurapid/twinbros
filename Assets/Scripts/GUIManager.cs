@@ -7,6 +7,7 @@ public class GUIManager : MonoBehaviour {
 
 	public Sprite [] musicSettingsImages;
 	public UnityEngine.UI.Image musicSettingsButton;
+    public UnityEngine.UI.Image arcadePanelMusicSettingsButton;
 
 	public UnityEngine.UI.Image [] movesImage;
 	public UnityEngine.UI.Image [] extraMovesImage;
@@ -21,6 +22,7 @@ public class GUIManager : MonoBehaviour {
 	public Sprite [] leaderboardsImages;
 
 	public GameObject settingsPanel;
+    public GameObject arcadeModeSettingsPanel;//no purchases btns
 
 	public UnityEngine.UI.Text purchaseRevivesText;
 	public UnityEngine.UI.Text purchaseMovesText;
@@ -79,6 +81,8 @@ public class GUIManager : MonoBehaviour {
 	private bool stopTimer = false;
 
 	private TextLocalizationManager translationManager;
+    //for Apple arcade or desktop (no in-apps or ads)
+    public bool isArcadeOrSubscriptionMode = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -145,14 +149,25 @@ public class GUIManager : MonoBehaviour {
 	public void PausePressed() {
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
-		ShowSettingsPanel();
+        //do not show settings panel on arcade mode
+        if(!isArcadeOrSubscriptionMode) {
+            ShowSettingsPanel(); 
+        } else {
+            ShowArcadeSettingsPanel();
+        }
+		
 		Time.timeScale = 0;
 	}
 
 	public void UnPausePressed() {
 		pauseButton.enabled = true;
 		unpauseButton.enabled = false;
-		HideSettingsPanel();
+        if (!isArcadeOrSubscriptionMode) {
+            HideSettingsPanel();
+        } else {
+            HideArcadeSettingsPanel();
+        }
+		
 		Time.timeScale = 1f;
 	}
 
@@ -163,9 +178,22 @@ public class GUIManager : MonoBehaviour {
 		settingsPanel.SetActive(true);
 	}
 
+    public void ShowArcadeSettingsPanel()
+    {
+        //set the music button On/Off
+        int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+        arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+        arcadeModeSettingsPanel.SetActive(true);
+    }
+
 	public void HideSettingsPanel() {
 		settingsPanel.SetActive(false);
 	}
+
+    public void HideArcadeSettingsPanel()
+    {
+        arcadeModeSettingsPanel.SetActive(false);
+    }
 
 	public void PlayPressed() {
 
@@ -301,7 +329,8 @@ public class GUIManager : MonoBehaviour {
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		//if not purchased product and is time for ads
-        else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0 && adsScript.IsInterstitialReady() && adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() )  {
+        else if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0) && adsScript.IsInterstitialReady() && 
+                adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !isArcadeOrSubscriptionMode )  {
 
 			shouldShowInterstitial = true;
 			stopTimer = true;
@@ -316,10 +345,10 @@ public class GUIManager : MonoBehaviour {
 			// show the option to continue
 			StartCoroutine(ShowRestartText(1.0f));
 		}// preferably show ads
-        else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1 ) {
+        else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1) && !isArcadeOrSubscriptionMode ) {
 			ShowVideoRewardToEnableContinue();
 		}//otherwise show purchase option
-        else if(adsScript.GetIsPurchaseSupportingPlatform()) {
+        else if(adsScript.GetIsPurchaseSupportingPlatform() && !isArcadeOrSubscriptionMode) {
 			//TODO when show the moves purchase or ads removal? (add on settings only)
 			ShowPurchaseRevivesButton();
 		} 
@@ -408,7 +437,12 @@ public class GUIManager : MonoBehaviour {
 			
 		}
 		PlayerPrefs.SetInt("MUSIC_OFF", musicOff);
-		musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+        if(isArcadeOrSubscriptionMode) {
+            arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+        } else {
+            musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];  
+        }
+		
 		
 	}
 
