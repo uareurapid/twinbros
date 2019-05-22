@@ -12,7 +12,7 @@ public class FadeSprite : MonoBehaviour {
 	public bool disableColliderIfTransparent = false;
 
     // starting value for the Lerp
-    static float interpolater = 0.0f;
+    //static float interpolater = 0.0f;
 
 	public bool isUIImage = false;
     UnityEngine.UI.Image image;

@@ -8,7 +8,7 @@ public class FadeSpriteAlpha : MonoBehaviour {
     public float fadeSpeed = 1f;
     public bool fadeIn = true;
     private SpriteRenderer sprite;
-	private float fadeVal = 1.0f;
+	//private float fadeVal = 1.0f;
 
 	public float minimum = 0.0f;
     public float maximum = 1f;
@@ -24,7 +24,7 @@ public class FadeSpriteAlpha : MonoBehaviour {
 	//public bool isTransparent = false;
 	//public bool isOpaque = false;
      
-    Collider2D coll;
+    //Collider2D coll;
 
 	Color color;
      // Invisible on Awake
@@ -37,7 +37,7 @@ public class FadeSpriteAlpha : MonoBehaviour {
 
 	 void OnEnable() {
 
-		coll = GetComponent<Collider2D>();
+		//coll = GetComponent<Collider2D>();
 		sprite = GetComponent<SpriteRenderer>();
 
 		if (sprite == null)

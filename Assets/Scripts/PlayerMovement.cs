@@ -671,7 +671,6 @@ public class PlayerMovement : MonoBehaviour {
 					( boxRenderer.bounds.center.y  > otherTop ) && 
 					( boxRenderer.bounds.center.y  < otherBottom ) )   {
                     Debug.Log("RIGHT COLLISION WITH : " + otherObject.name);
-                    Debug.Log("WWWWTWTWTTWTWTWTWTTWFFFFFF");
 					return false;
 				}
 			}
@@ -749,7 +748,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        if(isEnemy) {
+        if(isEnemy || isSlider) {
             Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight +
 			" isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft);
 
@@ -859,7 +858,7 @@ public class PlayerMovement : MonoBehaviour {
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 					}	
 
-					else {
+					else if(!ignoreCollision) {
 						HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
 						if(handle!=null) {
 							handle.HandleCollision(this);

@@ -95,7 +95,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 		}
 
 		gameObject.SetActive(false);
-		Debug.Log("STILL IN BOMB!!!!");
+		//Debug.Log("STILL IN BOMB!!!!");
 		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
 		
 		
@@ -106,7 +106,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 		isLightUp = originallyLightUp;
 		isBurning = originallyBurning;
 
-		Debug.Log("RESETTING BOMB!!!!");
+		//Debug.Log("RESETTING BOMB!!!!");
 
 		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
 

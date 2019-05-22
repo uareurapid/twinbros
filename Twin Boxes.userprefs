@@ -1,10 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SliderBlock.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraZoomInOutScript.cs">
     <Files>
+      <File FileName="Assets/Scripts/SliderBlock.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/EnemyBox.cs" Line="72" Column="39" />
       <File FileName="Assets/Scripts/TeletransportPoint.cs" Line="118" Column="50" />
       <File FileName="Assets/Scripts/GameConstants.cs" Line="30" Column="22" />
-      <File FileName="Assets/Scripts/SliderBlock.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="673" Column="77" />
+      <File FileName="Assets/Scripts/Bomb.cs" Line="98" Column="5" />
+      <File FileName="Assets/Scripts/FadeSprite.cs" Line="15" Column="7" />
+      <File FileName="Assets/Scripts/FadeSpriteAlpha.cs" Line="11" Column="25" />
+      <File FileName="Assets/Scripts/CameraZoomInOutScript.cs" Line="17" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
