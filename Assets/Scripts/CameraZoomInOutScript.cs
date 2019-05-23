@@ -14,7 +14,7 @@ public class CameraZoomInOutScript : MonoBehaviour {
 	// Use this for initialization
 
 	//Vector3 targetPosition;
-	Vector3 velocity = Vector3.zero;
+	//Vector3 velocity = Vector3.zero;
 	public float timeToReachTarget = 4f; //seconds
 
 	public float moveSpeed = 14f;//same as players
