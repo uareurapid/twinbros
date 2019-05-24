@@ -6,14 +6,33 @@ public class LevelSelector : MonoBehaviour {
 
     public MoveWayPoint[] courtineDoors;
     AsyncOperation asyncOperation;
+
+	public Sprite levelLockedImage;
+	public Sprite levelUnlockedImage;
+
+	public GameObject loadingDotsImage;
+
+	public LevelStatus[] levels;
 	// Use this for initialization
 	void Start () {
-		
+		CheckLevelStatus();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	//TODO this should be done based on PlayerPrefs
+	void CheckLevelStatus() {
+		foreach(LevelStatus level in levels) {
+			if(level.locked) {
+				level.GetComponent<UnityEngine.UI.Image>().sprite = levelLockedImage;
+			}
+			else {
+				level.GetComponent<UnityEngine.UI.Image>().sprite = levelUnlockedImage;
+			}
+		}
 	}
 
     public void LoadStageOne() {
@@ -70,6 +89,12 @@ public class LevelSelector : MonoBehaviour {
             }
             yield return null;
         }
-        asyncOperation.allowSceneActivation = true;
+		loadingDotsImage.SetActive(false);
+		Invoke("Proceed", 1.5f);
     }
+
+	void Proceed() {
+		
+        asyncOperation.allowSceneActivation = true;
+	}
 }
