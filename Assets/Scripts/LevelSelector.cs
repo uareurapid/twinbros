@@ -36,27 +36,49 @@ public class LevelSelector : MonoBehaviour {
 	}
 
     public void LoadStageOne() {
-        StartCoroutine(LoadScene("Level1"));
+
+		if(!levels[0].locked) 
+		{
+			StartCoroutine(LoadScene("Level1"));
+		}
+        
     }
 
     public void LoadStageTwo()
     {
-        StartCoroutine(LoadScene("Level2"));
+		if (!levels[1].locked)
+		{
+			StartCoroutine(LoadScene("Level2"));
+		}
+        
     }
 
     public void LoadStageThree()
     {
-        StartCoroutine(LoadScene("Level3"));
+		if (!levels[2].locked)
+		{
+			StartCoroutine(LoadScene("Level3"));
+		}
+        
     }
 
     public void LoadStageFour()
     {
-        StartCoroutine(LoadScene("Level3"));
+		if (!levels[3].locked)
+		{
+			StartCoroutine(LoadScene("Level4"));
+		}
+        
     }
 
     public void LoadStageFive()
     {
-        StartCoroutine(LoadScene("Level3"));
+
+		if (!levels[4].locked)
+		{
+			StartCoroutine(LoadScene("Level5"));
+		}
+        
     }
 
     IEnumerator LoadScene(string scene)
