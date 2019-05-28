@@ -387,6 +387,10 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
+	public void SetReachedTarget(bool reached) {
+		reachedTarget = reached;
+	}
+
 	public bool IsMovingInAnyDirection() {
 		return IsMovingUp() || IsMovingLeft() || IsMovingDown() || IsMovingRight();
 	}
@@ -644,7 +648,7 @@ public class PlayerMovement : MonoBehaviour {
 		return body;
 	}
 
-	public bool IsIgnoreCollision(Transform otherObject) {
+	public bool IsIgnoreCollision(Transform otherObject, bool ignoreMovementDirection) {
 
 		//boxRenderer = GetComponentInChildren<Renderer>();
 		CheckBounds();
@@ -664,17 +668,17 @@ public class PlayerMovement : MonoBehaviour {
 			float otherTop = otherRenderer.bounds.center.y - (otherHeight / 2);
 		    float otherBottom = otherRenderer.bounds.center.y + (otherHeight / 2);
 
-			if(isRightMovement) {
+			if(isRightMovement && !ignoreMovementDirection) {
 
 				//player right must be bigger than enemy left
 				if( ( (playerRight + ignoreCollisionInterval) > otherLeft) && 
 					( boxRenderer.bounds.center.y  > otherTop ) && 
 					( boxRenderer.bounds.center.y  < otherBottom ) )   {
-                    Debug.Log("RIGHT COLLISION WITH : " + otherObject.name);
+   
 					return false;
 				}
 			}
-			else if(isLeftMovement) {
+			else if(isLeftMovement && !ignoreMovementDirection) {
 
 				//Debug.Log("playerLeft: " + playerLeft + "otherLeft: " + otherLeft + " other right: " + otherRight); 
 				//Debug.Log( (playerLeft - ignoreCollisionInterval) < otherRight);
@@ -683,29 +687,61 @@ public class PlayerMovement : MonoBehaviour {
 				if( ( (playerLeft - ignoreCollisionInterval) < otherRight) && 
 					( boxRenderer.bounds.center.y  > otherTop) && 
 					( boxRenderer.bounds.center.y  < otherBottom ) )   {
-					//if(!isLeftTwin) Debug.Log("LEFT COLLISION WITH : " + otherObject.name);
+		
 					return false;
 				}
 
 			}
-			else if(isUpMovement) {
+			else if(isUpMovement && !ignoreMovementDirection) {
 			
 				if( ( (playerTop - ignoreCollisionInterval) < otherBottom) && 
 					( boxRenderer.bounds.center.x  > otherLeft ) && 
 					( boxRenderer.bounds.center.x  < otherRight ) )   {
-					//if(!isLeftTwin) Debug.Log("TOP COLLISION WITH : " + otherObject.name);
+
 					return false;
 				}
 			}
-			else if(isDownMovement) {
+			else if(isDownMovement && !ignoreMovementDirection) {
 			
 				if( ( (playerBottom + ignoreCollisionInterval) > otherTop) && 
 					( boxRenderer.bounds.center.x  > otherLeft ) && 
 					( boxRenderer.bounds.center.x  < otherRight ) )   {
-					//if(!isLeftTwin) Debug.Log("BOTTOM COLLISION WITH : " + otherObject.name);
+		
 					return false;
 				}
 			}
+			//TODO NEW NEEDS REFACTORING
+			else if( (!IsMovingInAnyDirection() || reachedTarget) && ignoreMovementDirection ) {
+			
+				if( ( (playerRight + ignoreCollisionInterval) > otherLeft) && 
+					( boxRenderer.bounds.center.y  > otherTop ) && 
+					( boxRenderer.bounds.center.y  < otherBottom ) )   {
+   
+					return false;
+				}
+
+				else if( ( (playerLeft - ignoreCollisionInterval) < otherRight) && 
+					( boxRenderer.bounds.center.y  > otherTop) && 
+					( boxRenderer.bounds.center.y  < otherBottom ) )   {
+		
+					return false;
+				}
+				else if( ( (playerTop - ignoreCollisionInterval) < otherBottom) && 
+					( boxRenderer.bounds.center.x  > otherLeft ) && 
+					( boxRenderer.bounds.center.x  < otherRight ) )   {
+
+					return false;
+				}
+
+				else if( ( (playerBottom + ignoreCollisionInterval) > otherTop) && 
+					( boxRenderer.bounds.center.x  > otherLeft ) && 
+					( boxRenderer.bounds.center.x  < otherRight ) )   {
+		
+					return false;
+				}
+				
+			}
+			
 			
 		}
 		return true;
@@ -759,7 +795,7 @@ public class PlayerMovement : MonoBehaviour {
                     if(isRightMovement && canMoveRight) {
 						
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
-						if (!IsIgnoreCollision( other.transform /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
+						if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 				
 							collidedRight();
 							//colRight = true;
@@ -771,7 +807,7 @@ public class PlayerMovement : MonoBehaviour {
 					}
                     else if(isLeftMovement && canMoveLeft) {
 						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
-						if (!IsIgnoreCollision(other.transform /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
+						if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 						{
 							collidedLeft();
 							//colLeft = true;
@@ -786,7 +822,7 @@ public class PlayerMovement : MonoBehaviour {
 						//otherwise just ignore this one
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
-						if (!IsIgnoreCollision(other.transform /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
+						if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
 						{
 							collidedTop();
 							//colUp = true;
@@ -799,7 +835,7 @@ public class PlayerMovement : MonoBehaviour {
                     else if(isDownMovement && canMoveDown) {
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
-						if (!IsIgnoreCollision(other.transform/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
+						if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 						{
 							collidedBottom();
 							//colDown = true;

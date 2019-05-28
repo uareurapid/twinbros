@@ -36,6 +36,8 @@ public class StopMovement : MonoBehaviour, HandlePlayerCollision {
 
 		player.SetIsMovingBetweenTeleportPoints(true);
 		player.StopMovementVelocity();
+		//TODO introduced it recently to detect collisions if user is stopped on a stop sign for instance
+		player.SetReachedTarget(true);
 		//move it to the center of the stop sign
 		Vector3 pos = transform.position;
 		Vector3 playerPos = player.transform.position;
