@@ -220,6 +220,22 @@ public class MoveWayPoint : MonoBehaviour
         //normal way
         currentWaypoint = wayPoints[currentIndex];
 
+        //extension possibility to show hide sprite
+        if(currentWaypoint.isHiddeSprite){
+            Renderer ren = GetComponent<Renderer>(); 
+            if(ren!=null){
+                ren.enabled = false;  
+            }
+        }
+        else if (currentWaypoint.isShowSprite)
+        {
+            Renderer ren = GetComponent<Renderer>();
+            if (ren != null)
+            {
+                ren.enabled = true;
+            }
+        }
+
 		
 	}
 

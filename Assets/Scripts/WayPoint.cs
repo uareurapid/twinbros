@@ -9,7 +9,10 @@ public class WayPoint : MonoBehaviour
 	public bool enableCollidersOnPlay = false;
     //instead of moving to the next
     public bool isDirectTeleport = false;
-
+    //if tru it will hidde the sprite when it passes by
+    public bool isHiddeSprite = false;
+    //if true it will show sprite as it passes by
+    public bool isShowSprite = true;
 	void Start() {
 		Collider2D childCol = GetComponent<Collider2D>();
 		if(childCol!=null) {
