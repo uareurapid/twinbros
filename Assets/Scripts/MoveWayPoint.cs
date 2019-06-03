@@ -103,9 +103,9 @@ public class MoveWayPoint : MonoBehaviour
 
 	public void ContinueMovement() {
 		Debug.Log("ContinueMovement");
+		numPassages = 0;
 		isPaused = false;
 		speed = speedStorage;
-		numPassages = 0;
 		StartMovement();
 	}
 	
@@ -126,7 +126,7 @@ public class MoveWayPoint : MonoBehaviour
 
 		float distance = Vector3.Distance(currentPosition, targetPosition);
 		// If the moving object isn't that close to the waypoint
-		if( distance > 0.05f) { //TODO was .1
+		if( distance > 0.1f) { //TODO was 0.05
 
 			// Get the direction and normalize
 			Vector3 directionOfTravel = targetPosition - currentPosition;
@@ -151,6 +151,7 @@ public class MoveWayPoint : MonoBehaviour
 		} else {
 
 			numPassages++;
+				Debug.Log("num passages: " + numPassages);
 			if( (justOnce  && currentIndex == wayPoints.Length - 1 )  || (numPassages == stopAfterXPassages && stopAfterXPassages > 0) ) {
 				isPaused = true;
 				return;
@@ -162,7 +163,7 @@ public class MoveWayPoint : MonoBehaviour
                 transform.Translate(new Vector3(0, 0, 0));
                 transform.position = wayPoints[currentIndex].transform.position; //put on the other one
                 NextWaypoint();
-                    Debug.Log("CURRENT TELEPORT? " + currentWaypoint.isDirectTeleport);
+                Debug.Log("CURRENT TELEPORT? " + currentWaypoint.isDirectTeleport);
                 isPaused = false;
             }
 
@@ -184,7 +185,10 @@ public class MoveWayPoint : MonoBehaviour
 				speedStorage = 0;
 			}
 
-			NextWaypoint();
+			if(!isPaused) {
+				NextWaypoint();
+			}
+			
 		}
 
 	 }

@@ -13,7 +13,9 @@ public class SceneLoader : MonoBehaviour {
     //load something automatic instead
     public bool automaticLoad = false;
     //used only if above is also set
-    public float delay = 2f;
+    public float delay = 4f;
+	//after how many passages move on?
+	public int numDoorPassages = 1;
 	// Use this for initialization
 	void Start () {
         if(automaticLoad && delay > 0f) {
@@ -30,7 +32,7 @@ public class SceneLoader : MonoBehaviour {
 		if (nextScene != null && nextScene != "")
 		{
 			levelManager.DisableMusic();
-			StartCoroutine(LoadScene(nextScene,levelManager));
+			StartCoroutine(LoadScene(levelManager));
 		}
 		
 	}
@@ -39,17 +41,18 @@ public class SceneLoader : MonoBehaviour {
     {
         if (nextScene != null && nextScene != "")
         {
-            StartCoroutine(LoadSceneNoLevelManager(nextScene));
+            StartCoroutine(LoadSceneNoLevelManager());
         }
 
     }
 
-	IEnumerator LoadScene(string scene,LevelManager levelManager) {
+	IEnumerator LoadScene(LevelManager levelManager) {
 
 		asyncOperation = SceneManager.LoadSceneAsync(nextScene);
 		asyncOperation.allowSceneActivation = false;
 	
 		foreach(MoveWayPoint point in courtineDoors) {
+			
 			point.stopAfterXPassages = 2;
 			point.justOnce = false;
 			point.ContinueMovement();
@@ -60,7 +63,7 @@ public class SceneLoader : MonoBehaviour {
             if (asyncOperation.progress >= 0.9f)
             {
                 
-				if(courtineDoors[0].GetNumPassages()==1 && courtineDoors[1].GetNumPassages()==1) {
+				if(courtineDoors[0].GetNumPassages()==numDoorPassages && courtineDoors[1].GetNumPassages()==numDoorPassages) {
 					//Activate the Scene
 					//scene is ready now
 					Debug.Log("####################  scene is ready now");
@@ -79,39 +82,47 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 
-    IEnumerator LoadSceneNoLevelManager(string scene)
+    IEnumerator LoadSceneNoLevelManager()
     {
 
         asyncOperation = SceneManager.LoadSceneAsync(nextScene);
         asyncOperation.allowSceneActivation = false;
-        bool courtinesDone = false;
+		bool isDone = false;
+        //bool courtinesDone = false;
 
-        foreach (MoveWayPoint point in courtineDoors)
-        {
-            point.stopAfterXPassages = 2;
-            point.justOnce = false;
-            point.ContinueMovement();
-        }
-        while (!asyncOperation.isDone && !courtinesDone)
+        //foreach (MoveWayPoint point in courtineDoors)
+        //{
+        //    point.stopAfterXPassages = 2;
+        //    point.justOnce = false;
+        //    point.ContinueMovement();
+        //}
+        while (!asyncOperation.isDone && !isDone/* && !courtinesDone*/)
         {
 
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
 
-                if (courtineDoors[0].GetNumPassages() == 1 && courtineDoors[1].GetNumPassages() == 1)
+				/*if (courtineDoors[0].GetNumPassages() == numDoorPassages && courtineDoors[1].GetNumPassages() == numDoorPassages)
                 {
-                    //Activate the Scene
-                    //scene is ready now
-                    courtinesDone = true;
-                }
+					//Activate the Scene
+					//scene is ready now
+					Debug.Log("DOEN COURTINES");
+                    courtinesDone = true;*/
+
+				//}
+				isDone = true;
 
             }
             yield return null;
         }
-
+		Debug.Log("After the while");
         yield return new WaitForSeconds(delay);
-        Debug.Log("####################  scene is ready now");
+        AudioSource audioS = GetComponent<AudioSource>();
+		if(audioS) {
+			audioS.Play();
+		}
+		yield return new WaitForSeconds(delay);
         asyncOperation.allowSceneActivation = true;
 
     }
