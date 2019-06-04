@@ -84,6 +84,7 @@ public class GUIManager : MonoBehaviour {
     //for Apple arcade or desktop (no in-apps or ads)
     public bool isArcadeOrSubscriptionMode = false;
 
+	private bool isShowingTutorial = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -129,16 +130,26 @@ public class GUIManager : MonoBehaviour {
 		MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();*/
 
 
-        if(HasDoneIntro() ) { //!levelManager.isPlayerDead() && !levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()
+        if(HasFinishedIntro() ) { 
 
+			//!levelManager.isPlayerDead() && !levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()
 
-           if(!HasShownTutorial() ) {
-               //show button after
-               StartTutorial();   
-           }// TODO check this, i need to know if it started too
-           else if(levelManager.IsTutorialEnded()) {
-                CanShowPlayButton();
-           }
+		   if(!HasShownTutorial()) {
+				//show button after
+                StartTutorial();  
+		   }
+           // TODO check this, i need to know if it started too
+           else if(!isShowingTutorial) {
+
+				//Tutorial has been shown already
+				if(!levelManager.IsTutorialStarted() || (levelManager.IsTutorialStarted() && levelManager.IsTutorialEnded() ) ) {
+					CanShowPlayButton();
+				}
+                
+           }//else is currently showing
+		   else if(levelManager.IsTutorialStarted() && levelManager.IsTutorialEnded()) {
+			   isShowingTutorial = false;
+		   }	   	
             
         } 
 
@@ -162,7 +173,7 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-    private bool HasDoneIntro() {
+    private bool HasFinishedIntro() {
         if (levelManager.stage == 1 && !levelManager.isPlayerDead() && !levelManager.IsGameStarted())
         {
 
@@ -291,10 +302,10 @@ public class GUIManager : MonoBehaviour {
     }
 
     private void StartTutorial() {
-        
+		isShowingTutorial = true;
         PlayerPrefs.SetInt(GameConstants.HAS_SHOWN_TUTORIAL, 1);
         levelManager.ShowTutorial();
-        StartCoroutine(ShowPlayButton(6f));
+        //StartCoroutine(ShowPlayButton(6f));
     }
 
     private bool HasShownTutorial() {

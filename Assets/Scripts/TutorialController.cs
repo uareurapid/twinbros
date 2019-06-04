@@ -10,7 +10,7 @@ public class TutorialController : MonoBehaviour {
     public float intervalBetweenParts = 2f; //keep it simple stupid
     private int currentPart = 0;
 
-    private bool ended = false;
+    private bool ended = true;
 
     private bool started = false;
 	// Use this for initialization
@@ -27,7 +27,6 @@ public class TutorialController : MonoBehaviour {
         started = true;
         ended = false;
         currentPart = 0;
-        float increaseFactor = 1f;
         foreach(GameObject part in parts) {
             currentPart++;
             if(currentPart <= 2) {
@@ -59,6 +58,10 @@ public class TutorialController : MonoBehaviour {
 
     public bool IsTutorialEnded() {
         return ended && started ;
+    }
+
+	public bool IsTutorialStarted() {
+        return started ;
     }
 
 }

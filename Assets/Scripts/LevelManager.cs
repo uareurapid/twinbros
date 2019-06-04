@@ -197,6 +197,7 @@ public class LevelManager : MonoBehaviour {
 		guiManager.DoStageTransitionEffect();
 	}
 
+	//TODO move these 3 to GameManager???
     public void ShowTutorial() {
         if(scripts!=null) {
             scripts.GetComponent<TutorialController>().ShowTutorial();  
@@ -209,6 +210,17 @@ public class LevelManager : MonoBehaviour {
         if (scripts != null)
         {
             return scripts.GetComponent<TutorialController>().IsTutorialEnded();
+        }
+
+        return false;
+
+    }
+
+	public bool IsTutorialStarted()
+    {
+        if (scripts != null)
+        {
+            return scripts.GetComponent<TutorialController>().IsTutorialStarted();
         }
 
         return false;

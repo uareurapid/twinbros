@@ -158,10 +158,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &3107866
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -957,10 +957,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &15101014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4649,10 +4649,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &92090253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5233,6 +5233,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114176514841861232, guid: e869fbc7014ef4c4a824ab470cddd19e,
+        type: 2}
+      propertyPath: speed
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176514841861232, guid: e869fbc7014ef4c4a824ab470cddd19e,
+        type: 2}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176514841861232, guid: e869fbc7014ef4c4a824ab470cddd19e,
+        type: 2}
+      propertyPath: startupDelay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e869fbc7014ef4c4a824ab470cddd19e, type: 2}
   m_IsPrefabParent: 0
@@ -5794,10 +5809,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 1
 --- !u!212 &124331782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8379,10 +8394,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 1
 --- !u!212 &166659890
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20715,10 +20730,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &359796107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44792,10 +44807,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 1
 --- !u!212 &771692588
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49171,10 +49186,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &857217750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50326,10 +50341,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &883678602
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51763,10 +51778,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 1
 --- !u!212 &908043915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61614,10 +61629,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &1074670906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65409,10 +65424,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &1143318245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -105345,10 +105360,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 1
 --- !u!212 &1721745659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108862,10 +108877,10 @@ MonoBehaviour:
   isUIImage: 0
   doBoth: 1
   maxCycles: 0
-  duration: 3
-  speed: 0.01
+  duration: 2
+  speed: 0.02
   doOnStartup: 1
-  startupDelay: 2
+  startupDelay: 0
 --- !u!212 &1763558695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -116937,7 +116952,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 108d364c3966b4c489d2ec08528e8c9d, type: 3}
-    m_FontSize: 5
+    m_FontSize: 8
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -131305,7 +131320,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 108d364c3966b4c489d2ec08528e8c9d, type: 3}
-    m_FontSize: 5
+    m_FontSize: 8
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -131976,7 +131991,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 108d364c3966b4c489d2ec08528e8c9d, type: 3}
-    m_FontSize: 5
+    m_FontSize: 8
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -132115,6 +132130,21 @@ Prefab:
     - target: {fileID: 4038818130201736, guid: e869fbc7014ef4c4a824ab470cddd19e, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176514841861232, guid: e869fbc7014ef4c4a824ab470cddd19e,
+        type: 2}
+      propertyPath: startupDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176514841861232, guid: e869fbc7014ef4c4a824ab470cddd19e,
+        type: 2}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176514841861232, guid: e869fbc7014ef4c4a824ab470cddd19e,
+        type: 2}
+      propertyPath: speed
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e869fbc7014ef4c4a824ab470cddd19e, type: 2}
