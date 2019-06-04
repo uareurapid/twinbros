@@ -143,8 +143,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 1
   isUIImage: 0
   doBoth: 1
+  maxCycles: 1
   duration: 4
   speed: 0.01
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!114 &114905663791608328
 MonoBehaviour:
   m_ObjectHideFlags: 1

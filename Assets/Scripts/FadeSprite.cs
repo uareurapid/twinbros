@@ -24,7 +24,8 @@ public class FadeSprite : MonoBehaviour {
 
 	public bool doBoth = true;
 	private int countCycle = 0;
-	// Use this for initialization
+    // Use this for initialization
+    public int maxCycles = 1;
 
 	public float duration = 4.0f; //4 seconds
 
@@ -32,6 +33,10 @@ public class FadeSprite : MonoBehaviour {
 	public float speed = 0.01f;
 
 	private Box scriptCaller;
+
+    //on start ?
+    public bool doOnStartup = false;
+    public float startupDelay = 0f;
 	//the collider
 	Collider2D coll;
 
@@ -52,6 +57,9 @@ public class FadeSprite : MonoBehaviour {
 		}
 		
 		countCycle = 0;
+        if(doOnStartup) {
+            Invoke("StartFading", startupDelay);
+        }
 	}
 	
 	// Update is called once per frame
@@ -109,8 +117,9 @@ public class FadeSprite : MonoBehaviour {
 			//completed 1 fade cycle (either in or out)
 			if ( isDone )
 			{
-
-				if(doBoth && countCycle == 0) {
+                //for the box we set maxCycles = 1 , do both fade in/out once
+                //for the steps block we set max cycles to 0, so it keeps fading in/out in loop
+                if( (doBoth && (countCycle < maxCycles ) ) || (doBoth && maxCycles == 0) ) {
 					countCycle += 1;
 					if(fadeIn) {
 						Debug.Log("DO 2ND PASS, false");
@@ -122,10 +131,7 @@ public class FadeSprite : MonoBehaviour {
 					}
 				}
 				else {
-					/*
-					if(started) {
-						Debug.Log("I AM DONE HERE!");
-					}*/
+					
 					started = false;
 					countCycle = 0;
 				}
@@ -173,6 +179,10 @@ public class FadeSprite : MonoBehaviour {
 		
 
 	}
+
+    private void StartFading() {
+        started = true;
+    }
 
 	public bool IsFadingInOrOut() {
 		return started && !isDone;

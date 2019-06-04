@@ -189,18 +189,31 @@ public class LevelManager : MonoBehaviour {
 		RestartLevel();
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
-		gameStarted = true;
-
-		if (stage == 1 && currentLevel.level == 1)
-		{
-			scripts.GetComponent<TutorialController>().showPartOne();
-		}
+        gameStarted = true;
 	}
 
 	public void StartNextStage() {
 
 		guiManager.DoStageTransitionEffect();
 	}
+
+    public void ShowTutorial() {
+        if(scripts!=null) {
+            scripts.GetComponent<TutorialController>().ShowTutorial();  
+        }
+
+    }
+
+    public bool IsTutorialEnded()
+    {
+        if (scripts != null)
+        {
+            return scripts.GetComponent<TutorialController>().IsTutorialEnded();
+        }
+
+        return false;
+
+    }
 
 	public bool IsGameStarted() {
 		return gameStarted;

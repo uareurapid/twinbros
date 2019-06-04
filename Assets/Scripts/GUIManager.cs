@@ -83,6 +83,7 @@ public class GUIManager : MonoBehaviour {
 	private TextLocalizationManager translationManager;
     //for Apple arcade or desktop (no in-apps or ads)
     public bool isArcadeOrSubscriptionMode = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -97,6 +98,11 @@ public class GUIManager : MonoBehaviour {
 
 		currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
+
+        //TODO remove me for PROD
+        if(levelManager.isTestMode) {
+            PlayerPrefs.DeleteAll();
+        }
 
 		if(levelManager.stage > 1) {
 			Invoke("DoStageTransitionEffect", 2f);
@@ -115,16 +121,26 @@ public class GUIManager : MonoBehaviour {
 	 if(levelManager.stage == 1) {
 
 		//title screen at center
-		MoveWayPoint red = titleScreenRedPart.GetComponent<MoveWayPoint>();
+		/*MoveWayPoint red = titleScreenRedPart.GetComponent<MoveWayPoint>();
 		MoveWayPoint blue = titleScreenRedPart.GetComponent<MoveWayPoint>();
 		
 		//curtain closed
 		MoveWayPoint leftDoor = leftDoorPart.GetComponent<MoveWayPoint>();
-		MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();
+		MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();*/
 
-		if(!levelManager.isPlayerDead() && !levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()) {
-			CanShowPlayButton();
-		}
+
+        if(HasDoneIntro() ) { //!levelManager.isPlayerDead() && !levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()
+
+
+           if(!HasShownTutorial() ) {
+               //show button after
+               StartTutorial();   
+           }// TODO check this, i need to know if it started too
+           else if(levelManager.IsTutorialEnded()) {
+                CanShowPlayButton();
+           }
+            
+        } 
 
 	 }
 
@@ -145,6 +161,24 @@ public class GUIManager : MonoBehaviour {
 
 		
 	}
+
+    private bool HasDoneIntro() {
+        if (levelManager.stage == 1 && !levelManager.isPlayerDead() && !levelManager.IsGameStarted())
+        {
+
+            //title screen at center
+            MoveWayPoint red = titleScreenRedPart.GetComponent<MoveWayPoint>();
+            MoveWayPoint blue = titleScreenRedPart.GetComponent<MoveWayPoint>();
+
+            //curtain closed
+            MoveWayPoint leftDoor = leftDoorPart.GetComponent<MoveWayPoint>();
+            MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();
+
+            return blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused();
+        }
+
+        return false;
+    }
 
 	public void PausePressed() {
 		pauseButton.enabled = false;
@@ -234,6 +268,46 @@ public class GUIManager : MonoBehaviour {
 
 		highScoreText.text = "HI: " + pts.ToString("000000");
 	}
+
+    //only when the courtain opens and the titles hae finished
+    public void CanShowPlayButton()
+    {
+
+        if (!playButton.enabled)
+        {
+
+            //if (!HasShownTutorial() && (levelManager.stage == 1 && levelManager.currentLevel.level == 1))
+            //{
+
+            //    StartTutorial();
+            //}
+            //else
+            //{
+                //immediately
+                StartCoroutine(ShowPlayButton(0f));
+            //}
+        }
+
+    }
+
+    private void StartTutorial() {
+        
+        PlayerPrefs.SetInt(GameConstants.HAS_SHOWN_TUTORIAL, 1);
+        levelManager.ShowTutorial();
+        StartCoroutine(ShowPlayButton(6f));
+    }
+
+    private bool HasShownTutorial() {
+        return PlayerPrefs.GetInt(GameConstants.HAS_SHOWN_TUTORIAL, 0) == 1;
+    }
+
+    IEnumerator ShowPlayButton(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        playButton.enabled = true;
+        playButton.GetComponent<MoveWayPoint>().enabled = true;
+        playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
+    }
 
 	IEnumerator HidePlayButton() {
 		yield return new WaitForSeconds(0.4f);
@@ -512,14 +586,7 @@ public class GUIManager : MonoBehaviour {
 		continueTimer = 0;
 	}
 
-	//only when the courtain opens and the titles hae finished
-	public void CanShowPlayButton() {
-
-		playButton.enabled = true;
-		playButton.GetComponent<MoveWayPoint>().enabled = true;
-		playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
-	}
-
+	
 	IEnumerator ShowRestartText(float wait) {
 		yield return new WaitForSeconds(wait);
 		CanShowPlayButton();
