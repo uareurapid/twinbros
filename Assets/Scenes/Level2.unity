@@ -624,6 +624,8 @@ MonoBehaviour:
   speedOut: 0
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5028,6 +5030,8 @@ MonoBehaviour:
   speedOut: 0.25
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -6991,6 +6995,8 @@ MonoBehaviour:
   speedOut: 1
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13440,6 +13446,8 @@ MonoBehaviour:
   speedOut: 1
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1001 &209273855
 Prefab:
   m_ObjectHideFlags: 0
@@ -16923,6 +16931,8 @@ MonoBehaviour:
   speedOut: 6
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &268682183
 GameObject:
   m_ObjectHideFlags: 0
@@ -25156,6 +25166,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114439688667865516, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: maxTilesMovement
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
   m_IsPrefabParent: 0
@@ -25248,8 +25263,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 2
   speed: 0.02
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!1 &412809729
 GameObject:
   m_ObjectHideFlags: 0
@@ -27038,6 +27056,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &439504912 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1310252356114866, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -30510,6 +30530,8 @@ MonoBehaviour:
   speedOut: 0.5
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1001 &497673481
 Prefab:
   m_ObjectHideFlags: 0
@@ -45433,6 +45455,11 @@ Prefab:
       propertyPath: canMoveLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114439688667865516, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: maxTilesMovement
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
   m_IsPrefabParent: 0
@@ -45884,8 +45911,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.01
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!222 &698592037
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48414,6 +48444,8 @@ MonoBehaviour:
   speedOut: 0.5
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51638,6 +51670,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51840,8 +51874,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.02
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!114 &809944553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55222,6 +55259,8 @@ MonoBehaviour:
   speedOut: 6
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &879957238
 GameObject:
   m_ObjectHideFlags: 0
@@ -56350,6 +56389,8 @@ MonoBehaviour:
   speedOut: 4
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &901877689
 GameObject:
   m_ObjectHideFlags: 0
@@ -60926,6 +60967,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!212 &975852481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62651,6 +62694,9 @@ MonoBehaviour:
   - {fileID: 1851097922}
   - {fileID: 698991580}
   nextScene: Level3
+  automaticLoad: 0
+  delay: 4
+  numDoorPassages: 1
 --- !u!1 &996163599
 GameObject:
   m_ObjectHideFlags: 0
@@ -63648,6 +63694,8 @@ MonoBehaviour:
   speedOut: 0.5
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -66524,6 +66572,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &1053619859
 GameObject:
   m_ObjectHideFlags: 0
@@ -67134,6 +67184,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78066,6 +78118,8 @@ MonoBehaviour:
   speedOut: 2
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!114 &1275577055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78854,6 +78908,8 @@ MonoBehaviour:
   speedOut: 0.25
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &1284402093
 GameObject:
   m_ObjectHideFlags: 0
@@ -79104,6 +79160,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &1289222419
 GameObject:
   m_ObjectHideFlags: 0
@@ -81410,6 +81468,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!212 &1328684368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -102210,8 +102270,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.01
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!1 &1505669837
 GameObject:
   m_ObjectHideFlags: 0
@@ -103125,6 +103188,8 @@ MonoBehaviour:
   speedOut: 4
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &1516769182 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1459471108475612, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -109759,6 +109824,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!212 &1629454292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -111198,6 +111265,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!212 &1655267792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124585,6 +124654,8 @@ MonoBehaviour:
   speedOut: 0.5
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -129923,6 +129994,8 @@ MonoBehaviour:
   speedOut: 2
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!114 &1979010480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130888,6 +130961,8 @@ MonoBehaviour:
   speedOut: 0
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!1 &2002713879
 GameObject:
   m_ObjectHideFlags: 0
@@ -135510,8 +135585,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.02
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!114 &2047535914
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24682,6 +24682,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114439688667865516, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: maxTilesMovement
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
   m_IsPrefabParent: 0
@@ -24774,8 +24779,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 2
   speed: 0.02
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!1 &412809729
 GameObject:
   m_ObjectHideFlags: 0
@@ -44813,6 +44821,11 @@ Prefab:
       propertyPath: canMoveLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114439688667865516, guid: 01d91d657cf0e42f6a0a2b405b6c670a,
+        type: 2}
+      propertyPath: maxTilesMovement
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
   m_IsPrefabParent: 0
@@ -45209,8 +45222,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.01
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!222 &698592037
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50636,8 +50652,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.02
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!114 &809944553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99027,8 +99046,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.01
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!1 &1505219406
 GameObject:
   m_ObjectHideFlags: 0
@@ -131722,8 +131744,11 @@ MonoBehaviour:
   disableColliderIfTransparent: 0
   isUIImage: 1
   doBoth: 0
+  maxCycles: 1
   duration: 3
   speed: 0.02
+  doOnStartup: 0
+  startupDelay: 0
 --- !u!114 &2047535914
 MonoBehaviour:
   m_ObjectHideFlags: 0

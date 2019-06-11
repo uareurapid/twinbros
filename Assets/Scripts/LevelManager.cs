@@ -320,7 +320,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void RestartLevel() {
 
-		//Debug.Log("######## RESTART LEVEL #############");
+		Debug.Log("######## RESTART LEVEL #############");
 		//set initial rotation and scale
 		foreach(PlayerMovement twin in twins) {
 			twin.ResetPlayer();
@@ -463,7 +463,7 @@ public class LevelManager : MonoBehaviour {
 		rightTwinReady = reached;
 		//Debug.Log("################### RIGHT TWIN REACHED " + rightTwinReady);
 		twins[1].SetReachedNewLevel(true, restrictions);
-		twins[0].transform.parent = restrictions.transform.parent;
+		twins[1].transform.parent = restrictions.transform.parent;
 		move.gameObject.GetComponent<PlayerMovement>().SetReachedNewLevel(true, restrictions);
 		move.startMoveTowards = false;
 		move.enabled = false;
@@ -621,13 +621,13 @@ public class LevelManager : MonoBehaviour {
 		guiManager.DisableStageClearedImage();
 	}
 	void StartMovePlayersIntoPosition(Level nextLevel) {
-		
+
 
 		LevelCheckPoint[] checkpoints = nextLevel.gameObject.GetComponentsInChildren<LevelCheckPoint>();
-	//	yield return new WaitForSeconds(1.2f);
+	    
 		SoundEffectsHelper.Instance.PlayTeleportSound();
 
-		
+        Debug.Log("MOVE PLAYERS INTO POSITION: " + nextLevel + " size: " + checkpoints.Length);
 
 		foreach(PlayerMovement moveScript in twins) {
 
@@ -643,7 +643,7 @@ public class LevelManager : MonoBehaviour {
 
 				moveTowards.startMoveTowards = false;
 				moveTowards.enabled = true;
-				moveTowards.StartMovingTowards(true, moveScript.isLeftTwin);
+                moveTowards.StartMovingTowards(true, isLeft);
 			}
 			
 		} 

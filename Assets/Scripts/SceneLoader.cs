@@ -88,36 +88,18 @@ public class SceneLoader : MonoBehaviour {
         asyncOperation = SceneManager.LoadSceneAsync(nextScene);
         asyncOperation.allowSceneActivation = false;
 		bool isDone = false;
-        //bool courtinesDone = false;
 
-        //foreach (MoveWayPoint point in courtineDoors)
-        //{
-        //    point.stopAfterXPassages = 2;
-        //    point.justOnce = false;
-        //    point.ContinueMovement();
-        //}
         while (!asyncOperation.isDone && !isDone/* && !courtinesDone*/)
         {
 
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
-
-				/*if (courtineDoors[0].GetNumPassages() == numDoorPassages && courtineDoors[1].GetNumPassages() == numDoorPassages)
-                {
-					//Activate the Scene
-					//scene is ready now
-					Debug.Log("DOEN COURTINES");
-                    courtinesDone = true;*/
-
-				//}
 				isDone = true;
-
             }
             yield return null;
         }
-		Debug.Log("After the while");
-        yield return new WaitForSeconds(delay);
+		
         AudioSource audioS = GetComponent<AudioSource>();
 		if(audioS) {
 			audioS.Play();

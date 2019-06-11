@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
 		body = GetComponent<Rigidbody2D>();
-		body.isKinematic = false; //should be true
+        body.isKinematic = false; //should be true
 		body.gravityScale = 0;
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
@@ -403,7 +403,7 @@ public class PlayerMovement : MonoBehaviour {
 		//Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
 		reachedTarget = false;
 		isUpMovement = true;
-		//body.isKinematic = true; //TODO FIXME
+        //body.isKinematic = false; //TODO FIXME
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -413,7 +413,7 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("SLIDE RIGHT");
 		reachedTarget = false;
 		isRightMovement = true;
-		//body.isKinematic = true;
+		//body.isKinematic = false;
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -423,7 +423,7 @@ public class PlayerMovement : MonoBehaviour {
 		reachedTarget = false;
 		//Debug.Log("SLIDE DOWN called will move: " + (Vector3.down)*tileSize*maxTilesMovement);
 		isDownMovement = true;
-		//body.isKinematic = true;
+		//body.isKinematic = false;
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
 		isUpMovement = isLeftMovement = isRightMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -432,7 +432,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void SlideLeft() {
 		reachedTarget = false;
 		isLeftMovement = true;
-		//body.isKinematic = true;
+        //body.isKinematic = false;
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
 		isRightMovement = isDownMovement = isUpMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
@@ -459,7 +459,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		canMoveLeft = false;
 
-		if(isLeftMovement) {
+		//if(isLeftMovement) {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
@@ -469,7 +469,7 @@ public class PlayerMovement : MonoBehaviour {
 			//body.isKinematic = true; //avoid the bumping effect
 			canMoveRight = canMoveDown = canMoveRight = true;
 			//transform.position = previousPosition[1];
-			transform.Translate(-bodySpeed);
+			//transform.Translate(-bodySpeed);
 
 			if(!reachedTarget) {
 
@@ -486,10 +486,10 @@ public class PlayerMovement : MonoBehaviour {
 			reachedTarget = true;
 			targetPosition = transform.position;
 
-		}
-		else {
-			reachedTarget = false;
-		}
+		//}
+		//else {
+		//	reachedTarget = false;
+		//}
 
 	
 	}
@@ -498,7 +498,7 @@ public class PlayerMovement : MonoBehaviour {
 		canMoveRight = false;
 		//canMoveLeft = true;
 
-		if(isRightMovement) {
+		//if(isRightMovement) {
 			//TODO FIXME the velocity and the kinematic
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
@@ -506,7 +506,7 @@ public class PlayerMovement : MonoBehaviour {
             //isRightMovement = false;
 			//body.isKinematic = true;
 			canMoveLeft = canMoveUp = canMoveDown = true;
-			transform.Translate(-bodySpeed);
+			//transform.Translate(-bodySpeed);
 
 			if(!reachedTarget) {
 
@@ -523,10 +523,10 @@ public class PlayerMovement : MonoBehaviour {
 			
 			reachedTarget = true;
 			targetPosition = transform.position;
-		}
-		else {
-			reachedTarget = false;
-		}
+		//}
+		//else {
+		//	reachedTarget = false;
+		//}
 		
 	}
 	public void collidedTop() {
@@ -534,7 +534,7 @@ public class PlayerMovement : MonoBehaviour {
 		canMoveUp = false;
 		//canMoveDown = true;
 
-		if(isUpMovement) {
+		//if(isUpMovement) {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
@@ -542,8 +542,9 @@ public class PlayerMovement : MonoBehaviour {
             //isUpMovement = false; //TODO introduced this
 			//body.isKinematic = true;
 			canMoveDown = canMoveLeft = canMoveRight = true;
-			//transform.position = previousPosition[1];
-			transform.Translate(-bodySpeed);
+            //transform.position = previousPosition[1];
+            Debug.Log("TOP TRANSLATE TO " + (bodySpeed));
+			//transform.Translate(-bodySpeed);
 
 			if(!reachedTarget) {
 
@@ -557,10 +558,10 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			reachedTarget = true;
 			targetPosition = transform.position;
-		}
-		else {
-			reachedTarget = false;
-		}
+		//}
+		//else {
+		//	reachedTarget = false;
+		//}
 		
 	}
 	public void collidedBottom() {
@@ -568,7 +569,7 @@ public class PlayerMovement : MonoBehaviour {
 		canMoveDown = false;
 		//canMoveUp = true;
 	
-		if(isDownMovement) {
+		//if(isDownMovement) {
 
 			Vector2 bodySpeed = body.velocity;
 			StopMovementVelocity();
@@ -577,7 +578,8 @@ public class PlayerMovement : MonoBehaviour {
 			//body.isKinematic = true;
 			canMoveUp = canMoveLeft = canMoveRight = true;
 			//transform.position = previousPosition[1];
-			transform.Translate(-bodySpeed);
+            Debug.Log("BOTTOM TRANSLATE TO " + (bodySpeed));
+			//transform.Translate(-bodySpeed);
 
 			if(!reachedTarget) {
 				
@@ -591,10 +593,10 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			reachedTarget = true;
 			targetPosition = transform.position;
-		}
-		else {
-			reachedTarget = false;
-		}
+		//}
+		//else {
+		//	reachedTarget = false;
+		//}
 		
 	}
 
