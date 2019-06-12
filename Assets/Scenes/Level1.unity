@@ -18881,7 +18881,8 @@ Prefab:
       propertyPath: m_Name
       value: WayPoint_with_marker (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dc208996ff7124707a077858109d1491, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &307926866 stripped
@@ -18889,12 +18890,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1576600272464370, guid: dc208996ff7124707a077858109d1491,
     type: 2}
   m_PrefabInternal: {fileID: 307926865}
---- !u!114 &307926867 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491,
-    type: 2}
-  m_PrefabInternal: {fileID: 307926865}
-  m_Script: {fileID: 11500000, guid: 28c343c44f3424dc39a66f010ac661ec, type: 3}
 --- !u!114 &307926868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41271,8 +41266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wayPoints:
-  - {fileID: 1847412474}
-  - {fileID: 307926867}
+  - {fileID: 1847412475}
+  - {fileID: 307926868}
   speed: 5
   isCircular: 0
   inReverse: 1
@@ -116707,7 +116702,8 @@ Prefab:
       propertyPath: m_Name
       value: WayPoint_with_marker (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dc208996ff7124707a077858109d1491, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1847412473 stripped
@@ -116715,12 +116711,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1576600272464370, guid: dc208996ff7124707a077858109d1491,
     type: 2}
   m_PrefabInternal: {fileID: 1847412472}
---- !u!114 &1847412474 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491,
-    type: 2}
-  m_PrefabInternal: {fileID: 1847412472}
-  m_Script: {fileID: 11500000, guid: 28c343c44f3424dc39a66f010ac661ec, type: 3}
 --- !u!114 &1847412475
 MonoBehaviour:
   m_ObjectHideFlags: 0
