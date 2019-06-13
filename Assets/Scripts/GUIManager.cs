@@ -23,6 +23,8 @@ public class GUIManager : MonoBehaviour {
 
 	public GameObject settingsPanel;
     public GameObject arcadeModeSettingsPanel;//no purchases btns
+    //stage clear stars
+    public GameObject[] stageClearStars;
 
 	public UnityEngine.UI.Text purchaseRevivesText;
 	public UnityEngine.UI.Text purchaseMovesText;
@@ -633,6 +635,10 @@ public class GUIManager : MonoBehaviour {
 		stageClearedImage.enabled = true;
 		//fade in
 		stageClearedImage.GetComponent<FadeSprite>().FadeSpriteNow(true);
+
+        foreach(GameObject stars in stageClearStars) {
+            stars.SetActive(true);
+        }
 	}
 
 	public void HideStageClearedImage() {
@@ -643,6 +649,11 @@ public class GUIManager : MonoBehaviour {
 	public void DisableStageClearedImage() {
 		stageClearedImage.enabled = false;
 		stageClearedImage.color = new Color(stageClearedImage.color.r,stageClearedImage.color.b,stageClearedImage.color.g,0);
+
+        foreach (GameObject stars in stageClearStars)
+        {
+            stars.SetActive(false);
+        }
 	}
 	//show it
 	public void ShowStageImage() {
