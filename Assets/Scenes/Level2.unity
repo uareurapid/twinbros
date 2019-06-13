@@ -21176,7 +21176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpace: 1
-  delay: 2
+  delay: 1
   RotationSpeed: {x: 0, y: 0, z: 90}
 --- !u!1 &348923009
 GameObject:
@@ -23572,7 +23572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpace: 1
-  delay: 2
+  delay: 1
   RotationSpeed: {x: 0, y: 0, z: 90}
 --- !u!1 &383531035 stripped
 GameObject:

@@ -670,6 +670,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &437522915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -891,6 +893,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &699519658
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1528,6 +1532,8 @@ MonoBehaviour:
   speedOut: 3
   enableCollidersOnPlay: 0
   isDirectTeleport: 0
+  isHiddeSprite: 0
+  isShowSprite: 1
 --- !u!224 &1795809458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1725,7 +1731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857f499bb71e14687a3793bb18304f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locked: 1
+  locked: 0
 --- !u!1 &2084425917
 GameObject:
   m_ObjectHideFlags: 0

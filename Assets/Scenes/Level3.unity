@@ -5239,7 +5239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpace: 1
-  delay: 2
+  delay: 1
   RotationSpeed: {x: 0, y: 0, z: 90}
 --- !u!1 &105379310
 GameObject:
@@ -56388,7 +56388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpace: 1
-  delay: 2
+  delay: 1
   RotationSpeed: {x: 0, y: 0, z: 90}
 --- !u!1 &920797988
 GameObject:
