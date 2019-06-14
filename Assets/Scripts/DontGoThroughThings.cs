@@ -24,31 +24,37 @@ public class DontGoThroughThings : MonoBehaviour
         {
             myRigidbody = this.GetComponent<Rigidbody2D>();
 			if(myRigidbody == null) {
-				Debug.Log("Something is WRONG WITH THIS OBJECT " + gameObject.name);
+				Debug.Log("FIXME --> Something is WRONG WITH THIS OBJECT " + gameObject.name);
 				myRigidbody = GetComponentInParent<Rigidbody2D>();
 			}
-            previousPosition = myRigidbody.position;
-            minimumExtent = Mathf.Min(Mathf.Min(GetComponent<Collider2D>().bounds.extents.x, GetComponent<Collider2D>().bounds.extents.y), GetComponent<Collider2D>().bounds.extents.z);
-            partialExtent = minimumExtent * (1.0f - skinWidth);
-            sqrMinimumExtent = minimumExtent * minimumExtent;
+            if(myRigidbody!=null) {
+                previousPosition = myRigidbody.position;
+                minimumExtent = Mathf.Min(Mathf.Min(GetComponent<Collider2D>().bounds.extents.x, GetComponent<Collider2D>().bounds.extents.y), GetComponent<Collider2D>().bounds.extents.z);
+                partialExtent = minimumExtent * (1.0f - skinWidth);
+                sqrMinimumExtent = minimumExtent * minimumExtent;
+            }
+            
         }
 
         void FixedUpdate()
         {
-            //have we moved more than our minimum extent? 
-            Vector2 movementThisStep = myRigidbody.position - previousPosition;
-            float movementSqrMagnitude = movementThisStep.sqrMagnitude;
-
-            if (movementSqrMagnitude > sqrMinimumExtent)
-            {
-                float movementMagnitude = Mathf.Sqrt(movementSqrMagnitude);
-                hitInfo = Physics2D.Raycast(previousPosition, movementThisStep, movementMagnitude, layerMask.value);
-
-                //check for obstructions we might have missed 
-                if (hitInfo)
-                    myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
-            }
-
-            previousPosition = myRigidbody.position;
+          if(myRigidbody!=null) {
+              //have we moved more than our minimum extent? 
+                Vector2 movementThisStep = myRigidbody.position - previousPosition;
+                float movementSqrMagnitude = movementThisStep.sqrMagnitude;
+    
+                if (movementSqrMagnitude > sqrMinimumExtent)
+                {
+                    float movementMagnitude = Mathf.Sqrt(movementSqrMagnitude);
+                    hitInfo = Physics2D.Raycast(previousPosition, movementThisStep, movementMagnitude, layerMask.value);
+    
+                    //check for obstructions we might have missed 
+                    if (hitInfo)
+                        myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
+                }
+    
+                previousPosition = myRigidbody.position;
+              }
+            
         }
 }
