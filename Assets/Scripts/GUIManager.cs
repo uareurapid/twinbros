@@ -51,6 +51,8 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image purchaseExtraMovesImage;
 	public UnityEngine.UI.Image purchaseRemoveAdsImage;
 
+	//goto to select level
+	public UnityEngine.UI.Image gameSettingsImage;
 
 	public UnityEngine.UI.Image rewardVideoImage;
 	public UnityEngine.UI.Image stageClearedImage;
@@ -193,9 +195,19 @@ public class GUIManager : MonoBehaviour {
         return false;
     }
 
+	//the settings definitionsbuttons
+    public void ShowMainGameOptions() {
+		SceneLoader loader = gameSettingsImage.GetComponent<SceneLoader>();
+		if(loader!=null) {
+			loader.LoadNextSceneNoLevelManager();
+		}
+	}
+
 	public void PausePressed() {
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
+
+		gameSettingsImage.enabled = true;
         //do not show settings panel on arcade mode
         if(!isArcadeOrSubscriptionMode) {
             ShowSettingsPanel(); 
@@ -209,6 +221,9 @@ public class GUIManager : MonoBehaviour {
 	public void UnPausePressed() {
 		pauseButton.enabled = true;
 		unpauseButton.enabled = false;
+
+		gameSettingsImage.enabled = false;
+
         if (!isArcadeOrSubscriptionMode) {
             HideSettingsPanel();
         } else {

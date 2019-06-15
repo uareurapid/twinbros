@@ -37,7 +37,7 @@ public class SceneLoader : MonoBehaviour {
 		
 	}
 
-    private void LoadNextSceneNoLevelManager()
+    public void LoadNextSceneNoLevelManager()
     {
         if (nextScene != null && nextScene != "")
         {

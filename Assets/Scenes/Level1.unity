@@ -57928,6 +57928,7 @@ GameObject:
   - component: {fileID: 866098447}
   - component: {fileID: 866098446}
   - component: {fileID: 866098445}
+  - component: {fileID: 866098448}
   m_Layer: 5
   m_Name: SETTINGS_BUTTON
   m_TagString: Untagged
@@ -57950,7 +57951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97, y: -78}
+  m_AnchoredPosition: {x: -145, y: -85.9}
   m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866098445
@@ -57970,7 +57971,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 994518047}
-          m_MethodName: PausePressed
+          m_MethodName: ShowMainGameOptions
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -57989,7 +57990,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866098443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -58016,6 +58017,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866098443}
+--- !u!114 &866098448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 866098443}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b14e056e727460092b82a9f073345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  courtineDoors: []
+  nextScene: LevelSelection
+  automaticLoad: 0
+  delay: 4
+  numDoorPassages: 1
 --- !u!1 &868077471
 GameObject:
   m_ObjectHideFlags: 0
@@ -65386,6 +65403,7 @@ MonoBehaviour:
   purchaseRevivesImage: {fileID: 1897484154}
   purchaseExtraMovesImage: {fileID: 1818856944}
   purchaseRemoveAdsImage: {fileID: 1090929424}
+  gameSettingsImage: {fileID: 866098446}
   rewardVideoImage: {fileID: 874947463}
   stageClearedImage: {fileID: 2087102163}
   levelClearedImage: {fileID: 990445635}
@@ -65411,7 +65429,7 @@ MonoBehaviour:
   - {fileID: 21300014, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
   - {fileID: 21300016, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
   - {fileID: 21300018, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
-  isArcadeOrSubscriptionMode: 0
+  isArcadeOrSubscriptionMode: 1
 --- !u!4 &994518048
 Transform:
   m_ObjectHideFlags: 0
