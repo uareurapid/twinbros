@@ -199,6 +199,7 @@ public class GUIManager : MonoBehaviour {
     public void ShowMainGameOptions() {
 		SceneLoader loader = gameSettingsImage.GetComponent<SceneLoader>();
 		if(loader!=null) {
+			loader.enabled = true;
 			loader.LoadNextSceneNoLevelManager();
 		}
 	}
