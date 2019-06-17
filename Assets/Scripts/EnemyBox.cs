@@ -64,10 +64,10 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			levelmanager = scripts.GetComponent<LevelManager>();
 
 		}
-        Debug.Log("CannotIgnoreCollisionWhenNotMoving() ? " + CannotIgnoreCollisionWhenNotMoving(player));
-		Debug.Log("CannotIgnoreCollisionWhenMoving() ? " + CannotIgnoreCollisionWhenMoving(player));
-		Debug.Log("isMovingEnemy ? " + isMovingEnemy);
-		Debug.Log("player.GetReachedTarget() ? " + player.GetReachedTarget());
+        //Debug.Log("CannotIgnoreCollisionWhenNotMoving() ? " + CannotIgnoreCollisionWhenNotMoving(player));
+		//Debug.Log("CannotIgnoreCollisionWhenMoving() ? " + CannotIgnoreCollisionWhenMoving(player));
+		//Debug.Log("isMovingEnemy ? " + isMovingEnemy);
+		//Debug.Log("player.GetReachedTarget() ? " + player.GetReachedTarget());
 		//TODO THIS SHIT NEEDS A RE-WRITE!!!
 		//TODO if moving enemy should not be enough condition
 		if (killPlayerOnTouch)

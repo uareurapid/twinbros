@@ -543,7 +543,7 @@ public class PlayerMovement : MonoBehaviour {
 			//body.isKinematic = true;
 			canMoveDown = canMoveLeft = canMoveRight = true;
             //transform.position = previousPosition[1];
-            Debug.Log("TOP TRANSLATE TO " + (bodySpeed));
+            //Debug.Log("TOP TRANSLATE TO " + (bodySpeed));
 			//transform.Translate(-bodySpeed);
 
 			if(!reachedTarget) {
@@ -578,7 +578,7 @@ public class PlayerMovement : MonoBehaviour {
 			//body.isKinematic = true;
 			canMoveUp = canMoveLeft = canMoveRight = true;
 			//transform.position = previousPosition[1];
-            Debug.Log("BOTTOM TRANSLATE TO " + (bodySpeed));
+            //Debug.Log("BOTTOM TRANSLATE TO " + (bodySpeed));
 			//transform.Translate(-bodySpeed);
 
 			if(!reachedTarget) {
