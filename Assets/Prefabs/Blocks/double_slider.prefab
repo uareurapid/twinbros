@@ -253,6 +253,8 @@ MonoBehaviour:
   slideRight: 1
   slideUp: 0
   slideDown: 0
+  isDoubleSlider: 1
+  isFirstSlider: 0
 --- !u!114 &114814472886498550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,6 +270,8 @@ MonoBehaviour:
   slideRight: 1
   slideUp: 0
   slideDown: 0
+  isDoubleSlider: 1
+  isFirstSlider: 0
 --- !u!114 &114953500076746244
 MonoBehaviour:
   m_ObjectHideFlags: 1
