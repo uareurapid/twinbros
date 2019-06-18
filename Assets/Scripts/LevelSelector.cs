@@ -83,6 +83,7 @@ public class LevelSelector : MonoBehaviour {
 
     IEnumerator LoadScene(string scene)
     {
+		loadingDotsImage.SetActive(true);
 
         asyncOperation = SceneManager.LoadSceneAsync(scene);
         asyncOperation.allowSceneActivation = false;
@@ -112,7 +113,7 @@ public class LevelSelector : MonoBehaviour {
             yield return null;
         }
 		loadingDotsImage.SetActive(false);
-		Invoke("Proceed", 1.5f);
+		Invoke("Proceed", 1.0f);
     }
 
 	void Proceed() {

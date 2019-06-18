@@ -6,6 +6,7 @@ using UnityEngine;
 public class SceneLoader : MonoBehaviour {
 
 	public MoveWayPoint[] courtineDoors;
+	public GameObject loadingDotsImage;
 
 	public string nextScene = "";
 	AsyncOperation asyncOperation;
@@ -48,6 +49,7 @@ public class SceneLoader : MonoBehaviour {
 
 	IEnumerator LoadScene(LevelManager levelManager) {
 
+		loadingDotsImage.SetActive(true);
 		asyncOperation = SceneManager.LoadSceneAsync(nextScene);
 		asyncOperation.allowSceneActivation = false;
 	
@@ -74,6 +76,8 @@ public class SceneLoader : MonoBehaviour {
 			yield return null;
 		}
 
+		loadingDotsImage.SetActive(false);
+
         if(levelManager!=null) {
             levelManager.StartNextStage(); 
         }
@@ -85,6 +89,7 @@ public class SceneLoader : MonoBehaviour {
     IEnumerator LoadSceneNoLevelManager()
     {
 
+		loadingDotsImage.SetActive(true);
         asyncOperation = SceneManager.LoadSceneAsync(nextScene);
         asyncOperation.allowSceneActivation = false;
 		bool isDone = false;
@@ -104,6 +109,9 @@ public class SceneLoader : MonoBehaviour {
 		if(audioS) {
 			audioS.Play();
 		}
+	
+		loadingDotsImage.SetActive(false);
+
 		yield return new WaitForSeconds(delay);
         asyncOperation.allowSceneActivation = true;
 
