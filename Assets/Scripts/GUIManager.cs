@@ -5,6 +5,8 @@ using UnityEngine;
 public class GUIManager : MonoBehaviour {
 
 
+    public UnityEngine.UI.Image backPanelImage;
+    
 	public Sprite [] musicSettingsImages;
 	public UnityEngine.UI.Image musicSettingsButton;
     public UnityEngine.UI.Image arcadePanelMusicSettingsButton;
@@ -52,7 +54,8 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image purchaseRemoveAdsImage;
 
 	//goto to select level
-	public UnityEngine.UI.Image gameSettingsImage;
+	public UnityEngine.UI.Image gameSettingsButton;
+    public Sprite[] gameSettingsImages;
 
 	public UnityEngine.UI.Image rewardVideoImage;
 	public UnityEngine.UI.Image stageClearedImage;
@@ -197,7 +200,12 @@ public class GUIManager : MonoBehaviour {
 
 	//the settings definitionsbuttons
     public void ShowMainGameOptions() {
-		SceneLoader loader = gameSettingsImage.GetComponent<SceneLoader>();
+    
+        gameSettingsButton.sprite = gameSettingsImages[1];
+        
+        StartCoroutine(RestoreGameSettingsImage());
+        
+		SceneLoader loader = gameSettingsButton.GetComponent<SceneLoader>();
 		if(loader!=null) {
 			loader.enabled = true;
 			loader.LoadNextSceneNoLevelManager();
@@ -208,7 +216,7 @@ public class GUIManager : MonoBehaviour {
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
 
-		gameSettingsImage.enabled = true;
+		gameSettingsButton.enabled = true;
         //do not show settings panel on arcade mode
         if(!isArcadeOrSubscriptionMode) {
             ShowSettingsPanel(); 
@@ -223,7 +231,7 @@ public class GUIManager : MonoBehaviour {
 		pauseButton.enabled = true;
 		unpauseButton.enabled = false;
 
-		gameSettingsImage.enabled = false;
+		gameSettingsButton.enabled = false;
 
         if (!isArcadeOrSubscriptionMode) {
             HideSettingsPanel();
@@ -238,6 +246,8 @@ public class GUIManager : MonoBehaviour {
 		//set the music button On/Off
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
 		musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+
+        backPanelImage.enabled = true;
 		settingsPanel.SetActive(true);
 	}
 
@@ -246,15 +256,19 @@ public class GUIManager : MonoBehaviour {
         //set the music button On/Off
         int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
         arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+        
+        backPanelImage.enabled = true;
         arcadeModeSettingsPanel.SetActive(true);
     }
 
 	public void HideSettingsPanel() {
+        backPanelImage.enabled = false;
 		settingsPanel.SetActive(false);
 	}
 
     public void HideArcadeSettingsPanel()
     {
+        backPanelImage.enabled = false;
         arcadeModeSettingsPanel.SetActive(false);
     }
 
@@ -526,6 +540,12 @@ public class GUIManager : MonoBehaviour {
 		yield return new WaitForSecondsRealtime(1f);
 		leaderboardButtonImage.sprite = leaderboardsImages[0];
 	}
+    
+    IEnumerator RestoreGameSettingsImage() {
+        //WaitForSecondsRealtime is not affected by timescale 0
+        yield return new WaitForSecondsRealtime(1f);
+        gameSettingsButton.sprite = gameSettingsImages[0];
+    }
 
 	//TODO on load panel set the correct image
 	public void MusicSettingsPressed() {
