@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   courtineDoors: []
+  loadingDotsImage: {fileID: 0}
   nextScene: Level1
   automaticLoad: 1
   delay: 5

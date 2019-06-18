@@ -49,7 +49,10 @@ public class SceneLoader : MonoBehaviour {
 
 	IEnumerator LoadScene(LevelManager levelManager) {
 
-		loadingDotsImage.SetActive(true);
+		if(loadingDotsImage!=null) {
+			loadingDotsImage.SetActive(true);
+		}
+		
 		asyncOperation = SceneManager.LoadSceneAsync(nextScene);
 		asyncOperation.allowSceneActivation = false;
 	
@@ -76,7 +79,10 @@ public class SceneLoader : MonoBehaviour {
 			yield return null;
 		}
 
-		loadingDotsImage.SetActive(false);
+		if (loadingDotsImage != null)
+		{
+			loadingDotsImage.SetActive(false);
+		}
 
         if(levelManager!=null) {
             levelManager.StartNextStage(); 
