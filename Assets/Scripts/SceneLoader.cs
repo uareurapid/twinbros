@@ -95,7 +95,10 @@ public class SceneLoader : MonoBehaviour {
     IEnumerator LoadSceneNoLevelManager()
     {
 
-		loadingDotsImage.SetActive(true);
+        if (loadingDotsImage != null)
+        {
+            loadingDotsImage.SetActive(true);
+        }
         asyncOperation = SceneManager.LoadSceneAsync(nextScene);
         asyncOperation.allowSceneActivation = false;
 		bool isDone = false;
@@ -115,8 +118,11 @@ public class SceneLoader : MonoBehaviour {
 		if(audioS) {
 			audioS.Play();
 		}
-	
-		loadingDotsImage.SetActive(false);
+
+        if (loadingDotsImage != null)
+        {
+            loadingDotsImage.SetActive(false);
+        }
 
 		yield return new WaitForSeconds(delay);
         asyncOperation.allowSceneActivation = true;
