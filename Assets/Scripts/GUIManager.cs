@@ -5,6 +5,7 @@ using UnityEngine;
 public class GUIManager : MonoBehaviour {
 
 
+	public UnityEngine.UI.Image[] bonusImages;
     public UnityEngine.UI.Image backPanelImage;
     
 	public Sprite [] musicSettingsImages;

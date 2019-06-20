@@ -784,6 +784,8 @@ public class PlayerMovement : MonoBehaviour {
 		bool isMovingBlock = other.gameObject.GetComponent<MoveWayPoint>() != null; 
 		bool isSlider = otherTag.Equals("Slider");
 
+		bool isBonus = otherTag.Equals("Bonus");
+
 		bool ignoreCollision = true;
 
         if(isEnemy || isSlider) {
@@ -894,6 +896,13 @@ public class PlayerMovement : MonoBehaviour {
                     else if(isBox && !ignoreCollision) {
                         other.gameObject.GetComponent<Box>().HandleCollision(this);
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+					}
+
+					else if(isBonus && !ignoreCollision) {
+						//TODOtile.HandleCollision(this);
+						//TODO start moving towrads the world position of the letter on gui manager
+						//change opcaity to 255
+						//delete the game object when reaches target (add a delete when reach if needed)
 					}	
 
 					else if(!ignoreCollision) {

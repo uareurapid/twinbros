@@ -27,6 +27,7 @@ TagManager:
   - FxTemporaire
   - Slider
   - StarField
+  - Bonus
   layers:
   - Default
   - TransparentFX
