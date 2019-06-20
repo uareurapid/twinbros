@@ -65552,12 +65552,12 @@ MonoBehaviour:
   currentLevel: {fileID: 747059181}
   respawnLevel: {fileID: 747059181}
   currentStageFirstLevel: {fileID: 747059181}
-  debugLevel: {fileID: 1487890937}
+  debugLevel: {fileID: 2023011355}
   stage: 1
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 0
+  isDebugMode: 1
   isTestMode: 1
   twins:
   - {fileID: 408182580}

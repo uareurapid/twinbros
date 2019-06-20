@@ -58,12 +58,13 @@ public class LevelManager : MonoBehaviour {
 	public int currentScore = 0;
 	public int highScore = 0;
 
-
 	void Start () {
                   
 		if(CheckHasExtraMoves() || hasExtraMoves) {
 			numMoves = MAX_MOVES + 2;
 		}
+        
+        
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android && swipe==null) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
@@ -436,13 +437,15 @@ public class LevelManager : MonoBehaviour {
 	
 					player.ResetPlayerOnNewLevel(); //will also set the new associated level for both twins
 				}
+                
+                leftTwinReady = rightTwinReady = false;
 
 				//TODO show if level 1, but if i just died than do not show the stage image
 				if(currentLevel.level >= 1) {
 					ShowLevelNum();
 				} //else called from GUIManager after the stage image
 	
-				leftTwinReady = rightTwinReady = false;
+				
 			}
 
 		}
@@ -546,6 +549,7 @@ public class LevelManager : MonoBehaviour {
 
 	//when i finish all levels on 1 stage
 	public void StageCleared() {
+
 		//gameStarted = false;
 		//Report the achievement
 		SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);

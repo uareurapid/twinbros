@@ -149,7 +149,7 @@ public class GUIManager : MonoBehaviour {
            else if(!isShowingTutorial) {
 
 				//Tutorial has been shown already
-				if(!levelManager.IsTutorialStarted() || (levelManager.IsTutorialStarted() && levelManager.IsTutorialEnded() ) ) {
+				if(!levelManager.IsTutorialStarted() || (levelManager.IsTutorialStarted() && levelManager.IsTutorialEnded() )  ) {
 					CanShowPlayButton();
 				}
                 
@@ -225,12 +225,25 @@ public class GUIManager : MonoBehaviour {
         }
 		
 		Time.timeScale = 0;
+        
+        playButton.enabled = false;
 	}
+    
+    public bool IsGamePaused() {
+        return Time.timeScale < 1f;
+    }
 
 	public void UnPausePressed() {
 		pauseButton.enabled = true;
 		unpauseButton.enabled = false;
 
+        //only if not game already happening
+        if(!levelManager.IsGameStarted()) {
+            playButton.enabled = true;
+            //************************
+        }
+        
+        
 		gameSettingsButton.enabled = false;
 
         if (!isArcadeOrSubscriptionMode) {
@@ -316,7 +329,7 @@ public class GUIManager : MonoBehaviour {
     public void CanShowPlayButton()
     {
 
-        if (!playButton.enabled)
+        if (!playButton.enabled && !IsGamePaused())
         {
 
             //if (!HasShownTutorial() && (levelManager.stage == 1 && levelManager.currentLevel.level == 1))
@@ -346,8 +359,9 @@ public class GUIManager : MonoBehaviour {
 
     IEnumerator ShowPlayButton(float delay)
     {
-        yield return new WaitForSecondsRealtime(delay);
+        Debug.Log("###########ShowPlayButton############");
         playButton.enabled = true;
+        yield return new WaitForSecondsRealtime(delay);
         playButton.GetComponent<MoveWayPoint>().enabled = true;
         playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
     }
