@@ -63128,6 +63128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b7888a8ca4f4d2d89dda32c8749025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bonusImages: []
   backPanelImage: {fileID: 513570575}
   musicSettingsImages:
   - {fileID: 21300000, guid: 7e45a01f25967440b9b94374d1912746, type: 3}
@@ -63255,7 +63256,7 @@ MonoBehaviour:
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0
-  isTestMode: 1
+  isTestMode: 0
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}

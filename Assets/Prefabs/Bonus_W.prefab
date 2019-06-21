@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212541470999641556}
   - component: {fileID: 61598125614260968}
   - component: {fileID: 114986706149670676}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bonus_W
   m_TagString: Bonus
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

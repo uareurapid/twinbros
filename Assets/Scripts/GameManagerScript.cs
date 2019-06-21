@@ -10,8 +10,14 @@ public class GameManagerScript : MonoBehaviour {
 
     private GameObject starField;
 	private Vector3 starFieldInitialPosition;
+    
+    private List<string> bonusList; // to write twin
+    
 	// Use this for initialization
 	void Start () {
+    
+        bonusList = new List<string>();
+    
         starField = GameObject.FindGameObjectWithTag("StarField");
 		if(starField!=null) {
 			starFieldInitialPosition = starField.transform.position;
@@ -59,5 +65,36 @@ public class GameManagerScript : MonoBehaviour {
         if(starField!=null) {
             starField.GetComponent<StarFieldManagerComponent>().RestartStarFieldOnNewLocation(parent); 
         }
+    }
+    
+    // TWIN BONUS
+    public void AddBonusLetter(string letter) {
+        if(bonusList !=null && !bonusList.Contains(letter)) {
+
+            bonusList.Add(letter);
+        }
+    }
+    
+    public bool ShouldGiveBonusMove() {
+
+        return bonusList != null && bonusList.Contains("T") && bonusList.Contains("W") && bonusList.Contains("I") && bonusList.Contains("N");
+    }
+    
+    public void AddBonusMove() {
+        PlayerPrefs.SetInt(GameConstants.HAS_BONUS_MOVE, 1);
+    }
+    
+    private void RemoveBonusMove() {
+        if(PlayerPrefs.HasKey(GameConstants.HAS_BONUS_MOVE) ) {
+            PlayerPrefs.DeleteKey(GameConstants.HAS_BONUS_MOVE);
+        }
+    }
+    
+    public bool HasBonusMove() {
+        return PlayerPrefs.HasKey(GameConstants.HAS_BONUS_MOVE);
+    }
+    
+    public void KillPlayer() {
+        RemoveBonusMove();
     }
 }

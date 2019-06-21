@@ -34,4 +34,7 @@ public class GameConstants : MonoBehaviour {
 
     public const string HAS_SHOWN_TUTORIAL = "has_shown_tutorial";
 
+
+    public const string HAS_BONUS_MOVE = "has_bonus_move";
+
 }

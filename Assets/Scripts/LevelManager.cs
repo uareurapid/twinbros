@@ -62,7 +62,9 @@ public class LevelManager : MonoBehaviour {
                   
 		if(CheckHasExtraMoves() || hasExtraMoves) {
 			numMoves = MAX_MOVES + 2;
-		}
+		} else if(CheckHasBonusMove()) {
+            numMoves = MAX_MOVES + 1;
+        }
         
         
 
@@ -110,6 +112,14 @@ public class LevelManager : MonoBehaviour {
 		}
 		//Invoke("StartGame", 1f);
 	}
+    
+    public GUIManager GetGUIManager() {
+        return guiManager;
+    }
+    
+    public GameManagerScript GetGameManagerScript() {
+        return gameManager;
+    }
 
 	void LoadAllLevels(Level current) {
 		if(allLevels == null || allLevels.Length == 0) {
@@ -263,8 +273,13 @@ public class LevelManager : MonoBehaviour {
 
 	public void ResetMoves() {
 		bool hasExtra = CheckHasExtraMoves();
+        bool hasBonus = CheckHasBonusMove();
 		numMoves = hasExtra ? MAX_MOVES + 2 : MAX_MOVES;
-		guiManager.ResetMoves(hasExtra);
+        
+        if(!hasExtra && hasBonus) {
+          numMoves = MAX_MOVES + 1;
+        }
+		guiManager.ResetMoves(hasExtra, hasBonus);
 	}
 
 	public void decreaseMove() {
@@ -275,7 +290,7 @@ public class LevelManager : MonoBehaviour {
 			KillPlayer();
 		}
 
-		guiManager.SetMovesText(numMoves, CheckHasExtraMoves());
+		guiManager.SetMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
 	}
 
 	public bool CheckIfBothAreDead() {
@@ -294,9 +309,10 @@ public class LevelManager : MonoBehaviour {
 			Debug.Log("KillPlayer CALLED");
 			isDead = true;
 			numMoves = 0;
-			guiManager.SetMovesText(numMoves, CheckHasExtraMoves());
+			guiManager.SetMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
 			gameStarted = false;
 			guiManager.ShowGameOver();
+            gameManager.KillPlayer();
 		}
 		
 	}
@@ -318,6 +334,10 @@ public class LevelManager : MonoBehaviour {
 	private bool CheckHasExtraMoves() {
 		return (PlayerPrefs.GetInt(GameConstants.PRODUCT_EXTRA_MOVES, 0) == 1) || hasExtraMoves;
 	}
+    
+    private bool CheckHasBonusMove() {
+        return PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1;
+    }
 
 	public void RestartLevel() {
 

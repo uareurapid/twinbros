@@ -92,6 +92,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Transform transportBubble;
 
+
+    
+    
+
 	void Awake() {
 		originalPositionInLevel = transform.position;
 		originalSprite = GetComponentInChildren<SpriteRenderer>().sprite;
@@ -117,7 +121,7 @@ public class PlayerMovement : MonoBehaviour {
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
-
+        
 		boxRenderer = GetComponentInChildren<Renderer>();
 		CheckBounds();
 
@@ -154,6 +158,12 @@ public class PlayerMovement : MonoBehaviour {
     	//TODO undelegate on destroy
 
     }
+    
+    public LevelManager GetLevelManager() {
+        return levelManager;
+    }
+    
+    //END TWIN BONUS
 
 	public void ResetPlayer() {
 		AutoRotate rotate = GetComponent<AutoRotate>();
@@ -784,8 +794,6 @@ public class PlayerMovement : MonoBehaviour {
 		bool isMovingBlock = other.gameObject.GetComponent<MoveWayPoint>() != null; 
 		bool isSlider = otherTag.Equals("Slider");
 
-		bool isBonus = otherTag.Equals("Bonus");
-
 		bool ignoreCollision = true;
 
         if(isEnemy || isSlider) {
@@ -897,13 +905,6 @@ public class PlayerMovement : MonoBehaviour {
                         other.gameObject.GetComponent<Box>().HandleCollision(this);
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 					}
-
-					else if(isBonus && !ignoreCollision) {
-						//TODOtile.HandleCollision(this);
-						//TODO start moving towrads the world position of the letter on gui manager
-						//change opcaity to 255
-						//delete the game object when reaches target (add a delete when reach if needed)
-					}	
 
 					else if(!ignoreCollision) {
 						HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();

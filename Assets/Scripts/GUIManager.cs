@@ -175,6 +175,16 @@ public class GUIManager : MonoBehaviour {
 	 }
 		
 	}
+    
+    public void RestoreBonusImagesOpacity() {
+        foreach(UnityEngine.UI.Image image in bonusImages) {
+        
+            Color color = image.color;
+            color.a = 0.2745f;
+            image.color = color;
+        }
+    }
+    //0.2745 ->70 out of 255 opacity
 
 	public void disableMove(int num) {
 
@@ -412,7 +422,7 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-	public void SetMovesText(int remainining, bool hasExtraMoves) {
+	public void SetMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
 		if(hasExtraMoves && remainining >=10) {
 			extraMovesImage[remainining-10].enabled = false;
 		}
@@ -437,6 +447,13 @@ public class GUIManager : MonoBehaviour {
 			img.enabled = true;
 		}
 	}
+    //just one
+    public void ResetBonusMoves() {
+    
+        Color c = extraMovesImage[0].color;
+        extraMovesImage[0].color = new Color(c.r,c.b,c.g,1);
+        extraMovesImage[0].enabled = true;
+    }
 
 	public void ShowGameOver() {
 
@@ -724,11 +741,13 @@ public class GUIManager : MonoBehaviour {
 		stageLevelImage.color = new Color(stageLevelImage.color.r,stageLevelImage.color.b,stageLevelImage.color.g,0);
 	}
 
-	public void ResetMoves(bool hasExtraMoves) {
+	public void ResetMoves(bool hasExtraMoves, bool hasBonus) {
 		ResetRegularMoves();
 		if(hasExtraMoves) {
 			ResetExtraMoves();
-		}
+		} else if(hasBonus) {
+            ResetBonusMoves();
+        }
 	}
 
 	public void PurchaseInfiniteRevivesPressed() {
