@@ -65,8 +65,6 @@ public class LevelManager : MonoBehaviour {
 		} else if(CheckHasBonusMove()) {
             numMoves = MAX_MOVES + 1;
         }
-        
-        
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android && swipe==null) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
@@ -86,6 +84,9 @@ public class LevelManager : MonoBehaviour {
 		if(musicOff == 0) {
 			EnableMusic();
 		}
+
+		CheckMoves();
+
 		//RESET HIGH SCORE
 		//if(currentLevel.level == 1 && stage == 1) {
 		//	PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, 0);
@@ -282,6 +283,20 @@ public class LevelManager : MonoBehaviour {
 		guiManager.ResetMoves(hasExtra, hasBonus);
 	}
 
+	public void increaseMoves(int num)
+	{
+		if(numMoves + num  < MAX_MOVES + 2) {
+			numMoves += num;
+
+			Vector3 pos = guiManager.movesImage[numMoves].gameObject.GetComponent<RectTransform>().position;
+			SpecialEffectsHelper.Instance.PlayRiseEffect(pos);
+			Debug.Log("NUM MOVES: " + numMoves);
+			//guiManager.UpdateMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
+		}
+
+		
+	}
+
 	public void decreaseMove() {
 		if(numMoves > 0 ) {
 			numMoves -= 1;
@@ -339,6 +354,18 @@ public class LevelManager : MonoBehaviour {
         return PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1;
     }
 
+
+	private void CheckMoves() {
+
+		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : CheckHasBonusMove() ? MAX_MOVES + 1 : MAX_MOVES;
+		guiManager.ResetRegularMoves();
+		if(hasExtraMoves || CheckHasExtraMoves()) {
+			guiManager.ResetExtraMoves();
+		} else if(CheckHasBonusMove()) {
+			guiManager.ResetBonusMoves();
+		}
+	}
+
 	public void RestartLevel() {
 
 		Debug.Log("######## RESTART LEVEL #############");
@@ -348,12 +375,10 @@ public class LevelManager : MonoBehaviour {
 		}
 		isDead = false;
 		isDying = false;
-		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : MAX_MOVES;
+
 		gameStarted = true;
-		guiManager.ResetRegularMoves();
-		if(hasExtraMoves || CheckHasExtraMoves()) {
-			guiManager.ResetExtraMoves();
-		}
+		CheckMoves();
+		
 		guiManager.HideGameOver();
 		foreach(PlayerMovement player in twins) {
 			player.ResetOriginalSprite();

@@ -423,11 +423,18 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void SetMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
-		if(hasExtraMoves && remainining >=10) {
+		if( (hasExtraMoves || hasBonusMove) && remainining >=10) {
 			extraMovesImage[remainining-10].enabled = false;
 		}
 		else if(remainining >= 0) {
 			movesImage[remainining].enabled = false;
+		}
+		
+	}
+
+	public void UpdateMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
+		if(remainining >= 0 && remainining < 10 + 2) {
+			movesImage[remainining].enabled = true;
 		}
 		
 	}

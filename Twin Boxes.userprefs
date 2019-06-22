@@ -1,13 +1,11 @@
-﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelSelector.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Bonus.cs" Line="7" Column="2" />
-      <File FileName="Assets/Scripts/LevelSelector.cs" Line="89" Column="17" />
-      <File FileName="Assets/Scripts/SliderBlock.cs" Line="116" Column="24" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="202" Column="26" />
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="581" Column="15" />
-      <File FileName="Assets/Scripts/EnemyBox.cs" Line="70" Column="5" />
-      <File FileName="Assets/Scripts/SceneLoader.cs" Line="52" Column="3" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="292" Column="49" />
+      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Bonus.cs" Line="83" Column="21" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="312" Column="36" />
+      <File FileName="Assets/Scripts/SpecialEffectsHelper.cs" Line="239" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -15,5 +13,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
