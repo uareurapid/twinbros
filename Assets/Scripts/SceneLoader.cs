@@ -102,7 +102,6 @@ public class SceneLoader : MonoBehaviour {
         asyncOperation = SceneManager.LoadSceneAsync(nextScene);
         asyncOperation.allowSceneActivation = false;
 		bool isDone = false;
-
         while (!asyncOperation.isDone && !isDone/* && !courtinesDone*/)
         {
 
@@ -123,9 +122,10 @@ public class SceneLoader : MonoBehaviour {
         {
             loadingDotsImage.SetActive(false);
         }
-
-		yield return new WaitForSeconds(delay);
-        asyncOperation.allowSceneActivation = true;
+		asyncOperation.allowSceneActivation = true;
+		//yield return new WaitForSeconds(delay);
+        
+		
 
     }
 
