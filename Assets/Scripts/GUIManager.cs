@@ -699,10 +699,18 @@ public class GUIManager : MonoBehaviour {
 
 	public void ShowLevelClearedImage() {
 		levelClearedImage.enabled = true;
+		UnityEngine.UI.Image[] imgs = levelClearedImage.gameObject.GetComponentsInChildren<UnityEngine.UI.Image>();
+		foreach(UnityEngine.UI.Image img in imgs) {
+			img.enabled = true;
+		}
 	}
 
 	public void HideLevelClearedImage() {
 		levelClearedImage.enabled = false;
+		UnityEngine.UI.Image[] imgs = levelClearedImage.gameObject.GetComponentsInChildren<UnityEngine.UI.Image>();
+		foreach(UnityEngine.UI.Image img in imgs) {
+			img.enabled = false;
+		}
 	}
 
 	public void ShowStageClearedImage() {
