@@ -62212,7 +62212,7 @@ MonoBehaviour:
   currentLevel: {fileID: 747059181}
   respawnLevel: {fileID: 747059181}
   currentStageFirstLevel: {fileID: 747059181}
-  debugLevel: {fileID: 541533318}
+  debugLevel: {fileID: 747059181}
   stage: 3
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
