@@ -39976,10 +39976,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b092be2eb3cc42b88c7eee5d346e112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMoveLeft: 0
+  canMoveLeft: 1
   canMoveRight: 1
   canMoveUp: 1
-  canMoveDown: 1
+  canMoveDown: 0
   isLeftCheckpoint: 1
 --- !u!212 &574079872
 SpriteRenderer:
@@ -62212,7 +62212,7 @@ MonoBehaviour:
   currentLevel: {fileID: 747059181}
   respawnLevel: {fileID: 747059181}
   currentStageFirstLevel: {fileID: 747059181}
-  debugLevel: {fileID: 747059181}
+  debugLevel: {fileID: 541533318}
   stage: 3
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
