@@ -653,6 +653,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4982,6 +4983,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -7272,6 +7274,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13713,6 +13716,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &207390393 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1685264200842100, guid: f9f23d77ffd614211b04e349e20b6046,
@@ -16835,6 +16839,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &264918127
 GameObject:
   m_ObjectHideFlags: 0
@@ -19322,6 +19327,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &306421080
 Prefab:
   m_ObjectHideFlags: 0
@@ -21149,6 +21155,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &348923009
 GameObject:
   m_ObjectHideFlags: 0
@@ -21307,6 +21314,11 @@ Prefab:
         type: 2}
       propertyPath: speedOut
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114499593570775130, guid: 76315b7d4ef1647a99350ccb52a35afb,
+        type: 2}
+      propertyPath: isRevertSprite
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76315b7d4ef1647a99350ccb52a35afb, type: 2}
@@ -27848,6 +27860,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &437659840
 Prefab:
   m_ObjectHideFlags: 0
@@ -30864,6 +30877,11 @@ Prefab:
       propertyPath: speedOut
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114499593570775130, guid: 76315b7d4ef1647a99350ccb52a35afb,
+        type: 2}
+      propertyPath: isRevertSprite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76315b7d4ef1647a99350ccb52a35afb, type: 2}
   m_IsPrefabParent: 0
@@ -31199,6 +31217,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &497687862
 GameObject:
   m_ObjectHideFlags: 0
@@ -32164,6 +32183,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &510412490
 GameObject:
   m_ObjectHideFlags: 0
@@ -32656,6 +32676,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!4 &516531163
 Transform:
   m_ObjectHideFlags: 0
@@ -41915,6 +41936,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &606448892
 GameObject:
   m_ObjectHideFlags: 0
@@ -49444,6 +49466,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49930,6 +49953,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &758099297
 Prefab:
   m_ObjectHideFlags: 0
@@ -52479,6 +52503,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63967,6 +63992,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -66720,6 +66746,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1053619859
 GameObject:
   m_ObjectHideFlags: 0
@@ -67198,6 +67225,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68184,6 +68212,11 @@ Prefab:
     - target: {fileID: 114499593570775130, guid: 76315b7d4ef1647a99350ccb52a35afb,
         type: 2}
       propertyPath: waitSeconds
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114499593570775130, guid: 76315b7d4ef1647a99350ccb52a35afb,
+        type: 2}
+      propertyPath: isRevertSprite
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -71897,6 +71930,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1136265152
 GameObject:
   m_ObjectHideFlags: 0
@@ -72365,6 +72399,16 @@ Prefab:
       propertyPath: wayPoints.Array.data[6]
       value: 
       objectReference: {fileID: 2126297916}
+    - target: {fileID: 114221508824309976, guid: 0c2311c529522410d8875e87d7ab3510,
+        type: 2}
+      propertyPath: isCircular
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114221508824309976, guid: 0c2311c529522410d8875e87d7ab3510,
+        type: 2}
+      propertyPath: inReverse
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c2311c529522410d8875e87d7ab3510, type: 2}
   m_IsPrefabParent: 0
@@ -74546,6 +74590,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1192230212
 GameObject:
   m_ObjectHideFlags: 0
@@ -74790,6 +74835,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1197413175
 GameObject:
   m_ObjectHideFlags: 0
@@ -75506,6 +75552,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!4 &1206200912
 Transform:
   m_ObjectHideFlags: 0
@@ -79740,6 +79787,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &1283564861
 Prefab:
   m_ObjectHideFlags: 0
@@ -80078,6 +80126,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &1288376805
 Prefab:
   m_ObjectHideFlags: 0
@@ -87342,6 +87391,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1349995555
 GameObject:
   m_ObjectHideFlags: 0
@@ -115417,6 +115467,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!4 &1717644482
 Transform:
   m_ObjectHideFlags: 0
@@ -122346,6 +122397,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1809961858
 GameObject:
   m_ObjectHideFlags: 0
@@ -123574,6 +123626,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1826336682
 GameObject:
   m_ObjectHideFlags: 0
@@ -126510,6 +126563,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &1867031518
 Prefab:
   m_ObjectHideFlags: 0
@@ -126960,6 +127014,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -127734,6 +127789,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1891753960
 GameObject:
   m_ObjectHideFlags: 0
@@ -129605,6 +129661,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1930758169
 GameObject:
   m_ObjectHideFlags: 0
@@ -132481,6 +132538,11 @@ Prefab:
       propertyPath: speedOut
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114499593570775130, guid: 76315b7d4ef1647a99350ccb52a35afb,
+        type: 2}
+      propertyPath: isRevertSprite
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76315b7d4ef1647a99350ccb52a35afb, type: 2}
   m_IsPrefabParent: 0
@@ -133663,6 +133725,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &2002713879
 GameObject:
   m_ObjectHideFlags: 0
@@ -137186,6 +137249,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &2035120061
 GameObject:
   m_ObjectHideFlags: 0
@@ -143812,6 +143876,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &2144691074
 GameObject:
   m_ObjectHideFlags: 0

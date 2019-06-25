@@ -239,6 +239,12 @@ public class MoveWayPoint : MonoBehaviour
                 ren.enabled = true;
             }
         }
+        
+        if(currentWaypoint.isRevertSprite) {
+              Vector3 theScale = transform.localScale;
+              theScale.x *= -1;
+              transform.localScale = theScale;
+        }
 
 		
 	}

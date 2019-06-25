@@ -13,6 +13,8 @@ public class WayPoint : MonoBehaviour
     public bool isHiddeSprite = false;
     //if true it will show sprite as it passes by
     public bool isShowSprite = true;
+    //flip x axis
+    public bool isRevertSprite = false;
 	void Start() {
 		Collider2D childCol = GetComponent<Collider2D>();
 		if(childCol!=null) {
