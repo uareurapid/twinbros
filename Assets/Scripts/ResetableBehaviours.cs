@@ -14,6 +14,8 @@ public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 			list = new List<MonoBehaviour>();
 			originalStates = new Dictionary<string, bool>();
 			//LevelManager.Instance.AddResetableBehaviourObject(this);
+            
+             StartCoroutine(AddToResetableList());
 			
 		}
 
@@ -24,9 +26,9 @@ public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 				//cannot do on start, not available yet
 				foreach (MonoBehaviour behaviour in gameObject.GetComponents<MonoBehaviour>()) {
 					string scriptName = behaviour.GetType().ToString();
-					//Debug.Log("adding script with name : " + scriptName + " original state: " + behaviour.enabled);
-					list.Add(behaviour);
+					Debug.Log("DEBUG: adding script with name : " + scriptName + " original state: " + behaviour.enabled);
 					originalStates.Add(scriptName, behaviour.enabled);
+                    list.Add(behaviour);
 				}
 			}
 		}
@@ -49,16 +51,9 @@ public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 						
 						bool savedValue = false;
 						//if the key is present get the saved value for this script, otherwise get the current behaviour state
-						if (originalStates.ContainsKey(savedScriptName))
+						if (originalStates.TryGetValue(savedScriptName, out savedValue))
 						{
-							savedValue = true;
-							//workaround for this one, not working for some stupid reason!!!
-							//if(savedScriptName.Equals("MoreMountains.Tools.PathMovement") ) {
-							//	savedValue = ((PathMovement)behaviour).GetOriginalEnabledState();
-							//}
-							//else {
-								savedValue = originalStates.TryGetValue(savedScriptName, out savedValue);
-							//}
+						
 							
 							Debug.Log("FOUND ONE: " + scriptName + " now is? " + behaviour.enabled  + " but inititally was: " + savedValue);
 							behaviour.enabled = savedValue;
@@ -71,6 +66,19 @@ public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 			}
 			
 		}
+        
+        IEnumerator AddToResetableList() {
+        yield return new WaitForSecondsRealtime(2f);
+        GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+            if(scripts!=null) {
+
+                LevelManager levelManager = scripts.GetComponent<LevelManager>();
+                if(levelManager!=null) {
+                    levelManager.AddResetableBehaviourObject(this);
+                }
+                
+            }
+        }
 }
 
 

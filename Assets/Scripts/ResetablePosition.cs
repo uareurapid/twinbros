@@ -29,6 +29,9 @@ public class ResetablePosition : MonoBehaviour, ResetBehaviourScript {
 		 }
 	
 		 //LevelManager.Instance.AddResetableBehaviourObject(this);
+         //TODO CHECK WHY I HAD REMOVED IT ABOVE
+         StartCoroutine(AddToResetableList());
+         
 		}
 		
 		// Update is called once per frame
@@ -77,6 +80,19 @@ public class ResetablePosition : MonoBehaviour, ResetBehaviourScript {
 		 }	*/
 	
 		}
+        
+        IEnumerator AddToResetableList() {
+        yield return new WaitForSecondsRealtime(2f);
+        GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+            if(scripts!=null) {
+
+                LevelManager levelManager = scripts.GetComponent<LevelManager>();
+                if(levelManager!=null) {
+                    levelManager.AddResetableBehaviourObject(this);
+                }
+                
+            }
+        }
 	}
 
 
