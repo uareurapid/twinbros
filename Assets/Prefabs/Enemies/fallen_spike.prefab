@@ -27,7 +27,9 @@ GameObject:
   - component: {fileID: 114694237941266800}
   - component: {fileID: 212109841912371176}
   - component: {fileID: 50564822223602984}
-  m_Layer: 0
+  - component: {fileID: 114956174781098976}
+  - component: {fileID: 114287103651550878}
+  m_Layer: 10
   m_Name: fallen_spike
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -41,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1624086671137120}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -7.515, y: 3.53, z: 0}
+  m_LocalPosition: {x: -8.51, y: 3.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -66,7 +68,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61664192771897960
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -115,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77307f4fc017c4335af26cebf8af9493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallDelay: 10
+  fallDelay: 6
   fallOnlyIfVisible: 1
   applyDelayOnlyVisible: 1
   applyFallRotation: 0
@@ -123,8 +125,20 @@ MonoBehaviour:
   fallRotationDirection: 1
   isEnemyOnlyIfFalling: 0
   visibilityCounter: 0
-  detachFromParent: 1
-  autoDestroy: 1
+  detachFromParent: 0
+  autoDestroy: 0
+--- !u!114 &114287103651550878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624086671137120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e5e627020d045c1a99b28dc125fe70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alsoOnBecameInvisible: 0
 --- !u!114 &114694237941266800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,12 +161,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af68f364160b4cf2a9f469252fbe398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeAmount: 0.055
+  shakeAmount: 0.015
   shake: 0
   fallAfterShake: 1
-  forHowLong: 0
+  forHowLong: 3
   shakeOnlyWhenVisible: 1
   shakeDelay: 5
+  onlyChangeColor: 1
+--- !u!114 &114956174781098976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624086671137120}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f577f65fe0f55447c922651e9b0f71f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0
+  blinkInterval: 0.25
+  isUIImage: 0
+  isEnabled: 0
+  onlyChangeColor: 1
+  color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &114994364199671780
 MonoBehaviour:
   m_ObjectHideFlags: 1

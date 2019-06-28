@@ -16,18 +16,25 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
     private bool isVisible = false;
 
     public bool onlyChangeColor = false;
-    public Color color;
-
-    private Color originalColor; 
     
 	// Use this for initialization
 	void Start () {
 	
 		if(shakeDelay > 0f && !shakeOnlyWhenVisible) {
-			Invoke("StartShaking", shakeDelay);
-			if(forHowLong > 0f) {
-				Invoke("StopShaking", forHowLong);
-			}
+        
+        
+            if(onlyChangeColor) {
+                    Invoke("StartColorChange", shakeDelay);
+                    if(forHowLong > 0f) {
+                        Invoke("StopColorChange", forHowLong);
+                    }
+            } else {
+                Invoke("StartShaking", shakeDelay);
+                if(forHowLong > 0f) {
+                    Invoke("StopShaking", forHowLong);
+                }
+            }
+			
 		}
         
          StartCoroutine(AddToResetableList());
@@ -62,8 +69,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 	}
     
     public void StartColorChange() {
-      originalColor = GetComponent<SpriteRenderer>().color;
-      GetComponent<SpriteRenderer>().color = color;
+
       GetComponent<BlinkSpriteScript>().enabled = true;
       if(forHowLong > 0f) {
          Invoke("StopColorChange", forHowLong);
@@ -94,9 +100,10 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
             fall.enabled = true;
             fall.ResetFalling(false);
             fall.StartFalling();
-            
-            GetComponent<SpriteRenderer>().color = originalColor;
-            GetComponent<BlinkSpriteScript>().enabled = false;
+
+            BlinkSpriteScript blink = GetComponent<BlinkSpriteScript>();
+            blink.StopBlinking();
+            blink.enabled = false;
             
             //disable it again
             fall.enabled = false;
