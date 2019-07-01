@@ -26,6 +26,8 @@ public class BlinkSpriteScript : MonoBehaviour {
 
         isEnabled = true;
         if(onlyChangeColor) {
+
+			color.a = 1f;
             if (isUIImage)
             {
                originalColor = GetComponent<UnityEngine.UI.Image>().color;
