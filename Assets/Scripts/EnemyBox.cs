@@ -161,7 +161,9 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 	//TODO this if fucking wrong for sure
 	public bool IsIgnoreCollision(PlayerMovement player, bool ignoreMovementDirection) {
 		Debug.Log("@IS IGNORE COLLISION? " + player.IsIgnoreCollision(transform, true));
-		return player.IsIgnoreCollision(transform, ignoreMovementDirection);
+        
+        bool ignore = player.IsIgnoreCollision(transform, ignoreMovementDirection);
+        return ignore;
 	}
 
 }

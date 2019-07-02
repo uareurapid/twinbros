@@ -886,8 +886,17 @@ public class PlayerMovement : MonoBehaviour {
 					}
 					else if(isMovingBlock) {
 						//pause the moving block
-						MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
-						move.PauseMovement();
+                        if(!ignoreCollision) {
+                            MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
+                            move.PauseMovement();
+                        }
+                        //TODO should i pause the enemy even if the collision is ignored??? dont think SO, CHECK URGENT PLEASE!!!
+                        if(isEnemy) {
+                            EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+                            //i could not be moving but if the enemy is we cant ignore it
+                            //if(!ignoreCollision ) {
+                            enemy.HandleCollision(this);
+                        }
 					}
 					else if(isBomb && !ignoreCollision) {
 		
@@ -904,7 +913,6 @@ public class PlayerMovement : MonoBehaviour {
 					}
                     else if(isEnemy /*&& !ignoreCollision*/ ) {
                         EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-                        Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
                         //i could not be moving but if the enemy is we cant ignore it
                         //if(!ignoreCollision ) {
                         enemy.HandleCollision(this);

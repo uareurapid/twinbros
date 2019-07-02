@@ -122,7 +122,6 @@ public class FadeSprite : MonoBehaviour {
                 if( (doBoth && (countCycle < maxCycles ) ) || (doBoth && maxCycles == 0) ) {
 					countCycle += 1;
 					if(fadeIn) {
-						Debug.Log("DO 2ND PASS, false");
 						FadeSpriteNow(false);
 					}
 					else {

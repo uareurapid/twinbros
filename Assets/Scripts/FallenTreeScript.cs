@@ -25,13 +25,15 @@ public class FallenTreeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Debug.Log("WTFWTWTWTWWTTWTWTWTWTWTWTWTTWTWTWTTWTWTWTTWTWTWTWTTW");
 		isFalling = false;
 		if (applyDelayOnlyVisible == false || fallOnlyIfVisible==false) {//if false apply delay immediatelly
 			if(fallDelay>0f){
+            
+                Debug.Log("DEBUG: CALLING STARTFALLING START");
 				Invoke ("StartFalling", fallDelay);
 			}
 			else {
+                Debug.Log("DEBUG: CALLING STARTFALLING START 2");
 			    StartFalling();
 			}
 		}
@@ -45,7 +47,7 @@ public class FallenTreeScript : MonoBehaviour {
 
 	//called when the camera stops shaking!
 	public void prepareFallingSequence() {
-		Debug.Log("prepareFallingSequence");
+	  Debug.Log("DEBUG: prepareFallingSequence");
 	  if(fallOnlyIfVisible) {
 	    if(isVisible) {
 			if(fallDelay>0f){
@@ -79,6 +81,7 @@ public class FallenTreeScript : MonoBehaviour {
 	public void StartFallingAfterDelay() {
 	
 	 if (!isFalling && fallDelay > 0f) {
+            Debug.Log("DEBUG: CALLING STARTFALLING");
 		Invoke ("StartFalling", fallDelay);
 	 } 
 
@@ -94,6 +97,8 @@ public class FallenTreeScript : MonoBehaviour {
 
 		if(!isFalling) {
 			isFalling = true;
+
+            Debug.Log("DEBUG: START FALLING");
 
 			if(transform.parent != null && detachFromParent) {
 				transform.parent = null;
@@ -126,6 +131,7 @@ public class FallenTreeScript : MonoBehaviour {
 
 	}
 
+    //So, if I understand correctly, only Start(), Awake(), Update(), FixedUpdate(), and OnGUI() are affected by disabling the script,
 	void OnBecameVisible() {
 		if (!isVisible) {
 			isVisible = true;
