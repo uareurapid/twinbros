@@ -43,10 +43,15 @@ public class SliderBlock : MonoBehaviour, HandlePlayerCollision {
         //move it to the center of the stop sign
         Vector3 pos = transform.position;
 		Vector3 localPos = transform.localPosition;
+
+        Debug.Log("DEBUG: SLIDER LOCAL POS: " + localPos + " GLOBAL POS: " + pos);
    
         player.transform.position = new Vector3(pos.x, pos.y, player.transform.position.z);
 		player.transform.localPosition = new Vector3(localPos.x, localPos.y, player.transform.localPosition.z);
 
+
+        Debug.Log("DEBUG: PLAYER LOCAL POS: " + player.transform.localPosition + " GLOBAL POS: " + player.transform.position);
+        
     StartCoroutine(RestartMovement(
             slideLeft,
             slideRight,
@@ -61,7 +66,7 @@ public class SliderBlock : MonoBehaviour, HandlePlayerCollision {
     {
         yield return new WaitForSeconds(0.5f);
 
-        Debug.Log("left: " + left + " right " + right + " up " + up + " down " + down + " player left: " + player.isLeftTwin);
+        Debug.Log("DEBUG: SLIDER RestartMovement left: " + left + " right " + right + " up " + up + " down " + down + " player left: " + player.isLeftTwin);
         //continue the movement
         player.SetIsMovingBetweenTeleportPoints(false);
         if (left)

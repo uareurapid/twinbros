@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4360419486816264}
   - component: {fileID: 114814472886498550}
   - component: {fileID: 61399311087717292}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: slider
   m_TagString: Slider
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4242329355503968}
   - component: {fileID: 114343851067818690}
   - component: {fileID: 61472352754862678}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: slider
   m_TagString: Slider
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4506649514829740}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: double_slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

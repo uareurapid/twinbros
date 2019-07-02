@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Vector3[] previousPosition = new Vector3[2];
 
+    //the masks are used only for raycast, things that i can walk through like sliders/doors, etc MUST BE OUT!
 	private int collisionMasks = -1;
 	public float minDistanceForNeighbour = 0.55f; //how close i can be to another element/box
 			
@@ -781,6 +782,8 @@ public class PlayerMovement : MonoBehaviour {
         
         //ignore it
         if (isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.isPlayerDead() ) {
+
+            Debug.Log("DEBUG: COLLISION IGNORED -±other.transform.name: " + other.transform.name);
 			return;
 		}
 
@@ -797,7 +800,7 @@ public class PlayerMovement : MonoBehaviour {
 		bool ignoreCollision = true;
 
         if(isEnemy || isSlider) {
-            Debug.Log("isEnemy ? " + isEnemy + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight +
+            Debug.Log("isEnemy ? " + isEnemy + " is Slider? " + isSlider + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight +
 			" isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft);
 
         }
@@ -859,6 +862,7 @@ public class PlayerMovement : MonoBehaviour {
 						
                     } else if(!IsMovingInAnyDirection() && isEnemy) {
                         //even if not moving, if it is an enemy
+                        Debug.Log("DEBUG: CODE ME, EMPTY BLOCK");
                     }
 
 					Tile tile = other.transform.GetComponent<Tile>();
@@ -875,14 +879,7 @@ public class PlayerMovement : MonoBehaviour {
             
                         other.gameObject.GetComponent<Portal>().HandleCollision(this);
 
-                    } else if(isEnemy /*&& !ignoreCollision*/ ) {
-                        EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-                        Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
-                        //i could not be moving but if the enemy is we cant ignore it
-                        //if(!ignoreCollision ) {
-                        enemy.HandleCollision(this);
-                        //}else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
-                    }
+                    } 
                     else if(isSlider && !ignoreCollision) {
 						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
                         slider.HandleCollision(this);
@@ -905,6 +902,14 @@ public class PlayerMovement : MonoBehaviour {
                         other.gameObject.GetComponent<Box>().HandleCollision(this);
 						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
 					}
+                    else if(isEnemy /*&& !ignoreCollision*/ ) {
+                        EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+                        Debug.Log("ENEMY COLLSION WITH " + other.gameObject.name);
+                        //i could not be moving but if the enemy is we cant ignore it
+                        //if(!ignoreCollision ) {
+                        enemy.HandleCollision(this);
+                        //}else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
+                    }
 
 					else if(!ignoreCollision) {
 						HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();

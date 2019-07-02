@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4636433866327954}
   - component: {fileID: 114835517103020976}
   - component: {fileID: 61398117738140092}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: slider
   m_TagString: Slider
   m_Icon: {fileID: 0}
