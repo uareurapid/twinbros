@@ -163,6 +163,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 		Debug.Log("@IS IGNORE COLLISION? " + player.IsIgnoreCollision(transform, true));
         
         bool ignore = player.IsIgnoreCollision(transform, ignoreMovementDirection);
+        
         return ignore;
 	}
 
