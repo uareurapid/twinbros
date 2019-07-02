@@ -42,50 +42,10 @@ public class SliderBlock : MonoBehaviour, HandlePlayerCollision {
         player.StopMovementVelocity();
         //move it to the center of the stop sign
         Vector3 pos = transform.position;
-        Vector3 playerPos = player.transform.position;
-        player.transform.position = new Vector3(pos.x, pos.y, playerPos.z);
-
-        /*if (player.IsMovingLeft())
-        {
-
-            player.collidedLeft();
-        }
-        else if (player.IsMovingRight())
-        {
-
-            player.collidedRight();
-        }
-        else if (player.IsMovingUp())
-        {
-
-            player.collidedTop();
-        }
-        else if (player.IsMovingDown())
-        {
-
-            player.collidedBottom();
-        }
-       
-		if(slideRight) {
-			player.canMoveRight = true;
-			player.SlideRight();
-		}
-        else if (slideLeft)
-        {
-            player.canMoveLeft = true;
-            player.SlideLeft();
-        }
-        else if (slideUp)
-        {
-            player.canMoveUp = true;
-            player.SlideUp();
-        }
-        else if (slideDown)
-        {
-            player.canMoveDown = true;
-            player.SlideDown();
-        }*/
-	
+		Vector3 localPos = transform.localPosition;
+   
+        player.transform.position = new Vector3(pos.x, pos.y, player.transform.position.z);
+		player.transform.localPosition = new Vector3(localPos.x, localPos.y, player.transform.localPosition.z);
 
     StartCoroutine(RestartMovement(
             slideLeft,

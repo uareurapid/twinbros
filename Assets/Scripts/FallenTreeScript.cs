@@ -24,6 +24,8 @@ public class FallenTreeScript : MonoBehaviour {
 	private bool isFalling = false;
 	// Use this for initialization
 	void Start () {
+
+		Debug.Log("WTFWTWTWTWWTTWTWTWTWTWTWTWTTWTWTWTTWTWTWTTWTWTWTWTTW");
 		isFalling = false;
 		if (applyDelayOnlyVisible == false || fallOnlyIfVisible==false) {//if false apply delay immediatelly
 			if(fallDelay>0f){

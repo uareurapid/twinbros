@@ -368,7 +368,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void RestartLevel() {
 
-		Debug.Log("######## RESTART LEVEL #############");
+		//Debug.Log("######## RESTART LEVEL #############");
 		//set initial rotation and scale
 		foreach(PlayerMovement twin in twins) {
 			twin.ResetPlayer();
@@ -676,7 +676,7 @@ public class LevelManager : MonoBehaviour {
 	    
 		SoundEffectsHelper.Instance.PlayTeleportSound();
 
-        Debug.Log("MOVE PLAYERS INTO POSITION: " + nextLevel + " size: " + checkpoints.Length);
+        //Debug.Log("MOVE PLAYERS INTO POSITION: " + nextLevel + " size: " + checkpoints.Length);
 
 		foreach(PlayerMovement moveScript in twins) {
 

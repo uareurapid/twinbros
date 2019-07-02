@@ -16,6 +16,8 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
     private bool isVisible = false;
 
     public bool onlyChangeColor = false;
+
+	private bool changingColor = false;
     
 	// Use this for initialization
 	void Start () {
@@ -37,7 +39,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 			
 		}
         
-         StartCoroutine(AddToResetableList());
+        StartCoroutine(AddToResetableList());
 	}
 	
 	// Update is called once per frame
@@ -57,6 +59,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 	//starts shaking, but will stop in stopDelay seconds
 	public void StartShaking(float stopDelay) {
 
+	  Debug.Log("DEBUG: START SHAKING");
 	  shake = true;
 	  Invoke("StopShaking",stopDelay);
 	}
@@ -70,16 +73,23 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
     
     public void StartColorChange() {
 
-      GetComponent<BlinkSpriteScript>().enabled = true;
-      if(forHowLong > 0f) {
-         Invoke("StopColorChange", forHowLong);
-      }
+	  if(!changingColor) {
+		changingColor = true;
+		GetComponent<BlinkSpriteScript>().enabled = true;
+	  	Debug.Log("DEBUG: START COLOR CHANGE");
+      	if(forHowLong > 0f) {
+         	Invoke("StopColorChange", forHowLong);
+      	}
+	  }
+      
     }
 
 	public void StopShaking() {
 
       shake = false;
       if(fallAfterShake) {
+
+			Debug.Log("DEBUG: STOP SHAKING");
 
 			FallenTreeScript fall = GetComponent<FallenTreeScript>();
 			fall.enabled = true;
@@ -94,8 +104,12 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
     
     public void StopColorChange() {
 
-      if(fallAfterShake) {
+	  if(changingColor) {
 
+			changingColor = false;
+	  }
+      if(fallAfterShake) {
+			Debug.Log("DEBUG: STOP COLOR CHANGE");
             FallenTreeScript fall = GetComponent<FallenTreeScript>();
             fall.enabled = true;
             fall.ResetFalling(false);
@@ -112,13 +126,18 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
     }
     
     void OnBecameVisible() {
+
+		Debug.Log("DEBUG: beCAME VISIBLE SHAKESCRIPT");
         if (!isVisible) {
+			Debug.Log("SEE ME?");
             isVisible = true;
             //isFalling = false;
             if(shakeOnlyWhenVisible && !shake && !onlyChangeColor) {//start counting
                 Invoke("StartShaking", shakeDelay);
                 
             } else if(shakeOnlyWhenVisible && onlyChangeColor) {
+
+			   changingColor = false;
                Invoke("StartColorChange", shakeDelay);
             }
         }
@@ -135,6 +154,8 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 
     public void ResetOriginalBehaviour()
     {
+
+		changingColor = false;
         //prepare for falling again (if on visible only do the same calls)
         if(shakeDelay > 0f && !shakeOnlyWhenVisible) {
         

@@ -26,7 +26,7 @@ public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 				//cannot do on start, not available yet
 				foreach (MonoBehaviour behaviour in gameObject.GetComponents<MonoBehaviour>()) {
 					string scriptName = behaviour.GetType().ToString();
-					Debug.Log("DEBUG: adding script with name : " + scriptName + " original state: " + behaviour.enabled);
+					//Debug.Log("DEBUG: adding script with name : " + scriptName + " original state: " + behaviour.enabled);
 					originalStates.Add(scriptName, behaviour.enabled);
                     list.Add(behaviour);
 				}
@@ -55,7 +55,7 @@ public class ResetableBehaviours : MonoBehaviour, ResetBehaviourScript
 						{
 						
 							
-							Debug.Log("FOUND ONE: " + scriptName + " now is? " + behaviour.enabled  + " but inititally was: " + savedValue);
+							//Debug.Log("FOUND ONE: " + scriptName + " now is? " + behaviour.enabled  + " but inititally was: " + savedValue);
 							behaviour.enabled = savedValue;
 							break;
 						}
