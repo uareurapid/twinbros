@@ -748,6 +748,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4553,6 +4554,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &88049631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,6 +5071,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -6441,6 +6444,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &129903833
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,6 +6575,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &130300260
 GameObject:
   m_ObjectHideFlags: 0
@@ -7562,6 +7567,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14207,6 +14213,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &209448903
 GameObject:
   m_ObjectHideFlags: 0
@@ -17947,6 +17954,8 @@ MonoBehaviour:
   blinkInterval: 0.3
   isUIImage: 1
   isEnabled: 1
+  onlyChangeColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &275209989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18601,6 +18610,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &283323424
 GameObject:
   m_ObjectHideFlags: 0
@@ -19773,6 +19783,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &308341139
 GameObject:
   m_ObjectHideFlags: 0
@@ -27522,6 +27533,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &440238689
 GameObject:
   m_ObjectHideFlags: 0
@@ -30834,6 +30846,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &496124891
 GameObject:
   m_ObjectHideFlags: 0
@@ -39547,6 +39560,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &600145812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44422,6 +44436,8 @@ MonoBehaviour:
   blinkInterval: 0.3
   isUIImage: 1
   isEnabled: 1
+  onlyChangeColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &680761706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45077,6 +45093,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &689361369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47760,6 +47777,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55588,6 +55606,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55807,6 +55826,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!4 &811539068 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195,
@@ -57352,6 +57372,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &844103274
 GameObject:
   m_ObjectHideFlags: 0
@@ -57494,6 +57515,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &847225045
 GameObject:
   m_ObjectHideFlags: 0
@@ -58460,6 +58482,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &866021984
 Prefab:
   m_ObjectHideFlags: 0
@@ -66132,7 +66155,7 @@ MonoBehaviour:
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 1
+  isDebugMode: 0
   isTestMode: 1
   twins:
   - {fileID: 408182580}
@@ -67516,6 +67539,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -69326,6 +69350,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1036607230
 GameObject:
   m_ObjectHideFlags: 0
@@ -70397,6 +70422,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1053619859
 GameObject:
   m_ObjectHideFlags: 0
@@ -70946,6 +70972,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -83304,6 +83331,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1284402093
 GameObject:
   m_ObjectHideFlags: 0
@@ -83623,6 +83651,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1289222419
 GameObject:
   m_ObjectHideFlags: 0
@@ -92142,6 +92171,8 @@ MonoBehaviour:
   blinkInterval: 0.3
   isUIImage: 1
   isEnabled: 1
+  onlyChangeColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1368073668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94737,6 +94768,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &1407667686
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113201,6 +113233,8 @@ MonoBehaviour:
   blinkInterval: 0.3
   isUIImage: 1
   isEnabled: 1
+  onlyChangeColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1628487901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123265,6 +123299,8 @@ MonoBehaviour:
   blinkInterval: 0.3
   isUIImage: 1
   isEnabled: 1
+  onlyChangeColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1791403974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123693,6 +123729,8 @@ MonoBehaviour:
   blinkInterval: 0.3
   isUIImage: 1
   isEnabled: 1
+  onlyChangeColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1792750941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126954,6 +126992,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1839860897
 GameObject:
   m_ObjectHideFlags: 0
@@ -127356,6 +127395,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1847739974
 GameObject:
   m_ObjectHideFlags: 0
@@ -129200,6 +129240,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -130563,6 +130604,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &1898970902
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131236,6 +131278,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!114 &1904338523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136320,6 +136363,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &1998452760
 Prefab:
   m_ObjectHideFlags: 0
@@ -140575,6 +140619,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &2025692871
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145394,6 +145439,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &2116051096
 SpriteRenderer:
   m_ObjectHideFlags: 0

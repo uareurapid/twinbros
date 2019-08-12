@@ -63296,7 +63296,7 @@ MonoBehaviour:
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 1
+  isDebugMode: 0
   isTestMode: 0
   twins:
   - {fileID: 408182580}
