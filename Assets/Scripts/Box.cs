@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Box : SpawnableItem, HandlePlayerCollision {
 
+    //TODO the surprise must be destroyed when the level restarts, after player dies
 	public bool isSurpriseBox = false;
 	public Transform[] possibleSurprises;
+    
+    public bool isShootingBox = false; //this can fire a projectile
 
 	private PlayerMovement twinPlayer;
 
@@ -61,6 +64,10 @@ public class Box : SpawnableItem, HandlePlayerCollision {
         {
 
             FadeSurpriseBox(player);
+        } else if(isShootingBox) {
+
+            ShootingBox shooting = GetComponent<ShootingBox>();
+            shooting.Shoot(); 
         }
         SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
 

@@ -6,6 +6,7 @@ public class Level : MonoBehaviour {
 
 	public int level = 1;
 	public Level nextLevel;
+    public bool isBossLevel = false; //if boss level the moves are infinite
 	// Use this for initialization
 	void Start () {
 		//StartCoroutine(RotateObject());

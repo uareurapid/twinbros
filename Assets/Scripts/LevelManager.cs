@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour {
 	public List<ResetBehaviourScript> listOfBehaviours;
 
 	//when i loose
-	public List<Destroyable> listOfDestroyables;
+	public List<GameObject> listOfDestroyables;
 
 	private AudioSource music;
 
@@ -74,7 +74,7 @@ public class LevelManager : MonoBehaviour {
 		currentStageFirstLevel = respawnLevel;
 
 		listOfBehaviours = new List<ResetBehaviourScript>();
-		listOfDestroyables = new List<Destroyable>();
+		listOfDestroyables = new List<GameObject>();
 
 		scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
@@ -103,7 +103,9 @@ public class LevelManager : MonoBehaviour {
 
 		if(CheckHasExtraMoves() || hasExtraMoves) {
 			guiManager.ResetExtraMoves();
-		}
+		} else {
+            guiManager.DisableExtraMoves();
+        }
 		leftTwinMoved = rightTwinMoved = false;
 		gameStarted = false;
 
@@ -158,11 +160,11 @@ public class LevelManager : MonoBehaviour {
 	public void AddDestroyableObject(Destroyable script)
 	{
 		if(listOfDestroyables == null) {
-			listOfDestroyables = new List<Destroyable>();
+			listOfDestroyables = new List<GameObject>();
 		}
 
-		if(!listOfDestroyables.Contains(script)) {
-			listOfDestroyables.Add(script);
+		if(!listOfDestroyables.Contains(script.gameObject)) {
+			listOfDestroyables.Add(script.gameObject);
 		}
 		
 	}
@@ -185,7 +187,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void DestroyAllDestroyables() {
-		foreach(Destroyable script in listOfDestroyables) {
+		foreach(GameObject obj in listOfDestroyables) {
+            Destroyable script = obj.GetComponent<Destroyable>();
 			if(script!=null && script.gameObject!=null) {
 				Destroy(script.gameObject);
 			}
@@ -361,9 +364,14 @@ public class LevelManager : MonoBehaviour {
 		guiManager.ResetRegularMoves();
 		if(hasExtraMoves || CheckHasExtraMoves()) {
 			guiManager.ResetExtraMoves();
-		} else if(CheckHasBonusMove()) {
-			guiManager.ResetBonusMoves();
-		}
+		} else {
+
+            guiManager.DisableExtraMoves();//TODO check
+        }
+        
+         if(CheckHasBonusMove()) {
+            guiManager.ResetBonusMoves();
+        }
 	}
 
 	public void RestartLevel() {
@@ -470,7 +478,7 @@ public class LevelManager : MonoBehaviour {
 	        }
 	
 			
-			if(moved > 0) {
+			if(moved > 0 && !currentLevel.isBossLevel) {
 				//leftTwinMoved = rightTwinMoved = false;
 				decreaseMove();
 				

@@ -119,7 +119,7 @@ Transform:
   m_Children:
   - {fileID: 4167257985081300}
   m_Father: {fileID: 4506649514829740}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4360419486816264
 Transform:
@@ -133,7 +133,7 @@ Transform:
   m_Children:
   - {fileID: 4734724749106790}
   m_Father: {fileID: 4506649514829740}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4506649514829740
 Transform:
@@ -142,11 +142,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981257262618222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.908, y: -2.474, z: 0}
+  m_LocalPosition: {x: 13.514814, y: -4.63039, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4360419486816264}
   - {fileID: 4242329355503968}
+  - {fileID: 4360419486816264}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -271,7 +271,7 @@ MonoBehaviour:
   slideUp: 0
   slideDown: 0
   isDoubleSlider: 1
-  firstSlider: {fileID: 0}
+  firstSlider: {fileID: 114343851067818690}
 --- !u!114 &114953500076746244
 MonoBehaviour:
   m_ObjectHideFlags: 1

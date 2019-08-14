@@ -31,35 +31,69 @@ public class SliderBlock : MonoBehaviour, HandlePlayerCollision {
     }
 
     private void Slide(PlayerMovement player) {
-
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null)
-        {
-            col.enabled = false;
+    
+        if(isDoubleSlider) {
+        
+            if(firstSlider!=null) {
+               //collided with 2nd slider, just slide normally 
+               DoSlideAction(player);
+            } else {
+                //collided with first slider, need to get the 2nd one and put the player there
+                //and after that call the DoSlideAction() on that one
+                SliderBlock [] blocks = transform.parent.GetComponentsInChildren<SliderBlock>();
+                if(blocks.Length > 1) {
+                
+                  //put it in the center/same position of the slider he collided with
+                  player.transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z);
+                
+                  //now look for the outside most slider and make it slide from there
+                  foreach(SliderBlock block in blocks) {
+                  
+                    //the 2nd is the one that has first slider set
+                    if(block.firstSlider != null) {
+                        Debug.Log("DEBUG: DELEGATE TO THE 2ND SLIDER");
+                        block.DoSlideAction(player);
+                    }
+                  }
+                } else {
+                    Debug.Log("DEBUG: WTF SLIDER NOT DOUBLE?");
+                }
+            }
+          
+        } else {
+            //proceed normally
+            DoSlideAction(player);
+            
         }
 
-        player.SetIsMovingBetweenTeleportPoints(true);
-        player.StopMovementVelocity();
-        //move it to the center of the stop sign
-        Vector3 pos = transform.position;
-		Vector3 localPos = transform.localPosition;
-
-        Debug.Log("DEBUG: SLIDER LOCAL POS: " + localPos + " GLOBAL POS: " + pos);
-   
-        player.transform.position = new Vector3(pos.x, pos.y, player.transform.position.z);
-		player.transform.localPosition = new Vector3(localPos.x, localPos.y, player.transform.localPosition.z);
-
-
-        Debug.Log("DEBUG: PLAYER LOCAL POS: " + player.transform.localPosition + " GLOBAL POS: " + player.transform.position);
         
-    StartCoroutine(RestartMovement(
-            slideLeft,
-            slideRight,
-            slideUp,
-            slideDown,
-            player
-
-        ));
+    }
+    
+    public void DoSlideAction(PlayerMovement player) {
+    
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null)
+            {
+                col.enabled = false;
+            }
+    
+            player.SetIsMovingBetweenTeleportPoints(true);
+            player.StopMovementVelocity();
+            //move it to the center of the stop sign
+            Vector3 pos = transform.position;
+         
+            player.transform.position = new Vector3(pos.x, pos.y, player.transform.position.z);
+    
+            Debug.Log("DEBUG: PLAYER LOCAL POS: " + player.transform.localPosition + " GLOBAL POS: " + player.transform.position);
+            
+            StartCoroutine(RestartMovement(
+                    slideLeft,
+                    slideRight,
+                    slideUp,
+                    slideDown,
+                    player
+        
+                ));
     }
 
     IEnumerator RestartMovement(bool left, bool right, bool up, bool down, PlayerMovement player)
@@ -76,7 +110,6 @@ public class SliderBlock : MonoBehaviour, HandlePlayerCollision {
         }
         else if (right)
         {
-            Debug.Log("SLIDE RIGHT");
             player.canMoveRight = true;
             player.SlideRight();
         }

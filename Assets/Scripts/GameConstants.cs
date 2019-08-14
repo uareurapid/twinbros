@@ -37,4 +37,9 @@ public class GameConstants : MonoBehaviour {
 
     public const string HAS_BONUS_MOVE = "has_bonus_move";
 
+    public const string SHOOT_DIRECTION_LEFT = "left";
+    public const string SHOOT_DIRECTION_RIGHT = "right";
+    public const string SHOOT_DIRECTION_UP = "up";
+    public const string SHOOT_DIRECTION_DOWN = "down";
+
 }

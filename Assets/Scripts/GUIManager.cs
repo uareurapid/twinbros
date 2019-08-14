@@ -424,16 +424,23 @@ public class GUIManager : MonoBehaviour {
 
 	public void SetMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
 		if( (hasExtraMoves || hasBonusMove) && remainining >=10) {
-			extraMovesImage[remainining-10].enabled = false;
+        
+            UnityEngine.UI.Image img = extraMovesImage[remainining - 10];
+            img.color = new Color(img.color.r,img.color.b,img.color.g,0.3f);
+			img.enabled = true; //was false
 		}
 		else if(remainining >= 0) {
-			movesImage[remainining].enabled = false;
+            UnityEngine.UI.Image img = movesImage[remainining];
+            img.color = new Color(img.color.r,img.color.b,img.color.g,0.3f);
+			img.enabled = true; //was false
 		}
 		
 	}
 
 	public void UpdateMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
 		if(remainining >= 0 && remainining < 10 + 2) {
+            UnityEngine.UI.Image img = movesImage[remainining];
+            img.color = new Color(img.color.r,img.color.b,img.color.g,1);
 			movesImage[remainining].enabled = true;
 		}
 		
@@ -442,6 +449,7 @@ public class GUIManager : MonoBehaviour {
 	public void ResetRegularMoves() {
 		foreach(UnityEngine.UI.Image img in movesImage) {
 			img.enabled = true;
+            img.color = new Color(img.color.r,img.color.b,img.color.g,1);
 		}
 		
 	}
@@ -454,6 +462,14 @@ public class GUIManager : MonoBehaviour {
 			img.enabled = true;
 		}
 	}
+    
+    public void DisableExtraMoves() {
+        foreach (UnityEngine.UI.Image img in extraMovesImage)
+        {
+            img.color = new Color(img.color.r,img.color.b,img.color.g,0.3f);
+            img.enabled = true;
+        }
+    }
     //just one
     public void ResetBonusMoves() {
     
