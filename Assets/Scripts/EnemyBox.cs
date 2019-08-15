@@ -11,6 +11,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 	private Tile associatedTile;
 	//if moving do not count for the collision marging
 	public bool isMovingEnemy = false;
+
 	// Use this for initialization
 	void Start () {
 		associatedTile = GetComponent<Tile>();

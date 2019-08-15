@@ -5,6 +5,13 @@ using UnityEngine;
 public class ShootingBox : MonoBehaviour {
 
     public string shootDirection = GameConstants.SHOOT_DIRECTION_LEFT;
+
+    public float shootCoolDown = 1f; //minimum interval between shoots
+    
+    public float nextShoot = 1f; //in secs
+    
+    
+    public Transform shootPrefab;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,17 +24,27 @@ public class ShootingBox : MonoBehaviour {
     
     public void Shoot() {
     
-        if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_LEFT)) {
+        if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_LEFT) && Time.time > nextShoot) {
             Debug.Log("shoot left");
+            DoShoot(Vector2.left);
         }
-        else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_RIGHT)) {
+        else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_RIGHT) && Time.time > nextShoot) {
             Debug.Log("shoot right");
+            DoShoot(Vector2.right);
         }
-        else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_UP)) {
+        else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_UP) && Time.time > nextShoot) {
             Debug.Log("shoot up");
+            DoShoot(Vector2.up);
         }
-        else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_DOWN)) {
-             Debug.Log("shoot down");
+        else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_DOWN) && Time.time > nextShoot) {
+            Debug.Log("shoot down");
+            DoShoot(Vector2.down);
         }
+    }
+    
+    private void DoShoot(Vector2 direction) {
+            nextShoot = Time.time + shootCoolDown;
+            Transform shoot = Instantiate(shootPrefab, transform.position, transform.rotation);
+            shoot.GetComponent<Mover>().StartMoving(direction);
     }
 }

@@ -37,11 +37,20 @@ public class FollowThePath : MonoBehaviour {
         if (waypointIndex <= waypoints.Length - 1)
         {
 
-            // Move Enemy from current waypoint to the next one
-            // using MoveTowards method
-            transform.position = Vector2.MoveTowards(transform.position,
-               waypoints[waypointIndex].transform.position,
-               moveSpeed * Time.deltaTime);
+            Transform nextWayPoint = waypoints[waypointIndex];
+            WayPoint info = nextWayPoint.GetComponent<WayPoint>();
+            if(info!=null) {
+                //use the way point speed to either accelerate or slow down
+                transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, info.speedOut * Time.deltaTime);
+                
+            } else {
+                //normal movement
+                // Move Enemy from current waypoint to the next one
+                // using MoveTowards method
+                transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
+               
+            }
+            
 
             // If Enemy reaches position of waypoint he walked towards
             // then waypointIndex is increased by 1
