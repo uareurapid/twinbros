@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
 				
 			}
 			else {
-				Debug.Log("WTF");
+				Debug.Log("WTF");//GAME OVER ALL STAGES DONE? TODO
 				levelManager.KillPlayer();
 			}
 		}

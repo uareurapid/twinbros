@@ -725,4 +725,17 @@ public class LevelManager : MonoBehaviour {
 		//Debug.Log("### NOT WAITING ANYMORE ...." + moveScriptLeft.GetIsMovingBetweenLevels() + " : " + moveScriptLeft.otherTwin.GetIsMovingBetweenLevels());
 		return false;
 	}
+
+	public void NotifyBossDeath() {
+
+		if(currentLevel.isBossLevel) {
+			if(currentLevel.KilledBoss()) {
+				Debug.Log("DEBUG: ALL DONE!!! CONGRATULATIONS!!!");
+				LevelCleared();
+				//Show the level clear animation and then...
+				//TODO Show Credits Screen or Something, and then go back to level 1, stage 1
+				//KillPlayer();
+			}
+		}
+	}
 }

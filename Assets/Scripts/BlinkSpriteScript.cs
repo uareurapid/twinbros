@@ -14,7 +14,7 @@ public class BlinkSpriteScript : MonoBehaviour {
     public Color color;
 
     private Color originalColor;
-    // Use this for initialization
+	// Use this for initialization
 
     private bool stop = false;
 	void Start () {
@@ -25,7 +25,7 @@ public class BlinkSpriteScript : MonoBehaviour {
 	void OnEnable () {
 
         isEnabled = true;
-        if(onlyChangeColor) {
+        if(onlyChangeColor) { //TODO this script is only working OK if i set this to true
 
 			color.a = 1f;
             if (isUIImage)
@@ -36,7 +36,8 @@ public class BlinkSpriteScript : MonoBehaviour {
             else {
             
               originalColor = GetComponent<SpriteRenderer>().color;
-            }       }
+            }       
+		}
         stop = false;    
 		InvokeRepeating("Blink",delay,blinkInterval);
 	}
@@ -87,6 +88,23 @@ public class BlinkSpriteScript : MonoBehaviour {
         } else {
 
             GetComponent<SpriteRenderer>().color = originalColor;
+        }
+    }
+
+	public void StopBlinkingWithOptions(bool originallyEnabled) {
+
+        stop = true;
+        CancelInvoke("Blink");
+        if (isUIImage)
+        {
+			UnityEngine.UI.Image img = GetComponent<UnityEngine.UI.Image>();
+			img.enabled = originallyEnabled;
+            img.color = originalColor;
+        } else {
+
+			SpriteRenderer rend = GetComponent<SpriteRenderer>();
+            rend.color = originalColor;
+			rend.enabled = originallyEnabled;
         }
     }
 
