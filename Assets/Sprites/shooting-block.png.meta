@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 15e31f1174b444bdbbd5a539e29778b7
+guid: c4909c01c4b78477db72a6d7f8ae8a70
 TextureImporter:
   fileIDToRecycleName:
-    21300000: skull_0
-    21300002: skull_1
+    21300000: shooting-block_0
+    21300002: shooting-block_1
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -92,6 +92,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
+    buildTarget: tvOS
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
     buildTarget: Android
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -113,22 +124,11 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: tvOS
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: skull_0
+      name: shooting-block_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 564208fd4abc8466fa757dec0805582b
+      spriteID: 36bb1f4fbd4fe4fccac1d6287e092c2f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skull_1
+      name: shooting-block_1
       rect:
         serializedVersion: 2
         x: 32
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c73dd02db51314f0f98d8794c4994b8a
+      spriteID: 40b9ef6bfedc0403cb778a8ed6c67679
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 06fd5a37e5018457792dbb82b7aeebd6
+    spriteID: 0676a2aa7977947fd9c1b300b6116961
     vertices: []
     indices: 
     edges: []
