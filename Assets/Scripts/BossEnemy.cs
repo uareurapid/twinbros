@@ -61,7 +61,7 @@ public class BossEnemy : MonoBehaviour {
 		if(level.KilledAllBosses()) {
 			//destroy fence, make explosion
 			level.KillDieWithBossObjects();
-			//show portals again
+			//enable portals again
 			level.EnablePortals();
 			LevelManager levelManager = FindObjectOfType<LevelManager>();
 			levelManager.LevelCleared();
