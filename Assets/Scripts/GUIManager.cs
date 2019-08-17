@@ -415,12 +415,17 @@ public class GUIManager : MonoBehaviour {
 		levelText.text = string.Format("Level: {0}", level);
 	}
 
+	public void ResetScore() {
+		currentScoreText.text = "SC: 000000";
+	}
+
+	/*
 	public void IncreaseHighScore(int points, int currentHighScore) {
 
 		int total = currentHighScore + points;
 		highScoreText.text = total.ToString("000000");
 		
-	}
+	}*/
 
 	public void SetMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
 		if( (hasExtraMoves || hasBonusMove) && remainining >=10) {

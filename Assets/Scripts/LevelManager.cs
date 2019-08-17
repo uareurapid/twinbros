@@ -205,6 +205,7 @@ public class LevelManager : MonoBehaviour {
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
         gameStarted = true;
+		guiManager.ResetScore();
 	}
 
 	public void StartNextStage() {
