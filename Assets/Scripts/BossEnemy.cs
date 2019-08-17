@@ -30,7 +30,7 @@ public class BossEnemy : MonoBehaviour {
         if(currentLife <= 0) {
 
 			NotifyBossDeath();
-            Destroy(gameObject); //dead
+			Destroy(gameObject);
         }
     }
 
@@ -56,7 +56,15 @@ public class BossEnemy : MonoBehaviour {
 
 	//one of the bosses died	
 	public void NotifyBossDeath() {
-		LevelManager levelManager = FindObjectOfType<LevelManager>();
-		levelManager.NotifyBossDeath();
+
+		//check if all are gone now
+		if(level.KilledAllBosses()) {
+			//destroy fence, make explosion
+			level.KillDieWithBossObjects();
+			//show portals again
+			level.EnablePortals();
+			LevelManager levelManager = FindObjectOfType<LevelManager>();
+			levelManager.LevelCleared();
+		}
 	}
 }

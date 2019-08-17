@@ -70,4 +70,18 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
         yield return new WaitForSeconds(0.5f);
         MoveToNextLevel();
     }
+
+	public void EnablePortal() {
+
+		GetComponent<Collider2D>().enabled = true;
+		GetComponentInChildren<SwapSpriteScript>().enabled = true;
+	}
+
+	//disable portals
+	public void DisablePortal() {
+
+		GetComponent<Collider2D>().enabled = false;
+		GetComponentInChildren<SwapSpriteScript>().enabled = false;
+
+	}
 }

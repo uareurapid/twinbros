@@ -59,7 +59,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 	//starts shaking, but will stop in stopDelay seconds
 	public void StartShaking(float stopDelay) {
 
-	  Debug.Log("DEBUG: START SHAKING");
+	  //Debug.Log("DEBUG: START SHAKING");
 	  shake = true;
 	  Invoke("StopShaking",stopDelay);
 	}
@@ -76,7 +76,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 	  if(!changingColor) {
 		changingColor = true;
 		GetComponent<BlinkSpriteScript>().enabled = true;
-	  	Debug.Log("DEBUG: START COLOR CHANGE");
+	  	//Debug.Log("DEBUG: START COLOR CHANGE");
       	if(forHowLong > 0f) {
          	Invoke("StopColorChange", forHowLong);
       	}
@@ -89,7 +89,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
       shake = false;
       if(fallAfterShake) {
 
-			Debug.Log("DEBUG: STOP SHAKING");
+			//Debug.Log("DEBUG: STOP SHAKING");
 
 			FallenTreeScript fall = GetComponent<FallenTreeScript>();
 			fall.enabled = true;
@@ -109,7 +109,7 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
 			changingColor = false;
 	  }
       if(fallAfterShake) {
-			Debug.Log("DEBUG: STOP COLOR CHANGE");
+			//Debug.Log("DEBUG: STOP COLOR CHANGE");
             FallenTreeScript fall = GetComponent<FallenTreeScript>();
             fall.enabled = true;
             fall.ResetFalling(false);
@@ -127,9 +127,9 @@ public class ShakeScript : MonoBehaviour, ResetBehaviourScript {
     
     void OnBecameVisible() {
 
-		Debug.Log("DEBUG: beCAME VISIBLE SHAKESCRIPT");
+		//.Log("DEBUG: beCAME VISIBLE SHAKESCRIPT");
         if (!isVisible) {
-			Debug.Log("SEE ME?");
+		
             isVisible = true;
             //isFalling = false;
             if(shakeOnlyWhenVisible && !shake && !onlyChangeColor) {//start counting

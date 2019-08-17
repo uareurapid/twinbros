@@ -28,6 +28,7 @@ TagManager:
   - Slider
   - StarField
   - Bonus
+  - Credits
   layers:
   - Default
   - TransparentFX

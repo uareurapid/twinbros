@@ -94,6 +94,15 @@ public class SceneLoader : MonoBehaviour {
 
     IEnumerator LoadSceneNoLevelManager()
     {
+		//TODO check on other objects the usage, changed here for credits only
+		yield return new WaitForSeconds(delay);
+
+		//if we are on the credits screen remove this image to show the loading dots one
+		GameObject credits = GameObject.FindGameObjectWithTag("Credits");
+		if(credits!=null) {
+			credits.SetActive(false);
+		}
+
 
         if (loadingDotsImage != null)
         {

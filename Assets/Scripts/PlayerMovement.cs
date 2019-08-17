@@ -821,7 +821,9 @@ public class PlayerMovement : MonoBehaviour {
 						
 					}
                     else if(isLeftMovement && canMoveLeft) {
-						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
+
+
+						Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
 						if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 						{
 							collidedLeft();

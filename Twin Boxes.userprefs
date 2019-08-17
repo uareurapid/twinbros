@@ -1,11 +1,13 @@
-﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneLoader.cs">
     <Files>
-      <File FileName="Assets/Scripts/BossEnemy.cs" Line="60" Column="1" />
-      <File FileName="Assets/Scripts/BlinkSpriteScript.cs" Line="28" Column="50" />
-      <File FileName="Assets/Scripts/Level.cs" Line="26" Column="1" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="737" Column="7" />
-      <File FileName="Assets/Scripts/Portal.cs" Line="43" Column="5" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="826" Column="25" />
+      <File FileName="Assets/Scripts/ShakeScript.cs" Line="130" Column="1" />
+      <File FileName="Assets/Scripts/BossEnemy.cs" Line="65" Column="14" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="729" Column="1" />
+      <File FileName="Assets/Scripts/Level.cs" Line="63" Column="27" />
+      <File FileName="Assets/Scripts/Portal.cs" Line="82" Column="1" />
+      <File FileName="Assets/Scripts/SceneLoader.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -13,5 +15,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

@@ -25,19 +25,15 @@ public class ShootingBox : MonoBehaviour {
     public void Shoot() {
     
         if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_LEFT) && Time.time > nextShoot) {
-            Debug.Log("shoot left");
             DoShoot(Vector2.left);
         }
         else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_RIGHT) && Time.time > nextShoot) {
-            Debug.Log("shoot right");
             DoShoot(Vector2.right);
         }
         else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_UP) && Time.time > nextShoot) {
-            Debug.Log("shoot up");
             DoShoot(Vector2.up);
         }
         else if(shootDirection.Equals(GameConstants.SHOOT_DIRECTION_DOWN) && Time.time > nextShoot) {
-            Debug.Log("shoot down");
             DoShoot(Vector2.down);
         }
     }
