@@ -418,6 +418,7 @@ public class PlayerMovement : MonoBehaviour {
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
 	}
 
 	public void SlideRight() {
@@ -428,6 +429,7 @@ public class PlayerMovement : MonoBehaviour {
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
 	}
 
 	public void SlideDown() {
@@ -438,6 +440,7 @@ public class PlayerMovement : MonoBehaviour {
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
 		isUpMovement = isLeftMovement = isRightMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
 	}
 
 	public void SlideLeft() {
@@ -447,6 +450,7 @@ public class PlayerMovement : MonoBehaviour {
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
 		isRightMovement = isDownMovement = isUpMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
 	}
 
 

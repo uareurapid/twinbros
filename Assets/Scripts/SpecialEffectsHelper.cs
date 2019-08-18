@@ -21,6 +21,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 	public Transform explodeTransform;
 
 	public Transform[] bloodSplatters;
+    
+    public Transform smokeTrailTransform;
 
 	public ParticleSystem touchGroundEffect;
 	
@@ -33,7 +35,6 @@ public class SpecialEffectsHelper : MonoBehaviour
 	public ParticleSystem coinBurstEffect;
 	public ParticleSystem parachuteReleaseEffect;
 	public ParticleSystem laserExplosionEffect;
-	public ParticleSystem smokeTrailEffect;
 
 	public ParticleSystem fireworksEffect;
 	public ParticleSystem levelDoneEffect;
@@ -201,8 +202,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(laserExplosionEffect, position);
 	}
 	
-	public ParticleSystem PlaySmokeTrailEffect(Vector3 position) {
-		return instantiate(smokeTrailEffect, position);
+	public Transform PlaySmokeTrailTransform(Vector3 position) {
+		return instantiateTransform(smokeTrailTransform, position);
 	}
 
 	public ParticleSystem PlayDieAndSplitEffect(Vector3 position) {

@@ -40391,6 +40391,7 @@ MonoBehaviour:
   possibleSpawnPositions: []
   isSurpriseBox: 0
   possibleSurprises: []
+  isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
 --- !u!1001 &618712445
 Prefab:
@@ -47678,6 +47679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   nextLevel: {fileID: 1038954024}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &748205347
 GameObject:
   m_ObjectHideFlags: 0
@@ -49975,6 +49978,7 @@ MonoBehaviour:
   possibleSpawnPositions: []
   isSurpriseBox: 0
   possibleSurprises: []
+  isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
 --- !u!1 &789341813
 GameObject:
@@ -57679,6 +57683,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 3
   nextLevel: {fileID: 1398940949}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &851952544
 GameObject:
   m_ObjectHideFlags: 0
@@ -66310,6 +66316,8 @@ MonoBehaviour:
   lightningBolt: {fileID: 0}
   explodeTransform: {fileID: 0}
   bloodSplatters: []
+  smokeTrailTransform: {fileID: 4087676479521502, guid: 447ad6488841e466fa4e620a3ff59bbb,
+    type: 2}
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
   dustEffect: {fileID: 0}
@@ -66321,7 +66329,6 @@ MonoBehaviour:
   coinBurstEffect: {fileID: 0}
   parachuteReleaseEffect: {fileID: 0}
   laserExplosionEffect: {fileID: 0}
-  smokeTrailEffect: {fileID: 0}
   fireworksEffect: {fileID: 0}
   levelDoneEffect: {fileID: 0}
   levelStartNameEffect: {fileID: 0}
@@ -69563,6 +69570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   nextLevel: {fileID: 849939279}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &1040380002
 GameObject:
   m_ObjectHideFlags: 0
@@ -85750,6 +85759,7 @@ MonoBehaviour:
   possibleSpawnPositions: []
   isSurpriseBox: 0
   possibleSurprises: []
+  isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
 --- !u!1 &1318350283
 GameObject:
@@ -94302,6 +94312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 4
   nextLevel: {fileID: 1348278068}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &1400016154
 GameObject:
   m_ObjectHideFlags: 0
@@ -109912,6 +109924,7 @@ MonoBehaviour:
   possibleSpawnPositions: []
   isSurpriseBox: 0
   possibleSurprises: []
+  isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
 --- !u!1 &1552228384
 GameObject:
