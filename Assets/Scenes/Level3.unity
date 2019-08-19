@@ -65031,7 +65031,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 742e1cb2f5e7e45599131d61be000dc5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d96bcc56bd9c540d790cf01cb20279ea, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -65169,6 +65169,7 @@ MonoBehaviour:
   lightningBolt: {fileID: 0}
   explodeTransform: {fileID: 0}
   bloodSplatters: []
+  smokeTrailTransform: {fileID: 0}
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
   dustEffect: {fileID: 0}
@@ -65180,7 +65181,6 @@ MonoBehaviour:
   coinBurstEffect: {fileID: 0}
   parachuteReleaseEffect: {fileID: 0}
   laserExplosionEffect: {fileID: 0}
-  smokeTrailEffect: {fileID: 0}
   fireworksEffect: {fileID: 0}
   levelDoneEffect: {fileID: 0}
   levelStartNameEffect: {fileID: 0}

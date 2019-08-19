@@ -626,6 +626,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &10799706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5259,6 +5260,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &97212959
 GameObject:
   m_ObjectHideFlags: 0
@@ -7298,6 +7300,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &142458490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13918,6 +13921,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &209273855
 Prefab:
   m_ObjectHideFlags: 0
@@ -17485,6 +17489,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &268682183
 GameObject:
   m_ObjectHideFlags: 0
@@ -28048,6 +28053,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &439504912 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1310252356114866, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -31559,6 +31565,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1001 &497673481
 Prefab:
   m_ObjectHideFlags: 0
@@ -49869,6 +49876,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   nextLevel: {fileID: 1038954024}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &748205347
 GameObject:
   m_ObjectHideFlags: 0
@@ -49968,6 +49977,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &749149999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53194,6 +53204,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &803946279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55387,6 +55398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 3
   nextLevel: {fileID: 1398940949}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &850400444
 GameObject:
   m_ObjectHideFlags: 0
@@ -57004,6 +57017,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &879957238
 GameObject:
   m_ObjectHideFlags: 0
@@ -58134,6 +58148,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &901877689
 GameObject:
   m_ObjectHideFlags: 0
@@ -63014,6 +63029,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &975852481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64491,7 +64507,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 742e1cb2f5e7e45599131d61be000dc5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 69a3290bc811243c3a9a7d92c3e711fd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -64629,6 +64645,7 @@ MonoBehaviour:
   lightningBolt: {fileID: 0}
   explodeTransform: {fileID: 0}
   bloodSplatters: []
+  smokeTrailTransform: {fileID: 0}
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
   dustEffect: {fileID: 0}
@@ -64640,7 +64657,6 @@ MonoBehaviour:
   coinBurstEffect: {fileID: 0}
   parachuteReleaseEffect: {fileID: 0}
   laserExplosionEffect: {fileID: 0}
-  smokeTrailEffect: {fileID: 0}
   fireworksEffect: {fileID: 0}
   levelDoneEffect: {fileID: 0}
   levelStartNameEffect: {fileID: 0}
@@ -65947,6 +65963,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1016704908
 GameObject:
   m_ObjectHideFlags: 0
@@ -67981,6 +67998,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   nextLevel: {fileID: 849939279}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1001 &1039271667
 Prefab:
   m_ObjectHideFlags: 0
@@ -68904,6 +68923,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1052854201
 GameObject:
   m_ObjectHideFlags: 0
@@ -69590,6 +69610,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &1066951347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80697,6 +80718,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!114 &1275577055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81487,6 +81509,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1284402093
 GameObject:
   m_ObjectHideFlags: 0
@@ -81739,6 +81762,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1289222419
 GameObject:
   m_ObjectHideFlags: 0
@@ -84052,6 +84076,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &1328684368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92240,6 +92265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 4
   nextLevel: {fileID: 1348278068}
+  isBossLevel: 0
+  dieWithBoss: []
 --- !u!1 &1400016154
 GameObject:
   m_ObjectHideFlags: 0
@@ -106429,6 +106456,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &1516769182 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1459471108475612, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -113288,6 +113316,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &1629454292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114729,6 +114758,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!212 &1655267792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -128588,6 +128618,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!224 &1876580340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -134150,6 +134181,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!114 &1979010480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135117,6 +135149,7 @@ MonoBehaviour:
   isDirectTeleport: 0
   isHiddeSprite: 0
   isShowSprite: 1
+  isRevertSprite: 0
 --- !u!1 &2002713879
 GameObject:
   m_ObjectHideFlags: 0
