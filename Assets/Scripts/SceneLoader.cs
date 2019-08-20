@@ -15,12 +15,30 @@ public class SceneLoader : MonoBehaviour {
     public bool automaticLoad = false;
     //used only if above is also set
     public float delay = 4f;
+	//for auto load only
+	public float automaticDelay = 0; 
 	//after how many passages move on?
 	public int numDoorPassages = 1;
+
+	public AudioClip soundToPlayOnLoad;
+
+	public GameObject[] disableObjectsBeforeLoad;
+
 	// Use this for initialization
 	void Start () {
+
+		if(soundToPlayOnLoad!=null) {
+			SoundEffectsHelper.Instance.PlayGenericSound(soundToPlayOnLoad);
+		}
         if(automaticLoad && delay > 0f) {
-            LoadNextSceneNoLevelManager();
+
+			if(automaticDelay > 0) {
+				Invoke("LoadNextSceneNoLevelManager", automaticDelay);
+			}
+			else {
+				LoadNextSceneNoLevelManager();
+			}
+            
         }
 	}
 	
@@ -49,6 +67,12 @@ public class SceneLoader : MonoBehaviour {
 
 	IEnumerator LoadScene(LevelManager levelManager) {
 
+		//used on credits mostly
+		if(disableObjectsBeforeLoad.Length > 0) {
+			foreach(GameObject obj in disableObjectsBeforeLoad) {
+				obj.SetActive(false);
+			}
+		}
 		if(loadingDotsImage!=null) {
 			loadingDotsImage.SetActive(true);
 		}

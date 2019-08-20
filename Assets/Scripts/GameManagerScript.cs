@@ -12,7 +12,11 @@ public class GameManagerScript : MonoBehaviour {
 	private Vector3 starFieldInitialPosition;
     
     private List<string> bonusList; // to write twin
-    
+
+	//all the managers should be here
+	public SoundManager soundManager;
+	private bool gameStarted = false;
+	private bool gameEnded = false;
 	// Use this for initialization
 	void Start () {
     
@@ -21,6 +25,13 @@ public class GameManagerScript : MonoBehaviour {
         starField = GameObject.FindGameObjectWithTag("StarField");
 		if(starField!=null) {
 			starFieldInitialPosition = starField.transform.position;
+		}
+
+		if(soundManager==null) {
+			GameObject scripts = GameObject.FindWithTag("Scripts");
+			if(scripts!=null) {
+				soundManager = scripts.GetComponent<SoundManager>();
+			}
 		}
 	}
 	
@@ -97,4 +108,21 @@ public class GameManagerScript : MonoBehaviour {
     public void KillPlayer() {
         RemoveBonusMove();
     }
+
+	public void StartGame() {
+		gameEnded = false;
+		gameStarted = true;
+		if(soundManager!=null) {
+			soundManager.SetVolume(0.4f);
+		}
+	}
+
+	public void EndGame() {
+		gameEnded = true;
+		gameStarted = false;
+		if(soundManager!=null) {
+			soundManager.SetVolume(0.7f);
+		}
+	}
+
 }

@@ -1,14 +1,13 @@
-﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUIManager.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BossEnemy.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneLoader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="1205" Column="22" />
-      <File FileName="Assets/Scripts/ShakeScript.cs" Line="130" Column="1" />
-      <File FileName="Assets/Scripts/BossEnemy.cs" Line="65" Column="14" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="213" Column="20" />
-      <File FileName="Assets/Scripts/Level.cs" Line="63" Column="27" />
-      <File FileName="Assets/Scripts/Portal.cs" Line="38" Column="19" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="418" Column="4" />
+      <File FileName="Assets/Scripts/SoundManager.cs" Line="37" Column="2" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="153" Column="35" />
+      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="124" Column="30" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="329" Column="26" />
+      <File FileName="Assets/Scripts/BossEnemy.cs" Line="10" Column="2" />
+      <File FileName="Assets/Scripts/FollowThePath.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpeedIncrease.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -16,5 +15,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

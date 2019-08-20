@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114223713145551246}
   - component: {fileID: 114868208239882924}
   - component: {fileID: 114542777356405940}
+  - component: {fileID: 114178912675059308}
   m_Layer: 0
   m_Name: boss_level
   m_TagString: Enemy
@@ -127,6 +128,19 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+--- !u!114 &114178912675059308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1647234203647744}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f360b0ea7e0d243168f97ca3af7d7aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedIncrease: 0.5
+  speedIncreaseDuration: 3
 --- !u!114 &114223713145551246
 MonoBehaviour:
   m_ObjectHideFlags: 1

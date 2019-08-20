@@ -64341,6 +64341,7 @@ GameObject:
   - component: {fileID: 994518052}
   - component: {fileID: 994518057}
   - component: {fileID: 994518058}
+  - component: {fileID: 994518059}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Scripts
@@ -64509,7 +64510,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 69a3290bc811243c3a9a7d92c3e711fd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -64645,7 +64646,8 @@ MonoBehaviour:
   lightningBolt: {fileID: 0}
   explodeTransform: {fileID: 0}
   bloodSplatters: []
-  smokeTrailTransform: {fileID: 0}
+  smokeTrailTransform: {fileID: 4087676479521502, guid: 447ad6488841e466fa4e620a3ff59bbb,
+    type: 2}
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
   dustEffect: {fileID: 0}
@@ -64754,6 +64756,7 @@ MonoBehaviour:
   - {fileID: 541533318}
   - {fileID: 1487890937}
   - {fileID: 2023011355}
+  soundManager: {fileID: 0}
 --- !u!114 &994518058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64772,7 +64775,21 @@ MonoBehaviour:
   nextScene: Level3
   automaticLoad: 0
   delay: 4
+  automaticDelay: 0
   numDoorPassages: 1
+  soundToPlayOnLoad: {fileID: 0}
+  disableObjectsBeforeLoad: []
+--- !u!114 &994518059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994518046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31575980ed6474336a6d612957f46c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995870045
 GameObject:
   m_ObjectHideFlags: 0
@@ -64826,7 +64843,10 @@ MonoBehaviour:
   nextScene: LevelSelection
   automaticLoad: 0
   delay: 4
+  automaticDelay: 0
   numDoorPassages: 1
+  soundToPlayOnLoad: {fileID: 0}
+  disableObjectsBeforeLoad: []
 --- !u!114 &995870048
 MonoBehaviour:
   m_ObjectHideFlags: 0

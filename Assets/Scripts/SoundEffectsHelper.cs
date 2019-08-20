@@ -180,6 +180,10 @@ public class SoundEffectsHelper : MonoBehaviour
 		MakeSound(flipTimeSound);
 	}
 
+	public void PlayGenericSound(AudioClip sound) {
+		MakeSound(sound);
+	}
+
 	public static SoundEffectsHelper Instance {
 		get
 		{

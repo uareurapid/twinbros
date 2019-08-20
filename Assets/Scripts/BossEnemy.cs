@@ -7,10 +7,16 @@ public class BossEnemy : MonoBehaviour {
     public int initialLife = 10;
     private int currentLife = 0;
 
+	private SpeedIncrease speedIncrease;
+
 	public Level level; //the level the boss belongs to
+
+	private bool canTakeDamage = true;
 	// Use this for initialization
 	void Start () {
         currentLife = initialLife;
+		canTakeDamage = true;
+		speedIncrease = GetComponent<SpeedIncrease>();
 	}
 	
 	// Update is called once per frame
@@ -21,7 +27,7 @@ public class BossEnemy : MonoBehaviour {
     
     public void DecreaseLife() {
     
-        if(currentLife > 0) {
+        if(currentLife > 0 && canTakeDamage) {
 
             currentLife--;
 			TakeDamage();
@@ -36,6 +42,11 @@ public class BossEnemy : MonoBehaviour {
 
 	void TakeDamage() {
 
+		canTakeDamage = false;
+
+		if(speedIncrease!=null && !speedIncrease.enabled) {
+			speedIncrease.enabled = true;
+		}
 		BlinkSpriteScript blink = GetComponentInChildren<BlinkSpriteScript>();
 		if(blink!=null) {
 			blink.enabled = true;
@@ -52,6 +63,12 @@ public class BossEnemy : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 			blink.enabled = false;
 		}
+		if(speedIncrease!=null && speedIncrease.enabled) {
+			speedIncrease.enabled = false;
+		}
+
+		canTakeDamage = true;
+		//back to normal
 	}
 
 	//one of the bosses died	

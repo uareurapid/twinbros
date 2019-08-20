@@ -113,7 +113,6 @@ public class LevelManager : MonoBehaviour {
 		if(stage > 1) {
 			Invoke("StartGame", 1.5f);
 		}
-		//Invoke("StartGame", 1f);
 	}
     
     public GUIManager GetGUIManager() {
@@ -201,6 +200,7 @@ public class LevelManager : MonoBehaviour {
 
 		//TODO eu não posso carregar e começar  nivel antes do resetbehaviours
 		//primeiro o reset e quando terminar é que posso clicar no botão!!!
+		gameManager.StartGame();
 		RestartLevel();
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
@@ -326,6 +326,7 @@ public class LevelManager : MonoBehaviour {
 		if (!isDead && gameStarted)
 		{
 			Debug.Log("KillPlayer CALLED");
+			gameManager.EndGame();
 			isDead = true;
 			numMoves = 0;
 			guiManager.SetMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
