@@ -65283,7 +65283,7 @@ MonoBehaviour:
   - {fileID: 541533318}
   - {fileID: 1487890937}
   - {fileID: 2023011355}
-  soundManager: {fileID: 994518059}
+  soundManager: {fileID: 0}
 --- !u!114 &994518058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65317,6 +65317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31575980ed6474336a6d612957f46c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnLoad: {fileID: 8300000, guid: 69a3290bc811243c3a9a7d92c3e711fd, type: 3}
+  playingAudioClip: {fileID: 8300000, guid: 742e1cb2f5e7e45599131d61be000dc5, type: 3}
 --- !u!1 &996163599
 GameObject:
   m_ObjectHideFlags: 0

@@ -66182,7 +66182,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 742e1cb2f5e7e45599131d61be000dc5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 69a3290bc811243c3a9a7d92c3e711fd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -66473,7 +66473,7 @@ MonoBehaviour:
   - {fileID: 541533318}
   - {fileID: 1487890937}
   - {fileID: 2023011355}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 994518060}
 --- !u!114 &994518060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66485,6 +66485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31575980ed6474336a6d612957f46c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnLoad: {fileID: 8300000, guid: 69a3290bc811243c3a9a7d92c3e711fd, type: 3}
+  playingAudioClip: {fileID: 8300000, guid: 742e1cb2f5e7e45599131d61be000dc5, type: 3}
 --- !u!1 &995174187 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1399493820400566, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,

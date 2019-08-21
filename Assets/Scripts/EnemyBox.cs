@@ -12,6 +12,8 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 	//if moving do not count for the collision marging
 	public bool isMovingEnemy = false;
 
+    public bool canIgnoreCollisions = true; //if set to false cannot ignore any touch
+
 	// Use this for initialization
 	void Start () {
 		associatedTile = GetComponent<Tile>();

@@ -113,7 +113,8 @@ public class GameManagerScript : MonoBehaviour {
 		gameEnded = false;
 		gameStarted = true;
 		if(soundManager!=null) {
-			soundManager.SetVolume(0.4f);
+            //lower the volume first
+            soundManager.SwitchAudioClips(gameStarted);
 		}
 	}
 
@@ -121,7 +122,7 @@ public class GameManagerScript : MonoBehaviour {
 		gameEnded = true;
 		gameStarted = false;
 		if(soundManager!=null) {
-			soundManager.SetVolume(0.7f);
+            soundManager.SwitchAudioClips(gameStarted);
 		}
 	}
 

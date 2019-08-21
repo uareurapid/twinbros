@@ -665,9 +665,15 @@ public class PlayerMovement : MonoBehaviour {
 		return body;
 	}
 
+    //TODO pass enemy box?
 	public bool IsIgnoreCollision(Transform otherObject, bool ignoreMovementDirection) {
 
-		//boxRenderer = GetComponentInChildren<Renderer>();
+        //boxRenderer = GetComponentInChildren<Renderer>();
+        EnemyBox other = otherObject.GetComponent<EnemyBox>();
+        if(other!=null && !other.canIgnoreCollisions) {
+            return false;
+        }
+        
 		CheckBounds();
 
 		Renderer otherRenderer = otherObject.GetComponent<Renderer>();
@@ -840,6 +846,7 @@ public class PlayerMovement : MonoBehaviour {
 					}
                     else if(isUpMovement && canMoveUp) {
 						
+                        Debug.Log("DEBUG: IS UP AND CAN MOVE UP");
 						//otherwise just ignore this one
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
@@ -855,7 +862,8 @@ public class PlayerMovement : MonoBehaviour {
 					}
                     else if(isDownMovement && canMoveDown) {
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
-
+                        Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
+                        
 						if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 						{
 							collidedBottom();

@@ -156,6 +156,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 1
+  canIgnoreCollisions: 0
 --- !u!114 &114542777356405940
 MonoBehaviour:
   m_ObjectHideFlags: 1

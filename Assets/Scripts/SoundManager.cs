@@ -5,6 +5,9 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
 	private AudioSource audioS;
+
+    public AudioClip playOnLoad; //audio track to play on load
+    public AudioClip playingAudioClip;//while playing
 	// Use this for initialization
 	void Start () {
 		audioS = GetComponent<AudioSource>();
@@ -34,4 +37,42 @@ public class SoundManager : MonoBehaviour {
 			audioS.enabled = true;
 		}
 	}
+    
+    public void SetAudioClip(AudioClip clip) {
+        if(audioS!=null) {
+            audioS.clip = clip;
+        }
+    }
+    
+    public void StopAudio() {
+        if(audioS!=null && audioS.isPlaying) {
+            audioS.Stop();
+        }
+    }
+    
+    public void StartAudio() {
+        if(audioS!=null && !audioS.isPlaying) {
+            audioS.Play();
+        }
+    }
+    
+    public void SwitchAudioClips(bool gameStarted) {
+        
+        StartCoroutine(SwitchAudioRoutine(1f, gameStarted));
+    }
+    
+    IEnumerator SwitchAudioRoutine(float secs, bool gameStarted) {
+        //lower volume of the current sound
+        SetVolume(0.4f);
+        yield return new WaitForSeconds(secs);
+        //stop it
+        StopAudio();
+        yield return new WaitForSeconds(secs);
+        //change audio clip
+        SetAudioClip(gameStarted ? playingAudioClip : playOnLoad);
+        //increase volume again
+        SetVolume(gameStarted ? 0.4f : 0.7f);
+        yield return new WaitForSeconds(secs);
+        StartAudio();
+    }
 }
