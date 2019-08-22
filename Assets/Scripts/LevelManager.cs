@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour {
 	//when i loose
 	public List<GameObject> listOfDestroyables;
 
-	private AudioSource music;
+	private SoundManager soundManager;
 
 	private long lastMovementTime = 0;
 	//keep a reference for this
@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour {
 		scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
 		gameManager = scripts.GetComponent<GameManagerScript>();
-		music = scripts.GetComponent<AudioSource>();
+		soundManager = scripts.GetComponent<SoundManager>();
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
 		if(musicOff == 0) {
 			EnableMusic();
@@ -140,14 +140,15 @@ public class LevelManager : MonoBehaviour {
 		}*/
 	}
 	public void DisableMusic() {
-		if(music != null){
-			music.Stop();
+		if(soundManager != null){
+			soundManager.StopAudio();
 		}
 	}
 
+    //todo delegate to sound manager
 	public void EnableMusic() {
-		if(music != null){
-			music.Play();
+		if(soundManager != null){
+			soundManager.StartAudioWithDelay(3f);
 		}
 	}
 	
@@ -206,6 +207,9 @@ public class LevelManager : MonoBehaviour {
 		DestroyAllDestroyables();
         gameStarted = true;
 		guiManager.ResetScore();
+        foreach(PlayerMovement twin in twins) {
+            twin.DisableBubbleOnStartup();
+        }
 	}
 
 	public void StartNextStage() {
@@ -219,6 +223,15 @@ public class LevelManager : MonoBehaviour {
             scripts.GetComponent<TutorialController>().ShowTutorial();  
         }
 
+    }
+    
+    public void StartButtonVisible(bool visibleButton) {
+
+        if (visibleButton)
+        {
+            soundManager.SetVolume(0.4f);
+        }
+                        
     }
 
     public bool IsTutorialEnded()

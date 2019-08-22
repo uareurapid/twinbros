@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour {
 		CheckBounds();
 
 		//find the bubble
+        /*
 		int childs = transform.childCount;
 		for (int i = 0; i < childs; i++)
 		{
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour {
 				EnableOrDisableTransportBubble();
 				break;
 			}
-		}
+		}*/
 
 		initialScale = transform.localScale;
 		initialRotation = transform.localRotation;
@@ -154,6 +155,19 @@ public class PlayerMovement : MonoBehaviour {
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 
+        //find the bubble
+        int childs = transform.childCount;
+        for (int i = 0; i < childs; i++)
+        {
+            Transform child = transform.GetChild(i);
+            if (child.gameObject.name.Equals("bubble"))
+            {
+                transportBubble = child;
+                EnableOrDisableTransportBubble();
+                break;
+            }
+        }
+        
 		ResetPlayer();
 		//DelegateHandler.actionDelegate += ReEnableCollidersOnNewLevel;
     	//TODO undelegate on destroy
@@ -1163,9 +1177,10 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
+    //TODO start with bubble enabled? and only burst
 	private void EnableOrDisableTransportBubble()
 	{
-		if(transportBubble !=null) {
+		if(transportBubble !=null && levelManager.IsGameStarted()) { //TODO check &&
 
 			if(!isMovingBetweenLevels) {
 				//burst effect
@@ -1174,6 +1189,13 @@ public class PlayerMovement : MonoBehaviour {
 			transportBubble.gameObject.SetActive(isMovingBetweenLevels);
 		}
 	}
+    
+    public void DisableBubbleOnStartup() {
+        if(transportBubble !=null) {
+            SpecialEffectsHelper.Instance.PlayBurstBubbleEffect(transform.position);
+            transportBubble.gameObject.SetActive(false);
+        }
+    }
 
 	public void SetIsMovingBetweenTeleportPoints(bool moving) {
 		isMovingBetweenTeleportPoints = moving;

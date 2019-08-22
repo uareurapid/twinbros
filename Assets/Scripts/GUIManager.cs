@@ -375,12 +375,14 @@ public class GUIManager : MonoBehaviour {
         yield return new WaitForSecondsRealtime(delay);
         playButton.GetComponent<MoveWayPoint>().enabled = true;
         playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
+        levelManager.StartButtonVisible(true);
     }
 
 	IEnumerator HidePlayButton() {
 		yield return new WaitForSeconds(0.4f);
 		playButton.enabled = false;
 		playButton.sprite = playButtonImages[0]; //restore for later usage
+        levelManager.StartButtonVisible(false);
 	}
 
 	IEnumerator StartGameRoutine() {

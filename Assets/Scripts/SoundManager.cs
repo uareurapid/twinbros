@@ -56,6 +56,14 @@ public class SoundManager : MonoBehaviour {
         }
     }
     
+    public void StopAudioWithDelay(float delay) {
+        Invoke("StopAudio", delay);
+    }
+    
+    public void StartAudioWithDelay(float delay) {
+        Invoke("StartAudio", delay);
+    }
+    
     public void SwitchAudioClips(bool gameStarted) {
         
         StartCoroutine(SwitchAudioRoutine(1f, gameStarted));
@@ -63,7 +71,7 @@ public class SoundManager : MonoBehaviour {
     
     IEnumerator SwitchAudioRoutine(float secs, bool gameStarted) {
         //lower volume of the current sound
-        SetVolume(0.4f);
+        SetVolume(0.3f);
         yield return new WaitForSeconds(secs);
         //stop it
         StopAudio();
@@ -71,7 +79,7 @@ public class SoundManager : MonoBehaviour {
         //change audio clip
         SetAudioClip(gameStarted ? playingAudioClip : playOnLoad);
         //increase volume again
-        SetVolume(gameStarted ? 0.4f : 0.7f);
+        SetVolume(gameStarted ? 0.3f : 0.7f);
         yield return new WaitForSeconds(secs);
         StartAudio();
     }

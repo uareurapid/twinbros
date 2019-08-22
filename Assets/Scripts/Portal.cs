@@ -30,7 +30,8 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
 			Debug.Log("MoveToNextLevel: " + nextLevel.level);
 			levelManager.LevelCleared();
 			SoundEffectsHelper.Instance.PlayPowerupSound();
-			levelManager.MoveToNextLevel(nextLevel);
+            StartCoroutine(GoToNextLevelAfterDelay(2f));
+			
 		}//else, on last level
 		else {
 			if(loader!=null) {
@@ -45,6 +46,11 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
 		}
 		
 	}
+    
+    IEnumerator GoToNextLevelAfterDelay(float delay) {
+        yield return new WaitForSeconds(delay);
+        levelManager.MoveToNextLevel(nextLevel);
+    }
 
 	public void HandleExitCollision(PlayerMovement player) {
 

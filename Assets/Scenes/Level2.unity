@@ -3833,6 +3833,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &72536104
 GameObject:
   m_ObjectHideFlags: 0
@@ -8897,6 +8898,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!61 &172288941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12820,6 +12822,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &180801202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12835,6 +12838,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &180801203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12850,6 +12854,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!4 &180801204 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4700808842634638, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -12880,6 +12885,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &181245741
 GameObject:
   m_ObjectHideFlags: 0
@@ -14636,6 +14642,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &216175868
 GameObject:
   m_ObjectHideFlags: 0
@@ -16891,6 +16898,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &259101840
 GameObject:
   m_ObjectHideFlags: 0
@@ -17814,6 +17822,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &271668537
 GameObject:
   m_ObjectHideFlags: 0
@@ -22102,6 +22111,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &353080281
 GameObject:
   m_ObjectHideFlags: 0
@@ -24071,6 +24081,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &385068852
 GameObject:
   m_ObjectHideFlags: 0
@@ -26159,6 +26170,10 @@ Prefab:
         type: 2}
       propertyPath: maxTilesMovement
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243161405820506, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
@@ -30427,6 +30442,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &479154066
 GameObject:
   m_ObjectHideFlags: 0
@@ -43185,6 +43201,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &627306993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46988,6 +47005,10 @@ Prefab:
         type: 2}
       propertyPath: maxTilesMovement
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243161405820506, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 2}
@@ -56252,6 +56273,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &866511839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57866,6 +57888,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &894102903
 GameObject:
   m_ObjectHideFlags: 0
@@ -61336,6 +61359,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &952468745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73210,6 +73234,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1119526245
 GameObject:
   m_ObjectHideFlags: 0
@@ -74067,6 +74092,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &1136265155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81480,6 +81506,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1283103472
 GameObject:
   m_ObjectHideFlags: 0
@@ -92996,6 +93023,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1411245883
 GameObject:
   m_ObjectHideFlags: 0
@@ -93189,6 +93217,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1418875043
 GameObject:
   m_ObjectHideFlags: 0
@@ -106499,6 +106528,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1001 &1517254038
 Prefab:
   m_ObjectHideFlags: 0
@@ -106902,6 +106932,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1001 &1520372734
 Prefab:
   m_ObjectHideFlags: 0
@@ -120957,6 +120988,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1747533291
 GameObject:
   m_ObjectHideFlags: 0
@@ -127116,6 +127148,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1847739974
 GameObject:
   m_ObjectHideFlags: 0
@@ -129185,6 +129218,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &1888081260
 GameObject:
   m_ObjectHideFlags: 0
@@ -135868,6 +135902,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &2010276213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139215,6 +139250,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!114 &2035290606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140515,6 +140551,7 @@ MonoBehaviour:
   killPlayerOnTouch: 1
   shrinkPlayer: 0
   isMovingEnemy: 0
+  canIgnoreCollisions: 1
 --- !u!1 &2050809439
 GameObject:
   m_ObjectHideFlags: 0
