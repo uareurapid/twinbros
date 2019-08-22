@@ -1,13 +1,14 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BossEnemy.cs">
+﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DontGoThroughThings.cs">
     <Files>
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="537" Column="1" />
       <File FileName="Assets/Scripts/SoundManager.cs" Line="37" Column="2" />
       <File FileName="Assets/Scripts/GUIManager.cs" Line="153" Column="35" />
-      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="124" Column="30" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="329" Column="26" />
-      <File FileName="Assets/Scripts/BossEnemy.cs" Line="10" Column="2" />
-      <File FileName="Assets/Scripts/FollowThePath.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SpeedIncrease.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManagerScript.cs" Line="116" Column="30" />
+      <File FileName="Assets/Scripts/BossEnemy.cs" Line="70" Column="24" />
+      <File FileName="Assets/Scripts/FollowThePath.cs" Line="57" Column="52" />
+      <File FileName="Assets/Scripts/SpeedIncrease.cs" Line="10" Column="54" />
+      <File FileName="Assets/Scripts/DontGoThroughThings.cs" Line="32" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -15,4 +16,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
