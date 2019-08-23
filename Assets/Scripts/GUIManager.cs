@@ -93,6 +93,8 @@ public class GUIManager : MonoBehaviour {
     public bool isArcadeOrSubscriptionMode = false;
 
 	private bool isShowingTutorial = false;
+
+    private GameManagerScript gameManager;
 	// Use this for initialization
 	void Start () {
 		
@@ -104,6 +106,7 @@ public class GUIManager : MonoBehaviour {
 		LoadAllGUITranslations();
 		store = scripts.GetComponent<MyStoreClass>();
 		levelManager = scripts.GetComponent<LevelManager>();
+        gameManager = scripts.GetComponent<GameManagerScript>();
 
 		currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
@@ -150,12 +153,12 @@ public class GUIManager : MonoBehaviour {
            else if(!isShowingTutorial) {
 
 				//Tutorial has been shown already
-				if(!levelManager.IsTutorialStarted() || (levelManager.IsTutorialStarted() && levelManager.IsTutorialEnded() )  ) {
+				if(!gameManager.IsTutorialStarted() || (gameManager.IsTutorialStarted() && gameManager.IsTutorialEnded() )  ) {
 					CanShowPlayButton();
 				}
                 
            }//else is currently showing
-		   else if(levelManager.IsTutorialStarted() && levelManager.IsTutorialEnded()) {
+		   else if(gameManager.IsTutorialStarted() && gameManager.IsTutorialEnded()) {
 			   isShowingTutorial = false;
 		   }	   	
             
@@ -192,7 +195,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
     private bool HasFinishedIntro() {
-        if (levelManager.stage == 1 && !levelManager.isPlayerDead() && !levelManager.IsGameStarted())
+        if (levelManager.stage == 1 && !levelManager.IsPlayerDead() && !levelManager.IsGameStarted())
         {
 
             //title screen at center
@@ -224,6 +227,8 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void PausePressed() {
+    
+        SoundEffectsHelper.Instance.PlayReplaySound();
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
 
@@ -245,6 +250,7 @@ public class GUIManager : MonoBehaviour {
     }
 
 	public void UnPausePressed() {
+        
 		pauseButton.enabled = true;
 		unpauseButton.enabled = false;
 
@@ -264,6 +270,10 @@ public class GUIManager : MonoBehaviour {
         }
 		
 		Time.timeScale = 1f;
+        
+        if(!levelManager.IsGameStarted() && !levelManager.IsPlayerDead()) {
+            ShowPlayButton(0f);
+        }
 	}
 
 	public void ShowSettingsPanel() {
@@ -297,6 +307,8 @@ public class GUIManager : MonoBehaviour {
     }
 
 	public void PlayPressed() {
+
+        SoundEffectsHelper.Instance.PlayReplaySound();
 
 		//still counting time?
 		if(continueTimer != 0 && !playPressed) {
@@ -358,9 +370,11 @@ public class GUIManager : MonoBehaviour {
     }
 
     private void StartTutorial() {
+
+        Debug.Log("################# START TUTORIAL ############ ");
 		isShowingTutorial = true;
         PlayerPrefs.SetInt(GameConstants.HAS_SHOWN_TUTORIAL, 1);
-        levelManager.ShowTutorial();
+        gameManager.ShowTutorial();
         //StartCoroutine(ShowPlayButton(6f));
     }
 

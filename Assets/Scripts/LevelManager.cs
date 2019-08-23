@@ -199,6 +199,11 @@ public class LevelManager : MonoBehaviour {
 
 	public void StartGame() {
 
+        if(!isDead){
+          foreach(PlayerMovement twin in twins) {
+            twin.DisableBubbleOnStartup();
+            }
+        }
 		//TODO eu não posso carregar e começar  nivel antes do resetbehaviours
 		//primeiro o reset e quando terminar é que posso clicar no botão!!!
 		gameManager.StartGame();
@@ -207,54 +212,13 @@ public class LevelManager : MonoBehaviour {
 		DestroyAllDestroyables();
         gameStarted = true;
 		guiManager.ResetScore();
-        foreach(PlayerMovement twin in twins) {
-            twin.DisableBubbleOnStartup();
-        }
+        
 	}
 
 	public void StartNextStage() {
 
 		guiManager.DoStageTransitionEffect();
 	}
-
-	//TODO move these 3 to GameManager???
-    public void ShowTutorial() {
-        if(scripts!=null) {
-            scripts.GetComponent<TutorialController>().ShowTutorial();  
-        }
-
-    }
-    
-    public void StartButtonVisible(bool visibleButton) {
-
-        if (visibleButton)
-        {
-            soundManager.SetVolume(0.4f);
-        }
-                        
-    }
-
-    public bool IsTutorialEnded()
-    {
-        if (scripts != null)
-        {
-            return scripts.GetComponent<TutorialController>().IsTutorialEnded();
-        }
-
-        return false;
-
-    }
-
-	public bool IsTutorialStarted()
-    {
-        if (scripts != null)
-        {
-            return scripts.GetComponent<TutorialController>().IsTutorialStarted();
-        }
-
-        return false;
-
-    }
 
 	public bool IsGameStarted() {
 		return gameStarted;
@@ -338,7 +302,7 @@ public class LevelManager : MonoBehaviour {
 	
 		if (!isDead && gameStarted)
 		{
-			Debug.Log("KillPlayer CALLED");
+			//Debug.Log("KillPlayer CALLED");
 			gameManager.EndGame();
 			isDead = true;
 			numMoves = 0;
@@ -360,7 +324,7 @@ public class LevelManager : MonoBehaviour {
 		DestroyAllDestroyables();
 	}
 
-	public bool isPlayerDead() {
+	public bool IsPlayerDead() {
 		return isDead;
 	}
 
@@ -398,9 +362,10 @@ public class LevelManager : MonoBehaviour {
 		}
 		isDead = false;
 		isDying = false;
-
-		gameStarted = true;
-		CheckMoves();
+        
+        gameStarted = true;
+		
+        CheckMoves();
 		
 		guiManager.HideGameOver();
 		foreach(PlayerMovement player in twins) {
@@ -419,8 +384,6 @@ public class LevelManager : MonoBehaviour {
 				MoveToRespawnLevel(currentStageFirstLevel);
 			}
 		}
-
-		
 		
 	}
 
@@ -438,6 +401,15 @@ public class LevelManager : MonoBehaviour {
 		gameStarted = true;
 		guiManager.ResetRegularMoves();
 	}
+    
+    public void StartButtonVisible(bool visibleButton) {
+
+        if (visibleButton)
+        {
+            soundManager.SetVolume(0.4f);
+        }
+                        
+    }
 
 	void FixedUpdate() {
 
@@ -591,8 +563,10 @@ public class LevelManager : MonoBehaviour {
 
 		twins[0].SetIsMovingBetweenLevels(true);
 		twins[0].otherTwin.SetIsMovingBetweenLevels(true);
+        //twins[0].EnableBubbleOnRespawn();
 		twins[1].SetIsMovingBetweenLevels(true);
 		twins[1].otherTwin.SetIsMovingBetweenLevels(true);
+        //twins[1].EnableBubbleOnRespawn();
 		
 		CameraZoomInOutScript scr = Camera.main.GetComponent<CameraZoomInOutScript>();
 		//Move the camera to next level position

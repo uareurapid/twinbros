@@ -13,10 +13,15 @@ public class GameManagerScript : MonoBehaviour {
     
     private List<string> bonusList; // to write twin
 
-	//all the managers should be here
-	public SoundManager soundManager;
+	
 	private bool gameStarted = false;
 	private bool gameEnded = false;
+
+    //TODO all the managers should be here
+    public SoundManager soundManager;
+    public TutorialController tutorialController;
+    
+    
 	// Use this for initialization
 	void Start () {
     
@@ -27,10 +32,12 @@ public class GameManagerScript : MonoBehaviour {
 			starFieldInitialPosition = starField.transform.position;
 		}
 
-		if(soundManager==null) {
+		if(soundManager==null || tutorialController == null) {
 			GameObject scripts = GameObject.FindWithTag("Scripts");
 			if(scripts!=null) {
 				soundManager = scripts.GetComponent<SoundManager>();
+                //could be null if not on level 1
+                tutorialController = scripts.GetComponent<TutorialController>();
 			}
 		}
 	}
@@ -125,5 +132,35 @@ public class GameManagerScript : MonoBehaviour {
             soundManager.SwitchAudioClips(gameStarted);
 		}
 	}
+    
+    //TODO move these 3 to GameManager???
+    public void ShowTutorial() {
+        if(tutorialController!=null) {
+            tutorialController.ShowTutorial();  
+        }
+
+    }
+
+    public bool IsTutorialEnded()
+    {
+        if (tutorialController != null)
+        {
+            return tutorialController.IsTutorialEnded();
+        }
+
+        return false;
+
+    }
+
+    public bool IsTutorialStarted()
+    {
+        if (tutorialController != null)
+        {
+            return tutorialController.IsTutorialStarted();
+        }
+
+        return false;
+
+    }
 
 }

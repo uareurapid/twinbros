@@ -112,14 +112,14 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			}
             else if ( player.IsMovingDown() && CannotIgnoreDownCollision(player))
 			{
-				Debug.Log("KILLEDDDDDDDDDDDDD DOWN");
+				//Debug.Log("KILLEDDDDDDDDDDDDD DOWN");
 				levelmanager.KillPlayer();
 				killed = true;
 			}
 
             //also stop the enemy movement
             if(isMovingEnemy && killed) {
-                Debug.Log("KILLEDDDDDDDDDDDDD");
+               // Debug.Log("KILLEDDDDDDDDDDDDD");
 				MoveWayPoint move = GetComponent<MoveWayPoint>();
 				if(move!=null) {
 					//StopMovement
@@ -130,7 +130,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 		else if (shrinkPlayer)
 		{
 			MakeShrinkEnemy shrinkScript = GetComponent<MakeShrinkEnemy>();
-			Debug.Log("DO SHRNK IT?????");
+			//Debug.Log("DO SHRNK IT?????");
 			if (shrinkScript != null)
 			{
 

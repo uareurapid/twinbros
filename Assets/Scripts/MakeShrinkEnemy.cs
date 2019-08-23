@@ -24,7 +24,7 @@ public class MakeShrinkEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(playerToShrink!=null && levelManager!=null && !levelManager.isPlayerDead()) {
+		if(playerToShrink!=null && levelManager!=null && !levelManager.IsPlayerDead()) {
 
 			currentScale = playerToShrink.gameObject.transform.localScale;
 		

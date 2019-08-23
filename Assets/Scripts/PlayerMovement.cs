@@ -257,7 +257,7 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate()
     {
 
-		if(!levelManager.IsGameStarted() || levelManager.isPlayerDead() || levelManager.IsAboutToDie()) {
+		if(!levelManager.IsGameStarted() || levelManager.IsPlayerDead() || levelManager.IsAboutToDie()) {
 			return;
 		}
 
@@ -344,7 +344,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		//block any position updates if any of these is happening
 		if(associatedLevel.level != levelManager.currentLevel.level || isMovingBetweenLevels || 
-					isMovingBetweenTeleportPoints || levelManager.isPlayerDead() || 
+					isMovingBetweenTeleportPoints || levelManager.IsPlayerDead() || 
 					levelManager.IsStillAwaitingLevelTransitions() || HasAllMovementsBlocked() ) {
 			return;
 		}
@@ -805,9 +805,9 @@ public class PlayerMovement : MonoBehaviour {
 	{
         
         //ignore it
-        if (isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.isPlayerDead() ) {
+        if (isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.IsPlayerDead() ) {
 
-            Debug.Log("DEBUG: COLLISION IGNORED -±other.transform.name: " + other.transform.name);
+           // Debug.Log("DEBUG: COLLISION IGNORED -±other.transform.name: " + other.transform.name);
 			return;
 		}
 
@@ -1182,7 +1182,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if(transportBubble !=null && levelManager.IsGameStarted()) { //TODO check &&
 
-			if(!isMovingBetweenLevels) {
+			if(!isMovingBetweenLevels && transportBubble.gameObject.active) {
 				//burst effect
 				SpecialEffectsHelper.Instance.PlayBurstBubbleEffect(transform.position);
 			}
@@ -1194,6 +1194,12 @@ public class PlayerMovement : MonoBehaviour {
         if(transportBubble !=null) {
             SpecialEffectsHelper.Instance.PlayBurstBubbleEffect(transform.position);
             transportBubble.gameObject.SetActive(false);
+        }
+    }
+    
+    public void EnableBubbleOnRespawn() {
+        if(transportBubble !=null) {
+            transportBubble.gameObject.SetActive(true);
         }
     }
 
@@ -1213,7 +1219,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public bool IsPlayerStucked() {
-        return reachedTarget && levelManager.IsGameStarted() && !levelManager.isPlayerDead() && !CanMoveInAnyDirection();
+        return reachedTarget && levelManager.IsGameStarted() && !levelManager.IsPlayerDead() && !CanMoveInAnyDirection();
     }
 
 
