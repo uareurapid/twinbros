@@ -27,7 +27,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 	public ParticleSystem touchGroundEffect;
 	
 	public ParticleSystem doubleJumpEffect;
-	public ParticleSystem dustEffect;
+	public Transform dustEffect;
 	public ParticleSystem burstBubbleEffect;
 	public Transform startRespawnEffect;
 	public ParticleSystem dieAndSplitEffect;
@@ -143,8 +143,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(burstBubbleEffect, position);
 	}
 	
-	public ParticleSystem PlayDustEffect(Vector3 position) {
-		return instantiate(dustEffect, position);
+	public Transform PlayDustEffect(Vector3 position) {
+		return instantiateTransform(dustEffect, position);
 	}
 
 	public ParticleSystem PlaySpeedupEffect(Vector3 position)
@@ -222,6 +222,9 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(impactEffect, position);
 	}
 
+    public Transform PlayEffect(Transform effect, Vector3 position) {
+        return instantiateTransform(effect, position);
+    }
 	//TRANSFORMS
 
 	public Transform PlayInFlamesEffect(Vector3 position) {

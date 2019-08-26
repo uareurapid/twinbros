@@ -83,15 +83,20 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 			//means player is moving
             if(isMovingEnemy && !player.GetReachedTarget() && CannotIgnoreCollisionWhenMoving(player)) {
+
+                player.ShowDeathSpriteAnimation();
                 levelmanager.KillPlayer();
                 killed = true;
             }//player is stopped, but object is moving
 			if( (isMovingEnemy && player.GetReachedTarget()) && CannotIgnoreCollisionWhenNotMoving(player) ) {
+            
+                player.ShowDeathSpriteAnimation();
                 levelmanager.KillPlayer();
                 killed = true;
             }
             else if ( player.IsMovingRight() && CannotIgnoreRightCollision(player))
 			{
+                player.ShowDeathSpriteAnimation();
 				levelmanager.KillPlayer();
 				killed = true;
 			}
@@ -99,6 +104,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			{
 				//TODO check this SHIT, not working!!!
 				//if (CannotIgnoreLeftCollision(player) || (isMovingEnemy && ( CannotIgnoreUpCollision(player) || CannotIgnoreDownCollision(player) || CannotIgnoreRightCollision(player) ) ) ) {
+                    player.ShowDeathSpriteAnimation();
 					levelmanager.KillPlayer();
 					killed = true;
 				//}
@@ -106,13 +112,14 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			}
             else if ( player.IsMovingUp() && CannotIgnoreUpCollision(player))
 			{
-
+                player.ShowDeathSpriteAnimation();
 				levelmanager.KillPlayer();
 				killed = true;
 			}
             else if ( player.IsMovingDown() && CannotIgnoreDownCollision(player))
 			{
 				//Debug.Log("KILLEDDDDDDDDDDDDD DOWN");
+                player.ShowDeathSpriteAnimation();
 				levelmanager.KillPlayer();
 				killed = true;
 			}

@@ -66891,7 +66891,7 @@ MonoBehaviour:
   doubleJumpSound: {fileID: 0}
   burstBubbleSound: {fileID: 0}
   pickupCoinSound: {fileID: 0}
-  hitDeadSound: {fileID: 0}
+  hitDeadSound: {fileID: 8300000, guid: 7b45a872fdbe84e3b885dce4a3eea02b, type: 3}
   waterSplashSound: {fileID: 0}
   checkpointSound: {fileID: 0}
   electricitySound: {fileID: 0}

@@ -20,6 +20,8 @@ public class MoveTowardsScript : MonoBehaviour {
 	//in this case the movement is not automatic, but manual
 	public bool allowManualMovement = true;
 
+    public Transform moveEffect;
+
 	private bool targetIsOnTheRight = false;
 
 	public bool adjustExactFinalPosition = true; //if true put right on target position, on reach target true
@@ -40,6 +42,8 @@ public class MoveTowardsScript : MonoBehaviour {
 	public float distanceMultiplier = 1.0f;
 	private float increaseFactor = 1.0f;
 	private LevelManager levelManager;
+
+    private bool startedMovement = false;
 	// Use this for initialization
 	void Start () {
 
@@ -119,8 +123,8 @@ public class MoveTowardsScript : MonoBehaviour {
 
 		 if(!allowManualMovement) {
 
-				// The step size is equal to speed times frame time.
-				var step = moveTowardsSpeed * Time.deltaTime;// * increaseFactor;
+			// The step size is equal to speed times frame time.
+			var step = moveTowardsSpeed * Time.deltaTime;// * increaseFactor;
 		 	// Move our position a step closer to the target.
 
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
@@ -192,6 +196,11 @@ public class MoveTowardsScript : MonoBehaviour {
 		else {
 			reachedTarget = false;
 		}
+        
+        if(!startedMovement && moveEffect!=null) {
+              startedMovement = true;
+               SpecialEffectsHelper.Instance.PlayEffect(moveEffect, transform.position);
+        }
 	 }
 
 	 //put exactly in place
@@ -274,6 +283,10 @@ public class MoveTowardsScript : MonoBehaviour {
 			//increaseFactor = distance * distanceMultiplier;
 
 			startMoveTowards = start;
+            if(start && moveEffect!=null && !startedMovement) {
+                startedMovement = true;
+                SpecialEffectsHelper.Instance.PlayEffect(moveEffect, transform.position);
+            }
 			
 		}
 		

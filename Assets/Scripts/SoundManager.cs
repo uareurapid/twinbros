@@ -83,4 +83,8 @@ public class SoundManager : MonoBehaviour {
         yield return new WaitForSeconds(secs);
         StartAudio();
     }
+    
+    public void PlayDeathSound() {
+        SoundEffectsHelper.Instance.PlayHitDeadSound();
+    }
 }

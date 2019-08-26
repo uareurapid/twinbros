@@ -113,6 +113,7 @@ public class GameManagerScript : MonoBehaviour {
     }
     
     public void KillPlayer() {
+        soundManager.PlayDeathSound();
         RemoveBonusMove();
     }
 

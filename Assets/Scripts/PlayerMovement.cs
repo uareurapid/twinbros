@@ -73,7 +73,9 @@ public class PlayerMovement : MonoBehaviour {
 	private int collisionMasks = -1;
 	public float minDistanceForNeighbour = 0.55f; //how close i can be to another element/box
 			
-									  //can move down, up, left? etc?
+	//can move down, up, left? etc?
+                                      
+    public Transform deathWings;                                  
 
 	Animator anim;
 	private Sprite originalSprite;
@@ -847,7 +849,7 @@ public class PlayerMovement : MonoBehaviour {
                     else if(isLeftMovement && canMoveLeft) {
 
 
-						Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
+						//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
 						if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 						{
 							collidedLeft();
@@ -876,7 +878,7 @@ public class PlayerMovement : MonoBehaviour {
 					}
                     else if(isDownMovement && canMoveDown) {
 						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
-                        Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
+                        //Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
                         
 						if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 						{
@@ -1221,11 +1223,27 @@ public class PlayerMovement : MonoBehaviour {
     public bool IsPlayerStucked() {
         return reachedTarget && levelManager.IsGameStarted() && !levelManager.IsPlayerDead() && !CanMoveInAnyDirection();
     }
+    
+    public void ShowDeathSpriteAnimation() {
+        //added this one
+        anim.enabled = false;
+        GetComponentInChildren<SpriteRenderer>().sprite = burnedSprite;
+        deathWings.gameObject.SetActive(true);
+        StartCoroutine(HideDeathWings());
+    }
 
+    IEnumerator HideDeathWings() {
+        yield return new WaitForSeconds(2f);
+        deathWings.gameObject.SetActive(false);
+    }
 
 	public void ShowBurnSpriteAnimation() {
 		anim.enabled = false;
 		GetComponentInChildren<SpriteRenderer>().sprite = burnedSprite;
+        
+        //show death wings too
+        deathWings.gameObject.SetActive(true);
+        StartCoroutine(HideDeathWings());
 		levelManager.KillPlayer();
 	}
 
@@ -1242,9 +1260,18 @@ public class PlayerMovement : MonoBehaviour {
 		GetComponentInChildren<SpriteRenderer>().sprite = electrocutedSprite;
 		yield return new WaitForSeconds(0.12f);
 		GetComponentInChildren<SpriteRenderer>().sprite = originalSprite;
+        
+        yield return new WaitForSeconds(0.12f);
+        GetComponentInChildren<SpriteRenderer>().sprite = burnedSprite;
+        
+        //show death wings too
+        deathWings.gameObject.SetActive(true);
+        StartCoroutine(HideDeathWings());
+        
 		levelManager.KillPlayer();
 		
 	}
+
 	public void ResetOriginalSprite() {
 
 		GetComponentInChildren<SpriteRenderer>().sprite = originalSprite;

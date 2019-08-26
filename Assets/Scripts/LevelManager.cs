@@ -313,7 +313,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		
 	}
-
+    
 	//after watching the video or purchasing the revives
 	public void RestartFromDyingLevel() {
 		SoundEffectsHelper.Instance.PlayTeleportSound(); //TODO change sound
