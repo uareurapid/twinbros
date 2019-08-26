@@ -1,5 +1,5 @@
-﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DontGoThroughThings.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
     <Files>
       <File FileName="Assets/Scripts/LevelManager.cs" Line="537" Column="1" />
       <File FileName="Assets/Scripts/SoundManager.cs" Line="37" Column="2" />
@@ -16,5 +16,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
