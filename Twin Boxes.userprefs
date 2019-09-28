@@ -1,6 +1,7 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
+﻿<Properties StartupConfiguration="{B1624381-F859-B1B1-0137-85AA3FC59375}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Box.cs">
     <Files>
+      <File FileName="Assets/Scripts/SpecialEffectsHelper.cs" Line="221" Column="40" />
       <File FileName="Assets/Scripts/LevelManager.cs" Line="537" Column="1" />
       <File FileName="Assets/Scripts/SoundManager.cs" Line="37" Column="2" />
       <File FileName="Assets/Scripts/GUIManager.cs" Line="153" Column="35" />
@@ -9,6 +10,8 @@
       <File FileName="Assets/Scripts/FollowThePath.cs" Line="57" Column="52" />
       <File FileName="Assets/Scripts/SpeedIncrease.cs" Line="10" Column="54" />
       <File FileName="Assets/Scripts/DontGoThroughThings.cs" Line="32" Column="1" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="143" Column="56" />
+      <File FileName="Assets/Scripts/Box.cs" Line="72" Column="61" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -16,4 +19,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

@@ -67,7 +67,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 
 	public Transform riseEffectTransform;
 
-    public ParticleSystem impactEffect;
+    public Transform impactEffect;
 
 	public ParticleSystem boxCollisionEffect;
 	
@@ -152,9 +152,10 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(speedupEffect, position);
 	}
 
-	public ParticleSystem PlayBoxCollisionEffect(Vector3 position)
+	//TODO check 
+	public Transform PlayBoxCollisionEffect(Vector3 position)
 	{
-		return instantiate(boxCollisionEffect, position);
+		return PlayImpactEffect(position);
 	}
 
 	public ParticleSystem PlayInvincibilityEffect(Vector3 position)
@@ -218,8 +219,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiateTransform(explosionEffect, position);
 	}
 
-	public ParticleSystem PlayImpactEffect(Vector3 position) {
-		return instantiate(impactEffect, position);
+	public Transform PlayImpactEffect(Vector3 position) {
+		return instantiateTransform(impactEffect, position);
 	}
 
     public Transform PlayEffect(Transform effect, Vector3 position) {

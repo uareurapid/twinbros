@@ -66774,7 +66774,7 @@ MonoBehaviour:
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0
-  isTestMode: 1
+  isTestMode: 0
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -66959,9 +66959,8 @@ MonoBehaviour:
   brakeEffect: {fileID: 0}
   inFlamesEffect: {fileID: 0}
   overheatEffect: {fileID: 0}
-  riseEffectTransform: {fileID: 4651379255707406, guid: aaf21db19b5f544e9afb6043d70dc290,
-    type: 2}
-  impactEffect: {fileID: 198574054658647474, guid: 8f578501a1c0ec44fa2b32e8fa0770ce,
+  riseEffectTransform: {fileID: 0}
+  impactEffect: {fileID: 4334666688474120, guid: 1bd0d2d5378f54fcdbefb3f5127fae2f,
     type: 2}
   boxCollisionEffect: {fileID: 19800000, guid: 3d84922c38d7c444782fb1a791d97b21, type: 2}
 --- !u!114 &994518053
