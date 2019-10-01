@@ -25,12 +25,12 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
     
-     int width = 640; // or something else
+     /*int width = 640; // or something else
      int height= 480; // or something else
      bool isFullScreen = false; // should be windowed to run in arbitrary resolution
      int desiredFPS = 60; // or something else
  
-     Screen.SetResolution (width , height, isFullScreen, desiredFPS );
+     Screen.SetResolution (width , height, isFullScreen, desiredFPS );*/
     
         bonusList = new List<string>();
     
