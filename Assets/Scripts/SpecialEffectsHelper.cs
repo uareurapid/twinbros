@@ -203,8 +203,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(laserExplosionEffect, position);
 	}
 	
-	public Transform PlaySmokeTrailTransform(Vector3 position) {
-		return instantiateTransform(smokeTrailTransform, position);
+	public Transform PlaySmokeTrailTransform(Vector3 position, Quaternion rotation) {
+		return instantiateTransform(smokeTrailTransform, position, rotation);
 	}
 
 	public ParticleSystem PlayDieAndSplitEffect(Vector3 position) {
@@ -324,6 +324,23 @@ public class SpecialEffectsHelper : MonoBehaviour
 			prefab,
 			position,
 			Quaternion.identity
+			) as Transform;
+		
+		// Make sure it will be destroyed
+		//Destroy(
+		//	newTransform.gameObject,
+		//	3f
+		//	);
+		
+		return newTransform;
+	}
+
+	private Transform instantiateTransform(Transform prefab, Vector3 position, Quaternion rotation)
+	{
+		Transform newTransform = Instantiate(
+			prefab,
+			position,
+			rotation
 			) as Transform;
 		
 		// Make sure it will be destroyed

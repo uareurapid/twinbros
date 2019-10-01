@@ -434,7 +434,10 @@ public class PlayerMovement : MonoBehaviour {
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
-        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
+
+        // the second argument, upwards, defaults to Vector3.up
+        Quaternion rotationUp = Quaternion.Euler(new Vector3(0, 0, 90));
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position,rotationUp);
 	}
 
 	public void SlideRight() {
@@ -445,7 +448,8 @@ public class PlayerMovement : MonoBehaviour {
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
-        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
+		Quaternion rotationRight = Quaternion.Euler(new Vector3(0, 0, 0));
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position,rotationRight);
 	}
 
 	public void SlideDown() {
@@ -456,7 +460,8 @@ public class PlayerMovement : MonoBehaviour {
         targetPosition += (Vector3.down)*tileSize*maxTilesMovement;
 		isUpMovement = isLeftMovement = isRightMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
-        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
+		Quaternion rotationDown = Quaternion.Euler(new Vector3(0, 0, -90));
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position, rotationDown);
 	}
 
 	public void SlideLeft() {
@@ -466,7 +471,8 @@ public class PlayerMovement : MonoBehaviour {
         targetPosition += (Vector3.left)*tileSize*maxTilesMovement;
 		isRightMovement = isDownMovement = isUpMovement = false;
 		SoundEffectsHelper.Instance.PlayMoveSound();
-        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position);
+		Quaternion rotationLeft = Quaternion.Euler(new Vector3(0, 0, 180));
+        SpecialEffectsHelper.Instance.PlaySmokeTrailTransform(transform.position,rotationLeft);
 	}
 
 

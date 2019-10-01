@@ -15701,7 +15701,7 @@ Transform:
   - {fileID: 812270979}
   - {fileID: 1914695873}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &224225129
 Prefab:
@@ -66928,7 +66928,7 @@ MonoBehaviour:
   lightningBolt: {fileID: 0}
   explodeTransform: {fileID: 0}
   bloodSplatters: []
-  smokeTrailTransform: {fileID: 4087676479521502, guid: 447ad6488841e466fa4e620a3ff59bbb,
+  smokeTrailTransform: {fileID: 4264347774892352, guid: bb052122fed9b4894869a2bc63cc3cdd,
     type: 2}
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
@@ -66960,7 +66960,7 @@ MonoBehaviour:
   inFlamesEffect: {fileID: 0}
   overheatEffect: {fileID: 0}
   riseEffectTransform: {fileID: 0}
-  impactEffect: {fileID: 4334666688474120, guid: 1bd0d2d5378f54fcdbefb3f5127fae2f,
+  impactEffect: {fileID: 4087676479521502, guid: 447ad6488841e466fa4e620a3ff59bbb,
     type: 2}
   boxCollisionEffect: {fileID: 19800000, guid: 3d84922c38d7c444782fb1a791d97b21, type: 2}
 --- !u!114 &994518053
@@ -89001,7 +89001,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1459148752148654, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 2}
       propertyPath: m_Name
