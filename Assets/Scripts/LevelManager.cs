@@ -298,6 +298,16 @@ public class LevelManager : MonoBehaviour {
 		return false;
 	}
 
+	public bool CheckIfAreAnyMovesLeft() {
+		if( twins[0].GetReachedTarget() && twins[1].GetReachedTarget() && numMoves == 0) {
+
+			KillPlayer();
+			return false;
+		}
+		Debug.Log("######### NUM MOVES ############: " + numMoves);
+		return true;
+	}
+
 	public void KillPlayer() {
 	
 		if (!isDead && gameStarted)
@@ -464,7 +474,7 @@ public class LevelManager : MonoBehaviour {
 				}
 	        }
 	
-			
+			//on boss level there is no limitation of movements
 			if(moved > 0 && !currentLevel.isBossLevel) {
 				//leftTwinMoved = rightTwinMoved = false;
 				decreaseMove();

@@ -252,6 +252,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool IsStopped() {
 		//whne i movetowards it does not use physics, but the transform position directly, so the velocity is always zero, at least until it collides with something
+		//NOT GOODreturn ( ( body.velocity == Vector2.zero || !IsMovingInAnyDirection()  ) && reachedTarget );
 		return (body.velocity == Vector2.zero) || !IsMovingInAnyDirection();
 		//TODO NOTE, before was only checking velocity, but this is wrong anyway
 	}
@@ -836,6 +837,11 @@ public class PlayerMovement : MonoBehaviour {
 			" isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft);
 
         }
+
+		if(!isPortal && levelManager.CheckIfAreAnyMovesLeft()) {
+			//dead!
+			return;
+		}
 
 
 
