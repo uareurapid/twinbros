@@ -298,13 +298,13 @@ public class LevelManager : MonoBehaviour {
 		return false;
 	}
 
-	public bool CheckIfAreAnyMovesLeft() {
+	public bool IsThereAnyMovesLeft() {
 		if( twins[0].GetReachedTarget() && twins[1].GetReachedTarget() && numMoves == 0) {
 
 			KillPlayer();
 			return false;
 		}
-		Debug.Log("######### NUM MOVES ############: " + numMoves);
+		//Debug.Log("######### NUM MOVES ############: " + numMoves);
 		return true;
 	}
 
@@ -430,6 +430,10 @@ public class LevelManager : MonoBehaviour {
 
 		if(gameStarted) {
 
+			if(!IsThereAnyMovesLeft()){
+				return;
+			}
+
 			
 			int moved = 0;
 			if ( (Input.GetKeyDown(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
@@ -501,6 +505,8 @@ public class LevelManager : MonoBehaviour {
 		}
 		
 	}
+
+	
 
 	public void LeftTwinReachedNewLevel(bool reached, MoveTowardsScript move, LevelCheckPoint restrictions) {
 		leftTwinReady = reached;

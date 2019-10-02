@@ -442,7 +442,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SlideRight() {
-        Debug.Log("SLIDE RIGHT");
+        //Debug.Log("SLIDE RIGHT");
 		reachedTarget = false;
 		isRightMovement = true;
 		//body.isKinematic = false;
@@ -832,144 +832,133 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        if(isEnemy || isSlider) {
+        //if(isEnemy || isSlider) {
             Debug.Log("isEnemy ? " + isEnemy + " is Slider? " + isSlider + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight +
 			" isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft);
 
-        }
+        //}
 
-		if(!isPortal && levelManager.CheckIfAreAnyMovesLeft()) {
-			//dead!
-			return;
-		}
-
-
-
-                    if(isRightMovement && canMoveRight) {
-						
-						//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
-						if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
+		if(isRightMovement && canMoveRight) {
+			//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
+				if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 				
-							collidedRight();
-							//colRight = true;
-							ignoreCollision = false;
+					collidedRight();
+					//colRight = true;
+					ignoreCollision = false;
 
-							Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
-						}
+					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
+				}
 						
-					}
-                    else if(isLeftMovement && canMoveLeft) {
+		}
+         else if(isLeftMovement && canMoveLeft) {
 
 
-						//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
-						if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
-						{
-							collidedLeft();
-							//colLeft = true;
-							ignoreCollision = false;
+				//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
+				if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
+				{
+					collidedLeft();
+					//colLeft = true;
+					ignoreCollision = false;
 
-							Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
-						}
+					Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
+				}
 						
-					}
-                    else if(isUpMovement && canMoveUp) {
+		}
+        else if(isUpMovement && canMoveUp) {
 						
-                        Debug.Log("DEBUG: IS UP AND CAN MOVE UP");
-						//otherwise just ignore this one
-						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+            Debug.Log("DEBUG: IS UP AND CAN MOVE UP");
+				//otherwise just ignore this one
+				//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
-						if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
-						{
-							collidedTop();
-							//colUp = true;
-							ignoreCollision = false;
+				if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
+				{
+					collidedTop();
+					//colUp = true;
+					ignoreCollision = false;
 
-							Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
-						}
+					Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
+				}
 							
-					}
-                    else if(isDownMovement && canMoveDown) {
-						//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
-                        //Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
+		}
+        else if(isDownMovement && canMoveDown) {
+			//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+              //Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
                         
-						if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
-						{
-							collidedBottom();
-							//colDown = true;
-							ignoreCollision = false;
+			if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
+			{
+			        collidedBottom();
+					//colDown = true;
+					ignoreCollision = false;
 
-							Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
+					Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
 							
-						}
+			}
 						
-                    } else if(!IsMovingInAnyDirection() && isEnemy) {
-                        //even if not moving, if it is an enemy
-                        Debug.Log("DEBUG: CODE ME, EMPTY BLOCK");
-                    }
+            } else if(!IsMovingInAnyDirection() && isEnemy) {
+                 //even if not moving, if it is an enemy
+                 Debug.Log("DEBUG: CODE ME, EMPTY BLOCK");
+            }
 
-					Tile tile = other.transform.GetComponent<Tile>();
-					TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
+			Tile tile = other.transform.GetComponent<Tile>();
+			TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
 					
-					if(point!=null) {
-						Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
-						point.HandleCollision(this);
-					}
-					else if(tile!=null && !ignoreCollision) {
-						tile.HandleCollision(this);
-					}
-					else if(isPortal && !ignoreCollision) {
+			if(point!=null) {
+					Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
+					point.HandleCollision(this);
+			}
+			else if(tile!=null && !ignoreCollision) {
+				tile.HandleCollision(this);
+			}
+			else if(isPortal && !ignoreCollision) {
             
-                        other.gameObject.GetComponent<Portal>().HandleCollision(this);
+                 other.gameObject.GetComponent<Portal>().HandleCollision(this);
 
-                    } 
-                    else if(isSlider && !ignoreCollision) {
-						SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
-                        slider.HandleCollision(this);
-					}
-					else if(isMovingBlock) {
-						//pause the moving block
-                        if(!ignoreCollision) {
-                            MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
-                            move.PauseMovement();
-                        }
-                        //TODO should i pause the enemy even if the collision is ignored??? dont think SO, CHECK URGENT PLEASE!!!
-                        if(isEnemy) {
-                            EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-                            //i could not be moving but if the enemy is we cant ignore it
-                            //if(!ignoreCollision ) {
-                            enemy.HandleCollision(this);
-                        }
-					}
-					else if(isBomb && !ignoreCollision) {
+            } 
+            else if(isSlider && !ignoreCollision) {
+				SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
+                slider.HandleCollision(this);
+			}
+			else if(isMovingBlock) {
+				//pause the moving block
+                if(!ignoreCollision) {
+                   MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
+                   move.PauseMovement();
+                }
+            //TODO should i pause the enemy even if the collision is ignored??? dont think SO, CHECK URGENT PLEASE!!!
+	            if(isEnemy) {
+	               EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+	               //i could not be moving but if the enemy is we cant ignore it
+	                //if(!ignoreCollision ) {
+	                enemy.HandleCollision(this);
+	             }
+			 }
+			 else if(isBomb && !ignoreCollision) {
 		
-                        other.gameObject.GetComponent<Bomb>().HandleCollision(this);
-					}
-					else if(isElectric && !ignoreCollision) {
+                  other.gameObject.GetComponent<Bomb>().HandleCollision(this);
+			 }
+			 else if(isElectric && !ignoreCollision) {
 		
-						ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
-						wire.ElectrocutePlayer(this);
-					}
-                    else if(isBox && !ignoreCollision) {
-                        other.gameObject.GetComponent<Box>().HandleCollision(this);
-						//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
-					}
-                    else if(isEnemy /*&& !ignoreCollision*/ ) {
-                        EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-                        //i could not be moving but if the enemy is we cant ignore it
-                        //if(!ignoreCollision ) {
-                        enemy.HandleCollision(this);
+				  ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
+				  wire.ElectrocutePlayer(this);
+			 }
+             else if(isBox && !ignoreCollision) {
+                  other.gameObject.GetComponent<Box>().HandleCollision(this);
+				  //TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+			 }
+             else if(isEnemy /*&& !ignoreCollision*/ ) {
+                  EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+                  //i could not be moving but if the enemy is we cant ignore it
+                  //if(!ignoreCollision ) {
+                  enemy.HandleCollision(this);
                         //}else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
-                    }
+             }
 
-					else if(!ignoreCollision) {
-						HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
-						if(handle!=null) {
-							handle.HandleCollision(this);
-						}
-					}
-			
-
-		
+			 else if(!ignoreCollision) {
+				  HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
+				  if(handle!=null) {
+					 handle.HandleCollision(this);
+				  }
+			}
 		
 	}
 
