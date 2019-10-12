@@ -53,7 +53,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     }
 
 	public bool IsRewardVideoReady() {
-		return rewardBasedVideo.IsLoaded();
+		return GetIsAdsSupportingPlatform() && rewardBasedVideo !=null && rewardBasedVideo.IsLoaded();
 	}
 
     public bool GetIsAdsSupportingPlatform() {
