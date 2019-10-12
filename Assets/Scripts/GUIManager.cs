@@ -7,8 +7,11 @@ public class GUIManager : MonoBehaviour {
 
 	public UnityEngine.UI.Image[] bonusImages;
     public UnityEngine.UI.Image backPanelImage;
-    
-	public Sprite [] musicSettingsImages;
+    //orange box
+    public UnityEngine.UI.Image backPanelLevelCompletion;
+    public UnityEngine.UI.Image backPanelGameOver;
+
+    public Sprite [] musicSettingsImages;
 	public UnityEngine.UI.Image musicSettingsButton;
     public UnityEngine.UI.Image arcadePanelMusicSettingsButton;
 
@@ -502,7 +505,8 @@ public class GUIManager : MonoBehaviour {
 	public void ShowGameOver() {
 
 		if(gameOverImage!=null) {
-			gameOverImage.enabled = true;
+            ShowBackPanelGameOver();
+            gameOverImage.enabled = true;
 		}
 
 		//ONLY AFTER GAME OVER, AND IN CASE WE HAVE A VIDEO READY? (or also in app purchase???)
@@ -719,8 +723,10 @@ public class GUIManager : MonoBehaviour {
 
 	public void HideGameOver() {
 		if(gameOverImage!=null) {
+            
 			gameOverImage.enabled = false;
-		}
+            HideBackPanelGameOver();
+        }
 		/*if(gameOverText!=null) {
 			gameOverText.GetComponent<EnableDisableMonobehaviour>().enabled = false;
 			gameOverText.text = "";
@@ -735,6 +741,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void ShowLevelClearedImage() {
+        ShowBackLevelCompletion();
 		levelClearedImage.enabled = true;
 		UnityEngine.UI.Image[] imgs = levelClearedImage.gameObject.GetComponentsInChildren<UnityEngine.UI.Image>();
 		foreach(UnityEngine.UI.Image img in imgs) {
@@ -743,7 +750,8 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void HideLevelClearedImage() {
-		levelClearedImage.enabled = false;
+        HideBackLevelCompletion();
+        levelClearedImage.enabled = false;
 		UnityEngine.UI.Image[] imgs = levelClearedImage.gameObject.GetComponentsInChildren<UnityEngine.UI.Image>();
 		foreach(UnityEngine.UI.Image img in imgs) {
 			img.enabled = false;
@@ -923,4 +931,25 @@ public class GUIManager : MonoBehaviour {
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[0];
 		purchaseRemoveAdsImage.enabled = false;
 	}
+
+    public void ShowBackLevelCompletion()
+    {
+        backPanelLevelCompletion.enabled = true;
+    }
+
+    public void HideBackLevelCompletion()
+    {
+        backPanelLevelCompletion.enabled = false;
+    }
+
+    public void ShowBackPanelGameOver()
+    {
+        backPanelGameOver.enabled = true;
+    }
+
+    public void HideBackPanelGameOver()
+    {
+        backPanelGameOver.enabled = false;
+    }
+
 }
