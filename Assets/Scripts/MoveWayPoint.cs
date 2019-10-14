@@ -102,12 +102,25 @@ public class MoveWayPoint : MonoBehaviour
 
 
 	public void ContinueMovement() {
+        if(!isPaused)
+        {
+            return; //already movinng
+        }
 		Debug.Log("ContinueMovement");
 		numPassages = 0;
 		isPaused = false;
 		speed = speedStorage;
 		StartMovement();
 	}
+
+    public void RestartMovementAfterPause(float delayBeforeRestart)
+    {
+        if (isPaused)
+        {
+            Invoke("ContinueMovement", delayBeforeRestart);
+        }
+        
+    }
 	
 	/**
 	 * Move the object towards the selected waypoint

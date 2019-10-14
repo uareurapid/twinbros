@@ -12,6 +12,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 	//if moving do not count for the collision marging
 	public bool isMovingEnemy = false;
 
+    //TODO WHY WHY WHY???
     public bool canIgnoreCollisions = true; //if set to false cannot ignore any touch
 
 	// Use this for initialization
@@ -67,10 +68,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			levelmanager = scripts.GetComponent<LevelManager>();
 
 		}
-        //Debug.Log("CannotIgnoreCollisionWhenNotMoving() ? " + CannotIgnoreCollisionWhenNotMoving(player));
-		//Debug.Log("CannotIgnoreCollisionWhenMoving() ? " + CannotIgnoreCollisionWhenMoving(player));
-		//Debug.Log("isMovingEnemy ? " + isMovingEnemy);
-		//Debug.Log("player.GetReachedTarget() ? " + player.GetReachedTarget());
+      
 		//TODO THIS SHIT NEEDS A RE-WRITE!!!
 		//TODO if moving enemy should not be enough condition
 		if (killPlayerOnTouch)
@@ -88,7 +86,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
                 levelmanager.KillPlayer();
                 killed = true;
             }//player is stopped, but object is moving
-			if( (isMovingEnemy && player.GetReachedTarget()) && CannotIgnoreCollisionWhenNotMoving(player) ) {
+			else if( (isMovingEnemy && player.GetReachedTarget()) && CannotIgnoreCollisionWhenNotMoving(player) ) {
             
                 player.ShowDeathSpriteAnimation();
                 levelmanager.KillPlayer();
@@ -124,14 +122,16 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 				killed = true;
 			}
 
-            //also stop the enemy movement
+            //also stop the enemy movement, but restart it after 2 secs
             if(isMovingEnemy && killed) {
-               // Debug.Log("KILLEDDDDDDDDDDDDD");
+                Debug.Log("KILLEDDDDDDDDDDDDD");
 				MoveWayPoint move = GetComponent<MoveWayPoint>();
 				if(move!=null) {
 					//StopMovement
 					move.PauseMovement();
-				}
+                    move.RestartMovementAfterPause(2f);
+
+                }
 			}
 		}
 		else if (shrinkPlayer)
@@ -170,11 +170,133 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	//TODO this if fucking wrong for sure
 	public bool IsIgnoreCollision(PlayerMovement player, bool ignoreMovementDirection) {
-		Debug.Log("@IS IGNORE COLLISION? " + player.IsIgnoreCollision(transform, true));
+		//Debug.Log("@IS IGNORE COLLISION? " + IsIgnoreCollisionInternal(transform, true));
         
-        bool ignore = player.IsIgnoreCollision(transform, ignoreMovementDirection);
-        
+        bool ignore = IsIgnoreCollisionInternal(player, ignoreMovementDirection);
+        Debug.Log("@IS IGNORE COLLISION? " + ignore);
         return ignore;
 	}
+
+    private bool IsIgnoreCollisionInternal(PlayerMovement player, bool ignoreMovementDirection)
+    {
+        Renderer playerBoxRenderer = player.playerBoxRenderer;
+       
+
+        float playerWidth = playerBoxRenderer.bounds.size.x;
+        float playerHeight = playerBoxRenderer.bounds.size.y;
+        float playerLeft = playerBoxRenderer.bounds.center.x - (playerWidth / 2);
+        float playerRight = playerBoxRenderer.bounds.center.x + (playerWidth / 2);
+        float playerTop = playerBoxRenderer.bounds.center.y - (playerHeight / 2);
+        float playerBottom = playerBoxRenderer.bounds.center.y + (playerHeight / 2);
+        
+
+        Renderer thisRenderer = transform.GetComponent<Renderer>();
+        if (thisRenderer == null)
+        {
+            thisRenderer = transform.GetComponentInChildren<Renderer>();
+        }
+
+        if (thisRenderer != null && playerBoxRenderer != null)
+        {
+
+            float otherWidth = thisRenderer.bounds.size.x;
+            float otherHeight = thisRenderer.bounds.size.y;
+            float otherLeft = thisRenderer.bounds.center.x - (otherWidth / 2);
+            float otherRight = thisRenderer.bounds.center.x + (otherWidth / 2);
+            float otherTop = thisRenderer.bounds.center.y - (otherHeight / 2);
+            float otherBottom = thisRenderer.bounds.center.y + (otherHeight / 2);
+
+            if (player.IsMovingRight() && !ignoreMovementDirection)
+            {
+
+                //player right must be bigger than enemy left
+                if (((playerRight + player.ignoreCollisionInterval) > otherLeft) &&
+                    (playerBoxRenderer.bounds.center.y > otherTop) &&
+                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                {
+
+                    return false;
+                }
+            }
+            else if (player.IsMovingLeft() && !ignoreMovementDirection)
+            {
+
+                //Debug.Log("playerLeft: " + playerLeft + "otherLeft: " + otherLeft + " other right: " + otherRight); 
+                //Debug.Log( (playerLeft - ignoreCollisionInterval) < otherRight);
+                //Debug.Log("boxRenderer.bounds.center.y: " + boxRenderer.bounds.center.y + "> otherBottom?: " + otherBottom); 
+
+                if (((playerLeft - player.ignoreCollisionInterval) < otherRight) &&
+                    (playerBoxRenderer.bounds.center.y > otherTop) &&
+                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                {
+
+                    return false;
+                }
+
+            }
+            else if (player.IsMovingUp() && !ignoreMovementDirection)
+            {
+
+                if (((playerTop - player.ignoreCollisionInterval) < otherBottom) &&
+                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
+                    (playerBoxRenderer.bounds.center.x < otherRight))
+                {
+
+                    return false;
+                }
+            }
+            else if (player.IsMovingDown() && !ignoreMovementDirection)
+            {
+
+                if (((playerBottom + player.ignoreCollisionInterval) > otherTop) &&
+                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
+                    (playerBoxRenderer.bounds.center.x < otherRight))
+                {
+
+                    return false;
+                }
+            }
+            //TODO NEW NEEDS REFACTORING
+            else if ((!player.IsMovingInAnyDirection() || player.GetReachedTarget() && ignoreMovementDirection))
+            {
+
+                if (((playerRight + player.ignoreCollisionInterval) > otherLeft) &&
+                    (playerBoxRenderer.bounds.center.y > otherTop) &&
+                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                {
+
+                    return false;
+                }
+
+                else if (((playerLeft - player.ignoreCollisionInterval) < otherRight) &&
+                    (playerBoxRenderer.bounds.center.y > otherTop) &&
+                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                {
+
+                    return false;
+                }
+                else if (((playerTop - player.ignoreCollisionInterval) < otherBottom) &&
+                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
+                    (playerBoxRenderer.bounds.center.x < otherRight))
+                {
+
+                    return false;
+                }
+
+                else if (((playerBottom + player.ignoreCollisionInterval) > otherTop) &&
+                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
+                    (playerBoxRenderer.bounds.center.x < otherRight))
+                {
+
+                    return false;
+                }
+
+            }
+
+
+        }
+        return true;
+        //return !(Mathf.Abs(otherPosition - playerPosition) < ignoreCollisionInterval);
+    }
 
 }

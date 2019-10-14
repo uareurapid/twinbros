@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public PlayerMovement otherTwin;
 
+    public Renderer playerBoxRenderer;
+
 	private enum HitDirection { None, Top, Bottom, Forward, Back, Left, Right };
 
 	private float tileSize = 0;
@@ -85,7 +87,6 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector3 originalPositionInLevel;
 
 	//for better collision checks
-	private Renderer boxRenderer;
 	float playerWidth = 0; 
 	float playerHeight = 0;
 	float playerLeft = 0;
@@ -108,12 +109,12 @@ public class PlayerMovement : MonoBehaviour {
 
 	void CheckBounds() {
 
-		playerWidth = boxRenderer.bounds.size.x;
-		playerHeight = boxRenderer.bounds.size.y;
-		playerLeft = boxRenderer.bounds.center.x - (playerWidth / 2);
-		playerRight = boxRenderer.bounds.center.x + (playerWidth / 2);
-		playerTop = boxRenderer.bounds.center.y - (playerHeight / 2);
-		playerBottom = boxRenderer.bounds.center.y + (playerHeight / 2);
+		playerWidth = playerBoxRenderer.bounds.size.x;
+		playerHeight = playerBoxRenderer.bounds.size.y;
+		playerLeft = playerBoxRenderer.bounds.center.x - (playerWidth / 2);
+		playerRight = playerBoxRenderer.bounds.center.x + (playerWidth / 2);
+		playerTop = playerBoxRenderer.bounds.center.y - (playerHeight / 2);
+		playerBottom = playerBoxRenderer.bounds.center.y + (playerHeight / 2);
 	}
     void Start()
     {
@@ -124,8 +125,8 @@ public class PlayerMovement : MonoBehaviour {
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
 			swipe = gameObject.AddComponent<SwipeDetector>();
 		}
-        
-		boxRenderer = GetComponentInChildren<Renderer>();
+
+        playerBoxRenderer = GetComponentInChildren<Renderer>();
 		CheckBounds();
 
 		//find the bubble
@@ -691,12 +692,6 @@ public class PlayerMovement : MonoBehaviour {
     //TODO pass enemy box?
 	public bool IsIgnoreCollision(Transform otherObject, bool ignoreMovementDirection) {
 
-        //boxRenderer = GetComponentInChildren<Renderer>();
-        EnemyBox other = otherObject.GetComponent<EnemyBox>();
-        if(other!=null && !other.canIgnoreCollisions) {
-            return false;
-        }
-        
 		CheckBounds();
 
 		Renderer otherRenderer = otherObject.GetComponent<Renderer>();
@@ -704,7 +699,7 @@ public class PlayerMovement : MonoBehaviour {
 			otherRenderer = otherObject.GetComponentInChildren<Renderer>();
 		}
 
-		if (otherRenderer != null && boxRenderer!=null)
+		if (otherRenderer != null && playerBoxRenderer != null)
 		{
 
 			float otherWidth = otherRenderer.bounds.size.x;
@@ -718,8 +713,8 @@ public class PlayerMovement : MonoBehaviour {
 
 				//player right must be bigger than enemy left
 				if( ( (playerRight + ignoreCollisionInterval) > otherLeft) && 
-					( boxRenderer.bounds.center.y  > otherTop ) && 
-					( boxRenderer.bounds.center.y  < otherBottom ) )   {
+					(playerBoxRenderer.bounds.center.y  > otherTop ) && 
+					(playerBoxRenderer.bounds.center.y  < otherBottom ) )   {
    
 					return false;
 				}
@@ -731,8 +726,8 @@ public class PlayerMovement : MonoBehaviour {
 				//Debug.Log("boxRenderer.bounds.center.y: " + boxRenderer.bounds.center.y + "> otherBottom?: " + otherBottom); 
 
 				if( ( (playerLeft - ignoreCollisionInterval) < otherRight) && 
-					( boxRenderer.bounds.center.y  > otherTop) && 
-					( boxRenderer.bounds.center.y  < otherBottom ) )   {
+					(playerBoxRenderer.bounds.center.y  > otherTop) && 
+					(playerBoxRenderer.bounds.center.y  < otherBottom ) )   {
 		
 					return false;
 				}
@@ -741,8 +736,8 @@ public class PlayerMovement : MonoBehaviour {
 			else if(isUpMovement && !ignoreMovementDirection) {
 			
 				if( ( (playerTop - ignoreCollisionInterval) < otherBottom) && 
-					( boxRenderer.bounds.center.x  > otherLeft ) && 
-					( boxRenderer.bounds.center.x  < otherRight ) )   {
+					(playerBoxRenderer.bounds.center.x  > otherLeft ) && 
+					(playerBoxRenderer.bounds.center.x  < otherRight ) )   {
 
 					return false;
 				}
@@ -750,8 +745,8 @@ public class PlayerMovement : MonoBehaviour {
 			else if(isDownMovement && !ignoreMovementDirection) {
 			
 				if( ( (playerBottom + ignoreCollisionInterval) > otherTop) && 
-					( boxRenderer.bounds.center.x  > otherLeft ) && 
-					( boxRenderer.bounds.center.x  < otherRight ) )   {
+					(playerBoxRenderer.bounds.center.x  > otherLeft ) && 
+					(playerBoxRenderer.bounds.center.x  < otherRight ) )   {
 		
 					return false;
 				}
@@ -760,28 +755,28 @@ public class PlayerMovement : MonoBehaviour {
 			else if( (!IsMovingInAnyDirection() || reachedTarget) && ignoreMovementDirection ) {
 			
 				if( ( (playerRight + ignoreCollisionInterval) > otherLeft) && 
-					( boxRenderer.bounds.center.y  > otherTop ) && 
-					( boxRenderer.bounds.center.y  < otherBottom ) )   {
+					(playerBoxRenderer.bounds.center.y  > otherTop ) && 
+					(playerBoxRenderer.bounds.center.y  < otherBottom ) )   {
    
 					return false;
 				}
 
 				else if( ( (playerLeft - ignoreCollisionInterval) < otherRight) && 
-					( boxRenderer.bounds.center.y  > otherTop) && 
-					( boxRenderer.bounds.center.y  < otherBottom ) )   {
+					(playerBoxRenderer.bounds.center.y  > otherTop) && 
+					(playerBoxRenderer.bounds.center.y  < otherBottom ) )   {
 		
 					return false;
 				}
 				else if( ( (playerTop - ignoreCollisionInterval) < otherBottom) && 
-					( boxRenderer.bounds.center.x  > otherLeft ) && 
-					( boxRenderer.bounds.center.x  < otherRight ) )   {
+					(playerBoxRenderer.bounds.center.x  > otherLeft ) && 
+					(playerBoxRenderer.bounds.center.x  < otherRight ) )   {
 
 					return false;
 				}
 
 				else if( ( (playerBottom + ignoreCollisionInterval) > otherTop) && 
-					( boxRenderer.bounds.center.x  > otherLeft ) && 
-					( boxRenderer.bounds.center.x  < otherRight ) )   {
+					(playerBoxRenderer.bounds.center.x  > otherLeft ) && 
+					(playerBoxRenderer.bounds.center.x  < otherRight ) )   {
 		
 					return false;
 				}
@@ -816,7 +811,7 @@ public class PlayerMovement : MonoBehaviour {
         //ignore it
         if (isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.IsPlayerDead() ) {
 
-           // Debug.Log("DEBUG: COLLISION IGNORED -±other.transform.name: " + other.transform.name);
+           Debug.Log("DEBUG: COLLISION IGNORED -±other.transform.name: " + other.transform.name);
 			return;
 		}
 
@@ -832,13 +827,18 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        //if(isEnemy || isSlider) {
-            Debug.Log("isEnemy ? " + isEnemy + " is Slider? " + isSlider + " ====> " + other.transform.name + " isRightMovement && canMoveRight " + isRightMovement + " && " + canMoveRight +
-			" isLefttMovement && canMoveLeft " + isLeftMovement + " && " + canMoveLeft);
+        Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy);
 
-        //}
+        if (isEnemy)
+        {
+            EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+            enemy.HandleCollision(this);
+            return;
+        }
 
-		if(isRightMovement && canMoveRight) {
+
+        //Blocks and other things not tagged Enemy!
+        if (isRightMovement && canMoveRight) {
 			//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 				if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 				
@@ -894,71 +894,67 @@ public class PlayerMovement : MonoBehaviour {
 							
 			}
 						
-            } else if(!IsMovingInAnyDirection() && isEnemy) {
+        } else if(!IsMovingInAnyDirection() && isEnemy) {
                  //even if not moving, if it is an enemy
                  Debug.Log("DEBUG: CODE ME, EMPTY BLOCK");
-            }
+        }
 
-			Tile tile = other.transform.GetComponent<Tile>();
-			TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
+
+        //---------------------------------------------------------
+
+		Tile tile = other.transform.GetComponent<Tile>();
+		TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
 					
-			if(point!=null) {
-					Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
-					point.HandleCollision(this);
-			}
-			else if(tile!=null && !ignoreCollision) {
-				tile.HandleCollision(this);
-			}
-			else if(isPortal && !ignoreCollision) {
+		if(point!=null) {
+			Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
+			point.HandleCollision(this);
+		}
+		else if(tile!=null && !ignoreCollision) {
+			tile.HandleCollision(this);
+		}
+		else if(isPortal && !ignoreCollision) {
             
-                 other.gameObject.GetComponent<Portal>().HandleCollision(this);
+            other.gameObject.GetComponent<Portal>().HandleCollision(this);
 
-            } 
-            else if(isSlider && !ignoreCollision) {
-				SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
-                slider.HandleCollision(this);
-			}
-			else if(isMovingBlock) {
-				//pause the moving block
-                if(!ignoreCollision) {
-                   MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
-                   move.PauseMovement();
-                }
-            //TODO should i pause the enemy even if the collision is ignored??? dont think SO, CHECK URGENT PLEASE!!!
-	            if(isEnemy) {
-	               EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-	               //i could not be moving but if the enemy is we cant ignore it
-	                //if(!ignoreCollision ) {
-	                enemy.HandleCollision(this);
-	             }
-			 }
-			 else if(isBomb && !ignoreCollision) {
+        } 
+        else if(isSlider && !ignoreCollision) {
+			SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
+            slider.HandleCollision(this);
+		}
+		else if(isMovingBlock) {
+			//pause the moving block
+            if(!ignoreCollision) {
+              MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
+              move.PauseMovement();
+              move.RestartMovementAfterPause(2f);
+            }
+          
+		}
+		else if(isBomb && !ignoreCollision) {
 		
-                  other.gameObject.GetComponent<Bomb>().HandleCollision(this);
-			 }
-			 else if(isElectric && !ignoreCollision) {
+            other.gameObject.GetComponent<Bomb>().HandleCollision(this);
+		}
+		else if(isElectric && !ignoreCollision) {
 		
-				  ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
-				  wire.ElectrocutePlayer(this);
-			 }
-             else if(isBox && !ignoreCollision) {
-                  other.gameObject.GetComponent<Box>().HandleCollision(this);
-				  //TODO there are game objects that are tagged box, but do not have the component CHECK!!!
-			 }
-             else if(isEnemy /*&& !ignoreCollision*/ ) {
-                  EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-                  //i could not be moving but if the enemy is we cant ignore it
-                  //if(!ignoreCollision ) {
-                  enemy.HandleCollision(this);
-                        //}else Debug.Log("ENEMY HANDLE NOT CALLED, ignoreCollision? " + ignoreCollision);
-             }
+			ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
+			wire.ElectrocutePlayer(this);
+		}
+        else if(isBox && !ignoreCollision) {
+            other.gameObject.GetComponent<Box>().HandleCollision(this);
+			//TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+		}
+        else if(isEnemy /*&& !ignoreCollision*/ ) {
+            EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
+           enemy.HandleCollision(this);
+       
+        }
 
-			 else if(!ignoreCollision) {
-				  HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
-				  if(handle!=null) {
-					 handle.HandleCollision(this);
-				  }
+		else if(!ignoreCollision) {
+			HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
+			if(handle!=null) {
+				handle.HandleCollision(this);
 			}
+		}
 		
 	}
 

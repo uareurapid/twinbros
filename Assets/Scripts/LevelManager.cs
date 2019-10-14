@@ -325,6 +325,7 @@ public class LevelManager : MonoBehaviour {
 	}
     
 	//after watching the video or purchasing the revives
+    //but also if respawnOnDyingLevel is set and test mode
 	public void RestartFromDyingLevel() {
 		SoundEffectsHelper.Instance.PlayTeleportSound(); //TODO change sound
 		respawnOnDyingLevel = true;
@@ -387,9 +388,10 @@ public class LevelManager : MonoBehaviour {
 			MoveToRespawnLevel(debugLevel);
 		}
 		else {
-			if(respawnOnDyingLevel) {
-				MoveToRespawnLevel(respawnLevel);			
-			}
+			if(respawnOnDyingLevel && isTestMode) {
+                respawnLevel = currentLevel;
+                MoveToRespawnLevel(respawnLevel);			
+            }
 			else {
 				MoveToRespawnLevel(currentStageFirstLevel);
 			}
