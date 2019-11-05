@@ -140,25 +140,36 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			//Debug.Log("DO SHRNK IT?????");
 			if (shrinkScript != null)
 			{
+                bool applyShrink = false;
 
-				if (player.IsMovingUp())
+				if (player.IsMovingUp() && CannotIgnoreUpCollision(player))
 				{
 					player.collidedTop();
-				}
-				else if (player.IsMovingDown())
+                    applyShrink = true;
+
+                }
+				else if (player.IsMovingDown() && CannotIgnoreDownCollision(player))
 				{
 					player.collidedBottom();
-				}
-				else if (player.IsMovingRight())
+                    applyShrink = true;
+                }
+				else if (player.IsMovingRight() && CannotIgnoreRightCollision(player))
 				{
 					player.collidedRight();
-				}
-				else if (player.IsMovingLeft())
+                    applyShrink = true;
+                }
+				else if (player.IsMovingLeft() && CannotIgnoreLeftCollision(player))
 				{
 					player.collidedLeft();
-				}
-				shrinkScript.enabled = true;
-				shrinkScript.SetObjectToShrink(player, levelmanager, this);
+                    applyShrink = true;
+                }
+                if(applyShrink)
+                {
+                    shrinkScript.enabled = true;
+                    shrinkScript.SetObjectToShrink(player, levelmanager, this);
+                    //otherwise ignore it
+                }
+				
 			}
 		}
 		else Debug.Log("DO NOTHING???");
