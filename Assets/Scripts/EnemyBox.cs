@@ -37,6 +37,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	bool CannotIgnoreLeftCollision(PlayerMovement player)
 	{
+		Debug.Log("CannotIgnoreLeftCollision....player.IsMovingLeft()" + player.IsMovingLeft());
 		return player.IsMovingLeft() && !IsIgnoreCollision(player, false);
 	}
 
@@ -78,6 +79,9 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             //TODO WTF!!!
 			//ANTES ESTAVA --> (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player)
 			//e o player stopped só via a velocity, sempre a 0,0,0
+			if(isMovingEnemy && !player.GetReachedTarget()) {
+				Debug.Log("MAYBE HERE????");
+			}
 
 			//means player is moving
             if(isMovingEnemy && !player.GetReachedTarget() && CannotIgnoreCollisionWhenMoving(player)) {
@@ -217,35 +221,48 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             float otherTop = thisRenderer.bounds.center.y - (otherHeight / 2);
             float otherBottom = thisRenderer.bounds.center.y + (otherHeight / 2);
 
-            if (player.IsMovingRight() && !ignoreMovementDirection)
+            if (player.IsMovingRight() && player.canMoveRight && !ignoreMovementDirection)
             {
+
+Debug.Log("playerRight: " + playerRight + "otherLeft: " + otherLeft + " other right: " + otherRight); 
 
                 //player right must be bigger than enemy left
                 if (((playerRight + player.ignoreCollisionInterval) > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.y > otherTop) &&
+                    (playerBoxRenderer.bounds.center.y > otherTop) ||
                     (playerBoxRenderer.bounds.center.y < otherBottom))
                 {
 
                     return false;
                 }
+				
             }
-            else if (player.IsMovingLeft() && !ignoreMovementDirection)
+            else if (player.IsMovingLeft() && player.canMoveLeft && !ignoreMovementDirection)
             {
-
-                //Debug.Log("playerLeft: " + playerLeft + "otherLeft: " + otherLeft + " other right: " + otherRight); 
+				//baixo mais pequenoo
+				//playerLeft: -5.33125otherLeft: -6.03125 other right: -5.03125
+                
                 //Debug.Log( (playerLeft - ignoreCollisionInterval) < otherRight);
                 //Debug.Log("boxRenderer.bounds.center.y: " + boxRenderer.bounds.center.y + "> otherBottom?: " + otherBottom); 
 
                 if (((playerLeft - player.ignoreCollisionInterval) < otherRight) &&
+                    (playerBoxRenderer.bounds.center.y > otherTop) ||
+                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                {
+
+                    return false;
+                }
+					/*
+					if (((playerLeft - player.ignoreCollisionInterval) < otherRight) &&
                     (playerBoxRenderer.bounds.center.y > otherTop) &&
                     (playerBoxRenderer.bounds.center.y < otherBottom))
                 {
 
                     return false;
                 }
+					*/
 
             }
-            else if (player.IsMovingUp() && !ignoreMovementDirection)
+            else if (player.IsMovingUpAndNotStopped() && !ignoreMovementDirection)
             {
 
                 if (((playerTop - player.ignoreCollisionInterval) < otherBottom) &&
@@ -256,7 +273,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
                     return false;
                 }
             }
-            else if (player.IsMovingDown() && !ignoreMovementDirection)
+            else if (player.IsMovingDownAndNotStopped() && !ignoreMovementDirection)
             {
 
                 if (((playerBottom + player.ignoreCollisionInterval) > otherTop) &&

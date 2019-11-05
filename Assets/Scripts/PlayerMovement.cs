@@ -494,6 +494,22 @@ public class PlayerMovement : MonoBehaviour {
 		return isDownMovement;
 	}
 
+	public bool IsMovingLeftAndNotStopped() {
+		return isLeftMovement && !reachedTarget;
+	}
+
+	public bool IsMovingRightAndNotStopped() {
+		return isRightMovement && !reachedTarget;
+	}
+
+	public bool IsMovingUpAndNotStopped() {
+		return isUpMovement && !reachedTarget;
+	}
+
+	public bool IsMovingDownAndNotStopped() {
+		return isDownMovement && !reachedTarget;
+	}
+
 	public void collidedLeft() {
 
 		canMoveLeft = false;
@@ -827,7 +843,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy);
+        Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy + " right?" + isRightMovement);
 
         if (isEnemy)
         {
