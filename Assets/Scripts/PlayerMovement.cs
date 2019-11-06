@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
 		body = GetComponent<Rigidbody2D>();
-        body.isKinematic = true;// false; //should be true
+        body.isKinematic = false; //should be true
 		body.gravityScale = 0;
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
