@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
 		body = GetComponent<Rigidbody2D>();
-        body.isKinematic = false; //should be true
+        body.isKinematic = true;// false; //should be true
 		body.gravityScale = 0;
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
@@ -843,7 +843,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy + " right?" + isRightMovement);
+        Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
 
         if (isEnemy)
         {
@@ -879,7 +879,7 @@ public class PlayerMovement : MonoBehaviour {
 					Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
 				}
 						
-		}
+		}//TODO raycast to see if i can move up or not
         else if(isUpMovement && canMoveUp) {
 						
             Debug.Log("DEBUG: IS UP AND CAN MOVE UP");

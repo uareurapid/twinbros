@@ -612,7 +612,10 @@ public class LevelManager : MonoBehaviour {
 
 		//gameStarted = false;
 		//Report the achievement
-		SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
+        if(gameManager.IsMobilePlatform()) {
+            SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
+        }
+		
 		//add 500 extra points
 		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
 		currentScore += 500;
@@ -632,8 +635,12 @@ public class LevelManager : MonoBehaviour {
 		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
 		guiManager.UpdateCurrentHighScore(highScore);
 
-		//also report it to the store
-		SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+        if (gameManager.IsMobilePlatform())
+        {
+            //also report it to the store
+            SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+        }
+            
 
 		guiManager.ShowStageClearedImage();
 		StartCoroutine("HideStageClearedImage");

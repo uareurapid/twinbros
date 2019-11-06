@@ -79,9 +79,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             //TODO WTF!!!
 			//ANTES ESTAVA --> (isMovingEnemy && !player.IsStopped() ) || CannotIgnoreRightCollision(player)
 			//e o player stopped só via a velocity, sempre a 0,0,0
-			if(isMovingEnemy && !player.GetReachedTarget()) {
-				Debug.Log("MAYBE HERE????");
-			}
+			
 
 			//means player is moving
             if(isMovingEnemy && !player.GetReachedTarget() && CannotIgnoreCollisionWhenMoving(player)) {
@@ -199,10 +197,12 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
         float playerWidth = playerBoxRenderer.bounds.size.x;
         float playerHeight = playerBoxRenderer.bounds.size.y;
-        float playerLeft = playerBoxRenderer.bounds.center.x - (playerWidth / 2);
-        float playerRight = playerBoxRenderer.bounds.center.x + (playerWidth / 2);
-        float playerTop = playerBoxRenderer.bounds.center.y - (playerHeight / 2);
-        float playerBottom = playerBoxRenderer.bounds.center.y + (playerHeight / 2);
+        float playerCenterX = playerBoxRenderer.bounds.center.x;
+        float playerCenterY = playerBoxRenderer.bounds.center.y;
+        float playerLeft = playerCenterX - (playerWidth / 2);
+        float playerRight = playerCenterX + (playerWidth / 2);
+        float playerTop = playerCenterY - (playerHeight / 2);
+        float playerBottom = playerCenterY - (playerHeight / 2);
         
 
         Renderer thisRenderer = transform.GetComponent<Renderer>();
@@ -214,27 +214,38 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
         if (thisRenderer != null && playerBoxRenderer != null)
         {
 
-            float otherWidth = thisRenderer.bounds.size.x;
-            float otherHeight = thisRenderer.bounds.size.y;
-            float otherLeft = thisRenderer.bounds.center.x - (otherWidth / 2);
-            float otherRight = thisRenderer.bounds.center.x + (otherWidth / 2);
-            float otherTop = thisRenderer.bounds.center.y - (otherHeight / 2);
-            float otherBottom = thisRenderer.bounds.center.y + (otherHeight / 2);
+            float enemyWidth = thisRenderer.bounds.size.x;
+            float enemyHeight = thisRenderer.bounds.size.y;
+            float enemyCenterX = thisRenderer.bounds.center.x;
+            float enemyCenterY = thisRenderer.bounds.center.y;
+            float enemyLeft = enemyCenterX - (enemyWidth / 2);
+            float enemyRight = enemyCenterX + (enemyWidth / 2);
+            float enemyTop = enemyCenterY - (enemyHeight / 2);
+            float enemyBottom = enemyCenterY - (enemyHeight / 2);
 
             if (player.IsMovingRight() && player.canMoveRight && !ignoreMovementDirection)
             {
 
-Debug.Log("playerRight: " + playerRight + "otherLeft: " + otherLeft + " other right: " + otherRight); 
+                //Debug.Log("playerRight: " + playerRight + "otherLeft: " + enemyLeft + " other right: " + enemyRight); 
 
                 //player right must be bigger than enemy left
-                if (((playerRight + player.ignoreCollisionInterval) > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.y > otherTop) ||
-                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                if (((playerRight + player.ignoreCollisionInterval) > enemyLeft) &&
+                    (playerBottom - player.ignoreCollisionInterval < enemyTop) &&
+                    (playerTop + player.ignoreCollisionInterval > enemyBottom))
                 {
 
                     return false;
                 }
-				
+                /*
+                 *if (((playerRight + player.ignoreCollisionInterval) > enemyLeft) &&
+                    (enemyTop - player.ignoreCollisionInterval > enemyTop) ||
+                    (playerBoxRenderer.bounds.center.y < enemyBottom))
+                {
+
+                    return false;
+                }
+                 */
+
             }
             else if (player.IsMovingLeft() && player.canMoveLeft && !ignoreMovementDirection)
             {
@@ -242,11 +253,12 @@ Debug.Log("playerRight: " + playerRight + "otherLeft: " + otherLeft + " other ri
 				//playerLeft: -5.33125otherLeft: -6.03125 other right: -5.03125
                 
                 //Debug.Log( (playerLeft - ignoreCollisionInterval) < otherRight);
-                //Debug.Log("boxRenderer.bounds.center.y: " + boxRenderer.bounds.center.y + "> otherBottom?: " + otherBottom); 
+                Debug.Log("FUCK ME playerBottom: " + playerBottom + " playerBottom + player.ignoreCollisionInterval " + (playerBottom + player.ignoreCollisionInterval) +"enemy top" + enemyTop);
+                //FUCK ME playerBottom: -44.63212 playerBottom + player.ignoreCollisionInterval -44.48212enemy top-44.61
 
-                if (((playerLeft - player.ignoreCollisionInterval) < otherRight) &&
-                    (playerBoxRenderer.bounds.center.y > otherTop) ||
-                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                if (((playerLeft - player.ignoreCollisionInterval) < enemyRight) &&
+                    (playerBottom - player.ignoreCollisionInterval < enemyTop) &&
+                    (playerTop + player.ignoreCollisionInterval > enemyBottom) )
                 {
 
                     return false;
@@ -262,58 +274,76 @@ Debug.Log("playerRight: " + playerRight + "otherLeft: " + otherLeft + " other ri
 					*/
 
             }
-            else if (player.IsMovingUpAndNotStopped() && !ignoreMovementDirection)
+            else if (player.IsMovingUp() && player.canMoveUp && !ignoreMovementDirection)
             {
+                //NOTE: the ignore collisionInterval is a safety net. It sould be used to increase the distance and avoid contacts de raspao
 
-                if (((playerTop - player.ignoreCollisionInterval) < otherBottom) &&
-                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.x < otherRight))
+                if (((playerTop + player.ignoreCollisionInterval) < enemyBottom) &&
+                    (playerRight - player.ignoreCollisionInterval > enemyLeft) && //was +
+                    (playerLeft + player.ignoreCollisionInterval < enemyRight))   //was -
+                {
+                    return false;
+                }
+                /*
+                 *if (((playerTop - player.ignoreCollisionInterval) < enemyBottom) &&
+                    (playerBoxRenderer.bounds.center.x > enemyLeft) &&
+                    (playerBoxRenderer.bounds.center.x < enemyRight))
                 {
 
                     return false;
                 }
+                 */
             }
-            else if (player.IsMovingDownAndNotStopped() && !ignoreMovementDirection)
+            else if (player.IsMovingDown() && player.canMoveDown && !ignoreMovementDirection)
             {
 
-                if (((playerBottom + player.ignoreCollisionInterval) > otherTop) &&
-                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.x < otherRight))
+                if (((playerBottom - player.ignoreCollisionInterval) > enemyTop) &&
+                    (playerRight - player.ignoreCollisionInterval > enemyLeft) &&  //was +
+                    (playerLeft + player.ignoreCollisionInterval < enemyRight))    // was -
                 {
 
                     return false;
                 }
+                /*
+                 *if (((playerBottom + player.ignoreCollisionInterval) > enemyTop) &&
+                    (playerBoxRenderer.bounds.center.x > enemyLeft) &&
+                    (playerBoxRenderer.bounds.center.x < enemyRight))
+                {
+
+                    return false;
+                }
+                 */
             }
             //TODO NEW NEEDS REFACTORING
             else if ((!player.IsMovingInAnyDirection() || player.GetReachedTarget() && ignoreMovementDirection))
             {
 
-                if (((playerRight + player.ignoreCollisionInterval) > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.y > otherTop) &&
-                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                if (((playerRight + player.ignoreCollisionInterval) > enemyLeft) &&
+                    (playerBoxRenderer.bounds.center.y > enemyTop) &&
+                    (playerBoxRenderer.bounds.center.y < enemyBottom))
                 {
 
                     return false;
                 }
 
-                else if (((playerLeft - player.ignoreCollisionInterval) < otherRight) &&
-                    (playerBoxRenderer.bounds.center.y > otherTop) &&
-                    (playerBoxRenderer.bounds.center.y < otherBottom))
+                else if (((playerLeft - player.ignoreCollisionInterval) < enemyRight) &&
+                    (playerBoxRenderer.bounds.center.y > enemyTop) &&
+                    (playerBoxRenderer.bounds.center.y < enemyBottom))
                 {
 
                     return false;
                 }
-                else if (((playerTop - player.ignoreCollisionInterval) < otherBottom) &&
-                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.x < otherRight))
+                else if (((playerTop - player.ignoreCollisionInterval) < enemyBottom) &&
+                    (playerBoxRenderer.bounds.center.x > enemyLeft) &&
+                    (playerBoxRenderer.bounds.center.x < enemyRight))
                 {
 
                     return false;
                 }
 
-                else if (((playerBottom + player.ignoreCollisionInterval) > otherTop) &&
-                    (playerBoxRenderer.bounds.center.x > otherLeft) &&
-                    (playerBoxRenderer.bounds.center.x < otherRight))
+                else if (((playerBottom + player.ignoreCollisionInterval) > enemyTop) &&
+                    (playerBoxRenderer.bounds.center.x > enemyLeft) &&
+                    (playerBoxRenderer.bounds.center.x < enemyRight))
                 {
 
                     return false;

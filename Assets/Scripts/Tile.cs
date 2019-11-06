@@ -42,43 +42,6 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 		return bottom != null;
 	}
 
-	void OnCollisionEnter2D(Collision2D other)
-	{
-
-		/*if(other.transform.CompareTag("Player"))
-		Debug.Log("TILE COLLIDED WITH SOMETHING");
-		if(blockUpMovement) {
-				Debug.Log("################# BLOCK UP ##################");
-				movement.canMoveUp = false;
-				if(movement.IsMovingUp()) {
-					movement.collidedTop();
-				}
-			}
-			if(blockDownMovement) {
-				movement.canMoveDown = false;
-				Debug.Log("################# BLOCK DOWN ##################");
-				if(movement.IsMovingDown()) {
-					movement.collidedBottom();
-				}
-			}
-			if(blockLeftMovement) {
-				movement.canMoveLeft = false;
-				Debug.Log("################# BLOCK LEFT ##################");
-				if(movement.IsMovingLeft()) {
-					movement.collidedLeft();
-				}
-			}
-			if(blockRightMovement) {
-			Debug.Log("################# BLOCK RIGHT ##################");
-				movement.canMoveRight = false;
-				if(movement.IsMovingRight()) {
-					movement.collidedRight();
-				}
-			}*/
-		
-		
-	}
-
 	public void HandleCollision(PlayerMovement movement) {
 
 		bool ignoredCollision = true; 
@@ -104,9 +67,6 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 				//Debug.Log("################# BLOCK DOWN ##################");
 				if(movement.IsMovingDown()) {
 					movement.collidedBottom();
-					//if(enemy!=null) {
-					//	enemy.HandlePlayerCollision();
-					//}
 					ignoredCollision = false;
 				}
 				else {

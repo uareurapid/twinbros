@@ -63,6 +63,12 @@ public class GameManagerScript : MonoBehaviour {
 		}
 	}
 
+    public bool IsMobilePlatform()
+    {
+
+        return (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android);
+    }
+
 	//should be called when moving to the next level
 	public void ActivateNextLevel(Level nextOne) {
 		nextOne.gameObject.SetActive(true);	
