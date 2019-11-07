@@ -203,7 +203,6 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
         float playerRight = playerCenterX + (playerWidth / 2);
         float playerTop = playerCenterY - (playerHeight / 2);
         float playerBottom = playerCenterY - (playerHeight / 2);
-        
 
         Renderer thisRenderer = transform.GetComponent<Renderer>();
         if (thisRenderer == null)
@@ -222,11 +221,11 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             float enemyRight = enemyCenterX + (enemyWidth / 2);
             float enemyTop = enemyCenterY - (enemyHeight / 2);
             float enemyBottom = enemyCenterY - (enemyHeight / 2);
-
-            if (player.IsMovingRight() && player.canMoveRight && !ignoreMovementDirection)
+            
+            if (player.IsMovingRight() && !ignoreMovementDirection)
             {
 
-                //Debug.Log("playerRight: " + playerRight + "otherLeft: " + enemyLeft + " other right: " + enemyRight); 
+                Debug.Log("playerRight: " + playerRight + "otherLeft: " + enemyLeft + " other right: " + enemyRight); 
 
                 //player right must be bigger than enemy left
                 if (((playerRight + player.ignoreCollisionInterval) > enemyLeft) &&
@@ -247,14 +246,16 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
                  */
 
             }
-            else if (player.IsMovingLeft() && player.canMoveLeft && !ignoreMovementDirection)
+            else if (player.IsMovingLeft() && !ignoreMovementDirection)
             {
 				//baixo mais pequenoo
 				//playerLeft: -5.33125otherLeft: -6.03125 other right: -5.03125
                 
                 //Debug.Log( (playerLeft - ignoreCollisionInterval) < otherRight);
                 Debug.Log("FUCK ME playerBottom: " + playerBottom + " playerBottom + player.ignoreCollisionInterval " + (playerBottom + player.ignoreCollisionInterval) +"enemy top" + enemyTop);
-                //FUCK ME playerBottom: -44.63212 playerBottom + player.ignoreCollisionInterval -44.48212enemy top-44.61
+                //FUCK ME playerBottom: -113.7261 playerBottom + player.ignoreCollisionInterval -113.5761enemy top-112.8121
+
+                //TODO MAKE A DIFF INSTEAD
 
                 if (((playerLeft - player.ignoreCollisionInterval) < enemyRight) &&
                     (playerBottom - player.ignoreCollisionInterval < enemyTop) &&
@@ -274,7 +275,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 					*/
 
             }
-            else if (player.IsMovingUp() && player.canMoveUp && !ignoreMovementDirection)
+            else if (player.IsMovingUp() && !ignoreMovementDirection)
             {
                 //NOTE: the ignore collisionInterval is a safety net. It sould be used to increase the distance and avoid contacts de raspao
 
@@ -294,7 +295,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
                 }
                  */
             }
-            else if (player.IsMovingDown() && player.canMoveDown && !ignoreMovementDirection)
+            else if (player.IsMovingDown() && !ignoreMovementDirection)
             {
 
                 if (((playerBottom - player.ignoreCollisionInterval) > enemyTop) &&

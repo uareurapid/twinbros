@@ -443,7 +443,11 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SlideRight() {
-        //Debug.Log("SLIDE RIGHT");
+        if(!isLeftTwin)
+        {
+            Debug.Log("SLIDE RIGHT can move right?" + canMoveRight);
+        }
+        
 		reachedTarget = false;
 		isRightMovement = true;
 		//body.isKinematic = false;
@@ -516,8 +520,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		//if(isLeftMovement) {
 
-			Vector2 bodySpeed = body.velocity;
-			StopMovementVelocity();
+			//Vector2 bodySpeed = body.velocity;
+			//StopMovementVelocity();
             //TODO cannot do this othewrise i loose the previous direction taken
             //isLeftMovement = false;
 
@@ -555,8 +559,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		//if(isRightMovement) {
 			//TODO FIXME the velocity and the kinematic
-			Vector2 bodySpeed = body.velocity;
-			StopMovementVelocity();
+			//Vector2 bodySpeed = body.velocity;
+			//StopMovementVelocity();
 
             //isRightMovement = false;
 			//body.isKinematic = true;
@@ -591,8 +595,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		//if(isUpMovement) {
 
-			Vector2 bodySpeed = body.velocity;
-			StopMovementVelocity();
+			//Vector2 bodySpeed = body.velocity;
+			//StopMovementVelocity();
 
             //isUpMovement = false; //TODO introduced this
 			//body.isKinematic = true;
@@ -626,8 +630,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 		//if(isDownMovement) {
 
-			Vector2 bodySpeed = body.velocity;
-			StopMovementVelocity();
+			//Vector2 bodySpeed = body.velocity;
+			//StopMovementVelocity();
 
             //isDownMovement = false;
 			//body.isKinematic = true;
@@ -843,10 +847,12 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
-
+  
         if (isEnemy)
         {
+            Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
+            Debug.Log("can move right?  " + canMoveRight + " and left? " + canMoveLeft);
+
             EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
             enemy.HandleCollision(this);
             return;
@@ -995,6 +1001,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		isUpMovement = isDownMovement = isRightMovement = isLeftMovement = false;
 		reachedTarget = false;
+
+        Debug.Log("AllowAllMovementsAgain " + canMoveRight + " is left" + isLeftTwin);
 
 	}
 
