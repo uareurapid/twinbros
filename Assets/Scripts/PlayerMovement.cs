@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //the masks are used only for raycast, things that i can walk through like sliders/doors, etc MUST BE OUT!
 	private int collisionMasks = -1;
-	public float minDistanceForNeighbour = 0.55f; //how close i can be to another element/box
+	public float minDistanceForNeighbour = 0.55f; //how close i can be to another element/box //was 0.55 on editor
 			
 	//can move down, up, left? etc?
                                       
@@ -254,9 +254,10 @@ public class PlayerMovement : MonoBehaviour {
 	public bool IsStopped() {
 		//whne i movetowards it does not use physics, but the transform position directly, so the velocity is always zero, at least until it collides with something
 		//NOT GOODreturn ( ( body.velocity == Vector2.zero || !IsMovingInAnyDirection()  ) && reachedTarget );
-		return (body.velocity == Vector2.zero) || !IsMovingInAnyDirection();
-		//TODO NOTE, before was only checking velocity, but this is wrong anyway
-	}
+		return !IsMovingInAnyDirection();//(body.velocity == Vector2.zero) || 
+
+        //TODO NOTE, before was only checking velocity, but this is wrong anyway
+    }
 
     void FixedUpdate()
     {
@@ -297,8 +298,7 @@ public class PlayerMovement : MonoBehaviour {
 				if(distance < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x )) {
 					
 					if(canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
-						canMoveRight = false;
-
+                        canMoveRight = false;
 						if(isRightMovement) {
 							collidedRight();
 						}
@@ -518,19 +518,15 @@ public class PlayerMovement : MonoBehaviour {
 
 		canMoveLeft = false;
 
-		//if(isLeftMovement) {
+		//can always go backwards from where i came
+		canMoveRight = true;
 
-			//Vector2 bodySpeed = body.velocity;
-			//StopMovementVelocity();
-            //TODO cannot do this othewrise i loose the previous direction taken
-            //isLeftMovement = false;
+        canMoveDown = !HitSomethingOnDown();
+        canMoveRight = !HitSomethingOnRight(); //todo raycast
 
-			//body.isKinematic = true; //avoid the bumping effect
-			canMoveRight = canMoveDown = canMoveRight = true;
-			//transform.position = previousPosition[1];
-			//transform.Translate(-bodySpeed);
 
-			if(!reachedTarget) {
+
+            if (!reachedTarget) {
 
 				//reachedTarget = true;
 
@@ -545,29 +541,19 @@ public class PlayerMovement : MonoBehaviour {
 			reachedTarget = true;
 			targetPosition = transform.position;
 
-		//}
-		//else {
-		//	reachedTarget = false;
-		//}
-
 	
 	}
 	public void collidedRight() {
 
 		canMoveRight = false;
-		//canMoveLeft = true;
 
-		//if(isRightMovement) {
-			//TODO FIXME the velocity and the kinematic
-			//Vector2 bodySpeed = body.velocity;
-			//StopMovementVelocity();
+		canMoveLeft = true;
 
-            //isRightMovement = false;
-			//body.isKinematic = true;
-			canMoveLeft = canMoveUp = canMoveDown = true;
-			//transform.Translate(-bodySpeed);
+        canMoveUp = !HitSomethingOnUp();
+        canMoveDown = !HitSomethingOnDown(); //todo raycast
+            //transform.Translate(-bodySpeed);
 
-			if(!reachedTarget) {
+        if (!reachedTarget) {
 
 				//reachedTarget = true;
 				if(isLeftTwin) {
@@ -582,30 +568,20 @@ public class PlayerMovement : MonoBehaviour {
 			
 			reachedTarget = true;
 			targetPosition = transform.position;
-		//}
-		//else {
-		//	reachedTarget = false;
-		//}
 		
 	}
 	public void collidedTop() {
 
 		canMoveUp = false;
-		//canMoveDown = true;
+		
+		canMoveDown = true;
 
-		//if(isUpMovement) {
+        canMoveLeft = !HitSomethingOnLeft();
+        canMoveRight = !HitSomethingOnRight(); //todo raycast
 
-			//Vector2 bodySpeed = body.velocity;
-			//StopMovementVelocity();
 
-            //isUpMovement = false; //TODO introduced this
-			//body.isKinematic = true;
-			canMoveDown = canMoveLeft = canMoveRight = true;
-            //transform.position = previousPosition[1];
-            //Debug.Log("TOP TRANSLATE TO " + (bodySpeed));
-			//transform.Translate(-bodySpeed);
 
-			if(!reachedTarget) {
+            if (!reachedTarget) {
 
 				//reachedTarget = true;
 				if(isLeftTwin) {
@@ -617,30 +593,19 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			reachedTarget = true;
 			targetPosition = transform.position;
-		//}
-		//else {
-		//	reachedTarget = false;
-		//}
+		
 		
 	}
 	public void collidedBottom() {
 	
 		canMoveDown = false;
-		//canMoveUp = true;
-	
-		//if(isDownMovement) {
 
-			//Vector2 bodySpeed = body.velocity;
-			//StopMovementVelocity();
+        canMoveUp = true;
 
-            //isDownMovement = false;
-			//body.isKinematic = true;
-			canMoveUp = canMoveLeft = canMoveRight = true;
-			//transform.position = previousPosition[1];
-            //Debug.Log("BOTTOM TRANSLATE TO " + (bodySpeed));
-			//transform.Translate(-bodySpeed);
+        canMoveLeft = !HitSomethingOnLeft();
+        canMoveRight = !HitSomethingOnRight(); //TODO Depends, i need to raycast
 
-			if(!reachedTarget) {
+        if (!reachedTarget) {
 				
 				//reachedTarget = true;
 				if(isLeftTwin) {
@@ -652,10 +617,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			reachedTarget = true;
 			targetPosition = transform.position;
-		//}
-		//else {
-		//	reachedTarget = false;
-		//}
+		
 		
 	}
 
@@ -847,11 +809,12 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-  
+        Debug.Log("Collided with: " + other.gameObject.name + " right?" + isRightMovement);
+
+
         if (isEnemy)
         {
-            Debug.Log("COLLIDDED CALLED  " + other.gameObject.name + " isEnemy " + isEnemy + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
-            Debug.Log("can move right?  " + canMoveRight + " and left? " + canMoveLeft);
+            Debug.Log("ENEMY COLLIDDED CALLED  " + other.gameObject.name + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
 
             EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
             enemy.HandleCollision(this);
@@ -1302,4 +1265,83 @@ public class PlayerMovement : MonoBehaviour {
 	public void ResetOriginalPosition() {
 		transform.position = originalPositionInLevel;
 	}
+
+    public bool HitSomethingOnLeft()
+    {
+        //Fire some rays to check if we have anything on the left, right, up or down
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 2.0f, collisionMasks);
+        if (hitLeft.collider != null)
+        {
+
+            float dist = Mathf.Abs(hitLeft.point.x - transform.position.x);
+            if (dist < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x))
+            {
+
+                return true;
+
+            }
+
+        }
+        return false;
+
+    }
+
+    public bool HitSomethingOnRight()
+    {
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 2.0f, collisionMasks);
+        if (hitRight.collider != null)
+        {
+
+            float dist = Mathf.Abs(hitRight.point.x - transform.position.x);//make sure it is on the right of the player
+            if (dist < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x))
+            {
+
+                return true;
+
+            }
+
+        }
+        return false;
+
+    }
+
+    public bool HitSomethingOnUp()
+    {
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, 2.0f, collisionMasks);
+        if (hitUp.collider != null)
+        {
+
+            float dist = Mathf.Abs(hitUp.point.y - transform.position.y);
+            if (dist < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y))
+            {
+
+                return true;
+
+            }
+
+        }
+        return false;
+    }
+
+
+
+    public bool HitSomethingOnDown()
+    {
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, collisionMasks);
+        if (hitDown.collider != null)
+        {
+
+            float dist = Mathf.Abs(hitDown.point.y - transform.position.y);
+            if (dist < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y))
+            {
+
+                return true;
+
+            }
+
+        }
+        return false;
+    }
+
+            
 }

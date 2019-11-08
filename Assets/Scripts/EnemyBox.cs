@@ -31,13 +31,12 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 	}
 
 	bool CannotIgnoreRightCollision(PlayerMovement player) {
-
+        Debug.Log("MAYBE HERE??");
 		return player.IsMovingRight() && !IsIgnoreCollision(player, false);
 	}
 
 	bool CannotIgnoreLeftCollision(PlayerMovement player)
 	{
-		Debug.Log("CannotIgnoreLeftCollision....player.IsMovingLeft()" + player.IsMovingLeft());
 		return player.IsMovingLeft() && !IsIgnoreCollision(player, false);
 	}
 
@@ -183,11 +182,11 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 	//TODO this if fucking wrong for sure
 	public bool IsIgnoreCollision(PlayerMovement player, bool ignoreMovementDirection) {
-		//Debug.Log("@IS IGNORE COLLISION? " + IsIgnoreCollisionInternal(transform, true));
-        
-        bool ignore = IsIgnoreCollisionInternal(player, ignoreMovementDirection);
-        Debug.Log("@IS IGNORE COLLISION? " + ignore);
-        return ignore;
+        //Debug.Log("@IS IGNORE COLLISION? " + IsIgnoreCollisionInternal(transform, true));
+        return false;
+        //bool ignore = IsIgnoreCollisionInternal(player, ignoreMovementDirection);
+        //Debug.Log("@IS IGNORE COLLISION? " + ignore);
+        //return ignore;
 	}
 
     private bool IsIgnoreCollisionInternal(PlayerMovement player, bool ignoreMovementDirection)
@@ -228,9 +227,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
                 Debug.Log("playerRight: " + playerRight + "otherLeft: " + enemyLeft + " other right: " + enemyRight); 
 
                 //player right must be bigger than enemy left
-                if (((playerRight + player.ignoreCollisionInterval) > enemyLeft) &&
-                    (playerBottom - player.ignoreCollisionInterval < enemyTop) &&
-                    (playerTop + player.ignoreCollisionInterval > enemyBottom))
+                if ( (playerRight + player.ignoreCollisionInterval) > enemyLeft)
                 {
 
                     return false;
@@ -248,18 +245,24 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             }
             else if (player.IsMovingLeft() && !ignoreMovementDirection)
             {
-				//baixo mais pequenoo
-				//playerLeft: -5.33125otherLeft: -6.03125 other right: -5.03125
-                
-                //Debug.Log( (playerLeft - ignoreCollisionInterval) < otherRight);
-                Debug.Log("FUCK ME playerBottom: " + playerBottom + " playerBottom + player.ignoreCollisionInterval " + (playerBottom + player.ignoreCollisionInterval) +"enemy top" + enemyTop);
-                //FUCK ME playerBottom: -113.7261 playerBottom + player.ignoreCollisionInterval -113.5761enemy top-112.8121
+                Debug.Log("-----Player: ");
+                Debug.Log("playerCenterY "+ playerCenterY);
+                //Debug.Log("playerLeft " + playerLeft);
+                //Debug.Log("playerRight " + playerRight);
+                Debug.Log("playerTop " + playerTop);
+                Debug.Log("playerBottom " + playerBottom);
 
-                //TODO MAKE A DIFF INSTEAD
+                Debug.Log("----Enemy: ");
+                Debug.Log("enemyCenterY " + enemyCenterY);
+                //Debug.Log("enemyLeft " + enemyLeft);
+                //Debug.Log("enemyRight " + enemyRight);
+                Debug.Log("enemyTop " + enemyTop);
+                Debug.Log("enemyBottom " + enemyBottom);
 
-                if (((playerLeft - player.ignoreCollisionInterval) < enemyRight) &&
-                    (playerBottom - player.ignoreCollisionInterval < enemyTop) &&
-                    (playerTop + player.ignoreCollisionInterval > enemyBottom) )
+
+       
+
+                if (  (playerLeft - player.ignoreCollisionInterval) < enemyRight )
                 {
 
                     return false;
@@ -279,9 +282,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             {
                 //NOTE: the ignore collisionInterval is a safety net. It sould be used to increase the distance and avoid contacts de raspao
 
-                if (((playerTop + player.ignoreCollisionInterval) < enemyBottom) &&
-                    (playerRight - player.ignoreCollisionInterval > enemyLeft) && //was +
-                    (playerLeft + player.ignoreCollisionInterval < enemyRight))   //was -
+                if ( (playerTop + player.ignoreCollisionInterval) < enemyBottom ) 
                 {
                     return false;
                 }
@@ -298,9 +299,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
             else if (player.IsMovingDown() && !ignoreMovementDirection)
             {
 
-                if (((playerBottom - player.ignoreCollisionInterval) > enemyTop) &&
-                    (playerRight - player.ignoreCollisionInterval > enemyLeft) &&  //was +
-                    (playerLeft + player.ignoreCollisionInterval < enemyRight))    // was -
+                if ( (playerBottom - player.ignoreCollisionInterval) > enemyTop )
                 {
 
                     return false;
