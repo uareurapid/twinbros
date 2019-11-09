@@ -1277,7 +1277,10 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x))
             {
 
-                return true;
+				if(hitLeft.collider.gameObject.GetComponent<Tile>()!=null) {
+					return true;
+				}
+                
 
             }
 
@@ -1296,7 +1299,9 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x))
             {
 
-                return true;
+                if(hitRight.collider.gameObject.GetComponent<Tile>()!=null) {
+					return true;
+				}
 
             }
 
@@ -1315,7 +1320,9 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y))
             {
 
-                return true;
+                if(hitUp.collider.gameObject.GetComponent<Tile>()!=null) {
+					return true;
+				}
 
             }
 
@@ -1335,7 +1342,9 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y))
             {
 
-                return true;
+                if(hitDown.collider.gameObject.GetComponent<Tile>()!=null) {
+					return true;
+				}
 
             }
 
