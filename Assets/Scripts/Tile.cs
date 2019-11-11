@@ -119,21 +119,21 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 			//Debug.Log("################# TIle HandleTileExitCollisions ################## " + gameObject.ToString());
 
 
-			if(blockUpMovement) {
+			if(blockUpMovement && movement.IsMovingDown()) {
 				//Debug.Log("################# ALLOW UP ##################");
 				movement.canMoveUp = true;
 			}
-			if(blockDownMovement) {
+			if(blockDownMovement && movement.IsMovingUp()) {
 				//Debug.Log("################# ALLOW DOWN ##################");
 				movement.canMoveDown = true;
 			
 			}
-			if(blockLeftMovement) {
+			if(blockLeftMovement && movement.IsMovingRight()) {
 				//Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
 				movement.canMoveLeft = true;
 				
 			}
-			if(blockRightMovement) {
+			if(blockRightMovement && movement.IsMovingLeft()) {
 				//Debug.Log("################# ALLOW RIGHT ##################");
 
 				movement.canMoveRight = true;

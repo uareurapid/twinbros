@@ -262,7 +262,7 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate()
     {
 
-		if(!levelManager.IsGameStarted() || levelManager.IsPlayerDead() || levelManager.IsAboutToDie()) {
+		if(!levelManager.IsGameStarted() || levelManager.IsPlayerDead() || levelManager.IsAboutToDie() || reachedTarget) {
 			return;
 		}
 
@@ -519,11 +519,11 @@ public class PlayerMovement : MonoBehaviour {
 		canMoveLeft = false;
 
 		//can always go backwards from where i came
-		canMoveRight = true;
+		//canMoveRight = true;
 
         canMoveDown = !HitSomethingOnDown();
         canMoveRight = !HitSomethingOnRight(); //todo raycast
-
+		canMoveUp = !HitSomethingOnUp();
 
 
             if (!reachedTarget) {
@@ -548,11 +548,10 @@ public class PlayerMovement : MonoBehaviour {
 
 		canMoveRight = false;
 
-		canMoveLeft = true;
-
+		canMoveLeft = !HitSomethingOnLeft();
         canMoveUp = !HitSomethingOnUp();
         canMoveDown = !HitSomethingOnDown(); //todo raycast
-            //transform.Translate(-bodySpeed);
+        
 
         if (!reachedTarget) {
 
@@ -576,8 +575,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		canMoveUp = false;
 		
-		canMoveDown = true;
-
+		canMoveDown = !HitSomethingOnDown();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //todo raycast
 
@@ -604,8 +602,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 		canMoveDown = false;
 
-        canMoveUp = true;
-
+        canMoveUp = !HitSomethingOnUp();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //TODO Depends, i need to raycast
 
@@ -637,6 +634,7 @@ public class PlayerMovement : MonoBehaviour {
 			tile.HandleExitCollision(this);
 		}
 		else {
+
 			if(!canMoveUp) {
 				//Debug.Log("################# ALLOW UP ##################");
 				canMoveUp = true;
