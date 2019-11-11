@@ -537,9 +537,10 @@ public class PlayerMovement : MonoBehaviour {
 					levelManager.MoveRightTwin();
 				}
 			}
-			
-			reachedTarget = true;
-			targetPosition = transform.position;
+
+		isRightMovement = isUpMovement = isDownMovement = false;
+		reachedTarget = true;
+		targetPosition = transform.position;
 
 	
 	}
@@ -565,9 +566,10 @@ public class PlayerMovement : MonoBehaviour {
 
 				//levelManager.decreaseMove();
 			}
-			
-			reachedTarget = true;
-			targetPosition = transform.position;
+		
+		isLeftMovement = isUpMovement = isDownMovement = false;	
+		reachedTarget = true;
+		targetPosition = transform.position;
 		
 	}
 	public void collidedTop() {
@@ -591,8 +593,10 @@ public class PlayerMovement : MonoBehaviour {
 					levelManager.MoveRightTwin();
 				}
 			}
-			reachedTarget = true;
-			targetPosition = transform.position;
+		
+		isRightMovement = isLeftMovement = isDownMovement = false;
+ 		reachedTarget = true;
+		targetPosition = transform.position;
 		
 		
 	}
@@ -615,8 +619,10 @@ public class PlayerMovement : MonoBehaviour {
 					levelManager.MoveRightTwin();
 				}
 			}
-			reachedTarget = true;
-			targetPosition = transform.position;
+		
+		isRightMovement = isLeftMovement = isUpMovement = false;
+		reachedTarget = true;
+		targetPosition = transform.position;
 		
 		
 	}
