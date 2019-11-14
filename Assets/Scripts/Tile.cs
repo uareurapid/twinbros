@@ -55,7 +55,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 			if(blockUpMovement) {
 				//Debug.Log("################# BLOCK UP ##################");
 				if(movement.IsMovingUp()) {
-					movement.collidedTop();
+					movement.collidedTop(this.gameObject);
 					ignoredCollision = false;
 				}
 				else {
@@ -66,7 +66,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 			else if(blockDownMovement) {
 				//Debug.Log("################# BLOCK DOWN ##################");
 				if(movement.IsMovingDown()) {
-					movement.collidedBottom();
+					movement.collidedBottom(this.gameObject);
 					ignoredCollision = false;
 				}
 				else {
@@ -78,7 +78,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 			else if(blockLeftMovement) {
 				//Debug.Log("################# BLOCK LEFT ##################");
 				if(movement.IsMovingLeft()) {
-					movement.collidedLeft();
+					movement.collidedLeft(this.gameObject);
 					ignoredCollision = false;
 				}
 				else {
@@ -90,7 +90,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 			else if(blockRightMovement) {
 				//Debug.Log("################# BLOCK RIGHT ##################");
 				if(movement.IsMovingRight()) {
-					movement.collidedRight();
+					movement.collidedRight(this.gameObject);
 					ignoredCollision = false;
 				}
 				else {

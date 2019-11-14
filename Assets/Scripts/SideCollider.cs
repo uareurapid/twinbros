@@ -77,16 +77,16 @@ public class SideCollider : MonoBehaviour {
 
 		//ignore the sided collision if we are not moving on that direction
 		if(isLeft && movement.IsMovingLeft()) {
-			movement.collidedLeft();
+			movement.collidedLeft(this.gameObject);
 		}
 		if(isRight && movement.IsMovingRight()) {
-			movement.collidedRight();
+			movement.collidedRight(this.gameObject);
 		}
 		if(isTop && movement.IsMovingUp()) {
-			movement.collidedTop();
+			movement.collidedTop(this.gameObject);
 		}
 		if(isBottom && movement.IsMovingDown()) {
-			movement.collidedBottom();
+			movement.collidedBottom(this.gameObject);
 		}
 
 		//return ignoreCollision;

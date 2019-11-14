@@ -232,10 +232,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool TrySlideLeft() {
-		//Debug.Log("TRY SLIDE LEFT");
+		
 		if((transform.position == targetPosition || reachedTarget) && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
-			
-			SlideLeft();
+            SlideLeft();
 			return true;
 		}
 		//Debug.Log("LEFT ONE? " + isLeftTwin + " I CANNOT!!!" + "transform.position == targetPosition?" + (transform.position == targetPosition) + " reachedTarget? " + reachedTarget + " canMoveLeft? " + canMoveLeft) ;
@@ -283,7 +282,7 @@ public class PlayerMovement : MonoBehaviour {
 						canMoveLeft = false;
 						
 						if(isLeftMovement) {
-							collidedLeft();
+							collidedLeft(hitLeft.collider.gameObject);
 						}
 					}
 					
@@ -300,7 +299,7 @@ public class PlayerMovement : MonoBehaviour {
 					if(canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
                         canMoveRight = false;
 						if(isRightMovement) {
-							collidedRight();
+							collidedRight(hitRight.collider.gameObject);
 						}
 					}
 					
@@ -318,7 +317,7 @@ public class PlayerMovement : MonoBehaviour {
 						canMoveUp = false;
 
 						if(isUpMovement) {
-							collidedTop();
+							collidedTop(hitUp.collider.gameObject);
 						}
 					}
 					
@@ -336,7 +335,8 @@ public class PlayerMovement : MonoBehaviour {
 						canMoveDown = false;
 
 						if(isDownMovement) {
-							collidedBottom();
+                            Debug.Log("RAYCAST DOWN COLLISION WITH " + hitDown.collider.gameObject.name);
+							collidedBottom(hitDown.collider.gameObject);
 						}
 					}
 					
@@ -514,9 +514,9 @@ public class PlayerMovement : MonoBehaviour {
 		return isDownMovement && !reachedTarget;
 	}
 
-	public void collidedLeft() {
-
-		canMoveLeft = false;
+	public void collidedLeft(GameObject obj) {
+        Debug.Log("COLLIDED LEFT: " + obj.name);
+        canMoveLeft = false;
 
 		//can always go backwards from where i came
 		//canMoveRight = true;
@@ -544,9 +544,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	
 	}
-	public void collidedRight() {
-
-		canMoveRight = false;
+	public void collidedRight(GameObject obj) {
+        Debug.Log("COLLIDED RIGHT: " + obj.name);
+        canMoveRight = false;
 
 		canMoveLeft = !HitSomethingOnLeft();
         canMoveUp = !HitSomethingOnUp();
@@ -571,17 +571,17 @@ public class PlayerMovement : MonoBehaviour {
 		targetPosition = transform.position;
 		
 	}
-	public void collidedTop() {
-
-		canMoveUp = false;
+	public void collidedTop(GameObject obj) {
+        Debug.Log("COLLIDED TOP: " + obj.name);
+        canMoveUp = false;
 		
 		canMoveDown = !HitSomethingOnDown();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //todo raycast
+        Debug.Log("LEFT TWIN? " + isLeftTwin + " CAN MOVE UP? " + canMoveUp + " DOWN " + canMoveDown + " LEFT " + canMoveLeft + " RIGHT " + canMoveRight);
 
 
-
-            if (!reachedTarget) {
+        if (!reachedTarget) {
 
 				//reachedTarget = true;
 				if(isLeftTwin) {
@@ -598,14 +598,15 @@ public class PlayerMovement : MonoBehaviour {
 		
 		
 	}
-	public void collidedBottom() {
-	
-		canMoveDown = false;
+	public void collidedBottom(GameObject obj) {
+
+        Debug.Log("COLLIDED BOTTOM: " + obj.name);
+        canMoveDown = false;
 
         canMoveUp = !HitSomethingOnUp();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //TODO Depends, i need to raycast
-
+        Debug.Log("LEFT TWIN? " + isLeftTwin  +" CAN MOVE UP? " + canMoveUp + " DOWN " + canMoveDown + " LEFT " + canMoveLeft + " RIGHT " + canMoveRight);
         if (!reachedTarget) {
 				
 				//reachedTarget = true;
@@ -635,7 +636,13 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		else {
 
-			if(!canMoveUp) {
+            canMoveUp = !HitSomethingOnUp();
+            canMoveDown = !HitSomethingOnDown();
+            canMoveLeft = !HitSomethingOnLeft();
+            canMoveRight = !HitSomethingOnRight();
+
+            /**
+            if (!canMoveUp) {
 				//Debug.Log("################# ALLOW UP ##################");
 				canMoveUp = true;
 			}
@@ -653,7 +660,7 @@ public class PlayerMovement : MonoBehaviour {
 				//Debug.Log("################# ALLOW RIGHT ##################");
 
 				canMoveRight = true;
-			}
+			}*/
 
 			//allow the block to move again
 			MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
@@ -813,7 +820,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        Debug.Log("Collided with: " + other.gameObject.name + " right?" + isRightMovement);
+        //Debug.Log("Collided with: " + other.gameObject.name + " right?" + isRightMovement);
 
 
         if (isEnemy)
@@ -831,7 +838,7 @@ public class PlayerMovement : MonoBehaviour {
 			//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 				if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 				
-					collidedRight();
+					collidedRight(other.gameObject);
 					//colRight = true;
 					ignoreCollision = false;
 
@@ -845,7 +852,7 @@ public class PlayerMovement : MonoBehaviour {
 				//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
 				if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 				{
-					collidedLeft();
+					collidedLeft(other.gameObject);
 					//colLeft = true;
 					ignoreCollision = false;
 
@@ -861,7 +868,7 @@ public class PlayerMovement : MonoBehaviour {
 
 				if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
 				{
-					collidedTop();
+					collidedTop(other.gameObject);
 					//colUp = true;
 					ignoreCollision = false;
 
@@ -875,7 +882,7 @@ public class PlayerMovement : MonoBehaviour {
                         
 			if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 			{
-			        collidedBottom();
+			        collidedBottom(other.gameObject);
 					//colDown = true;
 					ignoreCollision = false;
 

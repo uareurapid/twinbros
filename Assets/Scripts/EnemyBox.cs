@@ -145,23 +145,23 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 
 				if (player.IsMovingUp() && CannotIgnoreUpCollision(player))
 				{
-					player.collidedTop();
+					player.collidedTop(this.gameObject);
                     applyShrink = true;
 
                 }
 				else if (player.IsMovingDown() && CannotIgnoreDownCollision(player))
 				{
-					player.collidedBottom();
+					player.collidedBottom(this.gameObject);
                     applyShrink = true;
                 }
 				else if (player.IsMovingRight() && CannotIgnoreRightCollision(player))
 				{
-					player.collidedRight();
+					player.collidedRight(this.gameObject);
                     applyShrink = true;
                 }
 				else if (player.IsMovingLeft() && CannotIgnoreLeftCollision(player))
 				{
-					player.collidedLeft();
+					player.collidedLeft(this.gameObject);
                     applyShrink = true;
                 }
                 if(applyShrink)
