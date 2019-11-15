@@ -317,7 +317,7 @@ public class GUIManager : MonoBehaviour {
 		if(continueTimer != 0 && !playPressed) {
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
-			if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) {
+			if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) || (levelManager.respawnOnDyingLevel && levelManager.isTestMode) ) {
 				playPressed = true;
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());

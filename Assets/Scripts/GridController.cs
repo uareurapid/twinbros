@@ -9,7 +9,11 @@ public class GridController : MonoBehaviour {
 	void Start () {
 
 		foreach(Collider2D childCol in GetComponentsInChildren<Collider2D>()) {
-			childCol.enabled = enableCollidersOnPlay;
+            if(!childCol.isTrigger)
+            {
+                childCol.enabled = enableCollidersOnPlay;//do not touch the trigger ones
+            }
+			
 		}
 	}
 	

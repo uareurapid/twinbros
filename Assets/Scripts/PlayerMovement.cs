@@ -273,7 +273,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			//Fire some rays to check if we have anything on the left, right, up or down
 			RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 2.0f, collisionMasks  );
-	        if (hitLeft.collider != null) {
+	        if (hitLeft.collider != null && !hitLeft.collider.isTrigger) {
 	
 				float distance = Mathf.Abs(hitLeft.point.x - transform.position.x);
 				if(distance < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x)) {
@@ -291,7 +291,7 @@ public class PlayerMovement : MonoBehaviour {
 	        }
 	
 			RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 2.0f, collisionMasks  );
-	        if (hitRight.collider != null) {
+	        if (hitRight.collider != null && !hitRight.collider.isTrigger) {
 	
 				float distance = Mathf.Abs(hitRight.point.x - transform.position.x);//make sure it is on the right of the player
 				if(distance < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x )) {
@@ -308,7 +308,7 @@ public class PlayerMovement : MonoBehaviour {
 	        }
 	
 			RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, 2.0f, collisionMasks  );
-	        if (hitUp.collider != null) {
+	        if (hitUp.collider != null && !hitUp.collider.isTrigger) {
 	
 				float distance = Mathf.Abs(hitUp.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y)) {
@@ -326,7 +326,7 @@ public class PlayerMovement : MonoBehaviour {
 	        }
 	
 			RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, collisionMasks  );
-	        if (hitDown.collider != null) {
+	        if (hitDown.collider != null && !hitDown.collider.isTrigger) {
 	
 				float distance = Mathf.Abs(hitDown.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y)) {
@@ -1281,7 +1281,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         //Fire some rays to check if we have anything on the left, right, up or down
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 2.0f, collisionMasks);
-        if (hitLeft.collider != null)
+        if (hitLeft.collider != null && !hitLeft.collider.isTrigger)
         {
 
             float dist = Mathf.Abs(hitLeft.point.x - transform.position.x);
@@ -1303,7 +1303,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool HitSomethingOnRight()
     {
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 2.0f, collisionMasks);
-        if (hitRight.collider != null)
+        if (hitRight.collider != null && !hitRight.collider.isTrigger)
         {
 
             float dist = Mathf.Abs(hitRight.point.x - transform.position.x);//make sure it is on the right of the player
@@ -1324,7 +1324,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool HitSomethingOnUp()
     {
         RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, 2.0f, collisionMasks);
-        if (hitUp.collider != null)
+        if (hitUp.collider != null && !hitUp.collider.isTrigger)
         {
 
             float dist = Mathf.Abs(hitUp.point.y - transform.position.y);
@@ -1346,7 +1346,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool HitSomethingOnDown()
     {
         RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, collisionMasks);
-        if (hitDown.collider != null)
+        if (hitDown.collider != null && !hitDown.collider.isTrigger)
         {
 
             float dist = Mathf.Abs(hitDown.point.y - transform.position.y);
