@@ -246,7 +246,9 @@ public class PlayerMovement : MonoBehaviour {
 		if( (transform.position == targetPosition || reachedTarget) && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 			SlideRight();
 			return true;
-		}
+		}if(!isLeftTwin) {
+			Debug.Log("CANNOT SLIDE reached target? " + reachedTarget + " can move right? " + canMoveRight);
+			}
 		return false;
 	}
 
@@ -298,6 +300,9 @@ public class PlayerMovement : MonoBehaviour {
 					
 					if(canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
                         canMoveRight = false;
+						if(!isLeftTwin) {
+							Debug.Log("COLLIDED WITH " + hitRight.collider.gameObject + " right movement? " + isRightMovement);
+						}
 						if(isRightMovement) {
 							collidedRight(hitRight.collider.gameObject);
 						}
@@ -406,8 +411,12 @@ public class PlayerMovement : MonoBehaviour {
 			//transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
 		}
 		else {
-			//Debug.Log("REACHED TARGET true -> isLeft? " + isLeftTwin);
+			Debug.Log("REACHED TARGET true -> isLeft? " + isLeftTwin + " taget = pos? " + (targetPosition == transform.position));
 			reachedTarget = true;
+			canMove = !HitSomethingOnUp();
+			canMoveDown = !HitSomethingOnDown();
+			canMoveLeft = !HitSomethingOnLeft();
+			canMoveRight = !HitSomethingOnRight();
 		}
 
         if(IsPlayerStucked()) {
@@ -515,7 +524,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void collidedLeft(GameObject obj) {
-        Debug.Log("COLLIDED LEFT: " + obj.name);
+        Debug.Log("COLLIDED LEFT: " + obj.name + " is left? " + isLeftTwin);
         canMoveLeft = false;
 
 		//can always go backwards from where i came
@@ -526,17 +535,15 @@ public class PlayerMovement : MonoBehaviour {
 		canMoveUp = !HitSomethingOnUp();
 
 
-            if (!reachedTarget) {
+        if (!reachedTarget) {
 
-				//reachedTarget = true;
-
-				if(isLeftTwin) {
-					levelManager.MoveLeftTwin();
-				}
-				else {
-					levelManager.MoveRightTwin();
-				}
+			if(isLeftTwin) {
+				levelManager.MoveLeftTwin();
 			}
+			else {
+				levelManager.MoveRightTwin();
+			}
+		}
 
 		isRightMovement = isUpMovement = isDownMovement = false;
 		reachedTarget = true;
@@ -555,16 +562,14 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!reachedTarget) {
 
-				//reachedTarget = true;
-				if(isLeftTwin) {
-					levelManager.MoveLeftTwin();
-				}
-				else {
-					levelManager.MoveRightTwin();
-				}
-
-				//levelManager.decreaseMove();
+			if(isLeftTwin) {
+				levelManager.MoveLeftTwin();
 			}
+			else {
+				levelManager.MoveRightTwin();
+			}
+
+		}
 		
 		isLeftMovement = isUpMovement = isDownMovement = false;	
 		reachedTarget = true;
@@ -583,14 +588,13 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!reachedTarget) {
 
-				//reachedTarget = true;
-				if(isLeftTwin) {
-					levelManager.MoveLeftTwin();
-				}
-				else {
-					levelManager.MoveRightTwin();
-				}
+			if(isLeftTwin) {
+				levelManager.MoveLeftTwin();
 			}
+			else {
+				levelManager.MoveRightTwin();
+			}
+		}
 		
 		isRightMovement = isLeftMovement = isDownMovement = false;
  		reachedTarget = true;
@@ -609,14 +613,13 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("LEFT TWIN? " + isLeftTwin  +" CAN MOVE UP? " + canMoveUp + " DOWN " + canMoveDown + " LEFT " + canMoveLeft + " RIGHT " + canMoveRight);
         if (!reachedTarget) {
 				
-				//reachedTarget = true;
-				if(isLeftTwin) {
-					levelManager.MoveLeftTwin();
-				}
-				else {
-					levelManager.MoveRightTwin();
-				}
+			if(isLeftTwin) {
+				levelManager.MoveLeftTwin();
 			}
+			else {
+				levelManager.MoveRightTwin();
+			}
+		}
 		
 		isRightMovement = isLeftMovement = isUpMovement = false;
 		reachedTarget = true;
@@ -991,37 +994,28 @@ public class PlayerMovement : MonoBehaviour {
 	{
 
 		canMoveUp = true;
-		//TODO these ones sould be wrong
-		//if(IsMovingUp()) {
-		//	reachedTarget = true;
-		//}
+		
 	}
 
 	public void AllowDownMovementAgain()
 	{
 
 		canMoveDown = true;
-		//if(IsMovingDown()) {
-		//	reachedTarget = true;
-		//}
+	
 	}
 
 	public void AllowLeftMovementAgain()
 	{
 
 		canMoveLeft = true;
-		//if(IsMovingLeft()) {
-		//	reachedTarget = true;
-		//}
+	
 	}
 
 	public void AllowRightMovementAgain()
 	{
 
 		canMoveRight = true;
-		//if(IsMovingRight()) {
-		//	reachedTarget = true;
-		//}
+		
 	}
 
 	/*private HitDirection ReturnDirection( GameObject theObject, GameObject ObjectHit ){

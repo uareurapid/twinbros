@@ -18,7 +18,7 @@ public class GridTile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.CompareTag("Player"))
         {
             SpriteRenderer sprite = GetComponent<SpriteRenderer>();
