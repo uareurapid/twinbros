@@ -96,9 +96,14 @@ public class Box : SpawnableItem, HandlePlayerCollision {
 
 	public void FadeCompletedCallback() {
 		Debug.Log("FADE COMPLETED: " + numCollisions + "%=" + (numCollisions % dropSurpriseAfterNumCollisions));
-		if(numCollisions % dropSurpriseAfterNumCollisions == 0) {
+		if(numCollisions > 0 && (numCollisions % dropSurpriseAfterNumCollisions == 0) ) {
 			InstantiateSurprise();
+			FadeSprite fade = GetComponent<FadeSprite>();
 			gameObject.SetActive(false);
+			if(fade!=null) {
+				fade.ResetSprite();
+			}
+			numCollisions = 0;
 		}
 	}
 }

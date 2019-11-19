@@ -204,4 +204,21 @@ public class FadeSprite : MonoBehaviour {
 		coll = scriptCaller.GetColliderBox();
 		started = true;
 	}
+
+	public void ResetSprite() {
+		started = false;
+		isDone = true;
+		if (disableColliderIfTransparent && coll != null)
+		{
+			coll.enabled = true;
+		}
+		col = isUIImage ? image.color : spRend.color;
+		col.a = 1f;
+		if(isUIImage) {
+			image.color = col;
+		}
+		else {
+			spRend.color = col;
+		}
+	}
 }
