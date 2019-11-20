@@ -67,7 +67,8 @@ public class Box : SpawnableItem, HandlePlayerCollision {
         } else if(isShootingBox) {
 
             ShootingBox shooting = GetComponent<ShootingBox>();
-            shooting.Shoot(); 
+            shooting.HandleCollision(player);
+            
         }
         
         SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(player.transform.position);
