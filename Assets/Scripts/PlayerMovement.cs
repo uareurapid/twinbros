@@ -823,7 +823,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		bool ignoreCollision = true;
 
-        //Debug.Log("Collided with: " + other.gameObject.name + " right?" + isRightMovement);
+        Tile tile = other.transform.GetComponent<Tile>();
+		bool isTile = (tile != null);
 
 
         if (isEnemy)
@@ -845,6 +846,9 @@ public class PlayerMovement : MonoBehaviour {
 					//colRight = true;
 					ignoreCollision = false;
 
+					if(isBox || isTile) {
+						Debug.Log("TODO ADJUST POSITION RIGHT");
+					}
 					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
 				}
 						
@@ -858,6 +862,9 @@ public class PlayerMovement : MonoBehaviour {
 					collidedLeft(other.gameObject);
 					//colLeft = true;
 					ignoreCollision = false;
+					if(isBox || isTile) {
+						Debug.Log("TODO ADJUST POSITION LEFT");
+					}
 
 					Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
 				}
@@ -874,6 +881,9 @@ public class PlayerMovement : MonoBehaviour {
 					collidedTop(other.gameObject);
 					//colUp = true;
 					ignoreCollision = false;
+					if(isBox || isTile) {
+						Debug.Log("TODO ADJUST POSITION UP");
+					}
 
 					Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
 				}
@@ -888,6 +898,9 @@ public class PlayerMovement : MonoBehaviour {
 			        collidedBottom(other.gameObject);
 					//colDown = true;
 					ignoreCollision = false;
+					if(isBox || isTile) {
+						Debug.Log("TODO ADJUST POSITION DOWN");
+					}
 
 					Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
 							
@@ -901,7 +914,7 @@ public class PlayerMovement : MonoBehaviour {
 
         //---------------------------------------------------------
 
-		Tile tile = other.transform.GetComponent<Tile>();
+		//Tile tile = other.transform.GetComponent<Tile>();
 		TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
 					
 		if(point!=null) {
@@ -1271,6 +1284,12 @@ public class PlayerMovement : MonoBehaviour {
 		transform.position = originalPositionInLevel;
 	}
 
+	//for now only blocks or tiles
+	private bool IsMovementBlocker(GameObject obj) {
+
+		return obj.GetComponent<Tile>() != null || obj.GetComponent<Box>() != null;
+	}
+
     public bool HitSomethingOnLeft()
     {
         //Fire some rays to check if we have anything on the left, right, up or down
@@ -1282,7 +1301,7 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x))
             {
 
-				if(hitLeft.collider.gameObject.GetComponent<Tile>()!=null) {
+				if(IsMovementBlocker(hitLeft.collider.gameObject)) {
 					return true;
 				}
                 
@@ -1304,7 +1323,7 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x))
             {
 
-                if(hitRight.collider.gameObject.GetComponent<Tile>()!=null) {
+                if(IsMovementBlocker(hitRight.collider.gameObject)) {
 					return true;
 				}
 
@@ -1325,7 +1344,7 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y))
             {
 
-                if(hitUp.collider.gameObject.GetComponent<Tile>()!=null) {
+                if(IsMovementBlocker(hitUp.collider.gameObject)) {
 					return true;
 				}
 
@@ -1347,7 +1366,7 @@ public class PlayerMovement : MonoBehaviour {
             if (dist < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y))
             {
 
-                if(hitDown.collider.gameObject.GetComponent<Tile>()!=null) {
+                if(IsMovementBlocker(hitDown.collider.gameObject)) {
 					return true;
 				}
 
