@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float speed = 2.0f;
     Vector3 targetPosition;
-    Vector3 old;
-    Transform theTransform;
+    //adjustment to bounce back on tile and box collisions
+    public float bounceAdjustment = 0.1f;
 
 	Vector3 initialScale;
 	Quaternion initialRotation;
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
 		body = GetComponent<Rigidbody2D>();
-        body.isKinematic = false; //should be true
+        body.isKinematic = false;
 		body.gravityScale = 0;
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
@@ -847,7 +847,7 @@ public class PlayerMovement : MonoBehaviour {
 					ignoreCollision = false;
 
 					if(isBox || isTile) {
-						Debug.Log("TODO ADJUST POSITION RIGHT");
+                        AdjustPositionByBouncingLeft();
 					}
 					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
 				}
@@ -863,7 +863,7 @@ public class PlayerMovement : MonoBehaviour {
 					//colLeft = true;
 					ignoreCollision = false;
 					if(isBox || isTile) {
-						Debug.Log("TODO ADJUST POSITION LEFT");
+                        AdjustPositionByBouncingRight();
 					}
 
 					Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
@@ -882,8 +882,8 @@ public class PlayerMovement : MonoBehaviour {
 					//colUp = true;
 					ignoreCollision = false;
 					if(isBox || isTile) {
-						Debug.Log("TODO ADJUST POSITION UP");
-					}
+                        AdjustPositionByBouncingDown();
+                    }
 
 					Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
 				}
@@ -899,8 +899,8 @@ public class PlayerMovement : MonoBehaviour {
 					//colDown = true;
 					ignoreCollision = false;
 					if(isBox || isTile) {
-						Debug.Log("TODO ADJUST POSITION DOWN");
-					}
+                        AdjustPositionByBouncingUp();
+                    }
 
 					Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
 							
@@ -970,9 +970,37 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
+    private void AdjustPositionByBouncingLeft()
+    {
 
-	//TODO this is not doing what the name suggests, is just reversing things DOUBLE CHECK
-	public void AllowAllMovementsAgain() {
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(pos.x - bounceAdjustment, pos.y, pos.z);
+    }
+
+    private void AdjustPositionByBouncingRight()
+    {
+
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(pos.x + bounceAdjustment, pos.y, pos.z);
+    }
+
+    private void AdjustPositionByBouncingUp()
+    {
+
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y + bounceAdjustment, pos.z);
+    }
+
+    private void AdjustPositionByBouncingDown()
+    {
+
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y - bounceAdjustment, pos.z);
+    }
+
+
+    //TODO this is not doing what the name suggests, is just reversing things DOUBLE CHECK
+    public void AllowAllMovementsAgain() {
 
         targetPosition = transform.position;
 		canMoveUp = !canMoveUp;

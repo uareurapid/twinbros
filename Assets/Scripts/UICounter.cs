@@ -5,8 +5,10 @@ using UnityEngine;
 public class UICounter : MonoBehaviour
 {
 	public bool increase = false;
-
+    public int step = 5; // how much to increase/decrease on each call?
 	private double counter = 0;
+    public int counterMax = 99999999;
+    public int counterMin = 0;
 	private UnityEngine.UI.Text counterObj;
     // Start is called before the first frame update
     void Start()
@@ -29,20 +31,20 @@ public class UICounter : MonoBehaviour
     }
 
 	void IncreaseCounter() {
-		if(counter < 99999999) {
-			counter += 1;
+		if(counter < counterMax) {
+			counter += step;
 		} else {
-			counter = 0;
+			counter = counterMin;
 		}
 
 		counterObj.text = counter.ToString();
 	}
 
 	void DecreaseCounter() {
-		if(counter > 0) {
-			counter -= 1;
+		if(counter > counterMin) {
+			counter -= step;
 		} else {
-			counter = 99999999;
+			counter = counterMax;
 		}
 
 		counterObj.text = counter.ToString();

@@ -79008,7 +79008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &698991577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -198480,6 +198480,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increase: 0
+  step: 5
+  counterMax: 99999999
+  counterMin: 0
 --- !u!4 &1787479574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4478172726004680, guid: e9c84938c0f2f4ab787f1b58f4b664de,
