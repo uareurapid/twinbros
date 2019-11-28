@@ -544,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  bounceAdjustment: 0.05
   maxTilesMovement: 10
   isLeftTwin: 1
   canMoveLeft: 0

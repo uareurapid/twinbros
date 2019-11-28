@@ -524,7 +524,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void collidedLeft(GameObject obj) {
-        Debug.Log("COLLIDED LEFT: " + obj.name + " is left? " + isLeftTwin);
+        //Debug.Log("COLLIDED LEFT: " + obj.name + " is left? " + isLeftTwin);
         canMoveLeft = false;
 
 		//can always go backwards from where i came
@@ -552,7 +552,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	}
 	public void collidedRight(GameObject obj) {
-        Debug.Log("COLLIDED RIGHT: " + obj.name);
+        //Debug.Log("COLLIDED RIGHT: " + obj.name);
         canMoveRight = false;
 
 		canMoveLeft = !HitSomethingOnLeft();
@@ -604,13 +604,13 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	public void collidedBottom(GameObject obj) {
 
-        Debug.Log("COLLIDED BOTTOM: " + obj.name);
+        //Debug.Log("COLLIDED BOTTOM: " + obj.name);
         canMoveDown = false;
 
         canMoveUp = !HitSomethingOnUp();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //TODO Depends, i need to raycast
-        Debug.Log("LEFT TWIN? " + isLeftTwin  +" CAN MOVE UP? " + canMoveUp + " DOWN " + canMoveDown + " LEFT " + canMoveLeft + " RIGHT " + canMoveRight);
+        //Debug.Log("LEFT TWIN? " + isLeftTwin  +" CAN MOVE UP? " + canMoveUp + " DOWN " + canMoveDown + " LEFT " + canMoveLeft + " RIGHT " + canMoveRight);
         if (!reachedTarget) {
 				
 			if(isLeftTwin) {
