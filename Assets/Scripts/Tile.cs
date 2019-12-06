@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 	public bool isWalkable = true;
 
 	public bool hasPlayer = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -44,6 +45,7 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 
 	public void HandleCollision(PlayerMovement movement) {
 
+        Debug.Log("TILE HANDLE COLLISION");
 		bool ignoredCollision = true; 
 
 			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();

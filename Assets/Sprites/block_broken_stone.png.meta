@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: da09f52637eee4a53bbc50dcfb70435f
+guid: 6f241ce3f9b3442b7bbb4f31e272237a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Spikes_pencil_shape_0
-    21300002: Spikes_pencil_shape_1
-    21300004: Spikes_pencil_shape_2
-    21300006: Spikes_pencil_shape_3
+    21300000: block_broken_stone_0
+    21300002: block_broken_stone_1
+    21300004: block_broken_stone_2
+    21300006: block_broken_stone_3
+    21300008: block_broken_stone_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -64,7 +65,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -75,7 +76,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -86,7 +87,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: iPhone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -99,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spikes_pencil_shape_0
+      name: block_broken_stone_0
       rect:
         serializedVersion: 2
         x: 0
@@ -107,19 +108,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 529573d06c77c41c9b73fd264bbe7eda
+      spriteID: 1cd9b9220b8be448ba07f66f56becef8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spikes_pencil_shape_1
+      name: block_broken_stone_1
       rect:
         serializedVersion: 2
         x: 32
@@ -127,19 +128,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f288854bd8c34c63a2e8d6e742a73a6
+      spriteID: 3d5f32e1100d04902b0a14b7cd5f83f3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spikes_pencil_shape_2
+      name: block_broken_stone_2
       rect:
         serializedVersion: 2
         x: 64
@@ -147,19 +148,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9628351e2c4e24ed5b33f8ae441e52a1
+      spriteID: c120bb7fa187040fc90bf16f75fd9bb9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spikes_pencil_shape_3
+      name: block_broken_stone_3
       rect:
         serializedVersion: 2
         x: 96
@@ -167,13 +168,33 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87ca82dfe7b64480e8bed31c3f0bcf84
+      spriteID: e66c80daec3de4ad4a8d5205c5f629ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: block_broken_stone_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 411d8f6cfddba45168cacfb5776ab746
       vertices: []
       indices: 
       edges: []
@@ -181,7 +202,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7b63a101dde4749e6a1fd52035aa0fe4
+    spriteID: 5f934412ec5a042ceb5304f4e61e1290
     vertices: []
     indices: 
     edges: []

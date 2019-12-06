@@ -14,7 +14,12 @@ public class Box : SpawnableItem, HandlePlayerCollision {
 
 	private int numCollisions = 0;
 	public int dropSurpriseAfterNumCollisions = 2;
-	void Start()
+
+    //if true call all other HandlePlayerCollision objjects on the game object
+    public bool shouldHandleMoreCollisionComponents = false;
+
+
+    void Start()
 	{
       numCollisions = 0;
 	}
@@ -72,6 +77,19 @@ public class Box : SpawnableItem, HandlePlayerCollision {
         }
         
         SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(player.transform.position);
+
+        if (shouldHandleMoreCollisionComponents)
+        {
+            Debug.Log("STILL HEREER????");
+            HandlePlayerCollision[] others = GetComponents<HandlePlayerCollision>();
+            foreach (HandlePlayerCollision script in others)
+            {
+                if (script.GetType() != this.GetType())
+                {
+                    script.HandleCollision(player);
+                }
+            }
+        }
 
     }
 
