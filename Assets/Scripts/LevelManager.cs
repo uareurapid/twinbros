@@ -212,8 +212,17 @@ public class LevelManager : MonoBehaviour {
 		DestroyAllDestroyables();
         gameStarted = true;
 		guiManager.ResetScore();
+        CleanPreviousPaths();
         
 	}
+
+    private void CleanPreviousPaths()
+    {
+        foreach (GridTile childGrid in FindObjectsOfType<GridTile>())
+        {
+            childGrid.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 
 	public void StartNextStage() {
 
@@ -333,7 +342,13 @@ public class LevelManager : MonoBehaviour {
 		RestartLevel();
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
-	}
+
+        //added these
+        gameStarted = true;
+        guiManager.ResetScore();
+        CleanPreviousPaths();
+
+    }
 
 	public bool IsPlayerDead() {
 		return isDead;

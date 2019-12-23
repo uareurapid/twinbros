@@ -15,7 +15,8 @@ public class GridController : MonoBehaviour {
             }
 			
 		}
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -25,7 +25,7 @@ public class GridTile : MonoBehaviour
             if(sprite!=null)
             {
                 sprite.enabled = true;
-                StartCoroutine(HideSprite(sprite));
+                //StartCoroutine(HideSprite(sprite));
             }
         }
     }
