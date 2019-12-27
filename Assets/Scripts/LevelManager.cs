@@ -447,7 +447,7 @@ public class LevelManager : MonoBehaviour {
 
 		if(gameStarted) {
 
-			if(!IsThereAnyMovesLeft()){
+			if(!IsThereAnyMovesLeft() || guiManager.IsGamePaused()){ //ignore gestures if game is paused
 				return;
 			}
 
