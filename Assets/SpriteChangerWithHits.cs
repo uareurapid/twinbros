@@ -87,6 +87,7 @@ public class SpriteChangerWithHits : MonoBehaviour, HandlePlayerCollision, Reset
     {
         yield return new WaitForSeconds(wait);
         gameObject.SetActive(false);
+        SpecialEffectsHelper.Instance.PlayImpactEffect(gameObject.transform.position);
 
     }
 

@@ -32,7 +32,10 @@ public class GUIManager : MonoBehaviour {
     //stage clear stars
     public GameObject[] stageClearStars;
 
-	public UnityEngine.UI.Text purchaseRevivesText;
+    //holofotes stage 1
+    public GameObject[] holofotes;
+
+    public UnityEngine.UI.Text purchaseRevivesText;
 	public UnityEngine.UI.Text purchaseMovesText;
 	public UnityEngine.UI.Text purchaseRemoveAdsText;
 
@@ -144,13 +147,14 @@ public class GUIManager : MonoBehaviour {
 		MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();*/
 
 
-        if(HasFinishedIntro() ) { 
+        if(HasFinishedIntro() ) {
 
-			//!levelManager.isPlayerDead() && !levelManager.IsGameStarted() && blue.IsPaused() && red.IsPaused() && leftDoor.IsPaused() && rightDoor.IsPaused()
+           holofotes[0].SetActive(false);
+           holofotes[1].SetActive(false);
 
-		   if(!HasShownTutorial()) {
-				//show button after
-                StartTutorial();  
+           if (!HasShownTutorial()) {
+			//show button after
+               StartTutorial();  
 		   }
            // TODO check this, i need to know if it started too
            else if(!isShowingTutorial) {
@@ -165,7 +169,12 @@ public class GUIManager : MonoBehaviour {
 			   isShowingTutorial = false;
 		   }	   	
             
-        } 
+        }
+        else if(CanShowHolofotes()) {
+
+           holofotes[0].SetActive(true);
+           holofotes[1].SetActive(true);
+        }
 
 	 }
 
@@ -215,7 +224,24 @@ public class GUIManager : MonoBehaviour {
         return false;
     }
 
-	//the settings definitionsbuttons
+    private bool CanShowHolofotes()
+    {
+        if (levelManager.stage == 1 && !levelManager.IsPlayerDead() && !levelManager.IsGameStarted())
+        {
+
+            //curtain closed
+            MoveWayPoint leftDoor = leftDoorPart.GetComponent<MoveWayPoint>();
+            MoveWayPoint rightDoor = rightDoorPart.GetComponent<MoveWayPoint>();
+
+
+
+            return leftDoor.IsPaused() && rightDoor.IsPaused() && !holofotes[0].activeSelf && !holofotes[1].activeSelf ;
+        }
+
+        return false;
+    }
+
+    //the settings definitionsbuttons
     public void ShowMainGameOptions() {
     
         gameSettingsButton.sprite = gameSettingsImages[1];
