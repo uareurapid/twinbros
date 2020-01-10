@@ -15,6 +15,8 @@ public class WayPoint : MonoBehaviour
     public bool isShowSprite = true;
     //flip x axis
     public bool isRevertSprite = false;
+
+    public Transform outEffect; //play some effect on exit
 	void Start() {
 		Collider2D childCol = GetComponent<Collider2D>();
 		if(childCol!=null) {

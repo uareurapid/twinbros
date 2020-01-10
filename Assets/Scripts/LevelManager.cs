@@ -618,7 +618,7 @@ public class LevelManager : MonoBehaviour {
 	//show the num of the new level
 	public void ShowLevelNum() {
 
-		guiManager.ShowLevelNumImages(this.currentLevel.level);
+		guiManager.ShowLevelNumImages(this.stage, this.currentLevel.level);
 		StartCoroutine(HideLevelNumImages());
 	}
 

@@ -62,7 +62,8 @@ public class MoveTowardsScript : MonoBehaviour {
 
 	void CheckPositions() {
 
-	 if(targetTag!=null && target==null) {
+     if (!string.IsNullOrEmpty(targetTag) ) {
+
 	      target = GameObject.FindGameObjectWithTag(targetTag).transform; 
 	 }
 
@@ -91,6 +92,16 @@ public class MoveTowardsScript : MonoBehaviour {
 	 }
 
 		CheckSecondTarget();
+
+        if(!allowManualMovement)
+        {
+            reachedTarget = false;
+            if (!startMoveTowards)
+            {
+                startMoveTowards = true;
+            }
+        }
+        
 	}
 
 	void CheckSecondTarget() {
@@ -106,7 +117,7 @@ public class MoveTowardsScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	if(target == null || targetPosition == null) {
+	if(target == null) {
 		return;
 	}
 
@@ -175,13 +186,13 @@ public class MoveTowardsScript : MonoBehaviour {
 			if(isGoingBack) {
 				isGoingBack = false;
 			}
-			//Debug.Log("############# Reached target position " + targetPosition.ToString() + " " + (isLeftTwin ? " LEFT TWIN": "RIGHT TWIN"));
+			
 			if(destroyWhenReach) { //destroy this object
 			  Destroy(gameObject);
 			}
 			else if(goBackAndFourth && secondTarget!=null) {
 
-			   //Debug.Log("GO BACK AND FOURTH!!!!!");	
+			   Debug.Log("GO BACK AND FOURTH!!!!!");	
 			   if(!isGoingBack) {
 					Vector3 inicial = targetPosition; //whe
 					targetPosition = secondTargetPosition;
@@ -206,9 +217,7 @@ public class MoveTowardsScript : MonoBehaviour {
 	 //put exactly in place
 	  if(reachedTarget) {
 
-			//if( (isLeftTwin && !levelManager.HasLeftTwinReachedNewLevel() ) || 
-			//	(!isLeftTwin && !levelManager.HasRightTwinReachedNewLevel()) ) {
-
+	
 
 				//no more velocity
 				GetComponent<Rigidbody2D>().velocity = Vector3.zero;
@@ -216,26 +225,49 @@ public class MoveTowardsScript : MonoBehaviour {
 				if(adjustExactFinalPosition && transform.position != targetPosition) {
 					transform.position = targetPosition;
 				}
-	
-				if(isLeftTwin) {
-					levelManager.LeftTwinReachedNewLevel(true, this, target.GetComponent<LevelCheckPoint>());
-				}
-				else {
-					levelManager.RightTwinReachedNewLevel(true, this, target.GetComponent<LevelCheckPoint>());
-				}
-			//} 
 
-			
-			
-			//notify the handler that we reached target
-			//DelegateHandler actionHandler = GetComponent<DelegateHandler>();
-			//if(actionHandler!=null) {
-				//need to disable this script or it will compete withe the movement one
-			//	actionHandler.ActionCompleted(this);
-			//}
-	  }
+                if(IsTwin())
+                {
+                    if (isLeftTwin)
+                    {
+                        levelManager.LeftTwinReachedNewLevel(true, this, target.GetComponent<LevelCheckPoint>());
+                    }
+                    else
+                    {
+                        levelManager.RightTwinReachedNewLevel(true, this, target.GetComponent<LevelCheckPoint>());
+                    }
+                }
+
+            if (goBackAndFourth && secondTarget != null)
+            {
+
+                //Debug.Log("GO BACK AND FOURTH!!!!!");	
+                if (!isGoingBack)
+                {
+                    Vector3 inicial = targetPosition; //whe
+                    targetPosition = secondTargetPosition;
+                    secondTargetPosition = inicial;
+                    isGoingBack = true;
+                }
+
+                reachedTarget = false;
+
+            }
+
+            //notify the handler that we reached target
+            //DelegateHandler actionHandler = GetComponent<DelegateHandler>();
+            //if(actionHandler!=null) {
+            //need to disable this script or it will compete withe the movement one
+            //	actionHandler.ActionCompleted(this);
+            //}
+        }
 
 	}
+
+    bool IsTwin()
+    {
+        return gameObject.tag!=null && gameObject.CompareTag("Player");
+    }
 
 	void FlipSprite() {
 		SpriteRenderer sprite = transform.GetComponent<SpriteRenderer>();
@@ -270,9 +302,8 @@ public class MoveTowardsScript : MonoBehaviour {
 
 		if(!startMoveTowards) {
 			reachedTarget = false;
-			isLeftTwin = isLeft;
-			//Debug.Log("!!!!!!!START MOVING TOWRADS!!!!!!!!!!!!!!!!!!!!!!!! isLeft? " + isLeftTwin + " target pos: " + target.position.ToString());
-			if(targetPosition == null && target !=null) {
+			isLeftTwin = isLeft && IsTwin();
+			if(target !=null) {
 				targetPosition = target.position;
 			}
 	

@@ -1214,7 +1214,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if(transportBubble !=null && levelManager.IsGameStarted()) { //TODO check &&
 
-			if(!isMovingBetweenLevels && transportBubble.gameObject.active) {
+			if(!isMovingBetweenLevels && transportBubble.gameObject.activeSelf) {
 				//burst effect
 				SpecialEffectsHelper.Instance.PlayBurstBubbleEffect(transform.position);
 			}

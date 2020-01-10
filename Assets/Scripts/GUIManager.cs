@@ -457,7 +457,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void SetLevelText(int level) {
-		levelText.text = string.Format("Level: {0}", level);
+		levelText.text = string.Format("Level: {0}{1}", levelManager.stage-1, level);//also show stage num
 	}
 
 	public void ResetScore() {
@@ -581,25 +581,38 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-	public void ShowLevelNumImages(int level) {
-		// pos[0] = 9, pos[9] = 0
-		switch(level) {
-			case 1: levelNumChildImages[0].sprite = continueTimeImages[8]; break;
-			case 2: levelNumChildImages[0].sprite = continueTimeImages[7]; break;
-			case 3: levelNumChildImages[0].sprite = continueTimeImages[6]; break;
-			case 4: levelNumChildImages[0].sprite = continueTimeImages[5]; break;
-			case 5: levelNumChildImages[0].sprite = continueTimeImages[4]; break;
-			case 6: levelNumChildImages[0].sprite = continueTimeImages[3]; break;
-			case 7: levelNumChildImages[0].sprite = continueTimeImages[2]; break;
-			case 8: levelNumChildImages[0].sprite = continueTimeImages[1]; break;
-			case 9: levelNumChildImages[0].sprite = continueTimeImages[0]; break;
-			default: levelNumChildImages[0].sprite = continueTimeImages[8]; break;
+	public void ShowLevelNumImages(int stage, int level) {
+        // pos[0] = 9, pos[9] = 0
+        //continueTimeImages 9 8 7 6 5 -> 0 1 2 3 4 5
+        switch (level) {
+			case 1: levelNumChildImages[1].sprite = continueTimeImages[8]; break;
+			case 2: levelNumChildImages[1].sprite = continueTimeImages[7]; break;
+			case 3: levelNumChildImages[1].sprite = continueTimeImages[6]; break;
+			case 4: levelNumChildImages[1].sprite = continueTimeImages[5]; break;
+			case 5: levelNumChildImages[1].sprite = continueTimeImages[4]; break;
+			case 6: levelNumChildImages[1].sprite = continueTimeImages[3]; break;
+			case 7: levelNumChildImages[1].sprite = continueTimeImages[2]; break;
+			case 8: levelNumChildImages[1].sprite = continueTimeImages[1]; break;
+			case 9: levelNumChildImages[1].sprite = continueTimeImages[0]; break;
+			default: levelNumChildImages[1].sprite = continueTimeImages[8]; break;
 		}
 		if(level > 9) {
 			levelNumChildImages[1].sprite = continueTimeImages[9];
 		}
-		//only show the 2nd image if on level 10
-		levelNumChildImages[1].enabled = (level > 9);
+
+        switch(stage)
+        {
+            case 1: levelNumChildImages[0].sprite = continueTimeImages[9]; break;
+            case 2: levelNumChildImages[0].sprite = continueTimeImages[8]; break;
+            case 3: levelNumChildImages[0].sprite = continueTimeImages[7]; break;
+            case 4: levelNumChildImages[0].sprite = continueTimeImages[6]; break;
+            case 5: levelNumChildImages[0].sprite = continueTimeImages[5]; break;
+            default: levelNumChildImages[0].sprite = continueTimeImages[9]; break;
+        }
+
+
+        //only show the 2nd image if on level 10
+        levelNumChildImages[1].enabled = true;//UPDATE 10/02/2020 show stage num too (level > 9);
 		levelNumChildImages[0].enabled = true;
 		levelNumImage.enabled = true;
 		

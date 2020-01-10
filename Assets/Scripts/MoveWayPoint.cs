@@ -164,8 +164,9 @@ public class MoveWayPoint : MonoBehaviour
 		} else {
 
 			numPassages++;
-			//	Debug.Log("num passages: " + numPassages);
-			if( (justOnce  && currentIndex == wayPoints.Length - 1 )  || (numPassages == stopAfterXPassages && stopAfterXPassages > 0) ) {
+
+             //	Debug.Log("num passages: " + numPassages);
+                if ( (justOnce  && currentIndex == wayPoints.Length - 1 )  || (numPassages == stopAfterXPassages && stopAfterXPassages > 0) ) {
 				isPaused = true;
 				return;
             } 
@@ -199,7 +200,12 @@ public class MoveWayPoint : MonoBehaviour
 			}
 
 			if(!isPaused) {
-				NextWaypoint();
+                    if (currentWaypoint.outEffect != null)
+                    {
+                        SpecialEffectsHelper.Instance.PlayEffect(currentWaypoint.outEffect, currentWaypoint.transform.position);
+                    }
+
+                    NextWaypoint();
 			}
 			
 		}
