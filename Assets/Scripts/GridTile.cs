@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
+    public bool isOccupied = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class GridTile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if(col.gameObject.CompareTag("Player"))
+        if(col.gameObject.CompareTag("Player") && !isOccupied)
         {
             SpriteRenderer sprite = GetComponent<SpriteRenderer>();
             if(sprite!=null)

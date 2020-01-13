@@ -1404,5 +1404,25 @@ public class PlayerMovement : MonoBehaviour {
         return false;
     }
 
-            
+
+    public void ShowSprites()
+    {
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+    }
+
+    public void HideSprites()
+    {
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+    }
+
+    public void ApplyMovementRestrictions(SimpleMovementRestrictions checkPoint)
+    {
+        if(checkPoint != null) {
+
+            canMoveUp = checkPoint.canMoveUp;
+            canMoveLeft = checkPoint.canMoveLeft;
+            canMoveRight = checkPoint.canMoveRight;
+            canMoveDown = checkPoint.canMoveDown;
+        }
+    }
 }
