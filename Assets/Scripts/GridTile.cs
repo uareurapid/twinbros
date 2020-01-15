@@ -19,21 +19,41 @@ public class GridTile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if(col.gameObject.CompareTag("Player") && !isOccupied)
+        if (!isOccupied && col.gameObject.tag != null)
         {
-            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-            if(sprite!=null)
+
+            if (col.gameObject.CompareTag("Player"))
             {
-                sprite.enabled = true;
-                //StartCoroutine(HideSprite(sprite));
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                if (sprite != null)
+                {
+                    sprite.enabled = true;
+                    //will keep
+                    //StartCoroutine(HideSprite(sprite));
+                }
             }
+            else if(col.gameObject.GetComponent<GridTileDropper>()!=null)
+            {
+
+                GridTileDropper dropper = col.gameObject.GetComponent<GridTileDropper>();
+        
+                if(dropper!= null && dropper.gridTileOccupier!=null && dropper.CanDropNext())
+                {
+                    isOccupied = true;
+                    dropper.Drop();
+                    Transform theOne = SpecialEffectsHelper.Instance.instantiateTransformPublic(dropper.gridTileOccupier, transform.position, transform.rotation);
+                    //it allows to un-occupy the tile again when the occupier gets destroyed
+                    theOne.gameObject.GetComponent<GridTileOccupier>().SetParentGridTile(this);
+                } 
+            }
+
         }
     }
+        
 
-    IEnumerator HideSprite(SpriteRenderer sprite)
+    /*IEnumerator HideSprite(SpriteRenderer sprite)
     {
         yield return new WaitForSeconds(0.25f);
         sprite.enabled = false;
-    }
+    }*/
 }

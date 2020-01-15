@@ -457,7 +457,17 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void SetLevelText(int level) {
-		levelText.text = string.Format("Level: {0}{1}", levelManager.stage-1, level);//also show stage num
+        int stage = levelManager.stage;
+        if(level == 10)
+        {
+            level = 9; //show 39 instead of 310 for instance
+
+        } else if(level == 1)
+        {
+            level = 0; //show 20 instead of 21 for instance
+        }
+
+        levelText.text = string.Format("Level: {0}{1}", stage , level);//also show stage num
 	}
 
 	public void ResetScore() {
@@ -583,35 +593,60 @@ public class GUIManager : MonoBehaviour {
 
 	public void ShowLevelNumImages(int stage, int level) {
         // pos[0] = 9, pos[9] = 0
-        //continueTimeImages 9 8 7 6 5 -> 0 1 2 3 4 5
-        switch (level) {
-			case 1: levelNumChildImages[1].sprite = continueTimeImages[8]; break;
-			case 2: levelNumChildImages[1].sprite = continueTimeImages[7]; break;
-			case 3: levelNumChildImages[1].sprite = continueTimeImages[6]; break;
-			case 4: levelNumChildImages[1].sprite = continueTimeImages[5]; break;
-			case 5: levelNumChildImages[1].sprite = continueTimeImages[4]; break;
-			case 6: levelNumChildImages[1].sprite = continueTimeImages[3]; break;
-			case 7: levelNumChildImages[1].sprite = continueTimeImages[2]; break;
-			case 8: levelNumChildImages[1].sprite = continueTimeImages[1]; break;
-			case 9: levelNumChildImages[1].sprite = continueTimeImages[0]; break;
-			default: levelNumChildImages[1].sprite = continueTimeImages[8]; break;
-		}
-		if(level > 9) {
-			levelNumChildImages[1].sprite = continueTimeImages[9];
-		}
+        //
+        //continueTimeImages [0]9 [1]8 [2]7 [3]6 [4]5 [5]4 [6]3 [7]2 [8]1 [9]0
 
-        switch(stage)
+        if(stage == 1)
         {
-            case 1: levelNumChildImages[0].sprite = continueTimeImages[9]; break;
-            case 2: levelNumChildImages[0].sprite = continueTimeImages[8]; break;
-            case 3: levelNumChildImages[0].sprite = continueTimeImages[7]; break;
-            case 4: levelNumChildImages[0].sprite = continueTimeImages[6]; break;
-            case 5: levelNumChildImages[0].sprite = continueTimeImages[5]; break;
-            default: levelNumChildImages[0].sprite = continueTimeImages[9]; break;
+            levelNumChildImages[0].sprite = continueTimeImages[9]; //show 0
+
+            switch (level)
+            {
+                case 1: levelNumChildImages[1].sprite = continueTimeImages[8]; break; //show 1
+                case 2: levelNumChildImages[1].sprite = continueTimeImages[7]; break; //show 2
+                case 3: levelNumChildImages[1].sprite = continueTimeImages[6]; break; //show 3
+                case 4: levelNumChildImages[1].sprite = continueTimeImages[5]; break; //
+                case 5: levelNumChildImages[1].sprite = continueTimeImages[4]; break;
+                case 6: levelNumChildImages[1].sprite = continueTimeImages[3]; break;
+                case 7: levelNumChildImages[1].sprite = continueTimeImages[2]; break;
+                case 8: levelNumChildImages[1].sprite = continueTimeImages[1]; break;
+                case 9: levelNumChildImages[1].sprite = continueTimeImages[0]; break;
+                case 10: levelNumChildImages[1].sprite = continueTimeImages[9]; //show 0
+
+                    levelNumChildImages[0].sprite = continueTimeImages[8]; //show 1 -> 10
+                    break;
+                default: levelNumChildImages[1].sprite = continueTimeImages[8]; break;
+            }
+        } else
+        {
+
+            switch(stage)
+            {
+                case 2: levelNumChildImages[0].sprite = continueTimeImages[7]; break; //show 2
+                case 3: levelNumChildImages[0].sprite = continueTimeImages[6]; break; //3
+                case 4: levelNumChildImages[0].sprite = continueTimeImages[5]; break; //4
+                    //TODO next stage 5
+                default: levelNumChildImages[0].sprite = continueTimeImages[4]; break;
+            }
+            
+
+
+            switch (level)
+            {
+                case 1: levelNumChildImages[1].sprite = continueTimeImages[9]; break; //show 0
+                case 2: levelNumChildImages[1].sprite = continueTimeImages[8]; break; //show 1
+                case 3: levelNumChildImages[1].sprite = continueTimeImages[7]; break; //show 2
+                case 4: levelNumChildImages[1].sprite = continueTimeImages[6]; break; //
+                case 5: levelNumChildImages[1].sprite = continueTimeImages[5]; break;
+                case 6: levelNumChildImages[1].sprite = continueTimeImages[4]; break;
+                case 7: levelNumChildImages[1].sprite = continueTimeImages[3]; break;
+                case 8: levelNumChildImages[1].sprite = continueTimeImages[2]; break;
+                case 9: levelNumChildImages[1].sprite = continueTimeImages[1]; break;//show 8
+                case 10: levelNumChildImages[1].sprite = continueTimeImages[0]; break;//show 9
+                default: levelNumChildImages[1].sprite = continueTimeImages[9]; break;
+            }
         }
 
-
-        //only show the 2nd image if on level 10
         levelNumChildImages[1].enabled = true;//UPDATE 10/02/2020 show stage num too (level > 9);
 		levelNumChildImages[0].enabled = true;
 		levelNumImage.enabled = true;

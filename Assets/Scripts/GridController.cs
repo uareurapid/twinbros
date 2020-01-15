@@ -9,9 +9,14 @@ public class GridController : MonoBehaviour {
 	void Start () {
 
 		foreach(Collider2D childCol in GetComponentsInChildren<Collider2D>()) {
-            if(!childCol.isTrigger)
+            //do not touch the trigger ones
+            if (!childCol.isTrigger)
             {
-                childCol.enabled = enableCollidersOnPlay;//do not touch the trigger ones
+                childCol.enabled = enableCollidersOnPlay;
+                if(childCol.GetComponent<GridTile>()!=null)
+                {
+                    Debug.Log("WHAHAHAHAHAHHAHAHAH$$$$$$");
+                }
             }
 			
 		}

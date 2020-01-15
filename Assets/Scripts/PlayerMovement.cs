@@ -826,6 +826,8 @@ public class PlayerMovement : MonoBehaviour {
         Tile tile = other.transform.GetComponent<Tile>();
 		bool isTile = (tile != null);
 
+        bool canKillPlayer = isElectric || isEnemy || isBomb;
+
 
         if (isEnemy)
         {
@@ -933,7 +935,7 @@ public class PlayerMovement : MonoBehaviour {
 			SliderBlock slider = other.gameObject.GetComponent<SliderBlock>();
             slider.HandleCollision(this);
 		}
-		else if(isMovingBlock) {
+		else if(isMovingBlock && !canKillPlayer) {
 			//pause the moving block
             if(!ignoreCollision) {
               MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
