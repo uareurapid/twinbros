@@ -37,13 +37,19 @@ public class GridTile : MonoBehaviour
 
                 GridTileDropper dropper = col.gameObject.GetComponent<GridTileDropper>();
         
-                if(dropper!= null && dropper.gridTileOccupier!=null && dropper.CanDropNext())
+                if(dropper!= null && dropper.CanDropNext())
                 {
-                    isOccupied = true;
-                    dropper.Drop();
-                    Transform theOne = SpecialEffectsHelper.Instance.instantiateTransformPublic(dropper.gridTileOccupier, transform.position, transform.rotation);
-                    //it allows to un-occupy the tile again when the occupier gets destroyed
-                    theOne.gameObject.GetComponent<GridTileOccupier>().SetParentGridTile(this);
+                    //random pick one
+                    Transform gridTileOccupier = dropper.GetOccuppier();
+                    if(gridTileOccupier!=null)
+                    {
+                        isOccupied = true;
+                        dropper.Drop();
+                        Transform theOne = SpecialEffectsHelper.Instance.instantiateTransformPublic(gridTileOccupier, transform.position, transform.rotation);
+                        //it allows to un-occupy the tile again when the occupier gets destroyed
+                        theOne.gameObject.GetComponent<GridTileOccupier>().SetParentGridTile(this);
+                    }
+                    
                 } 
             }
 

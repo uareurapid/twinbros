@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTileDropper : MonoBehaviour
 {
-    public Transform gridTileOccupier; //what instantiate there
+    public Transform[] gridTileOccupiers; //what instantiate there
 
     public float delayBetweenDrops = 10f; //how much between each drop?
     // Start is called before the first frame update
@@ -13,6 +13,15 @@ public class GridTileDropper : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public Transform GetOccuppier()
+    {
+        if(gridTileOccupiers!=null && gridTileOccupiers.Length > 0)
+        {
+            return gridTileOccupiers[Random.Range(0, gridTileOccupiers.Length - 1)];
+        }
+        return null;
     }
 
     // Update is called once per frame

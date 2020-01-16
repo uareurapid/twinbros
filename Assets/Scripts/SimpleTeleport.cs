@@ -42,6 +42,8 @@ public class SimpleTeleport : MonoBehaviour, HandlePlayerCollision
             player.SetIsMovingBetweenTeleportPoints(true);
             player.StopMovementVelocity();
             player.SetReachedTarget(true);
+            SoundEffectsHelper.Instance.PlayLandingSound();
+            SpecialEffectsHelper.Instance.PlayTeleportEffect(transform.position);
             player.HideSprites();
             player.transform.position = destination.transform.position;
            
@@ -54,6 +56,12 @@ public class SimpleTeleport : MonoBehaviour, HandlePlayerCollision
     IEnumerator ReappearOnDestination(PlayerMovement player)
     {
         yield return new WaitForSeconds(transportationDuration);
+
+        SoundEffectsHelper.Instance.PlayLandingSound();
+        SpecialEffectsHelper.Instance.PlayTeleportEffect(destination.transform.position);
+
+        yield return new WaitForSeconds(0.25f);
+
         player.ShowSprites();
         SimpleMovementRestrictions checkPoint = destination.GetComponent<SimpleMovementRestrictions>();
         if(checkPoint!=null)

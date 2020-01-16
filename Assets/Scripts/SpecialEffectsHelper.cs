@@ -18,7 +18,9 @@ public class SpecialEffectsHelper : MonoBehaviour
 
     public Transform lightningBolt;
 
-	public Transform explodeTransform;
+    public Transform teleportEffect;
+
+    public Transform explodeTransform;
 
 	public Transform[] bloodSplatters;
     
@@ -263,9 +265,9 @@ public class SpecialEffectsHelper : MonoBehaviour
 		}
 	}
 
-	//public void ThunderboltEffect(Vector3 position) {
-	//	instantiate(thunderbolt, position);
-	//}
+	public Transform PlayTeleportEffect(Vector3 position) {
+        return instantiateTransform(teleportEffect, position);
+    }
 	
 	/// <summary>
 	/// Instantiate a Particle system from prefab
