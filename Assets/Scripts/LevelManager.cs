@@ -201,7 +201,9 @@ public class LevelManager : MonoBehaviour {
 
         if(!isDead){
           foreach(PlayerMovement twin in twins) {
-            twin.DisableBubbleOnStartup();
+              //make sure the sprite is on
+                twin.ShowSprites();
+                twin.DisableBubbleOnStartup();
             }
         }
 		//TODO eu não posso carregar e começar  nivel antes do resetbehaviours
