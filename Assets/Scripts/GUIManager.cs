@@ -336,7 +336,7 @@ public class GUIManager : MonoBehaviour {
     }
 
 	public void PlayPressed() {
-
+        //TODO if show stage do not show level before stage image
         SoundEffectsHelper.Instance.PlayReplaySound();
 
 		//still counting time?
@@ -457,17 +457,23 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void SetLevelText(int level) {
-        int stage = levelManager.stage;
+        int stageLocal = levelManager.stage;
+
         if(level == 10)
         {
-            level = 9; //show 39 instead of 310 for instance
+            level = 0;
 
-        } else if(level == 1)
-        {
-            level = 0; //show 20 instead of 21 for instance
         }
 
-        levelText.text = string.Format("Level: {0}{1}", stage , level);//also show stage num
+        if(level < 10)
+        {
+            stageLocal = levelManager.stage - 1;
+        } else
+        {
+            stageLocal = levelManager.stage;
+        }
+
+        levelText.text = string.Format("Level: {0}{1}", stageLocal, level);//also show stage num
 	}
 
 	public void ResetScore() {
@@ -622,9 +628,9 @@ public class GUIManager : MonoBehaviour {
 
             switch(stage)
             {
-                case 2: levelNumChildImages[0].sprite = continueTimeImages[7]; break; //show 2
-                case 3: levelNumChildImages[0].sprite = continueTimeImages[6]; break; //3
-                case 4: levelNumChildImages[0].sprite = continueTimeImages[5]; break; //4
+                case 2: levelNumChildImages[0].sprite = (level < 10 ? continueTimeImages[8] : continueTimeImages[7]); break; //show 1 / 2
+                case 3: levelNumChildImages[0].sprite = (level < 10 ? continueTimeImages[7] : continueTimeImages[6]); break; // 2 / 3
+                case 4: levelNumChildImages[0].sprite = (level < 10 ? continueTimeImages[6] : continueTimeImages[5]); break; // 3 / 4
                     //TODO next stage 5
                 default: levelNumChildImages[0].sprite = continueTimeImages[4]; break;
             }
@@ -633,16 +639,16 @@ public class GUIManager : MonoBehaviour {
 
             switch (level)
             {
-                case 1: levelNumChildImages[1].sprite = continueTimeImages[9]; break; //show 0
-                case 2: levelNumChildImages[1].sprite = continueTimeImages[8]; break; //show 1
-                case 3: levelNumChildImages[1].sprite = continueTimeImages[7]; break; //show 2
-                case 4: levelNumChildImages[1].sprite = continueTimeImages[6]; break; //
-                case 5: levelNumChildImages[1].sprite = continueTimeImages[5]; break;
-                case 6: levelNumChildImages[1].sprite = continueTimeImages[4]; break;
-                case 7: levelNumChildImages[1].sprite = continueTimeImages[3]; break;
-                case 8: levelNumChildImages[1].sprite = continueTimeImages[2]; break;
-                case 9: levelNumChildImages[1].sprite = continueTimeImages[1]; break;//show 8
-                case 10: levelNumChildImages[1].sprite = continueTimeImages[0]; break;//show 9
+                case 1: levelNumChildImages[1].sprite = continueTimeImages[8]; break; //show 1
+                case 2: levelNumChildImages[1].sprite = continueTimeImages[7]; break; //show 2
+                case 3: levelNumChildImages[1].sprite = continueTimeImages[6]; break; //show 3
+                case 4: levelNumChildImages[1].sprite = continueTimeImages[5]; break; //
+                case 5: levelNumChildImages[1].sprite = continueTimeImages[4]; break;
+                case 6: levelNumChildImages[1].sprite = continueTimeImages[3]; break;
+                case 7: levelNumChildImages[1].sprite = continueTimeImages[2]; break;
+                case 8: levelNumChildImages[1].sprite = continueTimeImages[1]; break; //show 8
+                case 9: levelNumChildImages[1].sprite = continueTimeImages[0]; break; //show 9
+                case 10: levelNumChildImages[1].sprite = continueTimeImages[9]; break;//show 0
                 default: levelNumChildImages[1].sprite = continueTimeImages[9]; break;
             }
         }

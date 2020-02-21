@@ -75,14 +75,18 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
                 //check if we have all the letters
                 if (managerScript.ShouldGiveBonusMove())
                 {
-					//hide it right away, cause it will take a few seconds until we can destroy it
-					GetComponent<Renderer>().enabled = false;
+                    Debug.Log("WILL GIVE $$$$$$$");
+                    //hide it right away, cause it will take a few seconds until we can destroy it
+                    GetComponent<Renderer>().enabled = false;
 					GetComponent<Collider2D>().enabled = false;
                     managerScript.AddBonusMove();
                     giveBonus = true;
 					manager.increaseMoves(1);
                     StartCoroutine(DisableBonusImages(2f, GUI));
                     //some effect
+                } else
+                {
+                    Debug.Log("NOT GIVE $$$$$$$");
                 }
 
             }

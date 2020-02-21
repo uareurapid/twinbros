@@ -24,6 +24,8 @@ public class SceneLoader : MonoBehaviour {
 
 	public GameObject[] disableObjectsBeforeLoad;
 
+    public bool isLastStage = false;
+
 	// Use this for initialization
 	void Start () {
 

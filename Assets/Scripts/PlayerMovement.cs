@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed = 2.0f;
     Vector3 targetPosition;
     //adjustment to bounce back on tile and box collisions
-    public float bounceAdjustment = 0.1f;
+    public float bounceAdjustment = 0.1f; //TODO put 0.09 on editor, before was 0.05
 
 	Vector3 initialScale;
 	Quaternion initialRotation;
@@ -320,8 +320,10 @@ public class PlayerMovement : MonoBehaviour {
 						
 					if(canMoveUp && IsStopped() && !isLeftMovement && !isRightMovement && !isDownMovement) {
 						canMoveUp = false;
-
-						if(isUpMovement) {
+                        if(!isLeftTwin) {
+                            Debug.Log("COLLIDED WITH " + hitUp.collider.gameObject + " up movement? " + isUpMovement);
+                        }
+                        if (isUpMovement) {
 							collidedTop(hitUp.collider.gameObject);
 						}
 					}
@@ -339,7 +341,11 @@ public class PlayerMovement : MonoBehaviour {
 					if(canMoveDown && IsStopped() && !isLeftMovement && !isRightMovement && !isUpMovement) {
 						canMoveDown = false;
 
-						if(isDownMovement) {
+                        if(!isLeftTwin) {
+                            Debug.Log("COLLIDED WITH " + hitDown.collider.gameObject + " down movement? " + isDownMovement);
+                        }
+
+                        if (isDownMovement) {
                             Debug.Log("RAYCAST DOWN COLLISION WITH " + hitDown.collider.gameObject.name);
 							collidedBottom(hitDown.collider.gameObject);
 						}
@@ -382,9 +388,10 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			reachedTarget = false;
 
-			//if(isLeftTwin) {
-			//	Debug.Log("LEFT TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
-			//}
+			if(!isLeftTwin) {
+				Debug.Log("right TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
+                Debug.Log("right TWIN: canMoveUp? " + canMoveUp + " isUpMovemet? " + isUpMovement);
+            }
 
 			if(isLeftMovement && canMoveLeft) {
 				//only move in x
@@ -413,10 +420,12 @@ public class PlayerMovement : MonoBehaviour {
 		else {
 			Debug.Log("REACHED TARGET true -> isLeft? " + isLeftTwin + " taget = pos? " + (targetPosition == transform.position));
 			reachedTarget = true;
-			canMove = !HitSomethingOnUp();
+			canMoveUp = !HitSomethingOnUp();
 			canMoveDown = !HitSomethingOnDown();
 			canMoveLeft = !HitSomethingOnLeft();
 			canMoveRight = !HitSomethingOnRight();
+
+            Debug.Log("can move up? " + canMoveUp + " canMoveDown? " + canMoveDown);
 		}
 
         if(IsPlayerStucked()) {
@@ -814,10 +823,10 @@ public class PlayerMovement : MonoBehaviour {
         string otherTag = other.transform.tag;
         bool isPortal = otherTag.Equals("Portal");
 		
-		bool isEnemy = otherTag.Equals("Enemy");
-		bool isBox = otherTag.Equals("Box");
-		bool isBomb = otherTag.Equals("Bomb");
-		bool isElectric = otherTag.Equals("Electric");
+		bool isEnemy = otherTag.Equals("Enemy") || other.gameObject.GetComponent<EnemyBox>() != null;
+        bool isBox = otherTag.Equals("Box") || other.gameObject.GetComponent<Box>()!=null;
+		bool isBomb = otherTag.Equals("Bomb") || other.gameObject.GetComponent<Bomb>() != null;
+        bool isElectric = otherTag.Equals("Electric");
 		bool isMovingBlock = other.gameObject.GetComponent<MoveWayPoint>() != null; 
 		bool isSlider = otherTag.Equals("Slider");
 
@@ -848,10 +857,10 @@ public class PlayerMovement : MonoBehaviour {
 					//colRight = true;
 					ignoreCollision = false;
 
-					if(isBox || isTile) {
+					if(isBox || isTile || isBomb) {
                         AdjustPositionByBouncingLeft();
 					}
-					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name);
+					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
 				}
 						
 		}
@@ -864,7 +873,7 @@ public class PlayerMovement : MonoBehaviour {
 					collidedLeft(other.gameObject);
 					//colLeft = true;
 					ignoreCollision = false;
-					if(isBox || isTile) {
+					if(isBox || isTile || isBomb) {
                         AdjustPositionByBouncingRight();
 					}
 
@@ -874,7 +883,7 @@ public class PlayerMovement : MonoBehaviour {
 		}//TODO raycast to see if i can move up or not
         else if(isUpMovement && canMoveUp) {
 						
-            Debug.Log("DEBUG: IS UP AND CAN MOVE UP");
+            Debug.Log("DEBUG: IS UP AND CAN MOVE UP leftTwin?" + isLeftTwin + " collision" + other.gameObject.name);
 				//otherwise just ignore this one
 				//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
@@ -883,7 +892,7 @@ public class PlayerMovement : MonoBehaviour {
 					collidedTop(other.gameObject);
 					//colUp = true;
 					ignoreCollision = false;
-					if(isBox || isTile) {
+					if(isBox || isTile || isBomb) {
                         AdjustPositionByBouncingDown();
                     }
 
@@ -900,7 +909,7 @@ public class PlayerMovement : MonoBehaviour {
 			        collidedBottom(other.gameObject);
 					//colDown = true;
 					ignoreCollision = false;
-					if(isBox || isTile) {
+					if(isBox || isTile || isBomb) {
                         AdjustPositionByBouncingUp();
                     }
 
@@ -944,7 +953,7 @@ public class PlayerMovement : MonoBehaviour {
             }
           
 		}
-		else if(isBomb && !ignoreCollision) {
+		else if(isBomb/* && !ignoreCollision*/) {
 		
             other.gameObject.GetComponent<Bomb>().HandleCollision(this);
 		}
@@ -971,6 +980,202 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 	}
+
+    //TODO called from a trigger one (Box only for now)
+    public void MyCustomOnCollisionEnter2D(GameObject other)
+    {
+
+        //ignore it
+        if (isMovingBetweenLevels || otherTwin.isMovingBetweenLevels || levelManager.IsPlayerDead())
+        {
+
+            Debug.Log("DEBUG: COLLISION IGNORED -±other.transform.name: " + other.transform.name);
+            return;
+        }
+
+        string otherTag = other.transform.tag;
+        bool isPortal = otherTag.Equals("Portal");
+
+        bool isEnemy = otherTag.Equals("Enemy") || other.GetComponent<EnemyBox>() != null;
+        bool isBox = otherTag.Equals("Box") || other.GetComponent<Box>() != null;
+        bool isBomb = otherTag.Equals("Bomb") || other.GetComponent<Bomb>() != null;
+        bool isElectric = otherTag.Equals("Electric");
+        bool isMovingBlock = other.GetComponent<MoveWayPoint>() != null;
+        bool isSlider = otherTag.Equals("Slider");
+
+        bool ignoreCollision = true;
+
+        Tile tile = other.transform.GetComponent<Tile>();
+        bool isTile = (tile != null);
+
+        bool canKillPlayer = isElectric || isEnemy || isBomb;
+
+
+        if (isEnemy)
+        {
+            Debug.Log("ENEMY COLLIDDED CALLED  " + other.name + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
+
+            EnemyBox enemy = other.GetComponent<EnemyBox>();
+            enemy.HandleCollision(this);
+            return;
+        }
+
+
+        //Blocks and other things not tagged Enemy!
+        if (isRightMovement && canMoveRight)
+        {
+            //Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
+            if (!IsIgnoreCollision(other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/))
+            {
+
+                collidedRight(other);
+                //colRight = true;
+                ignoreCollision = false;
+
+                if (isBox || isTile || isBomb)
+                {
+                    AdjustPositionByBouncingLeft();
+                }
+                Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
+            }
+
+        }
+        else if (isLeftMovement && canMoveLeft)
+        {
+
+
+            //Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
+            if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ))
+            {
+                collidedLeft(other);
+                //colLeft = true;
+                ignoreCollision = false;
+                if (isBox || isTile || isBomb)
+                {
+                    AdjustPositionByBouncingRight();
+                }
+
+                Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
+            }
+
+        }//TODO raycast to see if i can move up or not
+        else if (isUpMovement && canMoveUp)
+        {
+
+            Debug.Log("DEBUG: IS UP AND CAN MOVE UP leftTwin?" + isLeftTwin + " collision" + other.name);
+            //otherwise just ignore this one
+            //Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+
+            if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/))
+            {
+                collidedTop(other);
+                //colUp = true;
+                ignoreCollision = false;
+                if (isBox || isTile || isBomb)
+                {
+                    AdjustPositionByBouncingDown();
+                }
+
+                Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
+            }
+
+        }
+        else if (isDownMovement && canMoveDown)
+        {
+            //Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+            //Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
+
+            if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
+            {
+                collidedBottom(other);
+                //colDown = true;
+                ignoreCollision = false;
+                if (isBox || isTile || isBomb)
+                {
+                    AdjustPositionByBouncingUp();
+                }
+
+                Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
+
+            }
+
+        }
+        else if (!IsMovingInAnyDirection() && isEnemy)
+        {
+            //even if not moving, if it is an enemy
+            Debug.Log("DEBUG: CODE ME, EMPTY BLOCK");
+        }
+
+
+        //---------------------------------------------------------
+
+        //Tile tile = other.transform.GetComponent<Tile>();
+        TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
+
+        if (point != null)
+        {
+            Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
+            point.HandleCollision(this);
+        }
+        else if (tile != null && !ignoreCollision)
+        {
+            tile.HandleCollision(this);
+        }
+        else if (isPortal && !ignoreCollision)
+        {
+
+            other.GetComponent<Portal>().HandleCollision(this);
+
+        }
+        else if (isSlider && !ignoreCollision)
+        {
+            SliderBlock slider = other.GetComponent<SliderBlock>();
+            slider.HandleCollision(this);
+        }
+        else if (isMovingBlock && !canKillPlayer)
+        {
+            //pause the moving block
+            if (!ignoreCollision)
+            {
+                MoveWayPoint move = other.GetComponent<MoveWayPoint>();
+                move.PauseMovement();
+                move.RestartMovementAfterPause(2f);
+            }
+
+        }
+        else if (isBomb/* && !ignoreCollision*/)
+        {
+
+            other.GetComponent<Bomb>().HandleCollision(this);
+        }
+        else if (isElectric && !ignoreCollision)
+        {
+
+            ElectricWire wire = other.GetComponent<ElectricWire>();
+            wire.ElectrocutePlayer(this);
+        }
+        else if (isBox && !ignoreCollision)
+        {
+            other.GetComponent<Box>().HandleCollision(this);
+            //TODO there are game objects that are tagged box, but do not have the component CHECK!!!
+        }
+        else if (isEnemy /*&& !ignoreCollision*/ )
+        {
+            EnemyBox enemy = other.GetComponent<EnemyBox>();
+            enemy.HandleCollision(this);
+
+        }
+
+        else if (!ignoreCollision)
+        {
+            HandlePlayerCollision handle = other.GetComponent<HandlePlayerCollision>();
+            if (handle != null)
+            {
+                handle.HandleCollision(this);
+            }
+        }
+
+    }
 
     private void AdjustPositionByBouncingLeft()
     {
@@ -1128,12 +1333,19 @@ public class PlayerMovement : MonoBehaviour {
 
 		Collider2D[] coll = GetComponents<Collider2D>();
 		foreach(Collider2D col in coll) {
-			col.enabled = true;
+            if(col!=null)
+			{
+				col.enabled = true;
+			}
+			
 		}
 
 		Collider2D[] coll2 = GetComponentsInChildren<Collider2D>();
 		foreach(Collider2D col in coll2) {
-			col.enabled = true;
+            if(col!=null)
+			{
+				col.enabled = true;
+			}
 		}
 	}
 

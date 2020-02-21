@@ -116,7 +116,7 @@ public class GameManagerScript : MonoBehaviour {
     }
     
     private void RemoveBonusMove() {
-        if(PlayerPrefs.HasKey(GameConstants.HAS_BONUS_MOVE) ) {
+        if(HasBonusMove() ) {
             PlayerPrefs.DeleteKey(GameConstants.HAS_BONUS_MOVE);
         }
     }

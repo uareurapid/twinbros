@@ -38,7 +38,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 
 	public void HandleCollision(PlayerMovement movement)
 	{
-		//Debug.Log("#### HandleBombCollisions CALLED IN BOMB!!!");
+		Debug.Log("#### HandleBombCollisions CALLED IN BOMB!!!");
 		
 		if(isBurning) {
 			//explode
@@ -95,7 +95,13 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 		}
 
 		gameObject.SetActive(false);
-		//Debug.Log("STILL IN BOMB!!!!");
+        //also disable collider
+        Collider2D col = GetComponent<Collider2D>();
+        if(col!=null)
+        {
+            col.enabled = false;
+        }
+		Debug.Log("STILL IN BOMB!!!!");
 		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
 		
 		
@@ -106,9 +112,14 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 		isLightUp = originallyLightUp;
 		isBurning = originallyBurning;
 
-		//Debug.Log("RESETTING BOMB!!!!");
+        //also re-enable collider
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
 
-		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
+        GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
 
 		//restore also the controller parameters
 		Dictionary <string,bool> parameters = bombController.GetOriginalParameters();

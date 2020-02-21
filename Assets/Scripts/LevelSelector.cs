@@ -13,8 +13,11 @@ public class LevelSelector : MonoBehaviour {
 	public GameObject loadingDotsImage;
 
 	public LevelStatus[] levels;
-	// Use this for initialization
-	void Start () {
+
+    public UnityEngine.UI.Text levelLockedText;
+
+    // Use this for initialization
+    void Start () {
 		CheckLevelStatus();
 	}
 	
@@ -41,7 +44,12 @@ public class LevelSelector : MonoBehaviour {
 		{
 			StartCoroutine(LoadScene("Level1"));
 		}
-        
+        else if(levelLockedText!=null)
+        {
+            levelLockedText.text = "Stage 1 is locked!";
+            levelLockedText.enabled = true;
+            StartCoroutine(HideLevelLockedText(1));
+        }
     }
 
     public void LoadStageTwo()
@@ -50,7 +58,13 @@ public class LevelSelector : MonoBehaviour {
 		{
 			StartCoroutine(LoadScene("Level2"));
 		}
-        
+        else if (levelLockedText != null)
+        {
+            levelLockedText.text = "Stage 2 is locked!";
+            levelLockedText.enabled = true;
+            StartCoroutine(HideLevelLockedText(2));
+        }
+
     }
 
     public void LoadStageThree()
@@ -59,7 +73,13 @@ public class LevelSelector : MonoBehaviour {
 		{
 			StartCoroutine(LoadScene("Level3"));
 		}
-        
+        else if (levelLockedText != null)
+        {
+            levelLockedText.text = "Stage 3 is locked!";
+            levelLockedText.enabled = true;
+            StartCoroutine(HideLevelLockedText(3));
+        }
+
     }
 
     public void LoadStageFour()
@@ -68,7 +88,13 @@ public class LevelSelector : MonoBehaviour {
 		{
 			StartCoroutine(LoadScene("Level4"));
 		}
-        
+        else if (levelLockedText != null)
+        {
+            levelLockedText.text = "Stage 4 is locked!";
+            levelLockedText.enabled = true;
+            StartCoroutine(HideLevelLockedText(4));
+        }
+
     }
 
     public void LoadStageFive()
@@ -78,10 +104,25 @@ public class LevelSelector : MonoBehaviour {
 		{
 			StartCoroutine(LoadScene("Level5"));
 		}
-        
+        else if (levelLockedText != null)
+        {
+            levelLockedText.text = "Stage 5 is locked!";
+            levelLockedText.enabled = true;
+            StartCoroutine(HideLevelLockedText(5));
+        }
+
     }
 
-    IEnumerator LoadScene(string scene)
+    IEnumerator HideLevelLockedText(int stage)
+    {
+        yield return new WaitForSeconds(2f);
+        if(levelLockedText!=null)
+        {
+            levelLockedText.enabled = false;
+        }
+    }
+
+        IEnumerator LoadScene(string scene)
     {
 		if (loadingDotsImage != null)
 		{

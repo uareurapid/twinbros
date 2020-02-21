@@ -67,7 +67,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 
 	public ParticleSystem overheatEffect;
 
-	public Transform riseEffectTransform;
+	public Transform riseMovesEffectTransform;
 
     public Transform impactEffect;
 
@@ -242,8 +242,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiateTransform(brakeEffect, position);
 	}
 
-	public Transform PlayRiseEffect(Vector3 position) {
-		return instantiateTransform(riseEffectTransform, position);
+	public Transform PlayRiseMovesEffect(Vector3 position) {
+		return instantiateTransform(riseMovesEffectTransform, position);
 	}
 
 	

@@ -277,15 +277,15 @@ public class LevelManager : MonoBehaviour {
 
 	public void increaseMoves(int num)
 	{
-		if(numMoves + num  < MAX_MOVES + 2) {
-			numMoves += num;
+        if (numMoves + num < MAX_MOVES + 2)
+        {
+            numMoves += num;
 
-			Vector3 pos = guiManager.movesImage[numMoves].gameObject.GetComponent<RectTransform>().position;
-			SpecialEffectsHelper.Instance.PlayRiseEffect(pos);
-			Debug.Log("NUM MOVES: " + numMoves);
-			//guiManager.UpdateMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
-		}
-
+            Vector3 pos = guiManager.movesImage[numMoves - 1].gameObject.GetComponent<RectTransform>().position;
+            SpecialEffectsHelper.Instance.PlayRiseMovesEffect(pos);
+            Debug.Log("NUM MOVES: " + numMoves);
+            //guiManager.UpdateMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
+        }
 		
 	}
 
@@ -326,7 +326,9 @@ public class LevelManager : MonoBehaviour {
 			//Debug.Log("KillPlayer CALLED");
 			gameManager.EndGame();
 			isDead = true;
-			numMoves = 0;
+			if(numMoves >=1) {
+                numMoves -= 1;
+            }
 			guiManager.SetMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
 			gameStarted = false;
 			guiManager.ShowGameOver();
@@ -361,7 +363,7 @@ public class LevelManager : MonoBehaviour {
 	}
     
     private bool CheckHasBonusMove() {
-        return PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1;
+        return PlayerPrefs.HasKey(GameConstants.HAS_BONUS_MOVE) && PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1;
     }
 
 

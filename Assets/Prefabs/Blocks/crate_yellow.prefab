@@ -52,6 +52,7 @@ MonoBehaviour:
   possibleSurprises: []
   isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
+  shouldHandleMoreCollisionComponents: 0
 --- !u!61 &61347677885017092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76,7 +77,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.97, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &114160006859854466
 MonoBehaviour:

@@ -35,7 +35,7 @@ using UnityEngine;
 
 				//TODO this reset the bomb to initial state and animation,
 				//but should be done with a reset bomb script or something
-				if(gameObject.GetComponent<Bomb>()) {
+				if(gameObject.GetComponent<Bomb>()!=null) {
 					gameObject.GetComponent<Bomb>().ResetOriginalBehaviour();
 				}
 			}

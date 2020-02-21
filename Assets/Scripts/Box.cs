@@ -22,6 +22,13 @@ public class Box : SpawnableItem, HandlePlayerCollision {
     void Start()
 	{
       numCollisions = 0;
+        //TODO CHECK THIS!!!!
+        /*BoxCollider2D col = GetComponent<BoxCollider2D>();
+        if(col!=null)
+        {
+            col.isTrigger = true;
+            col.size = new Vector3(1.20f,1.20f);
+        }*/
 	}
 	// TODO use this to unlock the surprise
 	public void FadeSurpriseBox(PlayerMovement twin) {
@@ -125,4 +132,15 @@ public class Box : SpawnableItem, HandlePlayerCollision {
 			numCollisions = 0;
 		}
 	}
+
+    //TODO check!!
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        PlayerMovement player = col.GetComponent<PlayerMovement>();
+        if(player!=null)
+        {
+            Debug.Log("CALED HERE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            player.MyCustomOnCollisionEnter2D(gameObject);
+        }
+    }
 }
