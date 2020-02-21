@@ -447,7 +447,8 @@ public class GUIManager : MonoBehaviour {
 		HideStageImage();
 		yield return new WaitForSeconds(2.0f);
 		DisableStageImage();
-		levelManager.ShowLevelNum();
+        yield return new WaitForSeconds(1.0f);
+        levelManager.ShowLevelNum();
 	}
 
 	//call this when loading a new screen

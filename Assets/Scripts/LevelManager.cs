@@ -51,6 +51,8 @@ public class LevelManager : MonoBehaviour {
 
 	private SoundManager soundManager;
 
+    private bool hasShownLevelNum = false;
+
 	private long lastMovementTime = 0;
 	//keep a reference for this
 	private GameObject scripts;
@@ -516,6 +518,7 @@ public class LevelManager : MonoBehaviour {
                 leftTwinReady = rightTwinReady = false;
 
 				//TODO show if level 1, but if i just died than do not show the stage image
+                //TODO check
 				if(currentLevel.level >= 1) {
 					ShowLevelNum();
 				} //else called from GUIManager after the stage image
@@ -622,6 +625,7 @@ public class LevelManager : MonoBehaviour {
 	//show the num of the new level
 	public void ShowLevelNum() {
 
+        hasShownLevelNum = true;
 		guiManager.ShowLevelNumImages(this.stage, this.currentLevel.level);
 		StartCoroutine(HideLevelNumImages());
 	}
