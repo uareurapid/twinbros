@@ -141,6 +141,17 @@ public class LevelManager : MonoBehaviour {
 			}
 		}*/
 	}
+
+    public bool GetIsTestMode()
+    {
+		return isTestMode;
+    }
+
+    public bool ShouldRespawnOnDyingLevel()
+    {
+		return respawnOnDyingLevel;
+    }
+
 	public void DisableMusic() {
 		if(soundManager != null){
 			soundManager.StopAudio();
@@ -519,7 +530,7 @@ public class LevelManager : MonoBehaviour {
 
 				//TODO show if level 1, but if i just died than do not show the stage image
                 //TODO check
-				if(currentLevel.level >= 1) {
+				if(currentLevel.level > 1) {
 					ShowLevelNum();
 				} //else called from GUIManager after the stage image
 	

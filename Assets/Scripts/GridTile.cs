@@ -51,6 +51,11 @@ public class GridTile : MonoBehaviour
                     }
                     
                 } 
+            }//if a box is standing here, then it is occupied
+            //TODO double check
+            else if(col.gameObject.CompareTag("Box"))
+            {
+                isOccupied = true;
             }
 
         }

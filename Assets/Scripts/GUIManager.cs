@@ -339,29 +339,37 @@ public class GUIManager : MonoBehaviour {
         //TODO if show stage do not show level before stage image
         SoundEffectsHelper.Instance.PlayReplaySound();
 
+
+		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+		levelManager = scripts.GetComponent<LevelManager>();
 		//still counting time?
-		if(continueTimer != 0 && !playPressed) {
+		if (continueTimer != 0 && !playPressed) {
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
-			if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) || (levelManager.respawnOnDyingLevel && levelManager.isTestMode) ) {
+			if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) ||
+                (levelManager.ShouldRespawnOnDyingLevel() && levelManager.GetIsTestMode() ) ) {
 				playPressed = true;
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
+				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OK");
 				levelManager.RestartFromDyingLevel();
             } else {
-                //normal restart
-                levelManager.StartGame();
+				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ NNNNNNNNNOK " + levelManager.ShouldRespawnOnDyingLevel() + " " + levelManager.GetIsTestMode());
+				//normal restart
+				levelManager.StartGame();
             }
 			
 		}
 		//only if the button is opaque
 		else if(!playPressed) {
+			Debug.Log("#### WTF?? #### " + continueTimer);
 			playPressed = true;
 			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
 			playButton.sprite = playButtonImages[1];
-			levelManager.respawnOnDyingLevel = false;
+            //TODO check removed this one
+			//levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
 		}
 		
