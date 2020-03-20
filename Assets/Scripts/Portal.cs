@@ -41,9 +41,8 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
                     Debug.Log("LAST STAGE, DIFFERENT MESSAGE?");
                 }
 
-				levelManager.StageCleared();
-				loader.LoadNextScene(levelManager);
-				
+				levelManager.StageCleared(loader);
+		
 			}
 			else {
 				Debug.Log("WTF");//GAME OVER ALL STAGES DONE? TODO
@@ -71,7 +70,8 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
         }
         else
         {
-            //TODO keep coding me
+			//TODO keep coding me
+			SoundEffectsHelper.Instance.PlayPortalCollisionSound();
             levelManager.TwinCollidedWithPortal(player.gameObject);
             StartCoroutine(MoveToNextLevelCoroutine());
         }

@@ -209,9 +209,15 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
+    public bool HasTwinFinishedMovement()
+    {
+		return (transform.position == targetPosition || reachedTarget);
+
+	}
+
 	//called from Level manager
 	public bool TrySlideUp() {
-		if( (transform.position == targetPosition || reachedTarget)  && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if( ( HasTwinFinishedMovement()  )  && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 
 			SlideUp();
 			return true;
@@ -222,7 +228,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool TrySlideDown() {
 
 		
-		if((transform.position == targetPosition || reachedTarget) && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if((HasTwinFinishedMovement()  ) && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 
 			SlideDown();
 			return true;
@@ -233,7 +239,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool TrySlideLeft() {
 		
-		if((transform.position == targetPosition || reachedTarget) && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if((HasTwinFinishedMovement()  ) && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
             SlideLeft();
 			return true;
 		}
@@ -243,12 +249,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool TrySlideRight() {
-		if( (transform.position == targetPosition || reachedTarget) && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if( (HasTwinFinishedMovement()  ) && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
 			SlideRight();
 			return true;
-		}if(!isLeftTwin) {
-			Debug.Log("CANNOT SLIDE reached target? " + reachedTarget + " can move right? " + canMoveRight);
-			}
+		}
 		return false;
 	}
 

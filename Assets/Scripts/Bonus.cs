@@ -38,6 +38,7 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
 
             if (GUI != null)
             {
+                SoundEffectsHelper.Instance.PlayBonusHitSound();
 
                 UnityEngine.UI.Image image = null;
                 //do shit
@@ -75,7 +76,9 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
                 //check if we have all the letters
                 if (managerScript.ShouldGiveBonusMove())
                 {
-                    Debug.Log("WILL GIVE $$$$$$$");
+                    Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ WILL GIVE $$$$$$$");
+
+                    SoundEffectsHelper.Instance.PlayBonusUpgradeSound();
                     //hide it right away, cause it will take a few seconds until we can destroy it
                     GetComponent<Renderer>().enabled = false;
 					GetComponent<Collider2D>().enabled = false;
@@ -86,7 +89,7 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
                     //some effect
                 } else
                 {
-                    Debug.Log("NOT GIVE $$$$$$$");
+                    Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ NOT GIVE $$$$$$$");
                 }
 
             }

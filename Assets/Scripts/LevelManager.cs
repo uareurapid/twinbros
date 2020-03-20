@@ -221,13 +221,18 @@ public class LevelManager : MonoBehaviour {
         }
 		//TODO eu não posso carregar e começar  nivel antes do resetbehaviours
 		//primeiro o reset e quando terminar é que posso clicar no botão!!!
-		gameManager.StartGame();
-		RestartLevel();
+
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
-        gameStarted = true;
+
 		guiManager.ResetScore();
-        CleanPreviousPaths();
+		CleanPreviousPaths();
+
+		gameManager.StartGame();
+		RestartLevel();
+		
+        gameStarted = true;
+		
         
 	}
 
@@ -235,7 +240,7 @@ public class LevelManager : MonoBehaviour {
     {
         foreach (GridTile childGrid in FindObjectsOfType<GridTile>())
         {
-            childGrid.GetComponent<SpriteRenderer>().enabled = false;
+            childGrid.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -290,7 +295,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void increaseMoves(int num)
 	{
-        if (numMoves + num < MAX_MOVES + 2)
+        if (numMoves + num <= MAX_MOVES + 2) //10 + 2
         {
             numMoves += num;
 
@@ -298,6 +303,9 @@ public class LevelManager : MonoBehaviour {
             SpecialEffectsHelper.Instance.PlayRiseMovesEffect(pos);
             Debug.Log("NUM MOVES: " + numMoves);
             //guiManager.UpdateMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
+        } else
+        {
+			Debug.Log("SKIP MOVES FOR NOW");
         }
 		
 	}
@@ -356,14 +364,20 @@ public class LevelManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlayTeleportSound(); //TODO change sound
 		respawnOnDyingLevel = true;
 		respawnLevel = currentLevel;
-		RestartLevel();
+		
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
 
-        //added these
-        gameStarted = true;
-        guiManager.ResetScore();
-        CleanPreviousPaths();
+		guiManager.ResetScore();
+		CleanPreviousPaths();
+
+		//for the music swap
+		gameManager.StartGame();
+		RestartLevel();
+
+		//added these
+		gameStarted = true;
+        
 
     }
 
@@ -642,7 +656,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	//when i finish all levels on 1 stage
-	public void StageCleared() {
+	public void StageCleared(SceneLoader sceneLoader) {
 
 		//gameStarted = false;
 		//Report the achievement
@@ -677,7 +691,7 @@ public class LevelManager : MonoBehaviour {
             
 
 		guiManager.ShowStageClearedImage();
-		StartCoroutine("HideStageClearedImage");
+		StartCoroutine(HideStageClearedImage(sceneLoader));
 	}
 
 	public void LevelCleared() {
@@ -718,12 +732,20 @@ public class LevelManager : MonoBehaviour {
 		guiManager.HideLevelClearedImage();
 	}
 
-	IEnumerator HideStageClearedImage() {
+	IEnumerator HideStageClearedImage(SceneLoader sceneLoader) {
 
 		yield return new WaitForSeconds(3f);
 		guiManager.HideStageClearedImage();
 		yield return new WaitForSeconds(3f);
 		guiManager.DisableStageClearedImage();
+
+        if(sceneLoader!=null)
+        {
+			//TODO have a delay here, only show loading after hidding the stage clear
+			sceneLoader.LoadNextScene(this);
+		}
+
+        //load next stage
 	}
 	void StartMovePlayersIntoPosition(Level nextLevel) {
 

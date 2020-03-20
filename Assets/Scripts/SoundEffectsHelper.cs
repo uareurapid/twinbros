@@ -42,11 +42,18 @@ public class SoundEffectsHelper : MonoBehaviour
 
 	public AudioClip jumpOnHeadSound;
 
-		//todo credit Freesound.org - "Energy Weapon 001.wav" by DJ Chronos
-		//Freesound.org - "Medium Explosion.wav" by ryansnook
-		//Freesound.org - "Distant explosion.wav" by juskiddink
+    //bonus
+	public AudioClip bonusHitSound;
+
+	public AudioClip bonusUpgradeSound;
+
+	public AudioClip portalCollisionSound;
+
+	//todo credit Freesound.org - "Energy Weapon 001.wav" by DJ Chronos
+	//Freesound.org - "Medium Explosion.wav" by ryansnook
+	//Freesound.org - "Distant explosion.wav" by juskiddink
 	//https://www.freesound.org/people/fins/sounds/146729/
-	
+
 	void Awake()
 	{
 		// Register the singleton
@@ -182,6 +189,22 @@ public class SoundEffectsHelper : MonoBehaviour
 
 	public void PlayGenericSound(AudioClip sound) {
 		MakeSound(sound);
+	}
+    //collide with bonus
+    public void PlayBonusHitSound()
+    {
+		MakeSound(bonusHitSound);
+    }
+    //give extra move/bonus
+	public void PlayBonusUpgradeSound()
+	{
+		MakeSound(bonusUpgradeSound);
+	}
+
+
+	public void PlayPortalCollisionSound()
+	{
+		MakeSound(portalCollisionSound);
 	}
 
 	public static SoundEffectsHelper Instance {
