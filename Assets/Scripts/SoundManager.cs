@@ -19,6 +19,22 @@ public class SoundManager : MonoBehaviour {
 		
 	}
 
+	//change volume for a x secs
+	public void ChangeBackgroundVolume(float toValue, float seconds) {
+		if(audioS!=null && toValue >= 0.0f && toValue <= 1.0f) {
+
+			float previousVolume = audioS.volume;
+			audioS.volume = toValue; //between 0.0 and 1.0
+			//put it back
+			StartCoroutine(ResetBackgroundVolume(previousVolume, seconds));
+		}
+	}
+
+	IEnumerator ResetBackgroundVolume(float previousValue, float secs) {
+
+		yield return new WaitForSeconds(secs);
+		audioS.volume = previousValue;
+	}
 
 	public void SetVolume(float toValue) {
 		if(audioS!=null && toValue >= 0.0f && toValue <= 1.0f) {

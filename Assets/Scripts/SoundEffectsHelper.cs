@@ -49,10 +49,14 @@ public class SoundEffectsHelper : MonoBehaviour
 
 	public AudioClip portalCollisionSound;
 
+	public AudioClip stageClearSound;
+
 	//todo credit Freesound.org - "Energy Weapon 001.wav" by DJ Chronos
 	//Freesound.org - "Medium Explosion.wav" by ryansnook
 	//Freesound.org - "Distant explosion.wav" by juskiddink
 	//https://www.freesound.org/people/fins/sounds/146729/
+
+	private SoundManager soundManager;
 
 	void Awake()
 	{
@@ -207,6 +211,11 @@ public class SoundEffectsHelper : MonoBehaviour
 		MakeSound(portalCollisionSound);
 	}
 
+	public void PlayStageClearSound()
+	{
+		MakeSound(stageClearSound);
+	}
+
 	public static SoundEffectsHelper Instance {
 		get
 		{
@@ -226,8 +235,16 @@ public class SoundEffectsHelper : MonoBehaviour
 	/// <param name="originalClip"></param>
 	private void MakeSound(AudioClip originalClip)
 	{
-		//play at the camera position, otherwise you cannot hear it
+
+		if(soundManager == null) {
+
+			soundManager = GetComponent<SoundManager>();
+		}
+
+		soundManager.ChangeBackgroundVolume(0.3f, originalClip.length);
+	 	//play at the camera position, otherwise you cannot hear it
 		AudioSource.PlayClipAtPoint(originalClip, Camera.main.transform.position,1f);
+	 	
 	}
 
 	//initialization

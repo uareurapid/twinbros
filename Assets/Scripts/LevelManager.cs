@@ -219,6 +219,7 @@ public class LevelManager : MonoBehaviour {
                 twin.DisableBubbleOnStartup();
             }
         }
+
 		//TODO eu não posso carregar e começar  nivel antes do resetbehaviours
 		//primeiro o reset e quando terminar é que posso clicar no botão!!!
 
@@ -397,6 +398,8 @@ public class LevelManager : MonoBehaviour {
 	private void CheckMoves() {
 
 		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : CheckHasBonusMove() ? MAX_MOVES + 1 : MAX_MOVES;
+
+		Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ NUM MOVES " + numMoves);
 		guiManager.ResetRegularMoves();
 		if(hasExtraMoves || CheckHasExtraMoves()) {
 			guiManager.ResetExtraMoves();
@@ -406,6 +409,7 @@ public class LevelManager : MonoBehaviour {
         }
         
          if(CheckHasBonusMove()) {
+			Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ CHECK HAS BONUS MOVE");
             guiManager.ResetBonusMoves();
         }
 	}
