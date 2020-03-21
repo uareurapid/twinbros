@@ -122,11 +122,12 @@ public class GameManagerScript : MonoBehaviour {
     }
     
     public bool HasBonusMove() {
-        return PlayerPrefs.HasKey(GameConstants.HAS_BONUS_MOVE);
+        return PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE,0) == 1;
     }
     
     public void KillPlayer() {
         soundManager.PlayDeathSound();
+		Debug.Log("$$$$$$$$$$$$$$$$ KILL PLAYER $$$$$$$$$$$$$$$$$$ REMOVE BONUS MOVE $$$$$$$$$$$$$$$$$$$$4");
         RemoveBonusMove();
     }
 

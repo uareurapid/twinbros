@@ -86,6 +86,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 	{
 		StartBombRedAnimation();
 		yield return new WaitForSeconds(delayBeforeExplosion);
+		SoundEffectsHelper.Instance.PlayLargeExplosionSound();
 		SpecialEffectsHelper.Instance.PlayExplosionEffect(transform.position);
 
 		//only if it is in range of the explosion

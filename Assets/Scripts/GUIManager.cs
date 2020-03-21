@@ -551,6 +551,7 @@ public class GUIManager : MonoBehaviour {
         Color c = extraMovesImage[0].color;
         extraMovesImage[0].color = new Color(c.r,c.b,c.g,1);
         extraMovesImage[0].enabled = true;
+		Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ResetBonusMoves CALLED OK $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     }
 
 	public void ShowGameOver() {

@@ -201,10 +201,14 @@ public class LevelManager : MonoBehaviour {
 
 	public void DestroyAllDestroyables() {
 		foreach(GameObject obj in listOfDestroyables) {
-            Destroyable script = obj.GetComponent<Destroyable>();
-			if(script!=null && script.gameObject!=null) {
-				Destroy(script.gameObject);
+
+			if(obj!=null) {
+				Destroyable script = obj.GetComponent<Destroyable>();
+				if(script!=null && script.gameObject!=null) {
+					Destroy(script.gameObject);
+				}
 			}
+            
 			
 		}
 		listOfDestroyables.Clear();
@@ -391,20 +395,29 @@ public class LevelManager : MonoBehaviour {
 	}
     
     private bool CheckHasBonusMove() {
-        return PlayerPrefs.HasKey(GameConstants.HAS_BONUS_MOVE) && PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1;
+		Debug.Log("$$$$$$$$$$$$$$$$$ CHECK HAS BONUS MOVES: " + (PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1) );
+        return PlayerPrefs.GetInt(GameConstants.HAS_BONUS_MOVE, 0) == 1;
     }
 
 
 	private void CheckMoves() {
 
-		numMoves = CheckHasExtraMoves() ? MAX_MOVES + 2 : CheckHasBonusMove() ? MAX_MOVES + 1 : MAX_MOVES;
+		if(CheckHasExtraMoves()) {
 
-		Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ NUM MOVES " + numMoves);
+			numMoves = MAX_MOVES + 2;
+		} else if(CheckHasBonusMove()) {
+
+			numMoves = MAX_MOVES + 1;
+		}
+		else {
+			numMoves = MAX_MOVES;
+		}
+
+		Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ON CHECK MOVES, NUM MOVES " + numMoves + " HAS? " + CheckHasBonusMove());
 		guiManager.ResetRegularMoves();
 		if(hasExtraMoves || CheckHasExtraMoves()) {
 			guiManager.ResetExtraMoves();
 		} else {
-
             guiManager.DisableExtraMoves();//TODO check
         }
         
@@ -695,6 +708,7 @@ public class LevelManager : MonoBehaviour {
             
 
 		guiManager.ShowStageClearedImage();
+		SoundEffectsHelper.Instance.PlayStageClearSound();
 		StartCoroutine(HideStageClearedImage(sceneLoader));
 	}
 
