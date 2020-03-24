@@ -51,6 +51,8 @@ public class SoundEffectsHelper : MonoBehaviour
 
 	public AudioClip stageClearSound;
 
+	public AudioClip shrinkSound;
+
 	//todo credit Freesound.org - "Energy Weapon 001.wav" by DJ Chronos
 	//Freesound.org - "Medium Explosion.wav" by ryansnook
 	//Freesound.org - "Distant explosion.wav" by juskiddink
@@ -214,6 +216,11 @@ public class SoundEffectsHelper : MonoBehaviour
 	public void PlayStageClearSound()
 	{
 		MakeSound(stageClearSound);
+	}
+
+	public void PlayShrinkSound()
+	{
+		MakeSound(shrinkSound);
 	}
 
 	public static SoundEffectsHelper Instance {

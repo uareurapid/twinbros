@@ -142,6 +142,7 @@ public class EnemyBox : MonoBehaviour, HandlePlayerCollision {
 			if (shrinkScript != null)
 			{
                 bool applyShrink = false;
+                SoundEffectsHelper.Instance.PlayShrinkSound();
 
 				if (player.IsMovingUp() && CannotIgnoreUpCollision(player))
 				{
