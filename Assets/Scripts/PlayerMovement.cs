@@ -862,7 +862,7 @@ public class PlayerMovement : MonoBehaviour {
 					ignoreCollision = false;
 
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingLeft();
+                        AdjustPositionByBouncingLeft(isTile, other.gameObject);
 					}
 					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
 				}
@@ -878,7 +878,7 @@ public class PlayerMovement : MonoBehaviour {
 					//colLeft = true;
 					ignoreCollision = false;
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingRight();
+                        AdjustPositionByBouncingRight(isTile, other.gameObject);
 					}
 
 					Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
@@ -897,7 +897,7 @@ public class PlayerMovement : MonoBehaviour {
 					//colUp = true;
 					ignoreCollision = false;
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingDown();
+                        AdjustPositionByBouncingDown(isTile, other.gameObject);
                     }
 
 					Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
@@ -914,7 +914,7 @@ public class PlayerMovement : MonoBehaviour {
 					//colDown = true;
 					ignoreCollision = false;
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingUp();
+                        AdjustPositionByBouncingUp(isTile, other.gameObject);
                     }
 
 					Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
@@ -1038,7 +1038,7 @@ public class PlayerMovement : MonoBehaviour {
 
                 if (isBox || isTile || isBomb)
                 {
-                    AdjustPositionByBouncingLeft();
+                    AdjustPositionByBouncingLeft(isTile, other);
                 }
                 Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
             }
@@ -1056,7 +1056,7 @@ public class PlayerMovement : MonoBehaviour {
                 ignoreCollision = false;
                 if (isBox || isTile || isBomb)
                 {
-                    AdjustPositionByBouncingRight();
+                    AdjustPositionByBouncingRight(isTile, other);
                 }
 
                 Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
@@ -1077,7 +1077,7 @@ public class PlayerMovement : MonoBehaviour {
                 ignoreCollision = false;
                 if (isBox || isTile || isBomb)
                 {
-                    AdjustPositionByBouncingDown();
+                    AdjustPositionByBouncingDown(isTile, other);
                 }
 
                 Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
@@ -1096,7 +1096,7 @@ public class PlayerMovement : MonoBehaviour {
                 ignoreCollision = false;
                 if (isBox || isTile || isBomb)
                 {
-                    AdjustPositionByBouncingUp();
+                    AdjustPositionByBouncingUp(isTile, other);
                 }
 
                 Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
@@ -1181,32 +1181,63 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    private void AdjustPositionByBouncingLeft()
+    private void AdjustPositionByBouncingLeft(bool isTile, GameObject other)
     {
 
         Vector3 pos = transform.position;
-        transform.position = new Vector3(pos.x - bounceAdjustment, pos.y, pos.z);
+        if(isTile && LayerMask.LayerToName(other.layer).Equals("Walls"))
+        {
+			transform.position = new Vector3(pos.x - other.GetComponent<Tile>().bounceAdjustment, pos.y, pos.z);
+		}
+        else
+        {
+			transform.position = new Vector3(pos.x - bounceAdjustment, pos.y, pos.z);
+		}
     }
 
-    private void AdjustPositionByBouncingRight()
+    private void AdjustPositionByBouncingRight(bool isTile, GameObject other)
     {
 
         Vector3 pos = transform.position;
-        transform.position = new Vector3(pos.x + bounceAdjustment, pos.y, pos.z);
+		if (isTile && LayerMask.LayerToName(other.layer).Equals("Walls"))
+		{
+			transform.position = new Vector3(pos.x + other.GetComponent<Tile>().bounceAdjustment, pos.y, pos.z);
+		}
+        else
+        {
+			transform.position = new Vector3(pos.x + bounceAdjustment, pos.y, pos.z);
+		}
+			
     }
 
-    private void AdjustPositionByBouncingUp()
+    private void AdjustPositionByBouncingUp(bool isTile, GameObject other)
     {
 
         Vector3 pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y + bounceAdjustment, pos.z);
+		if (isTile && LayerMask.LayerToName(other.layer).Equals("Walls"))
+		{
+			transform.position = new Vector3(pos.x, pos.y + other.GetComponent<Tile>().bounceAdjustment, pos.z);
+		}
+        else
+        {
+			transform.position = new Vector3(pos.x, pos.y + bounceAdjustment, pos.z);
+		}
+			
     }
 
-    private void AdjustPositionByBouncingDown()
+    private void AdjustPositionByBouncingDown(bool isTile, GameObject other)
     {
 
         Vector3 pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y - bounceAdjustment, pos.z);
+		if (isTile && LayerMask.LayerToName(other.layer).Equals("Walls"))
+		{
+			transform.position = new Vector3(pos.x, pos.y - other.GetComponent<Tile>().bounceAdjustment, pos.z);
+		}
+        else
+        {
+			transform.position = new Vector3(pos.x, pos.y - bounceAdjustment, pos.z);
+		}
+			
     }
 
 

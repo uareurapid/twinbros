@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 
 	public bool hasPlayer = false;
 
+	public float bounceAdjustment = 0.045f; //half of player bounce = 0.09
+
 	// Use this for initialization
 	void Start () {
 		

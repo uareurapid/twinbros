@@ -940,6 +940,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &9911687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2667,6 +2668,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &24088806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2754,6 +2756,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &26459982
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2931,6 +2934,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &28261538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3194,6 +3198,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &30605081
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3940,6 +3945,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &37363216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5080,6 +5086,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &57024391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5570,6 +5577,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &60707460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6151,6 +6159,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &68962613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6590,6 +6599,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &71895307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6615,7 +6625,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &71895308
 SpriteRenderer:
@@ -6911,6 +6921,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &76755787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7206,6 +7217,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &77665125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7878,6 +7890,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &82084229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8301,6 +8314,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &90489537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8676,6 +8690,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &97212962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9651,6 +9666,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &111093045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10613,6 +10629,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &128417054
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10826,6 +10843,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &128705697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11081,6 +11099,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &130871707
 Rigidbody2D:
   serializedVersion: 4
@@ -11354,6 +11373,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &133111226
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11834,6 +11854,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &138533440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11972,6 +11993,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &141304504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12910,6 +12932,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &150424175
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13993,6 +14016,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &160928079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14898,6 +14922,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &172168705
 Rigidbody2D:
   serializedVersion: 4
@@ -15143,6 +15168,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &173545147
 GameObject:
   m_ObjectHideFlags: 0
@@ -16936,6 +16962,11 @@ PrefabInstance:
     - target: {fileID: 8734394455942807824, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61627491215914310, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -20978,6 +21009,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &192074746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22413,6 +22445,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &210163205
 GameObject:
   m_ObjectHideFlags: 0
@@ -22745,6 +22778,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &212525931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23262,6 +23296,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &215976645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23413,6 +23448,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &216175871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24816,6 +24852,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &229753972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25385,6 +25422,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &235779420
 GameObject:
   m_ObjectHideFlags: 0
@@ -25719,6 +25757,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &243153974
 Rigidbody2D:
   serializedVersion: 4
@@ -26856,6 +26895,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &257177545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26881,7 +26921,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &257177546
 SpriteRenderer:
@@ -27437,6 +27477,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &262075368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28339,6 +28380,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &271668540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29098,6 +29140,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &280933313
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29797,6 +29840,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 1
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &289074925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30694,6 +30738,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &296495936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31020,6 +31065,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &301501624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31780,6 +31826,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &311793891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32292,6 +32339,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &316418085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32426,6 +32474,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &316884224
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34073,6 +34122,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &341024660
 GameObject:
   m_ObjectHideFlags: 0
@@ -34969,6 +35019,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &351248014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35339,6 +35390,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &352804040
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36018,6 +36070,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &357866728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37851,6 +37904,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &373656169
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38487,6 +38541,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &380035184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39215,6 +39270,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &386146676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39780,6 +39836,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &389059503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40105,6 +40162,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &394407813
 GameObject:
   m_ObjectHideFlags: 0
@@ -40347,6 +40405,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &397401564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42744,6 +42803,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &414676528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44021,6 +44081,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &426790094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44155,6 +44216,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &427026515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44777,6 +44839,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &432889835
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44911,6 +44974,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &433943485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45119,6 +45183,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &436528378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46094,6 +46159,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &442216814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46521,6 +46587,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &453982458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46873,6 +46940,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &455536071
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47814,6 +47882,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &467243346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48370,6 +48439,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &471288448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48613,6 +48683,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &474908138
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48868,6 +48939,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &476085311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48893,7 +48965,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &476085312
 SpriteRenderer:
@@ -49426,6 +49498,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &481434540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50022,6 +50095,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &490002689
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50891,6 +50965,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &497687865
 Rigidbody2D:
   serializedVersion: 4
@@ -51176,6 +51251,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &502763456
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51465,6 +51541,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &503725706
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53508,6 +53585,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &525833239
 GameObject:
   m_ObjectHideFlags: 0
@@ -53566,6 +53644,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &525833242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53700,6 +53779,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &527519667
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53834,6 +53914,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &529135056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55396,9 +55477,159 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b18e37fa0dee64cb783cbcf2832e55ee,
         type: 3}
+    - target: {fileID: 4645893323103605693, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300263100931787793, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1407804366276314, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554982391748758263, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073741906018657569, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322008169672933213, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620900069862631180, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050184035852518370, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814638069409449503, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 835915969206278233, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887549805185763791, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701988837659770177, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122069330213594951, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507136224529898987, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191848443748801679, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1240433660592231932, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796871927939856519, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230156084606718874, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386056559819199832, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4326739317630768492, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844612249059640366, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 775118903327707363, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323848289243184113, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528508000500340094, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467656259174944273, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086532605452462395, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719703539373569087, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988779909381914983, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548260307846325654, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891285255136844587, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3907177639076179308, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
@@ -59441,6 +59672,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &545652844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -59662,6 +59894,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &548438695
 Rigidbody2D:
   serializedVersion: 4
@@ -60075,6 +60308,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &555442144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60210,6 +60444,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &555844851
 Rigidbody2D:
   serializedVersion: 4
@@ -60649,6 +60884,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &558437995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60900,6 +61136,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &560977575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -61764,6 +62001,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &572257456
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -62616,6 +62854,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &579282231
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63443,6 +63682,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &591616988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64136,6 +64376,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &596571008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64842,6 +65083,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &604151546
 GameObject:
   m_ObjectHideFlags: 0
@@ -65021,6 +65263,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &605761844
 Rigidbody2D:
   serializedVersion: 4
@@ -66420,6 +66663,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &622784695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -66835,6 +67079,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &627306994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67089,6 +67334,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &628595639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67794,6 +68040,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &636086336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -68529,6 +68776,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &642488575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69690,6 +69938,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &652079246
 GameObject:
   m_ObjectHideFlags: 0
@@ -70308,6 +70557,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &657781448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71989,6 +72239,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &675231355
 Rigidbody2D:
   serializedVersion: 4
@@ -72635,6 +72886,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &680579288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -73989,6 +74241,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &694672144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75168,6 +75421,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &706053681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75387,6 +75641,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &708779016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75814,6 +76069,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &717445960
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77051,6 +77307,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &729884928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77430,6 +77687,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &738200757
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77963,6 +78221,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &740820884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79361,6 +79620,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &754687752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81116,6 +81376,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &779878318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81375,6 +81636,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &780710432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82763,6 +83025,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &793965599
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83200,6 +83463,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &796232663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84621,6 +84885,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &814044833
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85631,6 +85896,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &825260330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85765,6 +86031,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &826534889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86194,6 +86461,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &829779387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -88429,6 +88697,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &852344445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89831,6 +90100,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &866511840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90127,6 +90397,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &870285315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91418,6 +91689,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &884058901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92144,6 +92416,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &890295232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92169,7 +92442,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &890295233
 SpriteRenderer:
@@ -92295,6 +92568,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &894102906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -93143,6 +93417,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &906769845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -93743,6 +94018,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &911546758
 Rigidbody2D:
   serializedVersion: 4
@@ -94284,6 +94560,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &917064858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -95628,6 +95905,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &931589548
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96527,6 +96805,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &945636929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -97067,6 +97346,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &948392444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -97478,6 +97758,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &952468746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -97765,6 +98046,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &954604722
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98313,6 +98595,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &962972325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98567,6 +98850,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &964891678
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100798,6 +101082,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &986192783
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -101636,7 +101921,7 @@ MonoBehaviour:
   currentLevel: {fileID: 747059181}
   respawnLevel: {fileID: 747059181}
   currentStageFirstLevel: {fileID: 747059181}
-  debugLevel: {fileID: 1348278068}
+  debugLevel: {fileID: 180800877}
   stage: 2
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
@@ -102804,6 +103089,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &997807896
 GameObject:
   m_ObjectHideFlags: 0
@@ -103413,6 +103699,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1001443222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -104100,6 +104387,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1011345742
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105197,6 +105485,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1019068355
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105350,6 +105639,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1020020961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105746,6 +106036,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1022395378
 GameObject:
   m_ObjectHideFlags: 0
@@ -105804,6 +106095,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1022395381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105938,6 +106230,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1023802705
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -106376,6 +106669,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1025721355
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -106770,6 +107064,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1027361680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107240,6 +107535,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1029782342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108210,6 +108506,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1040380005
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108572,6 +108869,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1041822878
 Rigidbody2D:
   serializedVersion: 4
@@ -108854,6 +109152,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1044668691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109556,6 +109855,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1053619862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111271,6 +111571,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1072834572
 GameObject:
   m_ObjectHideFlags: 0
@@ -111422,6 +111723,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1073083026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111633,6 +111935,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1074059186
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111767,6 +112070,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1075397095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112286,6 +112590,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1081138046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112544,6 +112849,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1083092377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112885,6 +113191,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1086332537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113090,6 +113397,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1088246311
 GameObject:
   m_ObjectHideFlags: 0
@@ -113339,6 +113647,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1089748289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113473,6 +113782,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1090533115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114005,6 +114315,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1097387172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114137,6 +114448,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1097608628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115000,6 +115312,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1101578318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115129,6 +115442,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1102881296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117348,6 +117662,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1130850898
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117500,6 +117815,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1136265156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117754,6 +118070,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1138583539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118787,6 +119104,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1145674042
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -119425,6 +119743,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1150479924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -119775,6 +120094,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1158135831
 GameObject:
   m_ObjectHideFlags: 0
@@ -120146,6 +120466,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1164085255
 Rigidbody2D:
   serializedVersion: 4
@@ -120989,6 +121310,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1170348066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122363,6 +122685,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1187593685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122982,6 +123305,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1197413178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123116,6 +123440,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1198874606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123321,6 +123646,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1201161590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123696,6 +124022,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1204727380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123960,6 +124287,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1208618432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124100,6 +124428,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1209412884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124545,6 +124874,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1219133926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125254,6 +125584,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1227083502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125531,6 +125862,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1229189046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126662,6 +126994,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1241253517
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127226,6 +127559,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1244293023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127622,6 +127956,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1247568366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127840,6 +128175,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1250724327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -128403,6 +128739,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1254759026
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129162,6 +129499,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1265509687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129733,6 +130071,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1272041403
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130291,6 +130630,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1275598882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130829,6 +131169,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1278813747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132523,6 +132864,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1294168940
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132968,6 +133310,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1296346275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134215,6 +134558,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1310373471
 Rigidbody2D:
   serializedVersion: 4
@@ -134633,6 +134977,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1315077674
 GameObject:
   m_ObjectHideFlags: 0
@@ -135338,6 +135683,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1325702921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135544,6 +135890,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1328195332
 Rigidbody2D:
   serializedVersion: 4
@@ -136503,6 +136850,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1334044164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136637,6 +136985,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1334497752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137011,6 +137360,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1338786572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137717,6 +138067,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1344830336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137922,6 +138273,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1347516923
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138935,6 +139287,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b18e37fa0dee64cb783cbcf2832e55ee,
         type: 3}
+    - target: {fileID: 557426175243745710, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469436774112964014, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721854050678403920, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1127212184636366, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -138995,11 +139362,6 @@ PrefabInstance:
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 557426175243745710, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3780960526328864332, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
@@ -139045,11 +139407,6 @@ PrefabInstance:
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2469436774112964014, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6949989057180341270, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
@@ -139081,11 +139438,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2322008169672933213, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2721854050678403920, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -143453,6 +143805,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1361174416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144356,6 +144709,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!4 &1367121863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4031632970401728, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -144994,6 +145348,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1374986849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145376,6 +145731,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1376270972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145893,6 +146249,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1382360042
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146024,6 +146381,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1382484626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147226,6 +147584,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1391252292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147781,6 +148140,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1396739801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148475,6 +148835,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1404254111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149287,6 +149648,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1411245886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150855,6 +151217,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1426164710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151314,6 +151677,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1430239659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151726,6 +152090,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1436295790
 GameObject:
   m_ObjectHideFlags: 0
@@ -152365,6 +152730,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1441455957
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152916,6 +153282,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1445808893
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153244,6 +153611,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1448406400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153689,6 +154057,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1450035299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153965,6 +154334,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1451951311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154817,6 +155187,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1459024726
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155071,6 +155442,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1462734914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -156466,6 +156838,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b18e37fa0dee64cb783cbcf2832e55ee,
         type: 3}
+    - target: {fileID: 4645893323103605693, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7375410246444240347, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1704218547659689040, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300263100931787793, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116012714372313226, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1559935504191666, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_TagString
       value: Enemy
@@ -156491,7 +156888,42 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4645893323103605693, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+    - target: {fileID: 5677472363049931239, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5732228374704573908, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866591613519031702, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419815012086772087, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358401520445431467, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322008169672933213, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 262006510409766400, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922691477860188039, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -156531,17 +156963,7 @@ PrefabInstance:
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7375410246444240347, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8620900069862631180, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5677472363049931239, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -156556,27 +156978,7 @@ PrefabInstance:
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5732228374704573908, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1704218547659689040, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6866591613519031702, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6814638069409449503, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5419815012086772087, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -156591,11 +156993,6 @@ PrefabInstance:
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4300263100931787793, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1838378862496878286, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
@@ -156606,32 +157003,12 @@ PrefabInstance:
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4358401520445431467, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2322008169672933213, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116012714372313226, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6353255993069069626, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6775876564842385091, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 262006510409766400, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -156647,11 +157024,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6342531428185775101, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5922691477860188039, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -160853,6 +161225,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1486007617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164859,6 +165232,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1489898342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165894,6 +166268,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1501833083
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166107,6 +166482,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1502190193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167181,6 +167557,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1511533346
 GameObject:
   m_ObjectHideFlags: 0
@@ -168258,6 +168635,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1519764734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -168283,7 +168661,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9524956, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &1519764735
 SpriteRenderer:
@@ -169408,6 +169786,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1530800882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169542,6 +169921,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1533058131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169676,6 +170056,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1534141245
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169811,6 +170192,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1534345362
 Rigidbody2D:
   serializedVersion: 4
@@ -169965,6 +170347,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1534560981
 Rigidbody2D:
   serializedVersion: 4
@@ -170529,6 +170912,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1538688112
 Rigidbody2D:
   serializedVersion: 4
@@ -170685,6 +171069,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1539186482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171093,6 +171478,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1544311810
 Rigidbody2D:
   serializedVersion: 4
@@ -171486,6 +171872,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1545829325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172567,6 +172954,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1554958937
 GameObject:
   m_ObjectHideFlags: 0
@@ -173010,6 +173398,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1558504971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173769,6 +174158,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1567142943
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174845,6 +175235,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1578221274
 GameObject:
   m_ObjectHideFlags: 0
@@ -175133,6 +175524,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1583744819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175737,6 +176129,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1589495329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178125,6 +178518,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1619983024
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178376,6 +178770,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1622596437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178510,6 +178905,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1627125286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179161,6 +179557,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1629044996
 Rigidbody2D:
   serializedVersion: 4
@@ -179476,6 +179873,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1629899555
 Rigidbody2D:
   serializedVersion: 4
@@ -179824,6 +180222,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1631377050
 Rigidbody2D:
   serializedVersion: 4
@@ -180672,6 +181071,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1638036801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181940,6 +182340,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1656919522
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182074,6 +182475,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1657816494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182402,6 +182804,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1660581983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -183861,6 +184264,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1681509233
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184628,6 +185032,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1689280918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186516,6 +186921,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1709811826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187524,6 +187930,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1721002373
 Rigidbody2D:
   serializedVersion: 4
@@ -188134,6 +188541,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1726503619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188410,6 +188818,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1727795420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188736,6 +189145,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1728234221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189489,6 +189899,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1731773662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189765,6 +190176,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1734873098
 GameObject:
   m_ObjectHideFlags: 0
@@ -189977,6 +190389,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1736515662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190252,6 +190665,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1738355285
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190506,6 +190920,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1739117662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190831,6 +191246,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1741101844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190965,6 +191381,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1741265936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191099,6 +191516,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1742595946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191460,6 +191878,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1744840419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192924,6 +193343,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1757288137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193301,6 +193721,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1761787883
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193851,6 +194272,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1766344827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -194776,6 +195198,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1773517274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195853,6 +196276,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1789550788
 GameObject:
   m_ObjectHideFlags: 0
@@ -196913,6 +197337,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1799400305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197018,6 +197443,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1801593421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197152,6 +197578,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1801833941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197621,6 +198048,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1806531589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199015,6 +199443,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1820325607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199338,6 +199767,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1824300172
 GameObject:
   m_ObjectHideFlags: 0
@@ -199756,6 +200186,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1824656768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200013,6 +200444,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1826336685
 Rigidbody2D:
   serializedVersion: 4
@@ -201120,6 +201552,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1836281158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201533,6 +201966,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1844223291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202218,6 +202652,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1850349045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202941,6 +203376,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1856057822
 Rigidbody2D:
   serializedVersion: 4
@@ -203408,6 +203844,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1862296801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -203610,6 +204047,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1862646543
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -203982,6 +204420,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1865904432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204332,6 +204771,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1871970328
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204989,6 +205429,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1880545829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205598,6 +206039,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1888081263
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205732,6 +206174,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1888872841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205873,6 +206316,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1891753963
 Rigidbody2D:
   serializedVersion: 4
@@ -206767,6 +207211,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1901398069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207117,6 +207562,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1905724922
 GameObject:
   m_ObjectHideFlags: 0
@@ -207434,6 +207880,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1907410900
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209075,6 +209522,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1929845378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209873,6 +210321,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1937423322
 GameObject:
   m_ObjectHideFlags: 0
@@ -209931,6 +210380,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1937423325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210243,6 +210693,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1939112796
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210565,6 +211016,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1944267033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210695,6 +211147,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1945123809
 Rigidbody2D:
   serializedVersion: 4
@@ -211842,6 +212295,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1955761328
 Rigidbody2D:
   serializedVersion: 4
@@ -212252,6 +212706,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1963132832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -214603,6 +215058,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1980215461
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -214975,6 +215431,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1981837588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215781,6 +216238,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1994223262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -216405,6 +216863,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2006134266
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -217098,6 +217557,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2010276214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221052,6 +221512,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2035290607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221302,6 +221763,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2036379762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222076,6 +222538,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2043818639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222785,6 +223248,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2050253519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222810,7 +223274,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &2050253520
 SpriteRenderer:
@@ -222936,6 +223400,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2050809442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -223792,6 +224257,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2061606779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226970,6 +227436,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2095289298
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227104,6 +227571,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2097919911
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227429,6 +227897,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2099759648
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227923,6 +228392,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2105669531
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -228951,6 +229421,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2116607686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -229893,6 +230364,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &2125783852
 GameObject:
   m_ObjectHideFlags: 0
@@ -229952,6 +230424,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &2125783855
 Rigidbody2D:
   serializedVersion: 4
@@ -230108,6 +230581,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2125974015
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -230288,6 +230762,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &2127838688
 Rigidbody2D:
   serializedVersion: 4
@@ -230787,6 +231262,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2130074139
 BoxCollider2D:
   m_ObjectHideFlags: 0
