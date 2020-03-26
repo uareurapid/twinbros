@@ -473,8 +473,7 @@ public class GUIManager : MonoBehaviour {
             level = 0;
 
         }
-
-        if(level < 10)
+        else if(level < 10)
         {
             stageLocal = levelManager.stage - 1;
         } else
