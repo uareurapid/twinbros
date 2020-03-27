@@ -1084,6 +1084,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &9911687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1528,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &11863471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2882,6 +2883,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &24088806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3126,6 +3128,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &26459982
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3258,6 +3261,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &28261538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3521,6 +3525,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &30605081
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3642,7 +3647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &31296173
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3762,7 +3767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &32679478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3956,7 +3961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &34098429
 GameObject:
   m_ObjectHideFlags: 0
@@ -4354,6 +4359,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &37773059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5646,6 +5652,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &57024391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6091,6 +6098,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &60707460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6746,6 +6754,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &68962613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6941,7 +6950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &70935821
 GameObject:
   m_ObjectHideFlags: 0
@@ -7087,6 +7096,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &71895307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7460,6 +7470,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &76755787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7714,6 +7725,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &77665125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8294,6 +8306,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &82084229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8717,6 +8730,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &90489537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9161,6 +9175,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &97212962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10066,6 +10081,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &111093045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10378,7 +10394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &117905392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10701,7 +10717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &123721583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11103,6 +11119,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &128417054
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11316,6 +11333,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &128705697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11571,6 +11589,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &130871707
 Rigidbody2D:
   serializedVersion: 4
@@ -11844,6 +11863,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &133111226
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12382,6 +12402,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &138533440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12526,6 +12547,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &141304504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13162,6 +13184,16 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2652168952150711024, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
@@ -13613,6 +13645,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &150424175
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14859,6 +14892,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &160928079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15725,6 +15759,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &172168705
 Rigidbody2D:
   serializedVersion: 4
@@ -15970,6 +16005,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &173545147
 GameObject:
   m_ObjectHideFlags: 0
@@ -21042,7 +21078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!4 &183543227
 Transform:
   m_ObjectHideFlags: 0
@@ -21784,6 +21820,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &192074746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23277,6 +23314,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &210163205
 GameObject:
   m_ObjectHideFlags: 0
@@ -23616,6 +23654,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &212525931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24190,6 +24229,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &215976645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24341,6 +24381,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &216175871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26120,6 +26161,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &229753972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26392,7 +26434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &231300255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26625,6 +26667,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &235779420
 GameObject:
   m_ObjectHideFlags: 0
@@ -26923,6 +26966,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &243153974
 Rigidbody2D:
   serializedVersion: 4
@@ -28256,6 +28300,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &257177545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28836,6 +28881,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &262075368
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29837,6 +29883,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &271668540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30492,6 +30539,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &280933313
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31483,6 +31531,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &289074925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32407,6 +32456,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &296495936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32837,6 +32887,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &301501624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33086,7 +33137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &303437911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33551,6 +33602,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &311793891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34079,6 +34131,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &316418085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34213,6 +34266,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &316884224
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35776,6 +35830,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!114 &340996530 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114752050944195202, guid: dc208996ff7124707a077858109d1491,
@@ -36024,7 +36079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &342840877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36694,6 +36749,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &351248014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37017,6 +37073,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &352804040
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37041,7 +37098,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9202962}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &352804041
 SpriteRenderer:
@@ -37753,6 +37810,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &357866728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39536,6 +39594,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &373656169
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40247,6 +40306,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &380035184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41101,6 +41161,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &386531623
 GameObject:
   m_ObjectHideFlags: 0
@@ -41615,6 +41676,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &389059503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41980,6 +42042,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &394407813
 GameObject:
   m_ObjectHideFlags: 0
@@ -42228,6 +42291,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &397401564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42423,7 +42487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &399454793
 GameObject:
   m_ObjectHideFlags: 0
@@ -44520,6 +44584,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &414676528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45809,6 +45874,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &426790094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45943,6 +46009,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &427026515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46520,6 +46587,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &432889835
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46654,6 +46722,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &433943485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46862,6 +46931,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &436528378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47792,6 +47862,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &442216814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48184,6 +48255,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &453982458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48444,6 +48516,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &455536071
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -48802,7 +48875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &460232371
 GameObject:
   m_ObjectHideFlags: 0
@@ -49281,6 +49354,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &467243346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49659,7 +49733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &470211696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49792,6 +49866,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &471288448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50017,6 +50092,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &474908138
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50333,6 +50409,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &476085311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50886,6 +50963,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &481434540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51601,6 +51679,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &490002689
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52415,6 +52494,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &497687865
 Rigidbody2D:
   serializedVersion: 4
@@ -52836,6 +52916,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &502763456
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53098,6 +53179,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &503725706
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55386,6 +55468,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &525833239
 GameObject:
   m_ObjectHideFlags: 0
@@ -55444,6 +55527,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &525833242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55578,6 +55662,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &527519667
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55712,6 +55797,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &529135056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56635,7 +56721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1001 &541533317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57441,6 +57527,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2ad2a6a11977b464c977b27ca7edffa0,
         type: 3}
+    - target: {fileID: 61991019321827852, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1407804366276314, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -57451,11 +57542,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61759464947298890, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61991019321827852, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -61495,6 +61581,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &545652844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -61705,6 +61792,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &548438695
 Rigidbody2D:
   serializedVersion: 4
@@ -62226,6 +62314,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &555442144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -62361,6 +62450,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &555844851
 Rigidbody2D:
   serializedVersion: 4
@@ -62765,6 +62855,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &558437995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63016,6 +63107,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &560977575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63827,6 +63919,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &572257456
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64702,6 +64795,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &579282231
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -65426,7 +65520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &585090677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -65838,6 +65932,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &591616988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -66623,6 +66718,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &596918882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67364,6 +67460,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!4 &602858387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4636433866327954, guid: 272a51e30fb244a64a4ba1e639d660eb,
@@ -67611,6 +67708,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &605761844
 Rigidbody2D:
   serializedVersion: 4
@@ -69059,7 +69157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &621588683
 GameObject:
   m_ObjectHideFlags: 0
@@ -69288,6 +69386,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &622784695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -69767,6 +69866,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &627306994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70033,6 +70133,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &628595639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70738,6 +70839,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &636086336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71705,6 +71807,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &643120407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72310,7 +72413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &645331240
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72872,6 +72975,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &652079246
 GameObject:
   m_ObjectHideFlags: 0
@@ -73130,7 +73234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &655343669
 GameObject:
   m_ObjectHideFlags: 0
@@ -73543,6 +73647,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &657781448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75187,6 +75292,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &675231355
 Rigidbody2D:
   serializedVersion: 4
@@ -75595,7 +75701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &680474611
 GameObject:
   m_ObjectHideFlags: 0
@@ -75741,6 +75847,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &680579288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77184,6 +77291,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &694672144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78397,6 +78505,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &705726902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78573,7 +78682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1001 &706937562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78830,6 +78939,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &708779016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79216,6 +79326,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &717445960
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -80401,6 +80512,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &729884928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -80802,6 +80914,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &738200757
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81244,6 +81357,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &740820884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82823,6 +82937,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &754687752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83815,7 +83930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &769115659
 GameObject:
   m_ObjectHideFlags: 0
@@ -84406,6 +84521,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &779878318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84614,6 +84730,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &780710432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86226,6 +86343,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &793965599
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86674,6 +86792,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &796232663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -88231,6 +88350,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &814044833
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89330,6 +89450,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &825260330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89464,6 +89585,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &826534889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89880,6 +90002,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &829779387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92075,6 +92198,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &852344445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92374,6 +92498,16 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2652168952150711024, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
@@ -93823,6 +93957,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &866511840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94176,6 +94311,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &870285315
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94584,7 +94720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &875314984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -95001,7 +95137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &883678652
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95521,6 +95657,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &884058901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96372,6 +96509,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &890295232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96397,7 +96535,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!212 &890295233
 SpriteRenderer:
@@ -96600,6 +96738,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &894102906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -97436,6 +97575,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &906769845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98048,6 +98188,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &911546758
 Rigidbody2D:
   serializedVersion: 4
@@ -98456,6 +98597,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &917064858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99400,7 +99542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &925748309
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99755,6 +99897,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &931589548
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100569,6 +100712,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &945636929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -101146,6 +101290,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &948392444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -101520,6 +101665,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &952468746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -101807,6 +101953,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &954604722
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -102338,6 +102485,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &962972325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -102592,6 +102740,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &964891678
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -105069,6 +105218,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &986192783
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -106963,6 +107113,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &997807896
 GameObject:
   m_ObjectHideFlags: 0
@@ -107176,7 +107327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &999095644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107531,6 +107682,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1001443222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108247,7 +108399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1008091414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108380,6 +108532,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1011345742
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109647,6 +109800,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1019068355
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109731,6 +109885,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1020020961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110127,6 +110282,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1022276827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110254,6 +110410,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1022395381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110388,6 +110545,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1023802705
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110857,6 +111015,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1025721355
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111182,6 +111341,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1027361680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111652,6 +111812,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1029782342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112001,6 +112162,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
@@ -112442,7 +112613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!114 &1038954024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112638,6 +112809,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1040380005
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112955,6 +113127,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1041822878
 Rigidbody2D:
   serializedVersion: 4
@@ -113249,6 +113422,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1044668691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113886,6 +114060,16 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2652168952150711024, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
@@ -114275,6 +114459,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1053619862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -116034,6 +116219,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1072834572
 GameObject:
   m_ObjectHideFlags: 0
@@ -116185,6 +116371,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1073648521
 GameObject:
   m_ObjectHideFlags: 0
@@ -116347,6 +116534,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1074059186
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -116493,6 +116681,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1075397095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117170,6 +117359,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1081138046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117495,6 +117685,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1083092377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117893,6 +118084,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1086332537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118098,6 +118290,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!4 &1087655009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4121092393463882, guid: 08d4f0887ec4348e98a5a433c1757e98,
@@ -118422,6 +118615,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1089748289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118618,6 +118812,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1090533115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118739,7 +118934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1090712621
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -119162,7 +119357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1097387169
 GameObject:
   m_ObjectHideFlags: 0
@@ -119218,6 +119413,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1097387172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -119350,6 +119546,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1097608628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120291,6 +120488,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1101578318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120375,6 +120573,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1102881296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120690,7 +120889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1103445126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1606508246861192, guid: f5d6e53f2e9204bf4aae5d18a922b1c2,
@@ -120803,7 +121002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1104146849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -121477,7 +121676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!4 &1110919869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4698193236135542, guid: 187851dcf04e94c5aa20c860497756a8,
@@ -122908,6 +123107,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1130850898
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123189,6 +123389,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1136265156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123557,6 +123758,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1138583539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124081,7 +124283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1142947033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124454,6 +124656,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1145674042
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125098,6 +125301,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1150479924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125460,6 +125664,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1153744120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126056,6 +126261,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1164085255
 Rigidbody2D:
   serializedVersion: 4
@@ -126841,7 +127047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1168730290
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126974,6 +127180,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1170348066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127826,7 +128033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1178549225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -128562,6 +128769,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1187593685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129256,6 +129464,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1197413178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129390,6 +129599,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1198874606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129601,6 +129811,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1201161590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129953,6 +130164,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1204727380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130172,6 +130384,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1208618432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130306,6 +130519,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1209412884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131073,6 +131287,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1219133926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131821,6 +132036,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1227083502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132104,6 +132320,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1229189046
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132726,7 +132943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1233516829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133202,6 +133419,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1241253517
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133792,6 +134010,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1244293023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134250,6 +134469,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1247568366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134534,6 +134754,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1250724327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135097,6 +135318,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1254759026
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135879,6 +136101,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1265509687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136507,6 +136730,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1272041403
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136628,7 +136852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1272833453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -136802,7 +137026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1273918115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136964,6 +137188,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1275598882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137502,6 +137727,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1278813747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139185,6 +139411,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1294168940
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139497,7 +139724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1295573680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139630,6 +139857,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1296346275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140877,6 +141105,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1310373471
 Rigidbody2D:
   serializedVersion: 4
@@ -141429,6 +141658,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1315077674
 GameObject:
   m_ObjectHideFlags: 0
@@ -141474,7 +141704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1315077677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142106,6 +142336,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1325702921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142426,6 +142657,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1328195332
 Rigidbody2D:
   serializedVersion: 4
@@ -143272,6 +143504,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1334044164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143406,6 +143639,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1334497752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143847,6 +144081,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1338786572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144506,6 +144741,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1344830336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144745,6 +144981,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1347516923
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149903,7 +150140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1359399972
 GameObject:
   m_ObjectHideFlags: 0
@@ -150284,6 +150521,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1361174416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151187,6 +151425,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!4 &1367121863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4031632970401728, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -151859,6 +152098,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1374986849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152196,6 +152436,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1376270972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152596,6 +152837,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1382360042
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152727,6 +152969,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1382484626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153986,6 +154229,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1391252292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154555,6 +154799,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1396739801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155330,6 +155575,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1404254111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -156074,6 +156320,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1411245886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157549,6 +157796,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1426164710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158007,6 +158255,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1430239659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158495,6 +158744,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1436295790
 GameObject:
   m_ObjectHideFlags: 0
@@ -159135,6 +159385,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1441455957
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159591,6 +159842,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1445808893
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160016,6 +160268,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1448406400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160508,7 +160761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1449718182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160593,6 +160846,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1450035299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160869,6 +161123,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1451951311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -161568,6 +161823,16 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2652168952150711024, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
@@ -161932,6 +162197,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1459024726
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162248,6 +162514,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1462734914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163703,6 +163970,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61959689395316150, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4111287563565580, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -163723,11 +163995,6 @@ PrefabInstance:
     - target: {fileID: 1629945958494800, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_TagString
       value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 61959689395316150, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1459471108475612, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_TagString
@@ -168102,6 +168369,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1486007617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172091,6 +172359,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1489898342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172999,7 +173268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1501073053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173183,6 +173452,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1501833083
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173396,6 +173666,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1502190193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174135,7 +174406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1508313800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174482,6 +174753,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1511533346
 GameObject:
   m_ObjectHideFlags: 0
@@ -175289,7 +175561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1518289014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -175563,6 +175835,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1519764734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175946,7 +176219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1521209869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -176612,6 +176885,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1530800882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176828,6 +177102,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1533058131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177019,6 +177294,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1534141245
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177154,6 +177430,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1534345362
 Rigidbody2D:
   serializedVersion: 4
@@ -177308,6 +177585,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1534560981
 Rigidbody2D:
   serializedVersion: 4
@@ -177887,6 +178165,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1538688112
 Rigidbody2D:
   serializedVersion: 4
@@ -178043,6 +178322,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1539186482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178479,6 +178759,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1544311810
 Rigidbody2D:
   serializedVersion: 4
@@ -178929,6 +179210,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1545829325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179948,6 +180230,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1554538037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180460,6 +180743,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1558504971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181144,7 +181428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1001 &1566857306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181265,6 +181549,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1567142943
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181580,7 +181865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1569445655
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182306,6 +182591,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1578221274
 GameObject:
   m_ObjectHideFlags: 0
@@ -182673,6 +182959,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1583744819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -183277,6 +183564,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1589495329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185800,6 +186088,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1619983024
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186045,6 +186334,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1622596437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186179,6 +186469,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1627125286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186300,7 +186591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1628321753
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -186790,7 +187081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1628829372
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -186924,6 +187215,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1629044996
 Rigidbody2D:
   serializedVersion: 4
@@ -187081,6 +187373,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1629899555
 Rigidbody2D:
   serializedVersion: 4
@@ -187429,6 +187722,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1631377050
 Rigidbody2D:
   serializedVersion: 4
@@ -188299,6 +188593,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1638036801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189067,7 +189362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1649986141
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189920,6 +190215,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1656919522
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190054,6 +190350,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1657816494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190439,6 +190736,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1660581983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191985,6 +192283,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1681509233
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192226,7 +192525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1683525884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -192727,6 +193026,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1689280918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193358,7 +193658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1696411691
 GameObject:
   m_ObjectHideFlags: 0
@@ -193478,7 +193778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1696690516
 GameObject:
   m_ObjectHideFlags: 0
@@ -194252,7 +194552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1706974087
 GameObject:
   m_ObjectHideFlags: 0
@@ -194684,6 +194984,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1709811826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195795,6 +196096,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1721002373
 Rigidbody2D:
   serializedVersion: 4
@@ -196484,7 +196786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1726503616
 GameObject:
   m_ObjectHideFlags: 0
@@ -196543,6 +196845,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1726503619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196825,6 +197128,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1727795420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197151,6 +197455,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1728234221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197725,7 +198030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1730103732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198155,6 +198460,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1731773662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198431,6 +198737,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1734873098
 GameObject:
   m_ObjectHideFlags: 0
@@ -198700,6 +199007,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1736515662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198930,6 +199238,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1738355285
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199241,6 +199550,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1739117662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199566,6 +199876,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1741101844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199700,6 +200011,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1741265936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199834,6 +200146,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1742595946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200195,6 +200508,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1744840419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200892,7 +201206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1751087092
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -201887,6 +202201,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1757288137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202449,6 +202764,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1761787883
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202949,6 +203265,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1766344827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -203565,7 +203882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1767996938
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204060,6 +204377,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1773517274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204645,7 +204963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1782437934
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -204765,7 +205083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1784502459
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205087,6 +205405,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 226809169326124975, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
         type: 3}
       propertyPath: m_SortingOrder
@@ -205349,6 +205677,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1789550788
 GameObject:
   m_ObjectHideFlags: 0
@@ -206315,6 +206644,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1799159414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206435,6 +206765,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1801593421
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206569,6 +206900,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1801833941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206993,6 +207325,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1806531589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208499,6 +208832,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1820325607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208775,6 +209109,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1001 &1822979019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209284,6 +209619,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1824656768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209496,6 +209832,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1826336685
 Rigidbody2D:
   serializedVersion: 4
@@ -210577,7 +210914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1835652030
 GameObject:
   m_ObjectHideFlags: 0
@@ -210710,6 +211047,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1836281158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211131,6 +211469,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1844223291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211250,7 +211589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!61 &1845508565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211758,6 +212097,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1850349045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211879,7 +212219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1850669838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -212420,6 +212760,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1856057822
 Rigidbody2D:
   serializedVersion: 4
@@ -213125,6 +213466,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1862296801
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213327,6 +213669,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1862646543
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213699,6 +214042,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1865904432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -214126,6 +214470,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1871970328
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -214855,6 +215200,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1880545829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215463,6 +215809,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1888081263
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215597,6 +215944,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1888872841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215750,6 +216098,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1891753963
 Rigidbody2D:
   serializedVersion: 4
@@ -216656,6 +217005,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1901398069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -217006,6 +217356,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1905724922
 GameObject:
   m_ObjectHideFlags: 0
@@ -217122,7 +217473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1906302970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -217407,6 +217758,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1907410900
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -217526,7 +217878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1907690323
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -218564,7 +218916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1924996091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -218992,7 +219344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1929396610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -219122,6 +219474,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1929845378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -219932,6 +220285,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &1937423322
 GameObject:
   m_ObjectHideFlags: 0
@@ -219990,6 +220344,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1937423325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220302,6 +220657,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1939112796
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220805,6 +221161,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1944267033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220935,6 +221292,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1945123809
 Rigidbody2D:
   serializedVersion: 4
@@ -221483,7 +221841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &1950355568
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -222036,6 +222394,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &1955761328
 Rigidbody2D:
   serializedVersion: 4
@@ -222603,6 +222962,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1963132832
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222798,7 +223158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &1963528126
 GameObject:
   m_ObjectHideFlags: 0
@@ -224751,6 +225111,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1980215461
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225123,6 +225484,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1981837588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225927,6 +226289,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &1994223262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226212,7 +226575,7 @@ PrefabInstance:
     - target: {fileID: 61702365393621046, guid: da10d0c1ff984421bbbb0d05c606ffe6,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.95
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da10d0c1ff984421bbbb0d05c606ffe6, type: 3}
@@ -226335,7 +226698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &2002713879
 GameObject:
   m_ObjectHideFlags: 0
@@ -226593,7 +226956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &2005644490
 GameObject:
   m_ObjectHideFlags: 0
@@ -226704,6 +227067,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2006134266
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227440,6 +227804,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2010276214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227647,7 +228012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &2014836854
 GameObject:
   m_ObjectHideFlags: 0
@@ -229135,6 +229500,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2ad2a6a11977b464c977b27ca7edffa0,
         type: 3}
+    - target: {fileID: 6006181905890394928, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802113541615862262, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228038494271206172, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860229978477741036, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: isOccupied
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61746448267393002, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61071226938258720, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1847660667146228, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -229148,17 +229543,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 61746448267393002, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+    - target: {fileID: 6949989057180341270, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: isOccupied
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 61071226938258720, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+    - target: {fileID: 5304292401341217712, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: isOccupied
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6006181905890394928, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
+    - target: {fileID: 1838378862496878286, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -229174,36 +229569,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4030415365333409696, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304292401341217712, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6802113541615862262, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6949989057180341270, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228038494271206172, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1838378862496878286, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
-        type: 3}
-      propertyPath: isOccupied
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860229978477741036, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
         type: 3}
       propertyPath: isOccupied
       value: 1
@@ -231557,6 +231922,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2033112296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -231909,6 +232275,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2035290607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -232132,6 +232499,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2036379762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233088,6 +233456,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2043818639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233967,6 +234336,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2050253519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -234101,6 +234471,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2050809442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -234924,6 +235295,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2061606779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235485,7 +235857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!1 &2066990055
 GameObject:
   m_ObjectHideFlags: 0
@@ -238033,6 +238405,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2095289298
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -238254,6 +238627,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2097919911
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -238579,6 +238953,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2099759648
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -239049,6 +239424,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2105669531
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -239435,7 +239811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9d1347093ad4464bdfc403a5539bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
 --- !u!212 &2107290836
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -240100,6 +240476,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2116607686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -241025,6 +241402,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!1 &2125783852
 GameObject:
   m_ObjectHideFlags: 0
@@ -241084,6 +241462,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &2125783855
 Rigidbody2D:
   serializedVersion: 4
@@ -241240,6 +241619,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2125974015
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -241375,6 +241755,7 @@ MonoBehaviour:
   blockUpMovement: 1
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!50 &2127838688
 Rigidbody2D:
   serializedVersion: 4
@@ -241842,6 +242223,7 @@ MonoBehaviour:
   blockUpMovement: 0
   isWalkable: 0
   hasPlayer: 0
+  bounceAdjustment: 0.045
 --- !u!61 &2130074139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -243917,6 +244299,16 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 62050e6d0bfe24885830abe691988e52, type: 2}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495904306245670438, guid: 23ac4d28bfbcd4766865b5eff3f70ba9,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2652168952150711024, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 23ac4d28bfbcd4766865b5eff3f70ba9, type: 3}
