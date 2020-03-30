@@ -244,6 +244,7 @@ public class GUIManager : MonoBehaviour {
     //the settings definitionsbuttons
     public void ShowMainGameOptions() {
     
+		SoundEffectsHelper.Instance.PlayReplaySound();
         gameSettingsButton.sprite = gameSettingsImages[1];
         
         StartCoroutine(RestoreGameSettingsImage());
@@ -255,13 +256,21 @@ public class GUIManager : MonoBehaviour {
 		}
 	}
 
+	//show the game settings (load any level) if the user has made any purchase
+	private bool HasDoneAnyPurchase() {
+
+		return (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 1) ||
+		(PlayerPrefs.GetInt(GameConstants.PRODUCT_EXTRA_MOVES,0) == 1) ||
+		(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1);
+	}
+
 	public void PausePressed() {
     
         SoundEffectsHelper.Instance.PlayReplaySound();
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
 
-		gameSettingsButton.enabled = true;
+		gameSettingsButton.enabled = (this.HasDoneAnyPurchase() || levelManager.isTestMode);
         //do not show settings panel on arcade mode
         if(!isArcadeOrSubscriptionMode) {
             ShowSettingsPanel(); 
