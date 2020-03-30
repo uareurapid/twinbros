@@ -35407,7 +35407,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.82930297}
+  m_Size: {x: 0.85, y: 0.85}
   m_EdgeRadius: 0
 --- !u!1 &331813526
 GameObject:
@@ -106146,7 +106146,7 @@ MonoBehaviour:
   respawnOnDyingLevel: 1
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 1
+  isDebugMode: 0
   isTestMode: 1
   twins:
   - {fileID: 408182580}
@@ -106269,7 +106269,7 @@ MonoBehaviour:
   hitDeadSound: {fileID: 8300000, guid: 7b45a872fdbe84e3b885dce4a3eea02b, type: 3}
   waterSplashSound: {fileID: 0}
   checkpointSound: {fileID: 0}
-  electricitySound: {fileID: 0}
+  electricitySound: {fileID: 8300000, guid: d5708b029fa5847a49244ad41ce62deb, type: 3}
   replaySound: {fileID: 8300000, guid: 303cd4737d1114a0db4510083ac7ab50, type: 3}
   settingsSound: {fileID: 0}
   countdownSound: {fileID: 0}
@@ -234719,7 +234719,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9}
+  m_Size: {x: 0.85, y: 0.85}
   m_EdgeRadius: 0
 --- !u!1 &2048477658
 GameObject:

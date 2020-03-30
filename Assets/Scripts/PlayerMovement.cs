@@ -962,7 +962,7 @@ public class PlayerMovement : MonoBehaviour {
             other.gameObject.GetComponent<Bomb>().HandleCollision(this);
 		}
 		else if(isElectric && !ignoreCollision) {
-		
+
 			ElectricWire wire = other.gameObject.GetComponent<ElectricWire>();
 			wire.ElectrocutePlayer(this);
 		}

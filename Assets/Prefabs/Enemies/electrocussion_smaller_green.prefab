@@ -212,6 +212,7 @@ MonoBehaviour:
   possibleSurprises: []
   isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
+  shouldHandleMoreCollisionComponents: 0
 --- !u!61 &61708412153601360
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -251,10 +252,10 @@ GameObject:
   - component: {fileID: 114713083156837430}
   - component: {fileID: 114557514277756196}
   - component: {fileID: 61153890993356752}
-  - component: {fileID: 114376391928903966}
+  - component: {fileID: 779893244016232596}
   m_Layer: 0
   m_Name: sprite
-  m_TagString: Enemy
+  m_TagString: Electric
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +392,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1256021, y: 0.20663452}
   m_EdgeRadius: 0
---- !u!114 &114376391928903966
+--- !u!114 &779893244016232596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,14 +401,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506761785370172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4934e2539938a46f8917b7a85f803cc3, type: 3}
+  m_Script: {fileID: 11500000, guid: bc728676d8b834d26a22ef7f02ecd6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelmanager: {fileID: 0}
-  killPlayerOnTouch: 1
-  shrinkPlayer: 0
-  isMovingEnemy: 0
-  canIgnoreCollisions: 1
+  possibleSpawnPositions: []
 --- !u!1 &1730480310318250
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +503,7 @@ MonoBehaviour:
   possibleSurprises: []
   isShootingBox: 0
   dropSurpriseAfterNumCollisions: 2
+  shouldHandleMoreCollisionComponents: 0
 --- !u!61 &61002802422692464
 BoxCollider2D:
   m_ObjectHideFlags: 0

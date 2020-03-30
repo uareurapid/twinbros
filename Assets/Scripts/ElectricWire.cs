@@ -17,6 +17,7 @@ public class ElectricWire : SpawnableItem {
 
 	public void ElectrocutePlayer(PlayerMovement movement) {
 
+		SoundEffectsHelper.Instance.PlayElectricitySound();
 		movement.ShowElectrocutedSpriteAnimation();
 		SpecialEffectsHelper.Instance.PlayElectricityEffect(transform.position);
 	}
