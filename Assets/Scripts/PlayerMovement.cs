@@ -1017,8 +1017,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (isEnemy)
         {
-            Debug.Log("ENEMY COLLIDDED CALLED  " + other.name + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
-
+            
             EnemyBox enemy = other.GetComponent<EnemyBox>();
             enemy.HandleCollision(this);
             return;
@@ -1040,7 +1039,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     AdjustPositionByBouncingLeft(isTile, other);
                 }
-                Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
+               
             }
 
         }
@@ -1059,14 +1058,14 @@ public class PlayerMovement : MonoBehaviour {
                     AdjustPositionByBouncingRight(isTile, other);
                 }
 
-                Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
+             
             }
 
         }//TODO raycast to see if i can move up or not
         else if (isUpMovement && canMoveUp)
         {
 
-            Debug.Log("DEBUG: IS UP AND CAN MOVE UP leftTwin?" + isLeftTwin + " collision" + other.name);
+          
             //otherwise just ignore this one
             //Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
@@ -1080,7 +1079,6 @@ public class PlayerMovement : MonoBehaviour {
                     AdjustPositionByBouncingDown(isTile, other);
                 }
 
-                Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
             }
 
         }
@@ -1099,8 +1097,6 @@ public class PlayerMovement : MonoBehaviour {
                     AdjustPositionByBouncingUp(isTile, other);
                 }
 
-                Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
-
             }
 
         }
@@ -1118,7 +1114,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (point != null)
         {
-            Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
+          
             point.HandleCollision(this);
         }
         else if (tile != null && !ignoreCollision)
