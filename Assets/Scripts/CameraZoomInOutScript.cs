@@ -19,11 +19,11 @@ public class CameraZoomInOutScript : MonoBehaviour {
 
 	public float moveSpeed = 14f;//same as players
 
-	private float speed = 1.0f;
+	public float speed = 5.0f;
     private float cameraOriginalOrthographicSize = 0f;
     private Vector3 cameraOriginalPosition;
     //minimum distance between the camera and the object
-    public float minDistance = 1f;
+    public float minDistance = 0.5f;//was 1
 
     public bool showMessageOnZoom = false;
 	public string messageKey = "What is this thing in the back???"; 
@@ -176,20 +176,20 @@ public class CameraZoomInOutScript : MonoBehaviour {
 
 		
 		//NEW WAY
-		/*float distance = Mathf.Abs(sourcePos.y - destPos.y);
+		float distance = Mathf.Abs(sourcePos.y - destPos.y);
 		while (distance > 0.1f ) {
 			transform.position = Vector3.MoveTowards (sourcePos, destPos, Time.deltaTime * speed * 2);
 			sourcePos = transform.position;
 			distance = Mathf.Abs(sourcePos.y - destPos.y);
 			yield return 0;
-		}*/
+		}
 
 		//OLD WAY
-		while (i < 1.0f ) {
+		/*while (i < minDistance ) {
 			transform.position = Vector3.Lerp(sourcePos, destPos, Mathf.SmoothStep(0,1,i));
 			i += Time.deltaTime;
 			yield return 0;
-		}
+		}*/
 		isMovementComplete = true;
 		currentLevel = targetLevel;
         gameManager.EnableStarFieldOnLocation(targetObj.transform.parent, nextPosition);
