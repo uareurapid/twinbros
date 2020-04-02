@@ -111447,7 +111447,7 @@ MonoBehaviour:
   - {fileID: 21300014, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
   - {fileID: 21300016, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
   - {fileID: 21300018, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
-  isArcadeOrSubscriptionMode: 1
+  isArcadeOrSubscriptionMode: 0
 --- !u!4 &994518048
 Transform:
   m_ObjectHideFlags: 0
@@ -111483,7 +111483,7 @@ MonoBehaviour:
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0
-  isTestMode: 1
+  isTestMode: 0
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -111707,6 +111707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aafaf42ddfe8445b807e76b19755471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiManager: {fileID: 994518047}
 --- !u!114 &994518055
 MonoBehaviour:
   m_ObjectHideFlags: 0

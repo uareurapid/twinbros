@@ -1,4 +1,4 @@
 level=Nível
-buy_remove_ads=Remover anuncios
+buy_remove_ads=Remover anúncios
 buy_extra_moves=Movimentos extra
 buy_infinite_revives=Reviver ilimitados

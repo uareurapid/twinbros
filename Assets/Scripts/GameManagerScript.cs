@@ -134,7 +134,9 @@ public class GameManagerScript : MonoBehaviour {
 	public void StartGame() {
 		gameEnded = false;
 		gameStarted = true;
-		if(soundManager!=null) {
+        int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+
+        if (soundManager!=null && musicOff == 0) { //if not OFF then is ON
             //lower the volume first
             soundManager.SwitchAudioClips(gameStarted);
 		}
@@ -143,7 +145,9 @@ public class GameManagerScript : MonoBehaviour {
 	public void EndGame() {
 		gameEnded = true;
 		gameStarted = false;
-		if(soundManager!=null) {
+        int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+
+        if (soundManager!=null && musicOff == 0) {
             soundManager.SwitchAudioClips(gameStarted);
 		}
 	}

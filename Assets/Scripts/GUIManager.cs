@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -126,8 +127,19 @@ public class GUIManager : MonoBehaviour {
 			Invoke("DoStageTransitionEffect", 2f);
 		}
 	}
-	
-	void LoadAllGUITranslations() {
+
+    private void Awake()
+    {
+        if(Application.platform == RuntimePlatform.OSXEditor ||
+            Application.platform == RuntimePlatform.IPhonePlayer ||
+            Application.platform == RuntimePlatform.Android)
+        {
+			isArcadeOrSubscriptionMode = false;
+        }
+
+	}
+
+    void LoadAllGUITranslations() {
 		purchaseMovesText.text = translationManager.GetText(GameConstants.TXT_EXTRA_MOVES_KEY);
 		purchaseRevivesText.text = translationManager.GetText(GameConstants.TXT_INFINITE_REVIVES_KEY);
 		purchaseRemoveAdsText.text = translationManager.GetText(GameConstants.TXT_REMOVE_ADS_KEY);
@@ -190,7 +202,25 @@ public class GUIManager : MonoBehaviour {
 	 }
 		
 	}
-    
+
+    public void UpdatePriceForProduct(string productID, string localizedPriceString)
+    {
+		Debug.Log("UPDATE PRICE FOR " + productID + " iS " + localizedPriceString);
+		if (productID.Equals(GameConstants.PRODUCT_EXTRA_MOVES))
+		{
+			purchaseMovesPriceText.text = localizedPriceString;
+		} else if(productID.Equals(GameConstants.PRODUCT_INFINITE_REVIVES))
+        {
+			purchaseRevivesPriceText.text = localizedPriceString;
+		}
+        else
+        {
+			purchaseRemoveAdsPriceText.text = localizedPriceString;
+		}
+		//else GameConstants.PRODUCT_REMOVE_ADS);
+
+	}
+
     public void RestoreBonusImagesOpacity() {
         foreach(UnityEngine.UI.Image image in bonusImages) {
         
@@ -578,6 +608,8 @@ public class GUIManager : MonoBehaviour {
 			continueImage.enabled = true;
 			UpdateCountdownImage();
 			countdownImage.enabled = true;
+
+            //start countdown timer
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
@@ -590,6 +622,8 @@ public class GUIManager : MonoBehaviour {
                 adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !isArcadeOrSubscriptionMode )  {
 
 			shouldShowInterstitial = true;
+
+            //stop timer while watching AD, if watched then i can continue
 			stopTimer = true;
 			showedInterstitial = true;
 			// avoid show it again
@@ -599,15 +633,21 @@ public class GUIManager : MonoBehaviour {
 		}
 		//check if purchased infite revives
         else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1 || levelManager.isDebugMode) {
-			// show the option to continue
+			// show the option to continue right away (the play button)
 			StartCoroutine(ShowRestartText(1.0f));
 		}// preferably show ads
         else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1) && !isArcadeOrSubscriptionMode ) {
+
+            //stop the timer only when i press the button
+			//stopTimer = true;
 			ShowVideoRewardToEnableContinue();
+
 		}//otherwise show purchase option
         else if(adsScript.GetIsPurchaseSupportingPlatform() && !isArcadeOrSubscriptionMode) {
 			//TODO when show the moves purchase or ads removal? (add on settings only)
-			ShowPurchaseRevivesButton();
+
+			stopTimer = true;
+			PausePressed();
 		} 
 		else {
 			StartCoroutine(ShowRestartText(1.0f));
@@ -690,7 +730,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void ShowVideoRewardToEnableContinue() {
-		rewardVideoImage.enabled = true;	
+		rewardVideoImage.enabled = true;
 	}
 
 	public void LeaderboardsPressed()
@@ -751,6 +791,7 @@ public class GUIManager : MonoBehaviour {
 		rewardVideoImage.sprite = watchRewardVideoImages[1];
 		if (adsScript != null && adsScript.IsRewardVideoReady())
 		{
+            //stop it while watching it, but only add if i watch it
 			stopTimer = true;
 			adsScript.ShowRewardVideo(this);
 		}
@@ -773,9 +814,7 @@ public class GUIManager : MonoBehaviour {
 			}
 			
 		}
-		else {
-			Debug.Log("NO REWARD FOR YOU");
-		}
+		//else no reward
 		rewardVideoImage.enabled = false;	
 	}
 	void UpdateCountdownImage() {
@@ -995,11 +1034,14 @@ public class GUIManager : MonoBehaviour {
 	//after an ad
 	public void AdFinished() {
 		Debug.Log("AdFinished()");
+
+        //continue the countdown
 		stopTimer = false;
 	}
 
 	public void PurchaseFailed() {
 		Debug.Log("PURCHASE PurchaseFailed");
+		//continue the countdown
 		stopTimer = false;
 	}
 

@@ -26,7 +26,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
     //[Tooltip("Event fired after a failed purchase of this product")]
     private OnPurchaseFailedEvent onPurchaseFailed;
 
-	private GUIManager guiManager;
+	public GUIManager guiManager;
 	// Use this for initialization
 	void Start () {
 
@@ -57,7 +57,17 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
     {
             initializationComplete = true;
 			this.controller = controller;
-			Debug.Log("INITIALIZATION COMPLETE");
+			Debug.Log("INITIALIZATION IS NOW COMPLETE");
+            if(guiManager != null)
+            {
+                Debug.Log("WILL GET PRICES");
+                GetPriceForProduct(GameConstants.PRODUCT_EXTRA_MOVES);
+                GetPriceForProduct(GameConstants.PRODUCT_INFINITE_REVIVES);
+                GetPriceForProduct(GameConstants.PRODUCT_REMOVE_ADS);
+            } else
+            {
+                Debug.Log("WTF GUI MANAGER IS NULL?");
+            }
        
     }
 
@@ -75,6 +85,8 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
                 e.purchasedProduct.definition.id));
 
 			//onPurchaseComplete.Invoke(e.purchasedProduct);
+
+            //PURCHASE OK
 			if(guiManager!=null) {
 				guiManager.PurchaseCompleted(e.purchasedProduct.definition.id);
 			}
@@ -85,6 +97,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 
         public void OnPurchaseFailed(Product product, PurchaseFailureReason reason)
         {
+            //PURCHASE FAILED
 			if(guiManager!=null) {
 				guiManager.PurchaseFailed();
 			}
@@ -100,7 +113,11 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 
 		public void PurchaseProduct(string productID, GUIManager manager) {
 
-		guiManager = manager;
+        if (guiManager == null)
+        {
+            guiManager = manager;
+        }
+        
 		Debug.Log("STORE PURCHASE PRODUCT " + productID);
 		if (controller != null)
 		{
@@ -123,4 +140,19 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 			else Debug.Log("NO CONTROLLER");
 			
 		}
+
+        private void GetPriceForProduct(string productID)
+        {
+            Debug.Log("STORE GET PRICE FOR PRODUCT " + productID);
+            if (controller != null)
+            {
+                // system's products collection.
+                Product product = controller.products.WithID(productID);
+                if (product != null && product.availableToPurchase && guiManager!=null)
+                {
+                    guiManager.UpdatePriceForProduct(productID, product.metadata.localizedPriceString);
+                }
+            }
+            
+        }
 }
