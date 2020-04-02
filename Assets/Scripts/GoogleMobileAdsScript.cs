@@ -11,6 +11,8 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 	private GUIManager guiManager;
 
+	private bool watchedRewardVideo = false;
+
 	// Use this for initialization
 	public void Start()
     {
@@ -81,6 +83,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	
 	public void ShowRewardVideo(GUIManager guiManager) {
 
+		this.watchedRewardVideo = false;
 		this.guiManager = guiManager;
 		this.rewardBasedVideo.Show();
 	}
@@ -176,7 +179,13 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     {
         MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
 		if(guiManager!=null) {
-			guiManager.WatchedRewardedVideo(false);
+			if(this.watchedRewardVideo) {
+				guiManager.WatchedRewardedVideo(true);
+			}
+			else {
+				guiManager.WatchedRewardedVideo(false);
+			}
+			
 		}
     }
 
@@ -187,9 +196,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
         MonoBehaviour.print(
             "HandleRewardBasedVideoRewarded event received for "
                         + amount.ToString() + " " + type);
-		if(guiManager!=null) {
-			guiManager.WatchedRewardedVideo(true);
-		}
+		this.watchedRewardVideo = true;
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
@@ -219,7 +226,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
         MonoBehaviour.print("HandleAdClosed event received");
 		if(guiManager!=null) {
 			guiManager.AdFinished();
-			this.RequestInterstitialAd(); //request anothe rone
+			this.RequestInterstitialAd(); //request another one
 		}
     }
 
@@ -228,6 +235,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
         MonoBehaviour.print("HandleAdLeavingApplication event received");
 		if(guiManager!=null) {
 			guiManager.AdFinished();
+			this.RequestInterstitialAd(); //request another one
 		}
     }
 }

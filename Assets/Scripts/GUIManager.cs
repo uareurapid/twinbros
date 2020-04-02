@@ -626,6 +626,7 @@ public class GUIManager : MonoBehaviour {
             //stop timer while watching AD, if watched then i can continue
 			stopTimer = true;
 			showedInterstitial = true;
+
 			// avoid show it again
 			shouldShowInterstitial = false;
 			adsScript.ShowInterstitialAd(this);
@@ -639,19 +640,19 @@ public class GUIManager : MonoBehaviour {
         else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1) && !isArcadeOrSubscriptionMode ) {
 
             //stop the timer only when i press the button
-			//stopTimer = true;
+			stopTimer = true;
 			ShowVideoRewardToEnableContinue();
 
 		}//otherwise show purchase option
-        else if(adsScript.GetIsPurchaseSupportingPlatform() && !isArcadeOrSubscriptionMode) {
+        //else if(adsScript.GetIsPurchaseSupportingPlatform() && !isArcadeOrSubscriptionMode) {
 			//TODO when show the moves purchase or ads removal? (add on settings only)
 
-			stopTimer = true;
-			PausePressed();
-		} 
-		else {
-			StartCoroutine(ShowRestartText(1.0f));
-		}
+		//	stopTimer = true;
+		//	PausePressed();
+		//} 
+		//else {
+		//	StartCoroutine(ShowRestartText(1.0f));
+		//}
 		
 	}
 
@@ -802,20 +803,29 @@ public class GUIManager : MonoBehaviour {
 	//called when the video was watched or closed
 	public void WatchedRewardedVideo(bool watched) {
 
+		//will continue the time
 		stopTimer = false;
 
 		if(watched) {
+
+			levelManager.respawnOnDyingLevel = true;
 			Debug.Log("YES REWARD, Saw the video, otherwise, not");
 
-			if(continueTimer != 0) {
-			   CancelInvoke("IncreaseTimer");
-			   HideContinueImageAndClearTimer();
-			   levelManager.RestartFromDyingLevel();
-			}
+			StartCoroutine(ShowRestartText(1.0f));
+
+			//if(continueTimer != 0) {
+			//   CancelInvoke("IncreaseTimer");
+			//   HideContinueImageAndClearTimer();
+			//levelManager.RestartFromDyingLevel();
+			//}
 			
+		} else {
+			levelManager.respawnOnDyingLevel = false;
 		}
-		//else no reward
+		//else no reward, timer will continue as usual
 		rewardVideoImage.enabled = false;	
+
+		
 	}
 	void UpdateCountdownImage() {
 		if(continueTimer < continueTimeImages.Length) {
@@ -1002,18 +1012,23 @@ public class GUIManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt(productID, 1);
 
+		stopTimer = false;
+
 		if (productID == GameConstants.PRODUCT_INFINITE_REVIVES)
 		{
 
 			Debug.Log("PURCHASE completed for ID " + productID);
 			// hide the purchase button & the continue button
 			StartCoroutine(HidePurchaseRevivesImage());
-			if (continueTimer != 0)
-			{
-				CancelInvoke("IncreaseTimer");
-				HideContinueImageAndClearTimer();
-				levelManager.RestartFromDyingLevel();
-			}
+			
+			//if (continueTimer != 0)
+			//{
+			//	CancelInvoke("IncreaseTimer");
+			//	HideContinueImageAndClearTimer();
+			//levelManager.RestartFromDyingLevel();
+			//}
+			//TODO CHECK
+			StartCoroutine(ShowRestartText(1.0f));
 
 		}
 		else if (productID == GameConstants.PRODUCT_REMOVE_ADS)
@@ -1026,7 +1041,7 @@ public class GUIManager : MonoBehaviour {
 			// TODO unlock the 2 extra moves
 			StartCoroutine(HidePurchaseExtraMovesImage());
 		}
-		stopTimer = false;
+		
 		
 		
 	}
@@ -1035,8 +1050,18 @@ public class GUIManager : MonoBehaviour {
 	public void AdFinished() {
 		Debug.Log("AdFinished()");
 
-        //continue the countdown
+        levelManager.respawnOnDyingLevel = true;
+
+		if(continueTimer != 0) {
+			CancelInvoke("IncreaseTimer");
+			HideContinueImageAndClearTimer();
+			//levelManager.RestartFromDyingLevel();
+		}
+
+		//continue the countdown
 		stopTimer = false;
+		//TODO CHECK
+		StartCoroutine(ShowRestartText(1.0f));
 	}
 
 	public void PurchaseFailed() {
