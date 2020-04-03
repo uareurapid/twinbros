@@ -310,7 +310,7 @@ public class GUIManager : MonoBehaviour {
         }
 		
 		Time.timeScale = 0;
-        
+
         playButton.enabled = false;
 	}
     
@@ -360,14 +360,18 @@ public class GUIManager : MonoBehaviour {
         if(gameManager.HasPurchasedExtraMoves())
         {
 			purchaseExtraMovesImage.enabled = false;
+			//show in green color
+			purchaseMovesText.color = new Color(99f, 198f, 77f);
         }
-		if (gameManager.HasPurchasedInfiniteRevies())
+		if (gameManager.HasPurchasedInfiniteRevives())
 		{
 			purchaseRevivesImage.enabled = false;
+			purchaseRevivesText.color = new Color(99f, 198f, 77f);
 		}
 		if (gameManager.HasPurchasedRemoveAds())
 		{
 			purchaseRemoveAdsImage.enabled = false;
+			purchaseRemoveAdsText.color = new Color(99f, 198f, 77f);
 		}
 
 		backPanelImage.enabled = true;
@@ -649,6 +653,7 @@ public class GUIManager : MonoBehaviour {
 
             //stop timer while watching AD, if watched then i can continue
 			stopTimer = true;
+			
 			showedInterstitial = true;
 
 			// avoid show it again
@@ -963,6 +968,9 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseInfiniteRevivesPressed() {
 
+		if(gameManager.HasPurchasedInfiniteRevives()) {
+			return;
+		}
 		SoundEffectsHelper.Instance.PlayReplaySound();
 
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[1];
@@ -989,6 +997,10 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseRemoveAdsPressed() {
 
+		if(gameManager.HasPurchasedRemoveAds()) {
+			return;
+		}
+
 		SoundEffectsHelper.Instance.PlayReplaySound();
 
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[1];
@@ -1014,6 +1026,10 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseExtraMovesPressed() {
 
+		if(gameManager.HasPurchasedExtraMoves()) {
+			return;
+		}
+
 		SoundEffectsHelper.Instance.PlayReplaySound();
 
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[1];
@@ -1035,6 +1051,41 @@ public class GUIManager : MonoBehaviour {
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[0];
 	}
 
+	//called when the video was watched or closed
+	public void WatchedRewardedVideo(bool watched)
+	{
+
+		//will continue the time
+		stopTimer = false;
+
+		if (watched)
+		{
+
+			levelManager.respawnOnDyingLevel = true;
+
+			StartCoroutine(ShowRestartText(1.0f));
+		}
+		else
+		{
+			levelManager.respawnOnDyingLevel = false;
+		}
+		//else no reward, timer will continue as usual
+		rewardVideoImage.enabled = false;
+
+
+	}
+
+	//after an interstitial ad
+	public void AdFinished() {
+
+        levelManager.respawnOnDyingLevel = true;
+
+		//continue the countdown
+		stopTimer = false;
+		//TODO CHECK
+		StartCoroutine(ShowRestartText(1.0f));
+	}
+
 	public void PurchaseCompleted(string productID) {
 
 
@@ -1051,19 +1102,9 @@ public class GUIManager : MonoBehaviour {
 		if (productID == GameConstants.PRODUCT_INFINITE_REVIVES)
 		{
 
-			Debug.Log("PURCHASE completed for ID " + productID);
 			// hide the purchase button & the continue button
 			StartCoroutine(HidePurchaseRevivesImage());
 			
-			//if (continueTimer != 0)
-			//{
-			//	CancelInvoke("IncreaseTimer");
-			//	HideContinueImageAndClearTimer();
-			//levelManager.RestartFromDyingLevel();
-			//}
-			//TODO CHECK
-			StartCoroutine(ShowRestartText(1.0f));
-
 		}
 		else if (productID == GameConstants.PRODUCT_REMOVE_ADS)
 		{
@@ -1078,56 +1119,6 @@ public class GUIManager : MonoBehaviour {
 		
 		
 		
-	}
-
-	//called when the video was watched or closed
-	public void WatchedRewardedVideo(bool watched)
-	{
-
-		//will continue the time
-		stopTimer = false;
-
-		if (watched)
-		{
-
-			levelManager.respawnOnDyingLevel = true;
-			Debug.Log("YES REWARD, Saw the video, otherwise, not");
-
-			StartCoroutine(ShowRestartText(1.0f));
-
-			//if(continueTimer != 0) {
-			//   CancelInvoke("IncreaseTimer");
-			//   HideContinueImageAndClearTimer();
-			//levelManager.RestartFromDyingLevel();
-			//}
-
-		}
-		else
-		{
-			levelManager.respawnOnDyingLevel = false;
-		}
-		//else no reward, timer will continue as usual
-		rewardVideoImage.enabled = false;
-
-
-	}
-
-	//after an interstitial ad
-	public void AdFinished() {
-		Debug.Log("AdFinished()");
-
-        levelManager.respawnOnDyingLevel = true;
-
-		//if(continueTimer != 0) {
-		//	CancelInvoke("IncreaseTimer");
-		//	HideContinueImageAndClearTimer();
-			//levelManager.RestartFromDyingLevel();
-		//}
-
-		//continue the countdown
-		stopTimer = false;
-		//TODO CHECK
-		StartCoroutine(ShowRestartText(1.0f));
 	}
 
 	public void PurchaseFailed() {

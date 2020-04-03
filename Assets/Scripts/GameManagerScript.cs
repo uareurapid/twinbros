@@ -183,7 +183,7 @@ public class GameManagerScript : MonoBehaviour {
     }
 
     //check if i have these products already
-    public bool HasPurchasedInfiniteRevies()
+    public bool HasPurchasedInfiniteRevives()
     {
         return PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES, 0) == 1;
     }
