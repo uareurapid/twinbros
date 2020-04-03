@@ -8,6 +8,10 @@ public class SwapSpriteScript : MonoBehaviour {
 	private int lastUsedSprite = 0;
 	public bool canSwap = true;
 	private float lastSwapTime=0;
+
+	//use when timescale = 0
+	private float lastSwapRealTime = 0;
+
 	public float swapDelay = 0f;
 	public float maxSwaps = 0; //0 means forever
 	private int numSwaps = 0;
@@ -18,12 +22,15 @@ public class SwapSpriteScript : MonoBehaviour {
 	public float controllerSwitchDelay = 0.5f;//only applies if is controller
 	public bool pauseAfterEachCycle = false;
 	public float pauseTime = 0f;
+
+    //make animation while on pause timescale = 0 (only update() is called)
+	public bool ignoreTimeScale = false;
 	// Use this for initialization
 	void Start () {
 		lastUsedSprite = 0;
 		numSwaps = 0;
 		lastSwapTime=0;
-		if (swapDelay > 0f && canSwap) {
+		if (swapDelay > 0f && !canSwap) {
 			Invoke ("AllowSwap", swapDelay);
 		}
 		//else {
@@ -36,20 +43,51 @@ public class SwapSpriteScript : MonoBehaviour {
 	
 		if (canSwap) {
 
-			lastSwapTime += Time.deltaTime;
+            if(!ignoreTimeScale)
+            {
 
-			if( lastSwapTime >= swapInterval ) {
-				//time to swap images
-				
-				IncreaseSpriteIndex();		
-				SwapSprites();
-				numSwaps +=1;
-				lastSwapTime = 0f;
+				lastSwapTime += Time.deltaTime;
 
-				if(maxSwaps > 0 && numSwaps >= maxSwaps) {
-				  canSwap = false;
+				if (lastSwapTime >= swapInterval)
+				{
+					//time to swap images
+
+					IncreaseSpriteIndex();
+					SwapSprites();
+					numSwaps += 1;
+					lastSwapTime = 0f;
+
+					if (maxSwaps > 0 && numSwaps >= maxSwaps)
+					{
+						canSwap = false;
+					}
+				}
+			} else
+            {
+				//
+				//lastSwapRealTime += Time.realtimeSinceStartup;
+
+                //first time is always true
+				if ( (Time.realtimeSinceStartup - lastSwapRealTime) >= swapInterval)
+				{
+					//time to swap images
+
+					IncreaseSpriteIndex();
+					SwapSprites();
+					numSwaps += 1;
+					lastSwapRealTime = 0f;
+
+					if (maxSwaps > 0 && numSwaps >= maxSwaps)
+					{
+						canSwap = false;
+					}
+
+					lastSwapRealTime += Time.realtimeSinceStartup;
+
 				}
 			}
+
+			
 		}
 	  
 

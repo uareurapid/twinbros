@@ -2,3 +2,5 @@
 
 <key>GADApplicationIdentifier</key>
 <string>ca-app-pub-9531252796858598~9251777791</string>
+<key>ITSAppUsesNonExemptEncryption</key>
+<false/>

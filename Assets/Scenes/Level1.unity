@@ -1809,6 +1809,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!114 &15472666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17619,6 +17620,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!114 &177789113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34042,6 +34044,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &319291088
 GameObject:
   m_ObjectHideFlags: 0
@@ -44946,6 +44949,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &423063939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46565,6 +46569,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &442216811
 GameObject:
   m_ObjectHideFlags: 0
@@ -46732,6 +46737,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &444966945
 GameObject:
   m_ObjectHideFlags: 0
@@ -47494,6 +47500,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &453982455
 GameObject:
   m_ObjectHideFlags: 0
@@ -70312,6 +70319,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &637015560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76255,6 +76263,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &689361367
 GameObject:
   m_ObjectHideFlags: 0
@@ -111343,6 +111352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b7888a8ca4f4d2d89dda32c8749025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinningWheelImage: {fileID: 1992107977}
   bonusImages:
   - {fileID: 1476179967}
   - {fileID: 320326882}
@@ -111457,8 +111467,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994518046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 320.00003, y: 180.11174, z: 0}
-  m_LocalScale: {x: 1.11875, y: 1.11875, z: 1.11875}
+  m_LocalPosition: {x: 320.00003, y: 180, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -111858,6 +111868,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1001 &996009306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114589,6 +114600,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1021074078
 GameObject:
   m_ObjectHideFlags: 0
@@ -154065,6 +154077,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1359554394
 GameObject:
   m_ObjectHideFlags: 0
@@ -158516,6 +158529,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1396739798
 GameObject:
   m_ObjectHideFlags: 0
@@ -170100,6 +170114,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!114 &1471122837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170126,6 +170141,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1471122838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1920225900955044, guid: 74ba58b6938d140c5a1c0f5cb9622b0a,
@@ -215266,6 +215282,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1865904429
 GameObject:
   m_ObjectHideFlags: 0
@@ -221398,6 +221415,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1916628945
 GameObject:
   m_ObjectHideFlags: 0
@@ -223758,6 +223776,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1943620521
 GameObject:
   m_ObjectHideFlags: 0
@@ -225922,6 +225941,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &1966319262
 GameObject:
   m_ObjectHideFlags: 0
@@ -226736,6 +226756,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1975398585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -228071,6 +228092,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 1
 --- !u!114 &1992107977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230197,6 +230219,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &2015231479
 GameObject:
   m_ObjectHideFlags: 0

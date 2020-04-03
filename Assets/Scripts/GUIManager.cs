@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GUIManager : MonoBehaviour {
 
+	public UnityEngine.UI.Image spinningWheelImage;
 
 	public UnityEngine.UI.Image[] bonusImages;
     public UnityEngine.UI.Image backPanelImage;
@@ -336,7 +337,13 @@ public class GUIManager : MonoBehaviour {
         } else {
             HideArcadeSettingsPanel();
         }
-		
+
+		if(spinningWheelImage != null)
+
+		{
+			spinningWheelImage.gameObject.SetActive(false);
+		}
+
 		Time.timeScale = 1f;
         
         if(!levelManager.IsGameStarted() && !levelManager.IsPlayerDead()) {
@@ -349,7 +356,21 @@ public class GUIManager : MonoBehaviour {
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
 		musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
 
-        backPanelImage.enabled = true;
+        //hide the buy buttons if i already have that product
+        if(gameManager.HasPurchasedExtraMoves())
+        {
+			purchaseExtraMovesImage.enabled = false;
+        }
+		if (gameManager.HasPurchasedInfiniteRevies())
+		{
+			purchaseRevivesImage.enabled = false;
+		}
+		if (gameManager.HasPurchasedRemoveAds())
+		{
+			purchaseRemoveAdsImage.enabled = false;
+		}
+
+		backPanelImage.enabled = true;
 		settingsPanel.SetActive(true);
 	}
 
@@ -385,8 +406,7 @@ public class GUIManager : MonoBehaviour {
 		if (continueTimer != 0 && !playPressed) {
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
-			if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) ||
-                (levelManager.ShouldRespawnOnDyingLevel() && levelManager.GetIsTestMode() ) ) {
+			if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) || (levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) ) {
 				playPressed = true;
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
@@ -599,6 +619,9 @@ public class GUIManager : MonoBehaviour {
             gameOverImage.enabled = true;
 		}
 
+        //by default say NO
+		levelManager.respawnOnDyingLevel = false;
+
 		//ONLY AFTER GAME OVER, AND IN CASE WE HAVE A VIDEO READY? (or also in app purchase???)
 		continueTimer = 0;
 
@@ -613,8 +636,9 @@ public class GUIManager : MonoBehaviour {
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
-		if(levelManager.isTestMode) {
+		if(levelManager.isTestMode || levelManager.isDebugMode) {
 
+            //show play button even while counting down
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		//if not purchased product and is time for ads
@@ -633,14 +657,15 @@ public class GUIManager : MonoBehaviour {
 			
 		}
 		//check if purchased infite revives
-        else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1 || levelManager.isDebugMode) {
+        else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1 ) {
+
 			// show the option to continue right away (the play button)
+			levelManager.respawnOnDyingLevel = true;
 			StartCoroutine(ShowRestartText(1.0f));
-		}// preferably show ads
+		}
+        // preferably show ads
         else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1) && !isArcadeOrSubscriptionMode ) {
 
-            //stop the timer only when i press the button
-			stopTimer = true;
 			ShowVideoRewardToEnableContinue();
 
 		}//otherwise show purchase option
@@ -736,6 +761,9 @@ public class GUIManager : MonoBehaviour {
 
 	public void LeaderboardsPressed()
 	{
+        //TODO CHECK add another sound???
+		SoundEffectsHelper.Instance.PlayReplaySound();
+
 		leaderboardButtonImage.sprite = leaderboardsImages[1];
 		SocialAPI.Instance.AuthenticateAndShowLeaderboards();
 		StartCoroutine(RestoreLeaderBoardsImage());
@@ -743,6 +771,8 @@ public class GUIManager : MonoBehaviour {
 
 	public void AchievementsPressed()
 	{
+		SoundEffectsHelper.Instance.PlayReplaySound();
+
 		achievementsButtonImage.sprite = achievementsSprites[1];
 		SocialAPI.Instance.AuthenticateAndShowAchievements();
 		StartCoroutine(RestoreAchievementsImage());
@@ -792,7 +822,7 @@ public class GUIManager : MonoBehaviour {
 		rewardVideoImage.sprite = watchRewardVideoImages[1];
 		if (adsScript != null && adsScript.IsRewardVideoReady())
 		{
-            //stop it while watching it, but only add if i watch it
+			//stop it while watching it, but only add if i watch it
 			stopTimer = true;
 			adsScript.ShowRewardVideo(this);
 		}
@@ -800,33 +830,7 @@ public class GUIManager : MonoBehaviour {
 		StartCoroutine(HideRewardedVideoImage());
 		
 	}
-	//called when the video was watched or closed
-	public void WatchedRewardedVideo(bool watched) {
-
-		//will continue the time
-		stopTimer = false;
-
-		if(watched) {
-
-			levelManager.respawnOnDyingLevel = true;
-			Debug.Log("YES REWARD, Saw the video, otherwise, not");
-
-			StartCoroutine(ShowRestartText(1.0f));
-
-			//if(continueTimer != 0) {
-			//   CancelInvoke("IncreaseTimer");
-			//   HideContinueImageAndClearTimer();
-			//levelManager.RestartFromDyingLevel();
-			//}
-			
-		} else {
-			levelManager.respawnOnDyingLevel = false;
-		}
-		//else no reward, timer will continue as usual
-		rewardVideoImage.enabled = false;	
-
-		
-	}
+	
 	void UpdateCountdownImage() {
 		if(continueTimer < continueTimeImages.Length) {
 			countdownImage.sprite = continueTimeImages[continueTimer];
@@ -959,10 +963,19 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseInfiniteRevivesPressed() {
 
+		SoundEffectsHelper.Instance.PlayReplaySound();
+
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[1];
 		Debug.Log("PurchaseInfiniteRevivesPressed clicked");
 		StartCoroutine(PressDownPurchaseInfiniteRevives());
 		if(store!=null && store.IsInitialized() ) {
+
+            
+			if (spinningWheelImage != null)
+			{
+				spinningWheelImage.gameObject.SetActive(true);
+			}
+
 			stopTimer = true;
 			Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
 			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
@@ -976,10 +989,18 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseRemoveAdsPressed() {
 
+		SoundEffectsHelper.Instance.PlayReplaySound();
+
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[1];
 		Debug.Log("PRODUCT_REMOVE_ADS clicked");
 		StartCoroutine(PressDownPurchaseRemoveAds());
 		if(store!=null && store.IsInitialized() ) {
+
+			if (spinningWheelImage != null)
+			{
+				spinningWheelImage.gameObject.SetActive(true);
+			}
+
 			stopTimer = true;
 			Debug.Log("TRY TO PURCHASE PRODUCT_REMOVE_ADS ");
 			store.PurchaseProduct(GameConstants.PRODUCT_REMOVE_ADS, this);
@@ -993,9 +1014,16 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseExtraMovesPressed() {
 
+		SoundEffectsHelper.Instance.PlayReplaySound();
+
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[1];
 		Debug.Log("PRODUCT_EXTRA_MOVES clicked");
 		if(store!=null && store.IsInitialized() ) {
+
+			if (spinningWheelImage != null)
+			{
+				spinningWheelImage.gameObject.SetActive(true);
+			}
 			stopTimer = true;
 			Debug.Log("TRY TO PURCHASE PRODUCT_EXTRA_MOVES ");
 			store.PurchaseProduct(GameConstants.PRODUCT_EXTRA_MOVES, this);
@@ -1012,6 +1040,12 @@ public class GUIManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt(productID, 1);
 
+		if (spinningWheelImage != null)
+		{
+			spinningWheelImage.gameObject.SetActive(false);
+		}
+
+		//continue countdown
 		stopTimer = false;
 
 		if (productID == GameConstants.PRODUCT_INFINITE_REVIVES)
@@ -1046,17 +1080,49 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-	//after an ad
+	//called when the video was watched or closed
+	public void WatchedRewardedVideo(bool watched)
+	{
+
+		//will continue the time
+		stopTimer = false;
+
+		if (watched)
+		{
+
+			levelManager.respawnOnDyingLevel = true;
+			Debug.Log("YES REWARD, Saw the video, otherwise, not");
+
+			StartCoroutine(ShowRestartText(1.0f));
+
+			//if(continueTimer != 0) {
+			//   CancelInvoke("IncreaseTimer");
+			//   HideContinueImageAndClearTimer();
+			//levelManager.RestartFromDyingLevel();
+			//}
+
+		}
+		else
+		{
+			levelManager.respawnOnDyingLevel = false;
+		}
+		//else no reward, timer will continue as usual
+		rewardVideoImage.enabled = false;
+
+
+	}
+
+	//after an interstitial ad
 	public void AdFinished() {
 		Debug.Log("AdFinished()");
 
         levelManager.respawnOnDyingLevel = true;
 
-		if(continueTimer != 0) {
-			CancelInvoke("IncreaseTimer");
-			HideContinueImageAndClearTimer();
+		//if(continueTimer != 0) {
+		//	CancelInvoke("IncreaseTimer");
+		//	HideContinueImageAndClearTimer();
 			//levelManager.RestartFromDyingLevel();
-		}
+		//}
 
 		//continue the countdown
 		stopTimer = false;
@@ -1066,6 +1132,11 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseFailed() {
 		Debug.Log("PURCHASE PurchaseFailed");
+
+		if (spinningWheelImage != null)
+		{
+			spinningWheelImage.gameObject.SetActive(false);
+		}
 		//continue the countdown
 		stopTimer = false;
 	}

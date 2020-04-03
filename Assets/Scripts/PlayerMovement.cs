@@ -651,11 +651,11 @@ public class PlayerMovement : MonoBehaviour {
 			tile.HandleExitCollision(this);
 		}
 		else {
-
-            canMoveUp = !HitSomethingOnUp();
-            canMoveDown = !HitSomethingOnDown();
-            canMoveLeft = !HitSomethingOnLeft();
-            canMoveRight = !HitSomethingOnRight();
+            //TODO CHECK IMPORTANT
+            canMoveUp = !HitSomethingOnUp() && canMoveUp;
+            canMoveDown = !HitSomethingOnDown() && canMoveDown;
+            canMoveLeft = !HitSomethingOnLeft() && canMoveLeft;
+            canMoveRight = !HitSomethingOnRight() && canMoveRight;
 
             /**
             if (!canMoveUp) {

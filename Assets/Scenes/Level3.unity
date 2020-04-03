@@ -2327,6 +2327,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!114 &15472666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2772,6 +2773,7 @@ RectTransform:
   - {fileID: 698991577}
   - {fileID: 801926440}
   - {fileID: 1884521147}
+  - {fileID: 1726215516}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3025,6 +3027,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &24570625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16674,6 +16677,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!114 &177789113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17056,7 +17060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4683091353499654, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
@@ -25748,7 +25752,7 @@ Transform:
   - {fileID: 812270979}
   - {fileID: 1914695873}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &226008346
 PrefabInstance:
@@ -27043,6 +27047,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &243153971
 GameObject:
   m_ObjectHideFlags: 0
@@ -29503,6 +29508,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &268936180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31124,6 +31130,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &283369799
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44903,6 +44910,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!1 &417215524
 GameObject:
   m_ObjectHideFlags: 0
@@ -45712,6 +45720,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &423063939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -54703,6 +54712,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &514763675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -57047,7 +57057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4700808842634638, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
@@ -71219,6 +71229,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &637015560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71777,6 +71788,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &640300893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -82066,7 +82078,7 @@ Transform:
   - {fileID: 1221477107}
   - {fileID: 1316827351}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &747059181
 MonoBehaviour:
@@ -87645,6 +87657,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &805161000
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96436,7 +96449,7 @@ Transform:
   - {fileID: 860767522}
   - {fileID: 592946780}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &888600089
 PrefabInstance:
@@ -97985,7 +97998,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909107366
 GameObject:
@@ -98756,6 +98769,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!114 &917064856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104406,6 +104420,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &978614915
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -106010,6 +106025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b7888a8ca4f4d2d89dda32c8749025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinningWheelImage: {fileID: 1726215518}
   bonusImages:
   - {fileID: 293202263}
   - {fileID: 1661670125}
@@ -106124,7 +106140,7 @@ Transform:
   m_LocalScale: {x: 1.11875, y: 1.11875, z: 1.11875}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &994518049
 MonoBehaviour:
@@ -109674,6 +109690,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1018645593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -117067,6 +117084,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1076309939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -119913,7 +119931,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1097627010
 MonoBehaviour:
@@ -145662,7 +145680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4700808842634638, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
@@ -156146,6 +156164,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1404458840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -159717,7 +159736,7 @@ Transform:
   - {fileID: 2100757059}
   - {fileID: 1871630495}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1441455954
 GameObject:
@@ -163746,7 +163765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4700808842634638, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
@@ -169155,7 +169174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4700808842634638, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
@@ -187294,6 +187313,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1628437983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -190395,6 +190415,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1654114034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197344,6 +197365,106 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 1
+--- !u!1 &1726215515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726215516}
+  - component: {fileID: 1726215519}
+  - component: {fileID: 1726215518}
+  - component: {fileID: 1726215517}
+  m_Layer: 5
+  m_Name: SPINNING-WHEEL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1726215516
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726215515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 21499769}
+  m_RootOrder: 50
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 31.999998}
+  m_SizeDelta: {x: 64, y: 64}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1726215517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726215515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swapInterval: 0.2
+  sprites:
+  - {fileID: 21300000, guid: 9aaefb79826664153a03f32c5db18119, type: 3}
+  - {fileID: 21300002, guid: 9aaefb79826664153a03f32c5db18119, type: 3}
+  - {fileID: 21300004, guid: 9aaefb79826664153a03f32c5db18119, type: 3}
+  - {fileID: 21300006, guid: 9aaefb79826664153a03f32c5db18119, type: 3}
+  canSwap: 1
+  swapDelay: 0
+  maxSwaps: 0
+  isUIImage: 1
+  isController: 0
+  controllerSwitchDelay: 0.5
+  pauseAfterEachCycle: 0
+  pauseTime: 0
+  ignoreTimeScale: 1
+--- !u!114 &1726215518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726215515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 9aaefb79826664153a03f32c5db18119, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1726215519
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726215515}
+  m_CullTransparentMesh: 0
 --- !u!1 &1726503616
 GameObject:
   m_ObjectHideFlags: 0
@@ -224122,6 +224243,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1965034471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -225320,6 +225442,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &1975398585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -228674,6 +228797,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &2014836859
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -228802,7 +228926,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 3186585}
     m_Modifications:
     - target: {fileID: 1417823958869140, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_Name
@@ -228814,7 +228938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -140.971
+      value: 0.63900685
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_LocalPosition.z
@@ -228822,11 +228946,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_LocalRotation.z
@@ -228838,7 +228962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 4226154212828062, guid: d1bbe381a36734a1788d07629c074776, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -229466,7 +229590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666143080607614, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4700808842634638, guid: 74ba58b6938d140c5a1c0f5cb9622b0a, type: 3}
       propertyPath: m_RootOrder
@@ -244409,6 +244533,7 @@ MonoBehaviour:
   controllerSwitchDelay: 0.5
   pauseAfterEachCycle: 0
   pauseTime: 0
+  ignoreTimeScale: 0
 --- !u!212 &2143228136
 SpriteRenderer:
   m_ObjectHideFlags: 0

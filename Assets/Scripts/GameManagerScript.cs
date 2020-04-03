@@ -182,4 +182,20 @@ public class GameManagerScript : MonoBehaviour {
 
     }
 
+    //check if i have these products already
+    public bool HasPurchasedInfiniteRevies()
+    {
+        return PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES, 0) == 1;
+    }
+
+    public bool HasPurchasedExtraMoves()
+    {
+        return PlayerPrefs.GetInt(GameConstants.PRODUCT_EXTRA_MOVES, 0) == 1;
+    }
+
+    public bool HasPurchasedRemoveAds()
+    {
+        return PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS, 0) == 1;
+    }
+
 }
