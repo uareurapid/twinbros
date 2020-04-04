@@ -404,7 +404,7 @@ public class GUIManager : MonoBehaviour {
         SoundEffectsHelper.Instance.PlayReplaySound();
 
 
-        if(!levelManager.ShouldRespawnOnDyingLevel() )
+        if(levelManager.ShouldRespawnOnDyingLevel() )
         {
 			spinningWheelImage.gameObject.SetActive(true);
         }
@@ -412,11 +412,14 @@ public class GUIManager : MonoBehaviour {
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 		//still counting time?
-		if (continueTimer != 0 && !playPressed) {
+		if (continueTimer!=0 && !playPressed) {
+
+			playPressed = true;
+
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
 			if( gameManager.HasPurchasedInfiniteRevives() || levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) {
-				playPressed = true;
+			
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
 				levelManager.RestartFromDyingLevel();
@@ -649,12 +652,13 @@ public class GUIManager : MonoBehaviour {
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		//if not purchased product and is time for ads
-        else if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0) == 0) && adsScript.IsInterstitialReady() && 
+        else if( !gameManager.HasPurchasedRemoveAds() && adsScript.IsInterstitialReady() && 
                 adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !isArcadeOrSubscriptionMode )  {
 
 			shouldShowInterstitial = true;
 
             //stop timer while watching AD, if watched then i can continue
+			//TODO CHECK if i stop the timer here counter is still at 0 probably
 			stopTimer = true;
 			
 			showedInterstitial = true;
@@ -665,7 +669,7 @@ public class GUIManager : MonoBehaviour {
 			
 		}
 		//check if purchased infite revives
-        else if(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1 ) {
+        else if( gameManager.HasPurchasedInfiniteRevives()) {
 
 			// show the option to continue right away (the play button)
 			levelManager.respawnOnDyingLevel = true;
@@ -854,6 +858,7 @@ public class GUIManager : MonoBehaviour {
 					UpdateCountdownImage();
 				}
 				else {
+					//more than 9
 					shouldShowInterstitial = false;
 					showedInterstitial = false;
 					CancelInvoke("IncreaseTimer");
