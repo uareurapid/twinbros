@@ -404,20 +404,23 @@ public class GUIManager : MonoBehaviour {
         SoundEffectsHelper.Instance.PlayReplaySound();
 
 
+        if(!levelManager.ShouldRespawnOnDyingLevel() )
+        {
+			spinningWheelImage.gameObject.SetActive(true);
+        }
+
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 		//still counting time?
 		if (continueTimer != 0 && !playPressed) {
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
-			if( (PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1) || (levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) ) {
+			if( gameManager.HasPurchasedInfiniteRevives() || levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) {
 				playPressed = true;
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
-				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OK");
 				levelManager.RestartFromDyingLevel();
             } else {
-				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ NNNNNNNNNOK " + levelManager.ShouldRespawnOnDyingLevel() + " " + levelManager.GetIsTestMode());
 				//normal restart
 				levelManager.StartGame();
             }
@@ -425,7 +428,7 @@ public class GUIManager : MonoBehaviour {
 		}
 		//only if the button is opaque
 		else if(!playPressed) {
-			Debug.Log("#### WTF?? #### " + continueTimer);
+
 			playPressed = true;
 			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
@@ -987,7 +990,10 @@ public class GUIManager : MonoBehaviour {
 			stopTimer = true;
 			Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
 			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
-		}
+		} else if(!store.IsInitialized())
+        {
+			store.InitStore();
+        }
 	}
 
 	IEnumerator PressDownPurchaseInfiniteRevives() {
@@ -1017,6 +1023,10 @@ public class GUIManager : MonoBehaviour {
 			Debug.Log("TRY TO PURCHASE PRODUCT_REMOVE_ADS ");
 			store.PurchaseProduct(GameConstants.PRODUCT_REMOVE_ADS, this);
 		}
+		else if (!store.IsInitialized())
+		{
+			store.InitStore();
+		}
 	}
 
 	IEnumerator PressDownPurchaseRemoveAds() {
@@ -1043,6 +1053,10 @@ public class GUIManager : MonoBehaviour {
 			stopTimer = true;
 			Debug.Log("TRY TO PURCHASE PRODUCT_EXTRA_MOVES ");
 			store.PurchaseProduct(GameConstants.PRODUCT_EXTRA_MOVES, this);
+		}
+		else if (!store.IsInitialized())
+		{
+			store.InitStore();
 		}
 	}
 

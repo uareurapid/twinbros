@@ -33,6 +33,11 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 		InitializePurchasing();
 	}
 
+    public void InitStore()
+    {
+        InitializePurchasing();
+    }
+
 	//https://unity3d.com/learn/tutorials/topics/ads-analytics/integrating-unity-iap-your-game
 	private void InitializePurchasing()
     {
