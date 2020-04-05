@@ -89,8 +89,9 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 			Debug.Log(string.Format("IAPButton.ProcessPurchase(PurchaseEventArgs {0} - {1})", e,
                 e.purchasedProduct.definition.id));
 
-			//onPurchaseComplete.Invoke(e.purchasedProduct);
+        //onPurchaseComplete.Invoke(e.purchasedProduct);
 
+            SoundEffectsHelper.Instance.PlaySuccessSound();
             //PURCHASE OK
 			if(guiManager!=null) {
 				guiManager.PurchaseCompleted(e.purchasedProduct.definition.id);

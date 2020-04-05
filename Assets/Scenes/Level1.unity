@@ -111622,7 +111622,7 @@ MonoBehaviour:
   powerupSound: {fileID: 8300000, guid: 96dd50e6d319f40a8a1deb7394163c72, type: 3}
   landingSound: {fileID: 0}
   flipTimeSound: {fileID: 0}
-  successSound: {fileID: 0}
+  successSound: {fileID: 8300000, guid: 7d763457ed077ac46a153e578ae370c5, type: 3}
   sloganMovieSound: {fileID: 0}
   teleportSound: {fileID: 8300000, guid: 93197c438cdab47828ede01629452e73, type: 3}
   moveSound: {fileID: 8300000, guid: 9b3b81f40b1b149788d93be6d3114f2b, type: 3}

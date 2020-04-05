@@ -404,13 +404,12 @@ public class GUIManager : MonoBehaviour {
         SoundEffectsHelper.Instance.PlayReplaySound();
 
 
-        if(levelManager.ShouldRespawnOnDyingLevel() )
-        {
-			spinningWheelImage.gameObject.SetActive(true);
-        }
+        
 
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
+
+
 		//still counting time?
 		if (continueTimer!=0 && !playPressed) {
 
@@ -436,12 +435,17 @@ public class GUIManager : MonoBehaviour {
 			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
+			currentScoreText.text = "CT: " + continueTimer.ToString() + " ! resp? " + levelManager.ShouldRespawnOnDyingLevel().ToString();
+
+
 			playButton.sprite = playButtonImages[1];
             //TODO check removed this one
 			//levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
 		}
+
 		
+
 	}
 
 	public void UpdateCurrentScore(int pts) {

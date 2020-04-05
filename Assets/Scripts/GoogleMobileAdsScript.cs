@@ -197,6 +197,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
             "HandleRewardBasedVideoRewarded event received for "
                         + amount.ToString() + " " + type);
 		this.watchedRewardVideo = true;
+        SoundEffectsHelper.Instance.PlaySuccessSound();
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
@@ -224,7 +225,8 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleAdClosed event received");
-		if(guiManager!=null) {
+        SoundEffectsHelper.Instance.PlaySuccessSound();
+        if (guiManager!=null) {
 			guiManager.AdFinished();
 			this.RequestInterstitialAd(); //request another one
 		}
