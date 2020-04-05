@@ -359,6 +359,8 @@ public class LevelManager : MonoBehaviour {
 			gameStarted = false;
 			guiManager.ShowGameOver();
             gameManager.KillPlayer();
+			//report to leaderboards
+			ReportIntermediaryScores();
 		}
 		
 	}
@@ -733,10 +735,17 @@ public class LevelManager : MonoBehaviour {
 		guiManager.UpdateCurrentHighScore(highScore);
 
 		//also report it to the store
-		SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		//TODO CHECK use ReportIntermediaryScores instead
+		//SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
 		//---------------------------
 		
 		StartCoroutine("HideLevelClearedImage");
+	}
+
+	private void ReportIntermediaryScores() {
+
+		int currScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
+		SocialAPI.Instance.AuthenticateAndReport(currScore, GameConstants.LEADERBOARD_ID);
 	}
 
 	IEnumerator HideLevelNumImages() {

@@ -106108,11 +106108,11 @@ MonoBehaviour:
   currentStageFirstLevel: {fileID: 747059181}
   debugLevel: {fileID: 849939279}
   stage: 4
-  respawnOnDyingLevel: 1
+  respawnOnDyingLevel: 0
   MAX_MOVES: 10
   hasExtraMoves: 0
-  isDebugMode: 1
-  isTestMode: 1
+  isDebugMode: 0
+  isTestMode: 0
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}

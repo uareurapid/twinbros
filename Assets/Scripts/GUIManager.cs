@@ -166,7 +166,7 @@ public class GUIManager : MonoBehaviour {
            holofotes[1].SetActive(false);
 
            if (!HasShownTutorial()) {
-			//show button after
+
                StartTutorial();  
 		   }
            // TODO check this, i need to know if it started too
@@ -175,23 +175,26 @@ public class GUIManager : MonoBehaviour {
 				//Tutorial has been shown already
 				if(!gameManager.IsTutorialStarted() || (gameManager.IsTutorialStarted() && gameManager.IsTutorialEnded() )  ) {
 					CanShowPlayButton();
-				}
+				} 
                 
            }//else is currently showing
-		   else if(gameManager.IsTutorialStarted() && gameManager.IsTutorialEnded()) {
+		   else if( (gameManager.IsTutorialStarted() && gameManager.IsTutorialEnded() ) || HasShownTutorial() ) {
 			   isShowingTutorial = false;
-		   }	   	
+			   CanShowPlayButton();
+		   } 	   	
             
         }
         else if(CanShowHolofotes()) {
 
+		   Debug.Log("########### SHOW HOLOFOTES");
+
            holofotes[0].SetActive(true);
            holofotes[1].SetActive(true);
-        }
+        } 
 
 	 }
 
-	 if (shouldShowInterstitial && !showedInterstitial) {
+	 if (shouldShowInterstitial && !showedInterstitial && !isArcadeOrSubscriptionMode) {
 			if (adsScript.IsInterstitialReady())
 			{
 				stopTimer = true;
@@ -404,8 +407,6 @@ public class GUIManager : MonoBehaviour {
         SoundEffectsHelper.Instance.PlayReplaySound();
 
 
-        
-
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
 
@@ -435,16 +436,11 @@ public class GUIManager : MonoBehaviour {
 			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
 			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
-			currentScoreText.text = "CT: " + continueTimer.ToString() + " ! resp? " + levelManager.ShouldRespawnOnDyingLevel().ToString();
-
-
 			playButton.sprite = playButtonImages[1];
             //TODO check removed this one
 			//levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
-		}
-
-		
+		}	
 
 	}
 
@@ -462,20 +458,13 @@ public class GUIManager : MonoBehaviour {
     public void CanShowPlayButton()
     {
 
-        if (!playButton.enabled && !IsGamePaused())
+        if ( (!playButton.enabled && !IsGamePaused() ) || 
+			(!levelManager.IsGameStarted() && !IsGamePaused() && !levelManager.IsPlayerDead()) ||
+
         {
 
-            //if (!HasShownTutorial() && (levelManager.stage == 1 && levelManager.currentLevel.level == 1))
-            //{
-
-            //    StartTutorial();
-            //}
-            //else
-            //{
-                //immediately
-                StartCoroutine(ShowPlayButton(0f));
-            //}
-        }
+            StartCoroutine(ShowPlayButton(0f));
+        } 
 
     }
 
@@ -650,7 +639,7 @@ public class GUIManager : MonoBehaviour {
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
-		if(levelManager.isTestMode || levelManager.isDebugMode) {
+		if(levelManager.isTestMode || levelManager.isDebugMode || isArcadeOrSubscriptionMode) {
 
             //show play button even while counting down
 			StartCoroutine(ShowRestartText(1.0f));

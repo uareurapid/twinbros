@@ -111457,7 +111457,7 @@ MonoBehaviour:
   - {fileID: 21300014, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
   - {fileID: 21300016, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
   - {fileID: 21300018, guid: bc9b9933f4c8b4292bfb3edebffb46dc, type: 3}
-  isArcadeOrSubscriptionMode: 0
+  isArcadeOrSubscriptionMode: 1
 --- !u!4 &994518048
 Transform:
   m_ObjectHideFlags: 0
