@@ -371,6 +371,8 @@ public class LevelManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlayTeleportSound(); //TODO change sound
 		respawnOnDyingLevel = true;
 		respawnLevel = currentLevel;
+
+		Debug.Log("############ DEBUG RESTART FROM SYING LEVEL IS LEVEL " + respawnLevel);
 		
 		ResetAllBehaviours();
 		DestroyAllDestroyables();
@@ -453,7 +455,8 @@ public class LevelManager : MonoBehaviour {
 			MoveToRespawnLevel(debugLevel);
 		}
 		else {
-			if(respawnOnDyingLevel && isTestMode) {
+            if(respawnOnDyingLevel || isTestMode)
+            {
                 respawnLevel = currentLevel;
                 MoveToRespawnLevel(respawnLevel);			
             }

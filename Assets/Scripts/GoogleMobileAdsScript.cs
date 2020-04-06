@@ -177,7 +177,7 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
     public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
     {
-        MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
+        MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
 		if(guiManager!=null) {
 			if(this.watchedRewardVideo) {
 				guiManager.WatchedRewardedVideo(true);
@@ -185,6 +185,9 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 			else {
 				guiManager.WatchedRewardedVideo(false);
 			}
+
+            //reset this for the next one
+            this.watchedRewardVideo = false;
 			
 		}
     }

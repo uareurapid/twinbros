@@ -111489,7 +111489,7 @@ MonoBehaviour:
   currentStageFirstLevel: {fileID: 747059181}
   debugLevel: {fileID: 2023011355}
   stage: 1
-  respawnOnDyingLevel: 1
+  respawnOnDyingLevel: 0
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0

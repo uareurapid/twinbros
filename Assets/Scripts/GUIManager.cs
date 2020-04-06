@@ -354,6 +354,15 @@ public class GUIManager : MonoBehaviour {
         }
 	}
 
+
+	private void ChangeUITextColor2Green(UnityEngine.UI.Text text)
+    {
+		Color theColor = text.color;
+		theColor.r = 99f;
+		theColor.g = 198f;
+		theColor.b = 77f;
+	}
+
 	public void ShowSettingsPanel() {
 		//set the music button On/Off
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
@@ -364,17 +373,18 @@ public class GUIManager : MonoBehaviour {
         {
 			purchaseExtraMovesImage.enabled = false;
 			//show in green color
-			purchaseMovesText.color = new Color(99f, 198f, 77f);
-        }
+			ChangeUITextColor2Green(purchaseMovesText);
+			
+		}
 		if (gameManager.HasPurchasedInfiniteRevives())
 		{
 			purchaseRevivesImage.enabled = false;
-			purchaseRevivesText.color = new Color(99f, 198f, 77f);
+			ChangeUITextColor2Green(purchaseRevivesText);
 		}
 		if (gameManager.HasPurchasedRemoveAds())
 		{
 			purchaseRemoveAdsImage.enabled = false;
-			purchaseRemoveAdsText.color = new Color(99f, 198f, 77f);
+			ChangeUITextColor2Green(purchaseRemoveAdsText);
 		}
 
 		backPanelImage.enabled = true;
@@ -412,25 +422,32 @@ public class GUIManager : MonoBehaviour {
 
 
 		//still counting time?
-		if (continueTimer!=0 && !playPressed) {
+		if (IsShowingCountDown() && !playPressed) {
+
+			Debug.Log("############## DEBUG STILL COUNTIN OK RESPANW ON DYING? " + levelManager.ShouldRespawnOnDyingLevel());
 
 			playPressed = true;
 
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
 			if( gameManager.HasPurchasedInfiniteRevives() || levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) {
-			
+
+				Debug.Log("########## DEBUG SHOULD BE RESTART OK HERE  ##############");
+
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
 				levelManager.RestartFromDyingLevel();
             } else {
 				//normal restart
+                Debug.Log("########## DEBUG NORMAL RESTART ##############");
 				levelManager.StartGame();
             }
 			
 		}
 		//only if the button is opaque
 		else if(!playPressed) {
+
+			Debug.Log("########## DEBUG NOT GOOD TIMER IS ");
 
 			playPressed = true;
 			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
@@ -459,9 +476,7 @@ public class GUIManager : MonoBehaviour {
     {
 
         if ( (!playButton.enabled && !IsGamePaused() ) || 
-			(!levelManager.IsGameStarted() && !IsGamePaused() && !levelManager.IsPlayerDead()) ||
-
-        {
+			(!levelManager.IsGameStarted() && !IsGamePaused() && !levelManager.IsPlayerDead()) ){
 
             StartCoroutine(ShowPlayButton(0f));
         } 
@@ -644,8 +659,16 @@ public class GUIManager : MonoBehaviour {
             //show play button even while counting down
 			StartCoroutine(ShowRestartText(1.0f));
 		}
+		//check if purchased infite revives
+		else if (gameManager.HasPurchasedInfiniteRevives())
+		{
+
+			// show the option to continue right away (the play button)
+			levelManager.respawnOnDyingLevel = true;
+			StartCoroutine(ShowRestartText(1.0f));
+		}
 		//if not purchased product and is time for ads
-        else if( !gameManager.HasPurchasedRemoveAds() && adsScript.IsInterstitialReady() && 
+		else if( !gameManager.HasPurchasedRemoveAds() && adsScript.IsInterstitialReady() && 
                 adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !isArcadeOrSubscriptionMode )  {
 
 			shouldShowInterstitial = true;
@@ -661,28 +684,12 @@ public class GUIManager : MonoBehaviour {
 			adsScript.ShowInterstitialAd(this);
 			
 		}
-		//check if purchased infite revives
-        else if( gameManager.HasPurchasedInfiniteRevives()) {
-
-			// show the option to continue right away (the play button)
-			levelManager.respawnOnDyingLevel = true;
-			StartCoroutine(ShowRestartText(1.0f));
-		}
         // preferably show ads
         else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1) && !isArcadeOrSubscriptionMode ) {
 
 			ShowVideoRewardToEnableContinue();
 
-		}//otherwise show purchase option
-        //else if(adsScript.GetIsPurchaseSupportingPlatform() && !isArcadeOrSubscriptionMode) {
-			//TODO when show the moves purchase or ads removal? (add on settings only)
-
-		//	stopTimer = true;
-		//	PausePressed();
-		//} 
-		//else {
-		//	StartCoroutine(ShowRestartText(1.0f));
-		//}
+		}
 		
 	}
 
@@ -871,6 +878,12 @@ public class GUIManager : MonoBehaviour {
 		countdownImage.enabled = false;
 		continueTimer = 0;
 	}
+
+    //still showing the counter to continue?
+    private bool IsShowingCountDown()
+    {
+        return (continueTimer!=0) || (countdownImage.enabled && continueImage.enabled);
+    }
 
 	
 	IEnumerator ShowRestartText(float wait) {
@@ -1116,17 +1129,20 @@ public class GUIManager : MonoBehaviour {
 
 			// hide the purchase button & the continue button
 			StartCoroutine(HidePurchaseRevivesImage());
-			
+			ChangeUITextColor2Green(purchaseRevivesText);
+
 		}
 		else if (productID == GameConstants.PRODUCT_REMOVE_ADS)
 		{
 			// DO NOTHING
 			StartCoroutine(HidePurchaseRemoveAdsImage());
+			ChangeUITextColor2Green(purchaseRemoveAdsText);
 		}
 		else if (productID == GameConstants.PRODUCT_EXTRA_MOVES)
 		{
 			// TODO unlock the 2 extra moves
 			StartCoroutine(HidePurchaseExtraMovesImage());
+			ChangeUITextColor2Green(purchaseMovesText);
 		}
 		
 		
