@@ -18,6 +18,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 	private bool originallyBurning = false;
 	private AnimationController bombController;
 	private Sprite initialSprite;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -102,8 +103,13 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
         {
             col.enabled = false;
         }
-		Debug.Log("STILL IN BOMB!!!!");
+		
 		GetComponentInChildren<SpriteRenderer>().sprite = initialSprite;
+
+		//tile position is free now
+		if(tileOccupied!=null) {
+			tileOccupied.isOccupied = false;
+		}
 		
 		
 	}
@@ -126,6 +132,11 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 		Dictionary <string,bool> parameters = bombController.GetOriginalParameters();
 	 	foreach( KeyValuePair<string, bool> keyValue in parameters) {
 			bombController.SetAnimationParameter(keyValue.Key, keyValue.Value);
+		}
+
+		//the place where the bomb stands is occupied untile it explodes
+		if(tileOccupied!=null) {
+			tileOccupied.isOccupied = true;
 		}
 	}
 

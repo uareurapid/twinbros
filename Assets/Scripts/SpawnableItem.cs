@@ -6,6 +6,9 @@ using UnityEngine;
 public class SpawnableItem : MonoBehaviour {
 
 	public SpawnPosition[] possibleSpawnPositions;
+	//the tile where it is
+	public GridTile tileOccupied;
+
 	// Use this for initialization
 	void Start () {
 		if(possibleSpawnPositions!=null && possibleSpawnPositions.Length>0) {

@@ -60,6 +60,8 @@ public class SoundEffectsHelper : MonoBehaviour
 
 	private SoundManager soundManager;
 
+	public AudioSource audioPlayer;
+
 	void Awake()
 	{
 		// Register the singleton
@@ -249,8 +251,18 @@ public class SoundEffectsHelper : MonoBehaviour
 		}
 
 		soundManager.ChangeBackgroundVolume(0.3f, originalClip.length);
-	 	//play at the camera position, otherwise you cannot hear it
-		AudioSource.PlayClipAtPoint(originalClip, Camera.main.transform.position,1f);
+
+
+		if(Time.timeScale < 1.0f && audioPlayer!=null) {
+
+			audioPlayer.clip = originalClip;
+			audioPlayer.Play();
+		} else {
+
+			//play at the camera position, otherwise you cannot hear it
+			AudioSource.PlayClipAtPoint(originalClip, Camera.main.transform.position,1f);
+		}
+	 	
 	 	
 	}
 

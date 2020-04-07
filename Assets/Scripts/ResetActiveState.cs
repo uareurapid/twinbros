@@ -38,6 +38,15 @@ using UnityEngine;
 				if(gameObject.GetComponent<Bomb>()!=null) {
 					gameObject.GetComponent<Bomb>().ResetOriginalBehaviour();
 				}
+
+				//also do the same for the boxes, because for the surprise box it can go away
+				//after delivering a suprise and then come back on restart
+				//TODO CHECK must expand this for the spawn positions logic as well
+				if(gameObject.GetComponent<Box>()!=null) {
+
+					gameObject.GetComponent<Box>().ResetOriginalBehaviour();
+					
+				}
 			}
 		}
 	}

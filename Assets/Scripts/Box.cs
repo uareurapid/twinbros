@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : SpawnableItem, HandlePlayerCollision {
+public class Box : SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 
     //TODO the surprise must be destroyed when the level restarts, after player dies
 	public bool isSurpriseBox = false;
@@ -125,6 +125,12 @@ public class Box : SpawnableItem, HandlePlayerCollision {
 		if(numCollisions > 0 && (numCollisions % dropSurpriseAfterNumCollisions == 0) ) {
 			InstantiateSurprise();
 			FadeSprite fade = GetComponent<FadeSprite>();
+
+			//this tile position is free now
+			if(tileOccupied!=null) {
+				tileOccupied.isOccupied = false;
+			}
+
 			gameObject.SetActive(false);
 			if(fade!=null) {
 				fade.ResetSprite();
@@ -143,4 +149,12 @@ public class Box : SpawnableItem, HandlePlayerCollision {
             player.MyCustomOnCollisionEnter2D(gameObject);
         }
     }
+
+	public void ResetOriginalBehaviour()
+	{
+      if(isSurpriseBox && tileOccupied!=null) {
+		//now is occupied again	
+		tileOccupied.isOccupied = true;
+	  }
+	}
 }

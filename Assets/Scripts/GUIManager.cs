@@ -699,7 +699,7 @@ public class GUIManager : MonoBehaviour {
 			
 		}
         // preferably show ads
-        else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && (PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS,0)!=1) && !isArcadeOrSubscriptionMode ) {
+        else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && !gameManager.HasPurchasedRemoveAds() && !isArcadeOrSubscriptionMode ) {
 
 			ShowVideoRewardToEnableContinue();
 
