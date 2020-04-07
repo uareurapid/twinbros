@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Events;
+using System;
 
 public class MyStoreClass : MonoBehaviour, IStoreListener {
 
@@ -10,7 +11,9 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 	private bool unityPurchasingInitialized = false;
 	private IStoreController controller;
 
-	[System.Serializable]
+    private IExtensionProvider storeExtensions;
+
+    [System.Serializable]
     public class OnPurchaseCompletedEvent : UnityEvent<Product>
     {
     };
@@ -62,6 +65,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
     {
             initializationComplete = true;
 			this.controller = controller;
+            this.storeExtensions = extensions;
 			Debug.Log("INITIALIZATION IS NOW COMPLETE");
             if(guiManager != null)
             {
@@ -161,4 +165,33 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
             }
             
         }
+
+    public void RestorePurchases(GUIManager gui)
+    {
+        if(guiManager == null)
+        {
+            guiManager = gui;
+        }
+
+        if(controller!=null && this.storeExtensions!=null && (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) )
+        {
+            if(Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                storeExtensions.GetExtension<IAppleExtensions>().RestoreTransactions(result => {
+                    if (result)
+                    {
+                        // This does not mean anything was restored,
+                        // merely that the restoration process succeeded.
+                        Debug.Log("Restore purchases OK");
+                    }
+                    else
+                    {
+                        // Restoration failed.
+                        Debug.Log("Restore purchases NOK");
+                    }
+                });
+            }
+            
+        }
+    }
 }

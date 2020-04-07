@@ -175,7 +175,7 @@ public class SoundEffectsHelper : MonoBehaviour
 
 	public void PlaySettingsSound()
 	{
-		MakeSound(settingsSound);
+        MakeSound(settingsSound);
 	}
 
 	public void PlayCheckpointSound()

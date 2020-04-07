@@ -24,6 +24,7 @@ public class GUIManager : MonoBehaviour {
 	public Sprite [] purchaseRemoveAdsSprites;
 	public Sprite [] achievementsSprites;
 	public Sprite [] watchRewardVideoImages;
+	public Sprite[] restorePurchasesSprites;
 
 	public UnityEngine.UI.Image achievementsButtonImage;
 	public UnityEngine.UI.Image leaderboardButtonImage;
@@ -61,6 +62,9 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image purchaseRevivesImage;
 	public UnityEngine.UI.Image purchaseExtraMovesImage;
 	public UnityEngine.UI.Image purchaseRemoveAdsImage;
+
+	//restore in-app
+	public UnityEngine.UI.Image restorePurchasesButton;
 
 	//goto to select level
 	public UnityEngine.UI.Image gameSettingsButton;
@@ -387,6 +391,13 @@ public class GUIManager : MonoBehaviour {
 			ChangeUITextColor2Green(purchaseRemoveAdsText);
 		}
 
+        if(Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+			restorePurchasesButton.enabled = true;
+        } else
+        {
+			restorePurchasesButton.enabled = false;
+		}
 		backPanelImage.enabled = true;
 		settingsPanel.SetActive(true);
 	}
@@ -403,6 +414,9 @@ public class GUIManager : MonoBehaviour {
 
 	public void HideSettingsPanel() {
         backPanelImage.enabled = false;
+
+		restorePurchasesButton.enabled = false;
+		
 		settingsPanel.SetActive(false);
 	}
 
@@ -773,8 +787,8 @@ public class GUIManager : MonoBehaviour {
 
 	public void LeaderboardsPressed()
 	{
-        //TODO CHECK add another sound???
-		SoundEffectsHelper.Instance.PlayReplaySound();
+		//TODO CHECK add another sound???
+		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		leaderboardButtonImage.sprite = leaderboardsImages[1];
 		SocialAPI.Instance.AuthenticateAndShowLeaderboards();
@@ -783,7 +797,7 @@ public class GUIManager : MonoBehaviour {
 
 	public void AchievementsPressed()
 	{
-		SoundEffectsHelper.Instance.PlayReplaySound();
+		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		achievementsButtonImage.sprite = achievementsSprites[1];
 		SocialAPI.Instance.AuthenticateAndShowAchievements();
@@ -810,6 +824,9 @@ public class GUIManager : MonoBehaviour {
 
 	//TODO on load panel set the correct image
 	public void MusicSettingsPressed() {
+
+		SoundEffectsHelper.Instance.PlaySettingsSound();
+
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
 		if(musicOff == 0) {
 			musicOff = 1;
@@ -831,6 +848,9 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void RewardVideoPressed() {
+
+		SoundEffectsHelper.Instance.PlaySettingsSound();
+
 		rewardVideoImage.sprite = watchRewardVideoImages[1];
 		if (adsScript != null && adsScript.IsRewardVideoReady())
 		{
@@ -985,7 +1005,7 @@ public class GUIManager : MonoBehaviour {
 		if(gameManager.HasPurchasedInfiniteRevives()) {
 			return;
 		}
-		SoundEffectsHelper.Instance.PlayReplaySound();
+		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[1];
 		Debug.Log("PurchaseInfiniteRevivesPressed clicked");
@@ -1018,7 +1038,7 @@ public class GUIManager : MonoBehaviour {
 			return;
 		}
 
-		SoundEffectsHelper.Instance.PlayReplaySound();
+		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[1];
 		Debug.Log("PRODUCT_REMOVE_ADS clicked");
@@ -1051,7 +1071,7 @@ public class GUIManager : MonoBehaviour {
 			return;
 		}
 
-		SoundEffectsHelper.Instance.PlayReplaySound();
+		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[1];
 		Debug.Log("PRODUCT_EXTRA_MOVES clicked");
@@ -1206,5 +1226,25 @@ public class GUIManager : MonoBehaviour {
     {
         backPanelGameOver.enabled = false;
     }
+
+    public void RestorePurchasesPressed()
+    {
+		SoundEffectsHelper.Instance.PlaySettingsSound();
+		restorePurchasesButton.sprite = restorePurchasesSprites[1];
+		StartCoroutine(RestorePurchasesImage());
+
+        if(store!=null && store.IsInitialized())
+        {
+			store.RestorePurchases(this);
+        }
+
+    }
+
+
+	IEnumerator RestorePurchasesImage()
+	{
+		yield return new WaitForSeconds(1.2f);
+		restorePurchasesButton.sprite = restorePurchasesSprites[0];
+	}
 
 }
