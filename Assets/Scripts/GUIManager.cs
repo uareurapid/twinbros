@@ -512,12 +512,16 @@ public class GUIManager : MonoBehaviour {
 
     IEnumerator ShowPlayButton(float delay)
     {
-        Debug.Log("###########ShowPlayButton############");
-        playButton.enabled = true;
-        yield return new WaitForSecondsRealtime(delay);
-        playButton.GetComponent<MoveWayPoint>().enabled = true;
-        playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
-        levelManager.StartButtonVisible(true);
+        if (!playButton.enabled)
+        {
+			//Debug.Log("###########ShowPlayButton############");
+			playButton.enabled = true;
+			yield return new WaitForSecondsRealtime(delay);
+			playButton.GetComponent<MoveWayPoint>().enabled = true;
+			playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
+			levelManager.StartButtonVisible(true);
+		}
+        
     }
 
 	IEnumerator HidePlayButton() {

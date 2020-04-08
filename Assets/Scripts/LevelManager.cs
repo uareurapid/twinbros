@@ -508,8 +508,7 @@ public class LevelManager : MonoBehaviour {
 			int moved = 0;
 			if ( (Input.GetKeyDown(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
 	        {
-	
-				
+
 				foreach(PlayerMovement player in twins) {
 					if(player.TrySlideUp()) {
 						moved++;

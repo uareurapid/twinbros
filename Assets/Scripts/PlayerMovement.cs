@@ -283,6 +283,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitLeft.point.x - transform.position.x);
 				if(distance < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x)) {
+
+					if (isLeftTwin) Debug.Log("HIT ON THE LEFT " + hitLeft.transform.gameObject.name);
 					
 					if(canMoveLeft && IsStopped() && !isUpMovement && !isDownMovement && !isRightMovement) {
 						canMoveLeft = false;
@@ -301,10 +303,12 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitRight.point.x - transform.position.x);//make sure it is on the right of the player
 				if(distance < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x )) {
-					
-					if(canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
+
+					if (isLeftTwin) Debug.Log("HIT ON THE RIGHT " + hitRight.transform.gameObject.name + " IS STOPPED?" + IsStopped());
+
+					if (canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
                         canMoveRight = false;
-						if(!isLeftTwin) {
+						if(isLeftTwin) {
 							Debug.Log("COLLIDED WITH " + hitRight.collider.gameObject + " right movement? " + isRightMovement);
 						}
 						if(isRightMovement) {
@@ -321,11 +325,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitUp.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y)) {
-						
-					if(canMoveUp && IsStopped() && !isLeftMovement && !isRightMovement && !isDownMovement) {
+
+					if (isLeftTwin) Debug.Log("HIT ON THE UP " + hitUp.transform.gameObject.name + " IS STOPPED?" + IsStopped() + " is UP MOV" + isUpMovement);
+
+					if (canMoveUp && IsStopped() && !isLeftMovement && !isRightMovement && !isDownMovement) {
 						canMoveUp = false;
-                        if(!isLeftTwin) {
-                            Debug.Log("COLLIDED WITH " + hitUp.collider.gameObject + " up movement? " + isUpMovement);
+                        if(isLeftTwin) {
+                            Debug.Log("HERE, LEFT COLLIDED WITH " + hitUp.collider.gameObject + " up movement? " + isUpMovement);
                         }
                         if (isUpMovement) {
 							collidedTop(hitUp.collider.gameObject);
@@ -341,11 +347,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 				float distance = Mathf.Abs(hitDown.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y)) {
-					
-					if(canMoveDown && IsStopped() && !isLeftMovement && !isRightMovement && !isUpMovement) {
+
+					if (isLeftTwin) Debug.Log("HIT ON THE DOWN " + hitDown.transform.gameObject.name);
+
+					if (canMoveDown && IsStopped() && !isLeftMovement && !isRightMovement && !isUpMovement) {
 						canMoveDown = false;
 
-                        if(!isLeftTwin) {
+                        if(isLeftTwin) {
                             Debug.Log("COLLIDED WITH " + hitDown.collider.gameObject + " down movement? " + isDownMovement);
                         }
 
@@ -374,6 +382,7 @@ public class PlayerMovement : MonoBehaviour {
 			canMoveDown = false;
 		}
 		if(IsMovingDown() && !CanMoveOnOppositeDirection() ) {
+			Debug.Log("HERE 2");
 			canMoveUp = false;
 		}
 
@@ -393,9 +402,14 @@ public class PlayerMovement : MonoBehaviour {
 			reachedTarget = false;
 
 			if(!isLeftTwin) {
-				Debug.Log("right TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
-                Debug.Log("right TWIN: canMoveUp? " + canMoveUp + " isUpMovemet? " + isUpMovement);
-            }
+				//Debug.Log("right TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
+                //Debug.Log("right TWIN: canMoveUp? " + canMoveUp + " isUpMovemet? " + isUpMovement);
+            }else
+            {
+				//Debug.Log("left TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
+				//Debug.Log("left TWIN: canMoveUp? " + canMoveUp + " isUpMovemet? " + isUpMovement);
+			
+			}
 
 			if(isLeftMovement && canMoveLeft) {
 				//only move in x
@@ -537,7 +551,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void collidedLeft(GameObject obj) {
-        //Debug.Log("COLLIDED LEFT: " + obj.name + " is left? " + isLeftTwin);
+        Debug.Log("COLLIDED LEFT: " + obj.name + " is left? " + isLeftTwin);
         canMoveLeft = false;
 
 		//can always go backwards from where i came
@@ -565,7 +579,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	}
 	public void collidedRight(GameObject obj) {
-        //Debug.Log("COLLIDED RIGHT: " + obj.name);
+        Debug.Log("isleft? " + isLeftTwin + "COLLIDED RIGHT: " + obj.name);
         canMoveRight = false;
 
 		canMoveLeft = !HitSomethingOnLeft();
@@ -590,13 +604,13 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 	public void collidedTop(GameObject obj) {
-        Debug.Log("COLLIDED TOP: " + obj.name);
+        Debug.Log("HERE 4 COLLIDED TOP: " + obj.name +  " isLeftTiwn " + isLeftTwin);
         canMoveUp = false;
 		
 		canMoveDown = !HitSomethingOnDown();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //todo raycast
-        Debug.Log("LEFT TWIN? " + isLeftTwin + " CAN MOVE UP? " + canMoveUp + " DOWN " + canMoveDown + " LEFT " + canMoveLeft + " RIGHT " + canMoveRight);
+        Debug.Log("LEFT TWIN? " + isLeftTwin + " CAN MOVE UP? " + canMoveUp + " DOWN? " + canMoveDown + " CAN GO LEFT ?" + canMoveLeft + " RIGHT ?" + canMoveRight);
 
 
         if (!reachedTarget) {
@@ -617,7 +631,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	public void collidedBottom(GameObject obj) {
 
-        //Debug.Log("COLLIDED BOTTOM: " + obj.name);
+        Debug.Log("COLLIDED BOTTOM: " + obj.name + " isLeftTwin " + isLeftTwin);
         canMoveDown = false;
 
         canMoveUp = !HitSomethingOnUp();
@@ -824,7 +838,13 @@ public class PlayerMovement : MonoBehaviour {
 			return;
 		}
 
-        string otherTag = other.transform.tag;
+        if(isLeftTwin)
+		{
+			Debug.Log("######## COLLISION WITH " + other.gameObject.name);
+			Debug.Log(" right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement + "can move up?" + canMoveUp);
+		}
+
+		string otherTag = other.transform.tag;
         bool isPortal = otherTag.Equals("Portal");
 		
 		bool isEnemy = otherTag.Equals("Enemy") || other.gameObject.GetComponent<EnemyBox>() != null;
@@ -854,6 +874,9 @@ public class PlayerMovement : MonoBehaviour {
 
         //Blocks and other things not tagged Enemy!
         if (isRightMovement && canMoveRight) {
+
+			if (isLeftTwin)
+				Debug.Log("1");
 			//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 				if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 				
@@ -864,15 +887,16 @@ public class PlayerMovement : MonoBehaviour {
 					if(isBox || isTile || isBomb) {
                         AdjustPositionByBouncingLeft(isTile, other.gameObject);
 					}
-					Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
+					//Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
 				}
 						
 		}
          else if(isLeftMovement && canMoveLeft) {
+			if (isLeftTwin)
+				Debug.Log("2");
 
-
-				//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
-				if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
+			//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
+			if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
 				{
 					collidedLeft(other.gameObject);
 					//colLeft = true;
@@ -881,18 +905,21 @@ public class PlayerMovement : MonoBehaviour {
                         AdjustPositionByBouncingRight(isTile, other.gameObject);
 					}
 
-					Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
+					//Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
 				}
 						
 		}//TODO raycast to see if i can move up or not
         else if(isUpMovement && canMoveUp) {
-						
-            Debug.Log("DEBUG: IS UP AND CAN MOVE UP leftTwin?" + isLeftTwin + " collision" + other.gameObject.name);
-				//otherwise just ignore this one
-				//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
-				if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
+			if (isLeftTwin)
+				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 3");
+			//Debug.Log("DEBUG: IS UP AND CAN MOVE UP leftTwin?" + isLeftTwin + " collision" + other.gameObject.name);
+			//otherwise just ignore this one
+			//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
+
+			if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
 				{
+				if(isLeftTwin) Debug.Log("$$$$$$$$$$$$$$$$$$$$ DO NOT IGNORE IT");
 					collidedTop(other.gameObject);
 					//colUp = true;
 					ignoreCollision = false;
@@ -900,14 +927,19 @@ public class PlayerMovement : MonoBehaviour {
                         AdjustPositionByBouncingDown(isTile, other.gameObject);
                     }
 
-					Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
-				}
+					//Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
+				} else
+            {
+				Debug.Log("#$$$$$$$ IGNORE IT???");
+            }
 							
 		}
         else if(isDownMovement && canMoveDown) {
+			if (isLeftTwin)
+				Debug.Log("4");
 			//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
-              //Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
-                        
+			//Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
+
 			if (!IsIgnoreCollision(other.transform, false/*other.transform.position.x, transform.position.x) && other.transform.position.y <= transform.position.y*/))
 			{
 			        collidedBottom(other.gameObject);
@@ -917,11 +949,11 @@ public class PlayerMovement : MonoBehaviour {
                         AdjustPositionByBouncingUp(isTile, other.gameObject);
                     }
 
-					Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
+					//Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
 							
 			}
 						
-        } else if(!IsMovingInAnyDirection() && isEnemy) {
+        } else if(!IsMovingInAnyDirection() ) {
                  //even if not moving, if it is an enemy
                  Debug.Log("DEBUG: CODE ME, EMPTY BLOCK");
         }
