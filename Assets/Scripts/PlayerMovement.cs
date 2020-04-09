@@ -217,7 +217,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	//called from Level manager
 	public bool TrySlideUp() {
-		if( ( HasTwinFinishedMovement()  )  && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if(  HasTwinFinishedMovement()   && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
+			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection())*/) {
 
 			SlideUp();
 			return true;
@@ -228,7 +229,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool TrySlideDown() {
 
 		
-		if((HasTwinFinishedMovement()  ) && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if(HasTwinFinishedMovement() && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
+            (otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection() ) */) {
 
 			SlideDown();
 			return true;
@@ -239,7 +241,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool TrySlideLeft() {
 		
-		if((HasTwinFinishedMovement()  ) && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if(HasTwinFinishedMovement()  && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints /*&&
+			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection()) */) {
             SlideLeft();
 			return true;
 		}
@@ -249,7 +252,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public bool TrySlideRight() {
-		if( (HasTwinFinishedMovement()  ) && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints) {
+		if( HasTwinFinishedMovement()  && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
+			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection())*/ ) {
 			SlideRight();
 			return true;
 		}
@@ -655,60 +659,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
-	void OnCollisionExit2D(Collision2D other)
-	{
-
-		HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
-		
-		Tile tile = other.transform.GetComponent<Tile>();
-		if(tile!=null) {
-			tile.HandleExitCollision(this);
-		}
-		else {
-
-            //TODO CHECK IMPORTANT
-            canMoveUp = !HitSomethingOnUp() && canMoveUp;
-            canMoveDown = !HitSomethingOnDown() && canMoveDown;
-            canMoveLeft = !HitSomethingOnLeft() && canMoveLeft;
-            canMoveRight = !HitSomethingOnRight() && canMoveRight;
-
-			//TODO CHECK
-
-            if (!canMoveUp && !HitSomethingOnUp()) {
-				//Debug.Log("################# ALLOW UP ##################");
-				canMoveUp = true;
-			}
-			if(!canMoveDown && !HitSomethingOnDown()) {
-				//Debug.Log("################# ALLOW DOWN ##################");
-				canMoveDown = true;
-			
-			}
-			if(!canMoveLeft && !HitSomethingOnLeft()) {
-				//Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
-				canMoveLeft = true;
-				
-			}
-			if(!canMoveRight && !HitSomethingOnRight()) {
-				//Debug.Log("################# ALLOW RIGHT ##################");
-
-				canMoveRight = true;
-			}
-
-			//allow the block to move again
-			MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
-			if(move!=null && move.IsPaused()) {
-				move.ContinueMovement();
-			}
-
-
-			if(handle!=null) {
-				handle.HandleExitCollision(this);
-			}
-						
-		}
-		//AllowAllMovementsAgain();
-		
-	}
+	
 
 	public Rigidbody2D GetBody() {
 		return body;
@@ -813,8 +764,8 @@ public class PlayerMovement : MonoBehaviour {
 		return true;
 		//return !(Mathf.Abs(otherPosition - playerPosition) < ignoreCollisionInterval);
 	}
-    //TODO maybe keep a reference foir the last object checked?? to avoid process the same again
-    /*void OnCollisionStay2D(Collision2D other) {
+	//TODO maybe keep a reference foir the last object checked?? to avoid process the same again
+	/*void OnCollisionStay2D(Collision2D other) {
         bool isEnemy = other.transform.Equals("Enemy");
         if(isEnemy) {
             bool ignoreCollision = IsIgnoreCollision(other.transform);
@@ -830,7 +781,66 @@ public class PlayerMovement : MonoBehaviour {
 
     }*/
 
-    void OnCollisionEnter2D(Collision2D other)
+	void OnCollisionExit2D(Collision2D other)
+	{
+
+		HandlePlayerCollision handle = other.gameObject.GetComponent<HandlePlayerCollision>();
+
+		Tile tile = other.transform.GetComponent<Tile>();
+		if (tile != null)
+		{
+			tile.HandleExitCollision(this);
+		}
+		else
+		{
+
+			//TODO CHECK IMPORTANT
+			canMoveUp = !HitSomethingOnUp() && canMoveUp;
+			canMoveDown = !HitSomethingOnDown() && canMoveDown;
+			canMoveLeft = !HitSomethingOnLeft() && canMoveLeft;
+			canMoveRight = !HitSomethingOnRight() && canMoveRight;
+
+			//TODO CHECK
+
+			/*if (!canMoveUp && !HitSomethingOnUp()) {
+				//Debug.Log("################# ALLOW UP ##################");
+				canMoveUp = true;
+			}
+			if(!canMoveDown && !HitSomethingOnDown()) {
+				//Debug.Log("################# ALLOW DOWN ##################");
+				canMoveDown = true;
+			
+			}
+			if(!canMoveLeft && !HitSomethingOnLeft()) {
+				//Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
+				canMoveLeft = true;
+				
+			}
+			if(!canMoveRight && !HitSomethingOnRight()) {
+				//Debug.Log("################# ALLOW RIGHT ##################");
+
+				canMoveRight = true;
+			}*/
+
+			//allow the block to move again
+			MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();
+			if (move != null && move.IsPaused())
+			{
+				move.ContinueMovement();
+			}
+
+
+			if (handle != null)
+			{
+				handle.HandleExitCollision(this);
+			}
+
+		}
+		//AllowAllMovementsAgain();
+
+	}
+
+	void OnCollisionEnter2D(Collision2D other)
 	{
         
         //ignore it
@@ -875,7 +885,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
         //Blocks and other things not tagged Enemy!
-        if (isRightMovement && canMoveRight) {
+        if (isRightMovement && canMoveRight || (isRightMovement && !HasTwinFinishedMovement()) ) {
 
 			if (isLeftTwin)
 				Debug.Log("1");
@@ -893,7 +903,7 @@ public class PlayerMovement : MonoBehaviour {
 				}
 						
 		}
-         else if(isLeftMovement && canMoveLeft) {
+         else if(isLeftMovement && canMoveLeft || (isLeftMovement && !HasTwinFinishedMovement() )) {
 			if (isLeftTwin)
 				Debug.Log("2");
 
@@ -911,7 +921,7 @@ public class PlayerMovement : MonoBehaviour {
 				}
 						
 		}//TODO raycast to see if i can move up or not
-        else if(isUpMovement && canMoveUp) {
+        else if(isUpMovement && canMoveUp || (isUpMovement && !HasTwinFinishedMovement() ) ) {
 
 			if (isLeftTwin)
 				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 3");
@@ -936,7 +946,7 @@ public class PlayerMovement : MonoBehaviour {
             }
 							
 		}
-        else if(isDownMovement && canMoveDown) {
+        else if(isDownMovement && canMoveDown || ( isDownMovement && !HasTwinFinishedMovement() ) ) {
 			if (isLeftTwin)
 				Debug.Log("4");
 			//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
