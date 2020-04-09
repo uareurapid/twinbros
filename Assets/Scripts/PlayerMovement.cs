@@ -284,10 +284,11 @@ public class PlayerMovement : MonoBehaviour {
 				float distance = Mathf.Abs(hitLeft.point.x - transform.position.x);
 				if(distance < minDistanceForNeighbour && (hitLeft.point.x <= transform.position.x)) {
 
-					if (isLeftTwin) Debug.Log("HIT ON THE LEFT " + hitLeft.transform.gameObject.name);
+					//if (isLeftTwin) Debug.Log("HIT ON THE LEFT " + hitLeft.transform.gameObject.name);
 					
 					if(canMoveLeft && IsStopped() && !isUpMovement && !isDownMovement && !isRightMovement) {
 						canMoveLeft = false;
+						if (isLeftTwin) Debug.Log("###### BLOCKED");
 						
 						if(isLeftMovement) {
 							collidedLeft(hitLeft.collider.gameObject);
@@ -304,7 +305,7 @@ public class PlayerMovement : MonoBehaviour {
 				float distance = Mathf.Abs(hitRight.point.x - transform.position.x);//make sure it is on the right of the player
 				if(distance < minDistanceForNeighbour && (hitRight.point.x >= transform.position.x )) {
 
-					if (isLeftTwin) Debug.Log("HIT ON THE RIGHT " + hitRight.transform.gameObject.name + " IS STOPPED?" + IsStopped());
+					//if (isLeftTwin) Debug.Log("HIT ON THE RIGHT " + hitRight.transform.gameObject.name + " IS STOPPED?" + IsStopped());
 
 					if (canMoveRight && IsStopped() && !isUpMovement && !isDownMovement && !isLeftMovement) {
                         canMoveRight = false;
@@ -326,7 +327,7 @@ public class PlayerMovement : MonoBehaviour {
 				float distance = Mathf.Abs(hitUp.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitUp.point.y >= transform.position.y)) {
 
-					if (isLeftTwin) Debug.Log("HIT ON THE UP " + hitUp.transform.gameObject.name + " IS STOPPED?" + IsStopped() + " is UP MOV" + isUpMovement);
+					//if (isLeftTwin) Debug.Log("HIT ON THE UP " + hitUp.transform.gameObject.name + " IS STOPPED?" + IsStopped() + " is UP MOV" + isUpMovement);
 
 					if (canMoveUp && IsStopped() && !isLeftMovement && !isRightMovement && !isDownMovement) {
 						canMoveUp = false;
@@ -348,7 +349,7 @@ public class PlayerMovement : MonoBehaviour {
 				float distance = Mathf.Abs(hitDown.point.y - transform.position.y);
 				if(distance < minDistanceForNeighbour && (hitDown.point.y <= transform.position.y)) {
 
-					if (isLeftTwin) Debug.Log("HIT ON THE DOWN " + hitDown.transform.gameObject.name);
+					//if (isLeftTwin) Debug.Log("HIT ON THE DOWN " + hitDown.transform.gameObject.name);
 
 					if (canMoveDown && IsStopped() && !isLeftMovement && !isRightMovement && !isUpMovement) {
 						canMoveDown = false;
@@ -382,7 +383,7 @@ public class PlayerMovement : MonoBehaviour {
 			canMoveDown = false;
 		}
 		if(IsMovingDown() && !CanMoveOnOppositeDirection() ) {
-			Debug.Log("HERE 2");
+			if(isLeftTwin)Debug.Log("HERE 2");
 			canMoveUp = false;
 		}
 
@@ -468,6 +469,7 @@ public class PlayerMovement : MonoBehaviour {
 		//Debug.Log("SLIDE UP isLeft? " + isLeftTwin);
 		reachedTarget = false;
 		isUpMovement = true;
+		
         //body.isKinematic = false; //TODO FIXME
         targetPosition += (Vector3.up)*tileSize*maxTilesMovement;
 		isLeftMovement = isRightMovement = isDownMovement = false;
@@ -479,13 +481,11 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SlideRight() {
-        if(!isLeftTwin)
-        {
-            Debug.Log("SLIDE RIGHT can move right?" + canMoveRight);
-        }
+        
         
 		reachedTarget = false;
 		isRightMovement = true;
+
 		//body.isKinematic = false;
 		targetPosition += (Vector3.right)*tileSize*maxTilesMovement;
 		isLeftMovement = isUpMovement = isDownMovement = false;
@@ -665,32 +665,34 @@ public class PlayerMovement : MonoBehaviour {
 			tile.HandleExitCollision(this);
 		}
 		else {
+
             //TODO CHECK IMPORTANT
             canMoveUp = !HitSomethingOnUp() && canMoveUp;
             canMoveDown = !HitSomethingOnDown() && canMoveDown;
             canMoveLeft = !HitSomethingOnLeft() && canMoveLeft;
             canMoveRight = !HitSomethingOnRight() && canMoveRight;
 
-            /**
-            if (!canMoveUp) {
+			//TODO CHECK
+
+            if (!canMoveUp && !HitSomethingOnUp()) {
 				//Debug.Log("################# ALLOW UP ##################");
 				canMoveUp = true;
 			}
-			if(!canMoveDown) {
+			if(!canMoveDown && !HitSomethingOnDown()) {
 				//Debug.Log("################# ALLOW DOWN ##################");
 				canMoveDown = true;
 			
 			}
-			if(!canMoveLeft) {
+			if(!canMoveLeft && !HitSomethingOnLeft()) {
 				//Debug.Log("################# ALLOW LEFT " + movement.isLeftTwin + "##################");
 				canMoveLeft = true;
 				
 			}
-			if(!canMoveRight) {
+			if(!canMoveRight && !HitSomethingOnRight()) {
 				//Debug.Log("################# ALLOW RIGHT ##################");
 
 				canMoveRight = true;
-			}*/
+			}
 
 			//allow the block to move again
 			MoveWayPoint move = other.gameObject.GetComponent<MoveWayPoint>();

@@ -33941,7 +33941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1211128221896098, guid: 97ffe6769858e42268a45a8427ae8195, type: 3}
       propertyPath: m_Name
-      value: Box (4)
+      value: BoxBad
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111701,7 +111701,7 @@ MonoBehaviour:
   currentLevel: {fileID: 747059181}
   respawnLevel: {fileID: 747059181}
   currentStageFirstLevel: {fileID: 747059181}
-  debugLevel: {fileID: 2023011355}
+  debugLevel: {fileID: 1348278068}
   stage: 1
   respawnOnDyingLevel: 0
   MAX_MOVES: 10
@@ -238909,7 +238909,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1211128221896098, guid: 97ffe6769858e42268a45a8427ae8195, type: 3}
       propertyPath: m_Name
-      value: Box (6)
+      value: BoxBadLeft
       objectReference: {fileID: 0}
     - target: {fileID: 4849558580254850, guid: 97ffe6769858e42268a45a8427ae8195, type: 3}
       propertyPath: m_LocalPosition.x
