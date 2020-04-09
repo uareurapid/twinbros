@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GUIManager : MonoBehaviour {
 
@@ -303,7 +304,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void PausePressed() {
-    
+
         SoundEffectsHelper.Instance.PlayReplaySound();
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
@@ -358,13 +359,11 @@ public class GUIManager : MonoBehaviour {
         }
 	}
 
-
+	
 	private void ChangeUITextColor2Green(UnityEngine.UI.Text text)
     {
-		Color theColor = text.color;
-		theColor.r = 99f;
-		theColor.g = 198f;
-		theColor.b = 77f;
+		Color theColor = new Color(99f, 198f, 77f);
+		text.color = theColor;
 	}
 
 	public void ShowSettingsPanel() {
@@ -471,6 +470,10 @@ public class GUIManager : MonoBehaviour {
             //TODO check removed this one
 			//levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
+		} else if(!levelManager.IsGameStarted()) {
+
+			playPressed = true;
+			StartCoroutine(StartGameRoutine());
 		}	
 
 	}
@@ -512,16 +515,11 @@ public class GUIManager : MonoBehaviour {
 
     IEnumerator ShowPlayButton(float delay)
     {
-        if (!playButton.enabled)
-        {
-			//Debug.Log("###########ShowPlayButton############");
-			playButton.enabled = true;
-			yield return new WaitForSecondsRealtime(delay);
-			playButton.GetComponent<MoveWayPoint>().enabled = true;
-			playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
-			levelManager.StartButtonVisible(true);
-		}
-        
+        playButton.enabled = true;
+		yield return new WaitForSecondsRealtime(delay);
+		playButton.GetComponent<MoveWayPoint>().enabled = true;
+		playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
+		levelManager.StartButtonVisible(true);
     }
 
 	IEnumerator HidePlayButton() {
@@ -863,7 +861,7 @@ public class GUIManager : MonoBehaviour {
 			adsScript.ShowRewardVideo(this);
 		}
 
-		StartCoroutine(HideRewardedVideoImage());
+		StartCoroutine(HideRewardedVideoImageRoutine());
 		
 	}
 	
@@ -1152,20 +1150,20 @@ public class GUIManager : MonoBehaviour {
 		{
 
 			// hide the purchase button & the continue button
-			StartCoroutine(HidePurchaseRevivesImage());
+			HidePurchaseRevivesImage();
 			ChangeUITextColor2Green(purchaseRevivesText);
 
 		}
 		else if (productID == GameConstants.PRODUCT_REMOVE_ADS)
 		{
 			// DO NOTHING
-			StartCoroutine(HidePurchaseRemoveAdsImage());
+			HidePurchaseRemoveAdsImage();
 			ChangeUITextColor2Green(purchaseRemoveAdsText);
 		}
 		else if (productID == GameConstants.PRODUCT_EXTRA_MOVES)
 		{
 			// TODO unlock the 2 extra moves
-			StartCoroutine(HidePurchaseExtraMovesImage());
+			HidePurchaseExtraMovesImage();
 			ChangeUITextColor2Green(purchaseMovesText);
 		}
 		
@@ -1184,29 +1182,49 @@ public class GUIManager : MonoBehaviour {
 		stopTimer = false;
 	}
 
-	IEnumerator HideRewardedVideoImage() {
+	IEnumerator HideRewardedVideoImageRoutine() {
 		yield return new WaitForSeconds(1.2f);
+		HideRewardedVideoImage();
+	}
+
+	private void HideRewardedVideoImage() {
 		rewardVideoImage.enabled = false;
 		rewardVideoImage.sprite = watchRewardVideoImages[0];
 	}
 
-	IEnumerator HidePurchaseRevivesImage() {
+	IEnumerator HidePurchaseRevivesImageRoutine() {
 		Debug.Log("HidePurchaseRevivesImage CALLED");
 		yield return new WaitForSeconds(1.2f);
+		HidePurchaseRevivesImage();
+		
+	}
+
+	private void HidePurchaseRevivesImage() {
+
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[0];
 		purchaseRevivesImage.enabled = false;
 	}
 
-	IEnumerator HidePurchaseExtraMovesImage() {
+	IEnumerator HidePurchaseExtraMovesImageRoutine() {
+
 		Debug.Log("HidePurchaseExtraMovesImage CALLED");
 		yield return new WaitForSeconds(1.2f);
+		HidePurchaseExtraMovesImage();
+	}	
+
+	private void HidePurchaseExtraMovesImage() {
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[0];
 		purchaseExtraMovesImage.enabled = false;
 	}
 
-	IEnumerator HidePurchaseRemoveAdsImage() {
+	IEnumerator HidePurchaseRemoveAdsImageRoutine() {
 		Debug.Log("HidePurchaseRemoveAdsImage CALLED");
 		yield return new WaitForSeconds(1.2f);
+		HidePurchaseRemoveAdsImage();
+	}
+
+	//needs to be outside a couroutine so i can called when timescale = 0
+	private void HidePurchaseRemoveAdsImage() {
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[0];
 		purchaseRemoveAdsImage.enabled = false;
 	}
