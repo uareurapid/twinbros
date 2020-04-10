@@ -82596,7 +82596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 393, y: 32}
+  m_AnchoredPosition: {x: 286, y: 32}
   m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786574020
@@ -102372,7 +102372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnLoad: {fileID: 8300000, guid: 69a3290bc811243c3a9a7d92c3e711fd, type: 3}
-  playingAudioClip: {fileID: 8300000, guid: 742e1cb2f5e7e45599131d61be000dc5, type: 3}
+  playingAudioClip: {fileID: 8300000, guid: b470432d7ce59ed4db71697500c86e9e, type: 3}
 --- !u!1 &994697899
 GameObject:
   m_ObjectHideFlags: 0
@@ -199809,7 +199809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 393, y: 32}
+  m_AnchoredPosition: {x: 286, y: 32}
   m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1818613258
