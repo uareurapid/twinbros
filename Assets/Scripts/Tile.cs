@@ -47,7 +47,6 @@ public class Tile : MonoBehaviour, HandlePlayerCollision {
 
 	public void HandleCollision(PlayerMovement movement) {
 
-        Debug.Log("TILE HANDLE COLLISION " +gameObject.name);
 		bool ignoredCollision = true; 
 
 			EnemyBox enemy = gameObject.GetComponent<EnemyBox>();

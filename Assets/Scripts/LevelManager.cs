@@ -509,43 +509,124 @@ public class LevelManager : MonoBehaviour {
 			if ( (Input.GetKeyDown(KeyCode.UpArrow) || swipe!=null && swipe.upSwipe ) )
 	        {
 
-				foreach(PlayerMovement player in twins) {
+				PlayerMovement playerLeft= twins[0];
+				PlayerMovement playerRight = twins[1];
+				bool canLeftMove = playerLeft.CanSlideUp() && (playerRight.HasTwinFinishedMovement() || !playerRight.IsMovingInAnyDirection());
+
+				bool canRightmove = playerRight.CanSlideUp() && (playerLeft.HasTwinFinishedMovement() || !playerLeft.IsMovingInAnyDirection());
+
+				if ( canLeftMove || canRightmove ) 
+                {
+					moved++;
+                    if(canLeftMove)
+                    {
+						playerLeft.SlideUp();
+                    }
+                    if(canRightmove)
+                    {
+						playerRight.SlideUp();
+                    }
+                }
+               
+				/*foreach (PlayerMovement player in twins) {
 					if(player.TrySlideUp()) {
 						moved++;
 					}
-				}
-	
-				
-	        }
+				}*/
+
+
+			}
 	        else if ( (Input.GetKeyDown(KeyCode.RightArrow)|| swipe!=null && swipe.rightSwipe)  ) 
 	        {
-				
-				foreach(PlayerMovement player in twins) {
+
+				PlayerMovement playerLeft = twins[0];
+				PlayerMovement playerRight = twins[1];
+
+				bool canLeftMove = playerLeft.CanSlideRight() && (playerRight.HasTwinFinishedMovement() || !playerRight.IsMovingInAnyDirection());
+
+				bool canRightmove = playerRight.CanSlideRight() && (playerLeft.HasTwinFinishedMovement() || !playerLeft.IsMovingInAnyDirection());
+
+				if (canLeftMove || canRightmove)
+				{
+					moved++;
+					if (canLeftMove)
+					{
+						playerLeft.SlideRight();
+					}
+					if (canRightmove)
+					{
+						playerRight.SlideRight();
+					}
+				}
+
+				/*
+				foreach (PlayerMovement player in twins) {
 					if(player.TrySlideRight()) {
 						moved++;
 					}
-				}
-				
-	        }
+				}*/
+
+			}
 	        else if ( (Input.GetKeyDown(KeyCode.DownArrow) || swipe!=null && swipe.downSwipe ) )
 	        {
-	
-				foreach(PlayerMovement player in twins) {
+
+				PlayerMovement playerLeft = twins[0];
+				PlayerMovement playerRight = twins[1];
+
+				bool canLeftMove = playerLeft.CanSlideDown() && (playerRight.HasTwinFinishedMovement() || !playerRight.IsMovingInAnyDirection());
+
+				bool canRightmove = playerRight.CanSlideDown() && (playerLeft.HasTwinFinishedMovement() || !playerLeft.IsMovingInAnyDirection());
+
+				if (canLeftMove || canRightmove)
+				{
+					moved++;
+					if (canLeftMove)
+					{
+						playerLeft.SlideDown();
+					}
+					if (canRightmove)
+					{
+						playerRight.SlideDown();
+					}
+				}
+
+				/*
+				foreach (PlayerMovement player in twins) {
 					if(player.TrySlideDown()) {
 						moved++;
 					}
-				}
-				
-	        }
+				}*/
+
+			}
 	        else if ( (Input.GetKeyDown(KeyCode.LeftArrow) || swipe!=null && swipe.leftSwipe ) )
-	        {  
-	
-				foreach(PlayerMovement player in twins) {
+	        {
+
+				PlayerMovement playerLeft = twins[0];
+				PlayerMovement playerRight = twins[1];
+
+				bool canLeftMove = playerLeft.CanSlideLeft() && (playerRight.HasTwinFinishedMovement() || !playerRight.IsMovingInAnyDirection());
+
+				bool canRightmove = playerRight.CanSlideLeft() && (playerLeft.HasTwinFinishedMovement() || !playerLeft.IsMovingInAnyDirection());
+
+				if (canLeftMove || canRightmove)
+				{
+					moved++;
+					if (canLeftMove)
+					{
+						playerLeft.SlideLeft();
+					}
+					if (canRightmove)
+					{
+						playerRight.SlideLeft();
+					}
+				}
+				/*
+				foreach (PlayerMovement player in twins) {
 					if(player.TrySlideLeft()) {
 						moved++;
 					}
-				}
-	        }
+				}*/
+			}
 	
 			//on boss level there is no limitation of movements
 			if(moved > 0 && !currentLevel.isBossLevel) {

@@ -82,10 +82,9 @@ public class Box : SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
             shooting.HandleCollision(player);
             
         }
-        
-        SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(player.transform.position);
+		//moved to player SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
 
-        if (shouldHandleMoreCollisionComponents)
+		if (shouldHandleMoreCollisionComponents)
         {
             Debug.Log("STILL HEREER????");
             HandlePlayerCollision[] others = GetComponents<HandlePlayerCollision>();

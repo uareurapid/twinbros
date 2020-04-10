@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour {
 	//called from Level manager
 	public bool TrySlideUp() {
 		if(  HasTwinFinishedMovement()   && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
-			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection())*/) {
+			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingUpAndNotStopped())*/) {
 
 			SlideUp();
 			return true;
@@ -226,23 +226,27 @@ public class PlayerMovement : MonoBehaviour {
 		return false;
 	}
 
-	public bool TrySlideDown() {
+	public bool TrySlideDown()
+	{
 
-		
-		if(HasTwinFinishedMovement() && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
-            (otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection() ) */) {
+
+		if (HasTwinFinishedMovement() && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
+            (otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingDownAndNotStopped() ) */)
+		{
 
 			SlideDown();
 			return true;
-			
+
 		}
 		return false;
 	}
 
+	
+
 	public bool TrySlideLeft() {
 		
 		if(HasTwinFinishedMovement()  && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints /*&&
-			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection()) */) {
+			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingLeftAndNotStopped() )*/ ) {
             SlideLeft();
 			return true;
 		}
@@ -253,12 +257,55 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool TrySlideRight() {
 		if( HasTwinFinishedMovement()  && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints/* &&
-			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingInAnyDirection())*/ ) {
+			(otherTwin.HasTwinFinishedMovement() || !otherTwin.IsMovingRightAndNotStopped() )*/ ) {
 			SlideRight();
 			return true;
 		}
 		return false;
 	}
+    //----------------------------------------------------------------------------
+	//check if he can slide in any position
+	public bool CanSlideUp()
+	{
+		if (HasTwinFinishedMovement() && canMoveUp && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public bool CanSlideDown()
+	{
+
+
+		if (HasTwinFinishedMovement() && canMoveDown && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints)
+		{
+			return true;
+
+		}
+		return false;
+	}
+
+	public bool CanSlideLeft()
+	{
+
+		if (HasTwinFinishedMovement() && canMoveLeft && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints)
+		{
+			return true;
+		}
+		return false;
+
+	}
+
+	public bool CanSlideRight()
+	{
+		if (HasTwinFinishedMovement() && canMoveRight && !isMovingBetweenLevels && !isMovingBetweenTeleportPoints)
+		{
+			return true;
+		}
+		return false;
+	}
+    //------------------------------------------------------------------------------------------------------------
 
 	public bool IsStopped() {
 		//whne i movetowards it does not use physics, but the transform position directly, so the velocity is always zero, at least until it collides with something
@@ -405,16 +452,6 @@ public class PlayerMovement : MonoBehaviour {
 			|| (isLeftMovement && canMoveLeft ) ||	(isRightMovement && canMoveRight) )
 		{
 			reachedTarget = false;
-
-			if(!isLeftTwin) {
-				//Debug.Log("right TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
-                //Debug.Log("right TWIN: canMoveUp? " + canMoveUp + " isUpMovemet? " + isUpMovement);
-            }else
-            {
-				//Debug.Log("left TWIN: canMoveDown? " + canMoveDown + " isDownMovemet? " + isDownMovement);
-				//Debug.Log("left TWIN: canMoveUp? " + canMoveUp + " isUpMovemet? " + isUpMovement);
-			
-			}
 
 			if(isLeftMovement && canMoveLeft) {
 				//only move in x
@@ -876,10 +913,11 @@ public class PlayerMovement : MonoBehaviour {
 
         if (isEnemy)
         {
-            Debug.Log("ENEMY COLLIDDED CALLED  " + other.gameObject.name + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
+            //Debug.Log("ENEMY COLLIDDED CALLED  " + other.gameObject.name + " right?" + isRightMovement + "left?" + isLeftMovement + " down?" + isDownMovement + " up?" + isUpMovement);
 
             EnemyBox enemy = other.gameObject.GetComponent<EnemyBox>();
-            enemy.HandleCollision(this);
+			SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+			enemy.HandleCollision(this);
             return;
         }
 
@@ -887,8 +925,7 @@ public class PlayerMovement : MonoBehaviour {
         //Blocks and other things not tagged Enemy!
         if (isRightMovement && canMoveRight || (isRightMovement && !HasTwinFinishedMovement()) ) {
 
-			if (isLeftTwin)
-				Debug.Log("1");
+		
 			//Mathf.Abs(other.transform.position.y - transform.position.y) < ignoreCollisionInterval
 				if (!IsIgnoreCollision( other.transform, false /* other.transform.position.y,transform.position.y) && other.transform.position.x >= transform.position.x*/) ){
 				
@@ -897,15 +934,17 @@ public class PlayerMovement : MonoBehaviour {
 					ignoreCollision = false;
 
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingLeft(isTile, other.gameObject);
+
+					    SoundEffectsHelper.Instance.PlayBounceSound();
+					    SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+					    AdjustPositionByBouncingLeft(isTile, other.gameObject);
 					}
-					//Debug.Log("RIGHT COLLISION WITH ====> " + other.transform.name + " BOMB" + isBomb);
-				}
+
+			}
 						
 		}
          else if(isLeftMovement && canMoveLeft || (isLeftMovement && !HasTwinFinishedMovement() )) {
-			if (isLeftTwin)
-				Debug.Log("2");
+		
 
 			//Debug.Log("DEBUG: IS LEFT AND CAN MOVE LEFT");
 			if (!IsIgnoreCollision(other.transform, false /*other.transform.position.y,transform.position.y) && other.transform.position.x <= transform.position.x*/ ) )
@@ -914,41 +953,40 @@ public class PlayerMovement : MonoBehaviour {
 					//colLeft = true;
 					ignoreCollision = false;
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingRight(isTile, other.gameObject);
+
+					    SoundEffectsHelper.Instance.PlayBounceSound();
+					    SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+					    AdjustPositionByBouncingRight(isTile, other.gameObject);
 					}
 
-					//Debug.Log("LEFT COLLISION WITH ====> " + other.transform.name);
-				}
+			}
 						
 		}//TODO raycast to see if i can move up or not
         else if(isUpMovement && canMoveUp || (isUpMovement && !HasTwinFinishedMovement() ) ) {
 
-			if (isLeftTwin)
-				Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 3");
+			
 			//Debug.Log("DEBUG: IS UP AND CAN MOVE UP leftTwin?" + isLeftTwin + " collision" + other.gameObject.name);
 			//otherwise just ignore this one
 			//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 
 			if (!IsIgnoreCollision(other.transform, false /*other.transform.position.x, transform.position.x) && other.transform.position.y >= transform.position.y*/) )
 				{
-				if(isLeftTwin) Debug.Log("$$$$$$$$$$$$$$$$$$$$ DO NOT IGNORE IT");
+				
 					collidedTop(other.gameObject);
 					//colUp = true;
 					ignoreCollision = false;
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingDown(isTile, other.gameObject);
+
+					    SoundEffectsHelper.Instance.PlayBounceSound();
+					    SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+					    AdjustPositionByBouncingDown(isTile, other.gameObject);
                     }
 
-					//Debug.Log("TOP COLLISION WITH ====> " + other.transform.name);
-				} else
-            {
-				Debug.Log("#$$$$$$$ IGNORE IT???");
-            }
+			} 
 							
 		}
         else if(isDownMovement && canMoveDown || ( isDownMovement && !HasTwinFinishedMovement() ) ) {
-			if (isLeftTwin)
-				Debug.Log("4");
+			
 			//Mathf.Abs(other.transform.position.x - transform.position.x) < ignoreCollisionInterval
 			//Debug.Log("DEBUG: IS DOWN AND CAN MOVE DOWN");
 
@@ -958,11 +996,14 @@ public class PlayerMovement : MonoBehaviour {
 					//colDown = true;
 					ignoreCollision = false;
 					if(isBox || isTile || isBomb) {
-                        AdjustPositionByBouncingUp(isTile, other.gameObject);
+
+					    SoundEffectsHelper.Instance.PlayBounceSound();
+					    SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+					    AdjustPositionByBouncingUp(isTile, other.gameObject);
                     }
 
-					//Debug.Log("DOWN COLLISION WITH ====> " + other.transform.name);
-							
+				
+
 			}
 						
         } else if(!IsMovingInAnyDirection() ) {
@@ -977,7 +1018,7 @@ public class PlayerMovement : MonoBehaviour {
 		TeletransportPoint point = other.transform.GetComponent<TeletransportPoint>();
 					
 		if(point!=null) {
-			Debug.Log("################# TIle HandleTileCollisions --> TeletransportPoint ################## ");
+		
 			point.HandleCollision(this);
 		}
 		else if(tile!=null && !ignoreCollision) {
@@ -1063,7 +1104,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             
             EnemyBox enemy = other.GetComponent<EnemyBox>();
-            enemy.HandleCollision(this);
+			SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+			enemy.HandleCollision(this);
             return;
         }
 
@@ -1083,8 +1125,10 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     AdjustPositionByBouncingLeft(isTile, other);
                 }
-               
-            }
+
+				SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+
+			}
 
         }
         else if (isLeftMovement && canMoveLeft)
@@ -1102,8 +1146,9 @@ public class PlayerMovement : MonoBehaviour {
                     AdjustPositionByBouncingRight(isTile, other);
                 }
 
-             
-            }
+				SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+
+			}
 
         }//TODO raycast to see if i can move up or not
         else if (isUpMovement && canMoveUp)
@@ -1123,7 +1168,9 @@ public class PlayerMovement : MonoBehaviour {
                     AdjustPositionByBouncingDown(isTile, other);
                 }
 
-            }
+				SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+
+			}
 
         }
         else if (isDownMovement && canMoveDown)
@@ -1141,7 +1188,9 @@ public class PlayerMovement : MonoBehaviour {
                     AdjustPositionByBouncingUp(isTile, other);
                 }
 
-            }
+				SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(transform.position);
+
+			}
 
         }
         else if (!IsMovingInAnyDirection() && isEnemy)

@@ -15278,6 +15278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
@@ -23621,6 +23622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
@@ -55211,6 +55213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
@@ -78838,6 +78841,7 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 114914164225874112, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 01d91d657cf0e42f6a0a2b405b6c670a, type: 3}
 --- !u!212 &688162165 stripped
 SpriteRenderer:
@@ -105821,6 +105825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
@@ -106482,7 +106487,7 @@ MonoBehaviour:
   gameOverPanelSound: {fileID: 0}
   uiSettingsSound: {fileID: 0}
   largeExplosionSound: {fileID: 8300000, guid: f94ab277ece8faf45935ac2b1966185a, type: 3}
-  bounceSound: {fileID: 0}
+  bounceSound: {fileID: 8300000, guid: 01e39309f251ed44fa21e31750437e2a, type: 3}
   riseSound: {fileID: 0}
   jumpOnHeadSound: {fileID: 0}
   bonusHitSound: {fileID: 8300000, guid: 7117bd83ce35e744198f51b47198e532, type: 3}
@@ -157597,6 +157602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
@@ -176632,7 +176638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: 90}
+  m_AnchoredPosition: {x: -22, y: 90}
   m_SizeDelta: {x: 148, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549543057
@@ -191280,6 +191286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
@@ -233056,6 +233063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleSpawnPositions: []
+  tileOccupied: {fileID: 0}
   isSurpriseBox: 0
   possibleSurprises: []
   isShootingBox: 1
