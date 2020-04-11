@@ -39,7 +39,11 @@ public class GUIManager : MonoBehaviour {
     //holofotes stage 1
     public GameObject[] holofotes;
 
-    public UnityEngine.UI.Text purchaseRevivesText;
+    //purchase revive (show instead of play button when player dies) where we show the rewards buttons
+	public UnityEngine.UI.Image revivesImage;
+	public Sprite[] reviveImagesSprites;
+
+	public UnityEngine.UI.Text purchaseRevivesText;
 	public UnityEngine.UI.Text purchaseMovesText;
 	public UnityEngine.UI.Text purchaseRemoveAdsText;
 
@@ -323,7 +327,7 @@ public class GUIManager : MonoBehaviour {
 	}
     
     public bool IsGamePaused() {
-        return Time.timeScale < 1f;
+        return Time.timeScale < 1f && unpauseButton.enabled;
     }
 
 	public void UnPausePressed() {
@@ -705,7 +709,12 @@ public class GUIManager : MonoBehaviour {
 
 			ShowVideoRewardToEnableContinue();
 
-		}
+		} else if(!gameManager.HasPurchasedInfiniteRevives() && !IsGamePaused() )
+        {
+			//will not pause the game for this
+			//will also stop the countdown when i press the button
+			ShowReviveImage();
+        }
 		
 	}
 
@@ -888,6 +897,7 @@ public class GUIManager : MonoBehaviour {
 					CanShowPlayButton();
 					purchaseRevivesImage.enabled = false;
 					rewardVideoImage.enabled = false;
+				    HideReviveImage();
 				}
 		}
 		
@@ -1034,6 +1044,13 @@ public class GUIManager : MonoBehaviour {
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[0];
 	}
 
+    //restore sprite, revive button
+	IEnumerator PressDownRevive()
+	{
+		yield return new WaitForSecondsRealtime(1f);
+		revivesImage.sprite = reviveImagesSprites[0];
+	}
+
 	public void PurchaseRemoveAdsPressed() {
 
 		if(gameManager.HasPurchasedRemoveAds()) {
@@ -1065,6 +1082,39 @@ public class GUIManager : MonoBehaviour {
 	IEnumerator PressDownPurchaseRemoveAds() {
 		yield return new WaitForSecondsRealtime(1f);
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[0];
+	}
+
+    //will start the purchase flow (does not show price or anything)
+    //check the logic of the reward video button pressed
+    public void RevivePressed()
+    {
+		if (gameManager.HasPurchasedInfiniteRevives())
+		{
+			return;
+		}
+		SoundEffectsHelper.Instance.PlaySettingsSound();
+        //stop the counter
+		stopTimer = true;
+
+		revivesImage.sprite = reviveImagesSprites[1];
+        //change sprite, simulate press down
+		StartCoroutine(PressDownRevive());
+		if (store != null && store.IsInitialized())
+		{
+
+
+			if (spinningWheelImage != null)
+			{
+				spinningWheelImage.gameObject.SetActive(true);
+			}
+
+			stopTimer = true;
+			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
+		}
+		else if (!store.IsInitialized())
+		{
+			store.InitStore();
+		}
 	}
 
 	public void PurchaseExtraMovesPressed() {
@@ -1151,6 +1201,7 @@ public class GUIManager : MonoBehaviour {
 
 			// hide the purchase button & the continue button
 			HidePurchaseRevivesImage();
+			HideReviveImage();
 			ChangeUITextColor2Green(purchaseRevivesText);
 
 		}
@@ -1173,6 +1224,8 @@ public class GUIManager : MonoBehaviour {
 
 	public void PurchaseFailed() {
 		Debug.Log("PURCHASE PurchaseFailed");
+
+		HideReviveImage();
 
 		if (spinningWheelImage != null)
 		{
@@ -1203,6 +1256,25 @@ public class GUIManager : MonoBehaviour {
 
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[0];
 		purchaseRevivesImage.enabled = false;
+	}
+
+    //show revive button, to allow purchase and and then hide it when the purchase either is OK or NOk
+    private void ShowReviveImage()
+    {
+        //allow clock on this button
+		revivesImage.sprite = reviveImagesSprites[0];
+		revivesImage.enabled = true;
+	}
+
+    private void HideReviveImage()
+    {
+		revivesImage.sprite = reviveImagesSprites[0];
+		revivesImage.enabled = false;
+
+		if (stopTimer)
+		{
+			stopTimer = false;
+		}
 	}
 
 	IEnumerator HidePurchaseExtraMovesImageRoutine() {
