@@ -106350,7 +106350,7 @@ MonoBehaviour:
   currentLevel: {fileID: 747059181}
   respawnLevel: {fileID: 747059181}
   currentStageFirstLevel: {fileID: 747059181}
-  debugLevel: {fileID: 849939279}
+  debugLevel: {fileID: 2023011355}
   stage: 4
   respawnOnDyingLevel: 0
   MAX_MOVES: 10
@@ -106637,7 +106637,7 @@ MonoBehaviour:
   - {fileID: 541533318}
   - {fileID: 1487890937}
   - {fileID: 2023011355}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 994518059}
   tutorialController: {fileID: 0}
 --- !u!114 &994518058
 MonoBehaviour:

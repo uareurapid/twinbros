@@ -620,7 +620,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	}
 	public void collidedRight(GameObject obj) {
-        Debug.Log("isleft? " + isLeftTwin + "COLLIDED RIGHT: " + obj.name);
+        //Debug.Log("isleft? " + isLeftTwin + "COLLIDED RIGHT: " + obj.name);
         canMoveRight = false;
 
 		canMoveLeft = !HitSomethingOnLeft();
@@ -645,13 +645,13 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 	public void collidedTop(GameObject obj) {
-        Debug.Log("HERE 4 COLLIDED TOP: " + obj.name +  " isLeftTiwn " + isLeftTwin);
+        //Debug.Log("HERE 4 COLLIDED TOP: " + obj.name +  " isLeftTiwn " + isLeftTwin);
         canMoveUp = false;
 		
 		canMoveDown = !HitSomethingOnDown();
         canMoveLeft = !HitSomethingOnLeft();
         canMoveRight = !HitSomethingOnRight(); //todo raycast
-        Debug.Log("LEFT TWIN? " + isLeftTwin + " CAN MOVE UP? " + canMoveUp + " DOWN? " + canMoveDown + " CAN GO LEFT ?" + canMoveLeft + " RIGHT ?" + canMoveRight);
+        //Debug.Log("LEFT TWIN? " + isLeftTwin + " CAN MOVE UP? " + canMoveUp + " DOWN? " + canMoveDown + " CAN GO LEFT ?" + canMoveLeft + " RIGHT ?" + canMoveRight);
 
 
         if (!reachedTarget) {

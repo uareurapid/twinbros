@@ -1209,12 +1209,14 @@ public class GUIManager : MonoBehaviour {
 		{
 			// DO NOTHING
 			HidePurchaseRemoveAdsImage();
+			HideReviveImage();
 			ChangeUITextColor2Green(purchaseRemoveAdsText);
 		}
 		else if (productID == GameConstants.PRODUCT_EXTRA_MOVES)
 		{
 			// TODO unlock the 2 extra moves
 			HidePurchaseExtraMovesImage();
+			HideReviveImage();//if this one is on we hide it
 			ChangeUITextColor2Green(purchaseMovesText);
 		}
 		
@@ -1330,7 +1332,11 @@ public class GUIManager : MonoBehaviour {
         if(store!=null && store.IsInitialized())
         {
 			store.RestorePurchases(this);
-        }
+			if (spinningWheelImage != null)
+			{
+				spinningWheelImage.gameObject.SetActive(true);
+			}
+		}
 
     }
 

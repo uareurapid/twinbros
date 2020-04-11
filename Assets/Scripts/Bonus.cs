@@ -28,7 +28,7 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
 
     public void HandleCollision(PlayerMovement player)
     {
-        Debug.Log("BONUS COLLISION");
+        //Debug.Log("BONUS COLLISION");
         LevelManager manager = player.GetLevelManager();
         bool giveBonus = false;
         if (manager != null)
@@ -76,7 +76,7 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
                 //check if we have all the letters
                 if (managerScript.ShouldGiveBonusMove())
                 {
-                    Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ WILL GIVE $$$$$$$");
+                    //Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ WILL GIVE $$$$$$$");
 
                     SoundEffectsHelper.Instance.PlayBonusUpgradeSound();
                     //hide it right away, cause it will take a few seconds until we can destroy it
@@ -87,10 +87,7 @@ public class Bonus : MonoBehaviour, HandlePlayerCollision {
 					manager.increaseMoves(1);
                     StartCoroutine(DisableBonusImages(2f, GUI));
                     //some effect
-                } else
-                {
-                    Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ NOT GIVE $$$$$$$");
-                }
+                } 
 
             }
 

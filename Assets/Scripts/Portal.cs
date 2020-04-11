@@ -35,14 +35,7 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
 		}//else, on last level
 		else {
 			if(loader!=null) {
-
-                if(loader.isLastStage)
-                {
-                    Debug.Log("LAST STAGE, DIFFERENT MESSAGE?");
-                }
-
 				levelManager.StageCleared(loader);
-		
 			}
 			else {
 				Debug.Log("WTF");//GAME OVER ALL STAGES DONE? TODO

@@ -36,6 +36,7 @@ public class BossEnemy : MonoBehaviour {
         if(currentLife <= 0) {
 
 			NotifyBossDeath();
+			SoundEffectsHelper.Instance.PlayLargeExplosionSound();
 			Destroy(gameObject);
         }
     }
@@ -47,6 +48,7 @@ public class BossEnemy : MonoBehaviour {
 		if(speedIncrease!=null && !speedIncrease.enabled) {
 			speedIncrease.enabled = true;
 		}
+        
 		BlinkSpriteScript blink = GetComponentInChildren<BlinkSpriteScript>();
 		if(blink!=null) {
 			blink.enabled = true;

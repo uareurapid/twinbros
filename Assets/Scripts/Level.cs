@@ -50,6 +50,8 @@ public class Level : MonoBehaviour {
 
 		foreach(Portal portal in portals) {
 
+			SoundEffectsHelper.Instance.PlayLargeExplosionSound();
+			SpecialEffectsHelper.Instance.PlayBoxCollisionEffect(portal.transform.position);
 			portal.EnablePortal();
 		}	
 	

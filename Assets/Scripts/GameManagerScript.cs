@@ -107,12 +107,18 @@ public class GameManagerScript : MonoBehaviour {
     }
     
     public bool ShouldGiveBonusMove() {
-
-        return bonusList != null && bonusList.Contains("T") && bonusList.Contains("W") && bonusList.Contains("I") && bonusList.Contains("N");
+        if(!HasBonusMove())
+        {
+            return bonusList != null && bonusList.Contains("T") && bonusList.Contains("W") && bonusList.Contains("I") && bonusList.Contains("N");
+        }
+        return false; //already has it
+        
     }
     
     public void AddBonusMove() {
         PlayerPrefs.SetInt(GameConstants.HAS_BONUS_MOVE, 1);
+        //clear the list
+        bonusList.Clear();
     }
     
     private void RemoveBonusMove() {
