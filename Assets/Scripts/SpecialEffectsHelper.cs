@@ -30,7 +30,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 	
 	public ParticleSystem doubleJumpEffect;
 	public Transform dustEffect;
-	public ParticleSystem burstBubbleEffect;
+	public Transform burstBubbleEffect;
 	public Transform startRespawnEffect;
 	public ParticleSystem dieAndSplitEffect;
 	public ParticleSystem waterSplashEffect;
@@ -141,8 +141,8 @@ public class SpecialEffectsHelper : MonoBehaviour
 		return instantiate(levelStartNameEffect, position);
 	}
 
-	public ParticleSystem PlayBurstBubbleEffect(Vector3 position) {
-		return instantiate(burstBubbleEffect, position);
+	public Transform PlayBurstBubbleEffect(Vector3 position) {
+		return instantiateTransform(burstBubbleEffect, position);
 	}
 	
 	public Transform PlayDustEffect(Vector3 position) {

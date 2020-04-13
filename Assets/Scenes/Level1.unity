@@ -97651,7 +97651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &866098444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -111717,7 +111717,7 @@ MonoBehaviour:
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0
-  isTestMode: 0
+  isTestMode: 1
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -111887,7 +111887,7 @@ MonoBehaviour:
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
   dustEffect: {fileID: 0}
-  burstBubbleEffect: {fileID: 198029262503373196, guid: 689f756a18148944f9fb2d821566b198,
+  burstBubbleEffect: {fileID: 4334666688474120, guid: 1bd0d2d5378f54fcdbefb3f5127fae2f,
     type: 3}
   startRespawnEffect: {fileID: 0}
   dieAndSplitEffect: {fileID: 0}
@@ -161725,7 +161725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -177898,7 +177898,6 @@ GameObject:
   - component: {fileID: 1503944392}
   - component: {fileID: 1503944393}
   - component: {fileID: 1503944394}
-  - component: {fileID: 1503944395}
   m_Layer: 5
   m_Name: PLAY_BTN
   m_TagString: Untagged
@@ -178032,29 +178031,6 @@ MonoBehaviour:
   speed: 0.02
   doOnStartup: 0
   startupDelay: 0
---- !u!114 &1503944395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503944388}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b808a5ae192545018748644093a5060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 6
-  isCircular: 0
-  inReverse: 1
-  stopAfterXPassages: 0
-  justOnce: 1
-  isPaused: 0
-  delay: 0
-  doMoveOnlyOnEnable: 0
 --- !u!1 &1505669837
 GameObject:
   m_ObjectHideFlags: 0

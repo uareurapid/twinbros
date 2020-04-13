@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour {
     public AudioClip playingAudioClip;//while playing
 	// Use this for initialization
 	void Start () {
+        //this is attached in the Scripts component
 		audioS = GetComponent<AudioSource>();
 
 	}
@@ -64,12 +65,16 @@ public class SoundManager : MonoBehaviour {
         if(audioS!=null && audioS.isPlaying) {
             audioS.Stop();
         }
+        DisableAudio();
     }
     
     public void StartAudio() {
-        if(audioS!=null && !audioS.isPlaying) {
+        EnableAudio();
+
+        if (audioS!=null && !audioS.isPlaying) {
             audioS.Play();
         }
+       
     }
     
     public void StopAudioWithDelay(float delay) {

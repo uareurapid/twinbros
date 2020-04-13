@@ -40,12 +40,9 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 		if(soundManager==null || tutorialController == null) {
-			GameObject scripts = GameObject.FindWithTag("Scripts");
-			if(scripts!=null) {
-				soundManager = scripts.GetComponent<SoundManager>();
-                //could be null if not on level 1
-                tutorialController = scripts.GetComponent<TutorialController>();
-			}
+			soundManager = GetComponent<SoundManager>();
+            //could be null if not on level 1
+            tutorialController = GetComponent<TutorialController>();
 		}
 	}
 	
@@ -202,6 +199,16 @@ public class GameManagerScript : MonoBehaviour {
     public bool HasPurchasedRemoveAds()
     {
         return PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS, 0) == 1;
+    }
+
+    public void StopMusic()
+    {
+        soundManager.StopAudio();
+    }
+
+    public void StarMusic()
+    {
+        soundManager.StartAudio();
     }
 
 }

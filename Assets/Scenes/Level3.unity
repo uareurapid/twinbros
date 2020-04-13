@@ -29294,7 +29294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -106401,7 +106401,7 @@ MonoBehaviour:
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0
-  isTestMode: 0
+  isTestMode: 1
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -106573,7 +106573,7 @@ MonoBehaviour:
   touchGroundEffect: {fileID: 0}
   doubleJumpEffect: {fileID: 0}
   dustEffect: {fileID: 0}
-  burstBubbleEffect: {fileID: 198029262503373196, guid: 689f756a18148944f9fb2d821566b198,
+  burstBubbleEffect: {fileID: 4334666688474120, guid: 1bd0d2d5378f54fcdbefb3f5127fae2f,
     type: 3}
   startRespawnEffect: {fileID: 0}
   dieAndSplitEffect: {fileID: 0}
@@ -106983,7 +106983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &995870046
 RectTransform:
   m_ObjectHideFlags: 0

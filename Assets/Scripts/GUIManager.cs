@@ -312,6 +312,8 @@ public class GUIManager : MonoBehaviour {
         SoundEffectsHelper.Instance.PlayReplaySound();
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
+        //if showing the revive button, hide it now
+		revivesImage.enabled = false;
 
 		gameSettingsButton.enabled = (this.HasDoneAnyPurchase() || levelManager.isTestMode);
         //do not show settings panel on arcade mode
@@ -647,7 +649,7 @@ public class GUIManager : MonoBehaviour {
         Color c = extraMovesImage[0].color;
         extraMovesImage[0].color = new Color(c.r,c.b,c.g,1);
         extraMovesImage[0].enabled = true;
-		Debug.Log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ResetBonusMoves CALLED OK $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
     }
 
 	public void ShowGameOver() {
@@ -702,6 +704,7 @@ public class GUIManager : MonoBehaviour {
 			// avoid show it again
 			shouldShowInterstitial = false;
 			adsScript.ShowInterstitialAd(this);
+			gameManager.StopMusic();
 			
 		}
         // preferably show ads
@@ -1169,6 +1172,8 @@ public class GUIManager : MonoBehaviour {
 		//else no reward, timer will continue as usual
 		rewardVideoImage.enabled = false;
 
+		gameManager.StarMusic();
+
 
 	}
 
@@ -1181,6 +1186,7 @@ public class GUIManager : MonoBehaviour {
 		stopTimer = false;
 		//TODO CHECK
 		StartCoroutine(ShowRestartText(1.0f));
+		gameManager.StarMusic();
 	}
 
 	public void PurchaseCompleted(string productID) {
@@ -1195,6 +1201,10 @@ public class GUIManager : MonoBehaviour {
 
 		//continue countdown
 		stopTimer = false;
+        if(IsShowingCountDown())
+        {
+			StartCoroutine(ShowRestartText(1.0f));
+        }
 
 		if (productID == GameConstants.PRODUCT_INFINITE_REVIVES)
 		{
@@ -1239,6 +1249,7 @@ public class GUIManager : MonoBehaviour {
 
 	IEnumerator HideRewardedVideoImageRoutine() {
 		yield return new WaitForSeconds(1.2f);
+		gameManager.StopMusic();
 		HideRewardedVideoImage();
 	}
 
