@@ -239,9 +239,10 @@ public class SocialAPI : MonoBehaviour {
 	*
 	*/
 	public void AddAchievement(string id, float percentageCompleted) {
-
+        //TODO CHECK NAMES
 		#if UNITY_ANDROID && !UNITY_EDITOR
-		string achieveId = GameConstants.ANDROID_DICTIONARY[id];
+		string achieveId = id;
+        //GameConstants.ANDROID_DICTIONARY[id];
 
 		Social.ReportProgress(achieveId, 100.0f,result => {
       		// handle success or failure
@@ -278,9 +279,9 @@ public class SocialAPI : MonoBehaviour {
 	
 	public void LoadScores(string leaderBoardID) {
 
-		#if UNITY_ANDROID && !UNITY_EDITOR
-		leaderBoardID = GameConstants.ANDROID_DICTIONARY[leaderBoardID];
-		#endif
+		//#if UNITY_ANDROID && !UNITY_EDITOR
+		//leaderBoardID = GameConstants.ANDROID_DICTIONARY[leaderBoardID];
+		//#endif
 		Social.LoadScores(leaderBoardID,LoadScoresCallback);
 	}
 	
@@ -323,9 +324,9 @@ public class SocialAPI : MonoBehaviour {
 
 	public void ReportScore (long score, string leaderboardID) {
 					
-	   #if UNITY_ANDROID && !UNITY_EDITOR
-		leaderboardID = GameConstants.ANDROID_DICTIONARY[leaderboardID];
-	   #endif
+	   //#if UNITY_ANDROID && !UNITY_EDITOR
+		//leaderboardID = GameConstants.ANDROID_DICTIONARY[leaderboardID];
+	   //#endif
 		Debug.Log ("Reporting score " + score + " on leaderboard " + leaderboardID);
 		Social.ReportScore (score, leaderboardID, ReportScoreCallback);
 	}
