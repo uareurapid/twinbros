@@ -39,7 +39,7 @@ public class Bomb: SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 
 	public void HandleCollision(PlayerMovement movement)
 	{
-		Debug.Log("#### HandleBombCollisions CALLED IN BOMB!!!");
+	
 		
 		if(isBurning) {
 			//explode

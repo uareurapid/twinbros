@@ -97,7 +97,7 @@ public class SceneLoader : MonoBehaviour {
 				if(courtineDoors[0].GetNumPassages()==numDoorPassages && courtineDoors[1].GetNumPassages()==numDoorPassages) {
 					//Activate the Scene
 					//scene is ready now
-					Debug.Log("####################  scene is ready now");
+					//Debug.Log("####################  scene is ready now");
                     asyncOperation.allowSceneActivation = true;
 				}
                     

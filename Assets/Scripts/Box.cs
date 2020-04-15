@@ -86,7 +86,7 @@ public class Box : SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 
 		if (shouldHandleMoreCollisionComponents)
         {
-            Debug.Log("STILL HEREER????");
+      
             HandlePlayerCollision[] others = GetComponents<HandlePlayerCollision>();
             foreach (HandlePlayerCollision script in others)
             {
@@ -120,7 +120,7 @@ public class Box : SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
 	}
 
 	public void FadeCompletedCallback() {
-		Debug.Log("FADE COMPLETED: " + numCollisions + "%=" + (numCollisions % dropSurpriseAfterNumCollisions));
+		//Debug.Log("FADE COMPLETED: " + numCollisions + "%=" + (numCollisions % dropSurpriseAfterNumCollisions));
 		if(numCollisions > 0 && (numCollisions % dropSurpriseAfterNumCollisions == 0) ) {
 			InstantiateSurprise();
 			FadeSprite fade = GetComponent<FadeSprite>();
@@ -144,7 +144,7 @@ public class Box : SpawnableItem, HandlePlayerCollision, ResetBehaviourScript {
         PlayerMovement player = col.GetComponent<PlayerMovement>();
         if(player!=null)
         {
-            Debug.Log("CALED HERE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+           
             player.MyCustomOnCollisionEnter2D(gameObject);
         }
     }

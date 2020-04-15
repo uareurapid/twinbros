@@ -66072,6 +66072,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1535725603}
     m_Modifications:
+    - target: {fileID: 365148195238527830, guid: 3b4d97d60ab62451d87510439dad80de,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 465372461290114400, guid: 3b4d97d60ab62451d87510439dad80de,
         type: 3}
       propertyPath: possibleSpawnPositions.Array.size
@@ -101117,7 +101122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &945636927
 Transform:
   m_ObjectHideFlags: 0
@@ -106401,7 +106406,7 @@ MonoBehaviour:
   MAX_MOVES: 10
   hasExtraMoves: 0
   isDebugMode: 0
-  isTestMode: 1
+  isTestMode: 0
   twins:
   - {fileID: 408182580}
   - {fileID: 230565739}
@@ -218523,6 +218528,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1236400970}
     m_Modifications:
+    - target: {fileID: 365148195238527830, guid: 3b4d97d60ab62451d87510439dad80de,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 465418238593670068, guid: 3b4d97d60ab62451d87510439dad80de,
         type: 3}
       propertyPath: shootDirection

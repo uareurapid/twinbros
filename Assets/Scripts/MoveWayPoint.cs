@@ -86,7 +86,7 @@ public class MoveWayPoint : MonoBehaviour
 
 
 	public void PauseMovement() {
-		Debug.Log("PauseMovement CALLED %%%%%%%");
+		//Debug.Log("PauseMovement CALLED %%%%%%%");
 		isPaused = true;
 		speedStorage = speed;
 		speed = 0;
@@ -177,7 +177,7 @@ public class MoveWayPoint : MonoBehaviour
                 transform.Translate(new Vector3(0, 0, 0));
                 transform.position = wayPoints[currentIndex].transform.position; //put on the other one
                 NextWaypoint();
-                Debug.Log("CURRENT TELEPORT? " + currentWaypoint.isDirectTeleport);
+                //Debug.Log("CURRENT TELEPORT? " + currentWaypoint.isDirectTeleport);
                 isPaused = false;
             }
 

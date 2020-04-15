@@ -195,7 +195,7 @@ public class GUIManager : MonoBehaviour {
         }
         else if(CanShowHolofotes()) {
 
-		   Debug.Log("########### SHOW HOLOFOTES");
+		   //Debug.Log("########### SHOW HOLOFOTES");
 
            holofotes[0].SetActive(true);
            holofotes[1].SetActive(true);
@@ -218,7 +218,7 @@ public class GUIManager : MonoBehaviour {
 
     public void UpdatePriceForProduct(string productID, string localizedPriceString)
     {
-		Debug.Log("UPDATE PRICE FOR " + productID + " iS " + localizedPriceString);
+		//Debug.Log("UPDATE PRICE FOR " + productID + " iS " + localizedPriceString);
 		if (productID.Equals(GameConstants.PRODUCT_EXTRA_MOVES))
 		{
 			purchaseMovesPriceText.text = localizedPriceString;
@@ -443,7 +443,7 @@ public class GUIManager : MonoBehaviour {
 		//still counting time?
 		if (IsShowingCountDown() && !playPressed) {
 
-			Debug.Log("############## DEBUG STILL COUNTIN OK RESPANW ON DYING? " + levelManager.ShouldRespawnOnDyingLevel());
+			//Debug.Log("############## DEBUG STILL COUNTIN OK RESPANW ON DYING? " + levelManager.ShouldRespawnOnDyingLevel());
 
 			playPressed = true;
 
@@ -451,14 +451,14 @@ public class GUIManager : MonoBehaviour {
 			HideContinueImageAndClearTimer();
 			if( gameManager.HasPurchasedInfiniteRevives() || levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) {
 
-				Debug.Log("########## DEBUG SHOULD BE RESTART OK HERE  ##############");
+				//Debug.Log("########## DEBUG SHOULD BE RESTART OK HERE  ##############");
 
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
 				levelManager.RestartFromDyingLevel();
             } else {
 				//normal restart
-                Debug.Log("########## DEBUG NORMAL RESTART ##############");
+                //Debug.Log("########## DEBUG NORMAL RESTART ##############");
 				levelManager.StartGame();
             }
 			
@@ -466,7 +466,7 @@ public class GUIManager : MonoBehaviour {
 		//only if the button is opaque
 		else if(!playPressed) {
 
-			Debug.Log("########## DEBUG NOT GOOD TIMER IS ");
+			//Debug.Log("########## DEBUG NOT GOOD TIMER IS ");
 
 			playPressed = true;
 			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
@@ -508,7 +508,7 @@ public class GUIManager : MonoBehaviour {
 
     private void StartTutorial() {
 
-        Debug.Log("################# START TUTORIAL ############ ");
+        //Debug.Log("################# START TUTORIAL ############ ");
 		isShowingTutorial = true;
         PlayerPrefs.SetInt(GameConstants.HAS_SHOWN_TUTORIAL, 1);
         gameManager.ShowTutorial();
@@ -1023,7 +1023,7 @@ public class GUIManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[1];
-		Debug.Log("PurchaseInfiniteRevivesPressed clicked");
+		//Debug.Log("PurchaseInfiniteRevivesPressed clicked");
 		StartCoroutine(PressDownPurchaseInfiniteRevives());
 		if(store!=null && store.IsInitialized() ) {
 
@@ -1034,7 +1034,7 @@ public class GUIManager : MonoBehaviour {
 			}
 
 			stopTimer = true;
-			Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
+			//Debug.Log("TRY TO PURCHASE PurchaseInfiniteRevives ");
 			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
 		} else if(!store.IsInitialized())
         {
@@ -1063,7 +1063,7 @@ public class GUIManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[1];
-		Debug.Log("PRODUCT_REMOVE_ADS clicked");
+		//Debug.Log("PRODUCT_REMOVE_ADS clicked");
 		StartCoroutine(PressDownPurchaseRemoveAds());
 		if(store!=null && store.IsInitialized() ) {
 
@@ -1073,7 +1073,7 @@ public class GUIManager : MonoBehaviour {
 			}
 
 			stopTimer = true;
-			Debug.Log("TRY TO PURCHASE PRODUCT_REMOVE_ADS ");
+			//Debug.Log("TRY TO PURCHASE PRODUCT_REMOVE_ADS ");
 			store.PurchaseProduct(GameConstants.PRODUCT_REMOVE_ADS, this);
 		}
 		else if (!store.IsInitialized())
@@ -1129,7 +1129,7 @@ public class GUIManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[1];
-		Debug.Log("PRODUCT_EXTRA_MOVES clicked");
+		//Debug.Log("PRODUCT_EXTRA_MOVES clicked");
 		if(store!=null && store.IsInitialized() ) {
 
 			if (spinningWheelImage != null)
@@ -1137,7 +1137,7 @@ public class GUIManager : MonoBehaviour {
 				spinningWheelImage.gameObject.SetActive(true);
 			}
 			stopTimer = true;
-			Debug.Log("TRY TO PURCHASE PRODUCT_EXTRA_MOVES ");
+			//Debug.Log("TRY TO PURCHASE PRODUCT_EXTRA_MOVES ");
 			store.PurchaseProduct(GameConstants.PRODUCT_EXTRA_MOVES, this);
 		}
 		else if (!store.IsInitialized())
@@ -1235,7 +1235,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void PurchaseFailed() {
-		Debug.Log("PURCHASE PurchaseFailed");
+		//Debug.Log("PURCHASE PurchaseFailed");
 
 		HideReviveImage();
 
@@ -1259,7 +1259,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	IEnumerator HidePurchaseRevivesImageRoutine() {
-		Debug.Log("HidePurchaseRevivesImage CALLED");
+		//Debug.Log("HidePurchaseRevivesImage CALLED");
 		yield return new WaitForSeconds(1.2f);
 		HidePurchaseRevivesImage();
 		
@@ -1292,7 +1292,7 @@ public class GUIManager : MonoBehaviour {
 
 	IEnumerator HidePurchaseExtraMovesImageRoutine() {
 
-		Debug.Log("HidePurchaseExtraMovesImage CALLED");
+		//Debug.Log("HidePurchaseExtraMovesImage CALLED");
 		yield return new WaitForSeconds(1.2f);
 		HidePurchaseExtraMovesImage();
 	}	
@@ -1303,7 +1303,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	IEnumerator HidePurchaseRemoveAdsImageRoutine() {
-		Debug.Log("HidePurchaseRemoveAdsImage CALLED");
+		//Debug.Log("HidePurchaseRemoveAdsImage CALLED");
 		yield return new WaitForSeconds(1.2f);
 		HidePurchaseRemoveAdsImage();
 	}
