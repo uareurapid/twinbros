@@ -9,13 +9,21 @@ public class SwipeDetector : MonoBehaviour
     public bool detectSwipeOnlyAfterRelease = true;
 
     public float SWIPE_THRESHOLD = 20f;
-
+	//https://forum.unity.com/threads/swipe-in-all-directions-touch-and-mouse.165416/
+	//https://gist.github.com/Fonserbc/ca6bf80b69914740b12da41c14023574
 
 	public bool leftSwipe = false;
 	public bool rightSwipe = false;
 	public bool upSwipe = false;
 	public bool downSwipe = false;
-    // Update is called once per frame
+	// Update is called once per frame
+
+	void Start()
+	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
+			SWIPE_THRESHOLD = 15f;
+		#endif
+	}
     void FixedUpdate()
     {
 
