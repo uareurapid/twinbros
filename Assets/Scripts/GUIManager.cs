@@ -1245,6 +1245,10 @@ public class GUIManager : MonoBehaviour {
 		}
 		//continue the countdown
 		stopTimer = false;
+		if (IsShowingCountDown())
+		{
+			StartCoroutine(ShowRestartText(1.0f));
+		}
 	}
 
 	IEnumerator HideRewardedVideoImageRoutine() {

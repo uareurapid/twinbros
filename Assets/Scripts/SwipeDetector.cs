@@ -20,9 +20,9 @@ public class SwipeDetector : MonoBehaviour
 
 	void Start()
 	{
-		#if UNITY_ANDROID && !UNITY_EDITOR
-			SWIPE_THRESHOLD = 15f;
-		#endif
+		//#if UNITY_ANDROID && !UNITY_EDITOR
+		//	SWIPE_THRESHOLD = 15f;
+		//#endif
 	}
     void FixedUpdate()
     {
