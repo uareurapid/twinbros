@@ -13,7 +13,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 
     private IExtensionProvider storeExtensions;
 
-    [System.Serializable]
+    /*[System.Serializable]
     public class OnPurchaseCompletedEvent : UnityEvent<Product>
     {
     };
@@ -28,7 +28,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 
     //[Tooltip("Event fired after a failed purchase of this product")]
     private OnPurchaseFailedEvent onPurchaseFailed;
-
+	*/
 	public GUIManager guiManager;
 	// Use this for initialization
 	void Start () {
