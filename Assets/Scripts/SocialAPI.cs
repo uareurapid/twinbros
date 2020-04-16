@@ -278,21 +278,22 @@ public class SocialAPI : MonoBehaviour {
 	*
 	*/
 	public void AddAchievement(string id, float percentageCompleted) {
-        //TODO CHECK NAMES
-		#if UNITY_ANDROID && !UNITY_EDITOR
-		string achieveId = ANDROID_DICTIONARY[id];
+		//TODO CHECK NAMES
 
-		Social.ReportProgress(achieveId, 100.0f,result => {
-      		// handle success or failure
-			if (result)
-				Debug.Log ("Successfully reported progress of: " + achieveId);
-		  	else
-		  		Debug.Log ("Failed to report progress of: " + achieveId);
-    	});
+    #if UNITY_ANDROID && !UNITY_EDITOR
+		    string achieveId = ANDROID_DICTIONARY[id] as string;
 
-		#endif
+		    Social.ReportProgress(achieveId, 100.0f,result => {
+      		    // handle success or failure
+			    if (result)
+				    Debug.Log ("Successfully reported progress of: " + achieveId);
+		  	    else
+		  		    Debug.Log ("Failed to report progress of: " + achieveId);
+    	    });
 
-		#if UNITY_IPHONE || UNITY_IOS && !UNITY_EDITOR
+    #endif
+
+#if UNITY_IPHONE || UNITY_IOS && !UNITY_EDITOR
 		IAchievement achievement =  Social.CreateAchievement();
 		achievement.id = id;
 		achievement.percentCompleted = percentageCompleted;
@@ -302,11 +303,11 @@ public class SocialAPI : MonoBehaviour {
 	  	else
 	  		Debug.Log ("Failed to report progress");
 	    });
-		#endif
+#endif
 
 
 	}
-	
+
 	public void CreateAchievementResult(bool success) {
 		if (success)
 			Debug.Log ("Successfully reported progress");
@@ -317,9 +318,9 @@ public class SocialAPI : MonoBehaviour {
 	
 	public void LoadScores(string leaderBoardID) {
 
-		#if UNITY_ANDROID && !UNITY_EDITOR
-		leaderBoardID = ANDROID_DICTIONARY[leaderBoardID];
-		#endif
+    #if UNITY_ANDROID && !UNITY_EDITOR
+		    leaderBoardID = ANDROID_DICTIONARY[leaderBoardID] as string;
+    #endif
 		Social.LoadScores(leaderBoardID,LoadScoresCallback);
 	}
 	
@@ -361,10 +362,10 @@ public class SocialAPI : MonoBehaviour {
 	}
 
 	public void ReportScore (long score, string leaderboardID) {
-					
-	   #if UNITY_ANDROID && !UNITY_EDITOR
-		leaderboardID = ANDROID_DICTIONARY[leaderboardID];
-	   #endif
+
+    #if UNITY_ANDROID && !UNITY_EDITOR
+		    leaderboardID = ANDROID_DICTIONARY[leaderboardID] as string;
+    #endif
 		Debug.Log ("Reporting score " + score + " on leaderboard " + leaderboardID);
 		Social.ReportScore (score, leaderboardID, ReportScoreCallback);
 	}

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
-using UnityEngine.Events;
-using System;
+//using UnityEngine.Events;
+//using System;
 
 public class MyStoreClass : MonoBehaviour, IStoreListener {
 
@@ -13,7 +13,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 
     private IExtensionProvider storeExtensions;
 
-    [System.Serializable]
+    /*[System.Serializable]
     public class OnPurchaseCompletedEvent : UnityEvent<Product>
     {
     };
@@ -21,13 +21,13 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
     [System.Serializable]
     public class OnPurchaseFailedEvent : UnityEvent<Product, PurchaseFailureReason>
     {
-    };
+    };*/
 
 	//[Tooltip("Event fired after a successful purchase of this product")]
-    private OnPurchaseCompletedEvent onPurchaseComplete;
+    //private OnPurchaseCompletedEvent onPurchaseComplete;
 
     //[Tooltip("Event fired after a failed purchase of this product")]
-    private OnPurchaseFailedEvent onPurchaseFailed;
+    //private OnPurchaseFailedEvent onPurchaseFailed;
 
 	public GUIManager guiManager;
 	// Use this for initialization
