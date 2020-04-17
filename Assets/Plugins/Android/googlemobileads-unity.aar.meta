@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-guid: 54af2ef12eb24616a24f47ba5947dbdc
-labels:
-- gvh
-- gvh_targets-editor
-- gvh_version-1.2.88.0
+guid: 6ba43e034398c419f9aaf4eb134d42b8
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -16,6 +12,11 @@ PluginImporter:
   validateReferences: 1
   platformData:
   - first:
+      Android: Android
+    second:
+      enabled: 1
+      settings: {}
+  - first:
       Any: 
     second:
       enabled: 0
@@ -23,15 +24,9 @@ PluginImporter:
   - first:
       Editor: Editor
     second:
-      enabled: 1
-      settings:
-        DefaultValueInitialized: true
-  - first:
-      Windows Store Apps: WindowsStoreApps
-    second:
       enabled: 0
       settings:
-        CPU: AnyCPU
+        DefaultValueInitialized: true
   userData: 
   assetBundleName: 
   assetBundleVariant: 
