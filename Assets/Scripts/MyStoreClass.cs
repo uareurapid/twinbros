@@ -8,7 +8,6 @@ using System;
 public class MyStoreClass : MonoBehaviour, IStoreListener {
 
 	private bool initializationComplete = false;
-	private bool unityPurchasingInitialized = false;
 	private IStoreController controller;
 
     private IExtensionProvider storeExtensions;
@@ -30,15 +29,14 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
     private OnPurchaseFailedEvent onPurchaseFailed;
 	*/
 	public GUIManager guiManager;
-	// Use this for initialization
-	void Start () {
-
-		InitializePurchasing();
-	}
+    // Use this for initialization
 
     public void InitStore()
     {
-        InitializePurchasing();
+        if (!initializationComplete)
+        {
+            InitializePurchasing();
+        }
     }
 
 	//https://unity3d.com/learn/tutorials/topics/ads-analytics/integrating-unity-iap-your-game
@@ -54,8 +52,6 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 			builder.AddProduct(GameConstants.PRODUCT_REMOVE_ADS, ProductType.NonConsumable);
 
             UnityPurchasing.Initialize(this, builder);
-
-            unityPurchasingInitialized = true;
      }
 
 	public bool IsInitialized() {
@@ -66,17 +62,14 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
             initializationComplete = true;
 			this.controller = controller;
             this.storeExtensions = extensions;
-			Debug.Log("INITIALIZATION IS NOW COMPLETE");
+
             if(guiManager != null)
             {
                 Debug.Log("WILL GET PRICES");
                 GetPriceForProduct(GameConstants.PRODUCT_EXTRA_MOVES);
                 GetPriceForProduct(GameConstants.PRODUCT_INFINITE_REVIVES);
                 GetPriceForProduct(GameConstants.PRODUCT_REMOVE_ADS);
-            } else
-            {
-                Debug.Log("WTF GUI MANAGER IS NULL?");
-            }
+            } 
        
     }
 

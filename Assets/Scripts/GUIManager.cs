@@ -136,6 +136,11 @@ public class GUIManager : MonoBehaviour {
 		if(levelManager.stage > 1) {
 			Invoke("DoStageTransitionEffect", 2f);
 		}
+
+        if(store!=null && !store.IsInitialized() )
+        {
+			store.InitStore();
+        }
 	}
 
     private void Awake()
@@ -1041,6 +1046,8 @@ public class GUIManager : MonoBehaviour {
 			store.InitStore();
         }
 	}
+
+    
 
 	IEnumerator PressDownPurchaseInfiniteRevives() {
 		yield return new WaitForSecondsRealtime(1f);
