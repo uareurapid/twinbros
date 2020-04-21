@@ -37,27 +37,35 @@ public class SocialAPI : MonoBehaviour {
 	private string previousAction = null;
 
 	/*
-    <?xml version="1.0" encoding="utf-8"?>
-	<!--
-	Google Play game services IDs.
-	Save this file as res/values/games-ids.xml in your project.
-	-->
-	<resources>
-	  <!-- app_id -->
-	  <string name="app_id" translatable="false">799376246462</string>
-	  <!-- achievement twins_stage_1 -->
-	  <string name="achievement_twins_stage_1" translatable="false">CgkIvo2m9KEXEAIQAg</string>
-	  <!-- achievement twins_stage_2 -->
-	  <string name="achievement_twins_stage_2" translatable="false">CgkIvo2m9KEXEAIQAw</string>
-	  <!-- achievement twins_stage_3 -->
-	  <string name="achievement_twins_stage_3" translatable="false">CgkIvo2m9KEXEAIQBA</string>
-	  <!-- achievement twins_stage_4 -->
-	  <string name="achievement_twins_stage_4" translatable="false">CgkIvo2m9KEXEAIQBQ</string>
-	  <!-- achievement twins_stage_5 -->
-	  <string name="achievement_twins_stage_5" translatable="false">CgkIvo2m9KEXEAIQBg</string>
-	  <!-- leaderboard twins_high_cores -->
-	  <string name="leaderboard_twins_high_cores" translatable="false">CgkIvo2m9KEXEAIQAQ</string>
-	</resources>
+   <?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+  <!-- app_id -->
+  <string name="app_id" translatable="false">816823431309</string>
+  <!-- package_name -->
+  <string name="package_name" translatable="false">com.crackedegggames.twins</string>
+  <!-- achievement twins_stage_1 -->
+  <string name="achievement_twins_stage_1" translatable="false">CgkIjeHh8-IXEAIQAg</string>
+  <!-- achievement twins_stage_2 -->
+  <string name="achievement_twins_stage_2" translatable="false">CgkIjeHh8-IXEAIQAw</string>
+  <!-- achievement twins_stage_3 -->
+  <string name="achievement_twins_stage_3" translatable="false">CgkIjeHh8-IXEAIQBA</string>
+  <!-- achievement twins_stage_4 -->
+  <string name="achievement_twins_stage_4" translatable="false">CgkIjeHh8-IXEAIQBQ</string>
+  <!-- achievement twins_stage_5 -->
+  <string name="achievement_twins_stage_5" translatable="false">CgkIjeHh8-IXEAIQBg</string>
+  <!-- leaderboard twins_high_cores -->
+  <string name="leaderboard_twins_high_cores" translatable="false">CgkIjeHh8-IXEAIQAQ</string>
+</resources>
+
 	*/
 
 
@@ -66,25 +74,28 @@ public class SocialAPI : MonoBehaviour {
 
 	     gameCenterAvailable = (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android);
 
-		#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 
 
 		//achievements
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_1_ID, "CgkIvo2m9KEXEAIQAg");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_2_ID, "CgkIvo2m9KEXEAIQAw");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_3_ID, "CgkIvo2m9KEXEAIQBA");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_4_ID, "CgkIvo2m9KEXEAIQBQ");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_5_ID, "CgkIvo2m9KEXEAIQBg");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_1_ID, "CgkIjeHh8-IXEAIQAg");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_2_ID, "CgkIjeHh8-IXEAIQAw");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_3_ID, "CgkIjeHh8-IXEAIQBA");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_4_ID, "CgkIjeHh8-IXEAIQBQ");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_5_ID, "CgkIjeHh8-IXEAIQAQ");
 
 		//leaderboard
-		ANDROID_DICTIONARY.Add(GameConstants.LEADERBOARD_ID, "CgkIvo2m9KEXEAIQAQ");
+		ANDROID_DICTIONARY.Add(GameConstants.LEADERBOARD_ID, "CgkIjeHh8-IXEAIQAA");
 
 	     if(gameCenterAvailable) {
 			// Activate the Google Play Games platform
-			GooglePlayGames.PlayGamesPlatform.Activate();
+	        // recommended for debugging:
+            PlayGamesPlatform.DebugLogEnabled = true;
+            // Activate the Google Play Games platform
+            PlayGamesPlatform.Activate();
 	     }
 
-		#endif
+#endif
 
 		isAuthenticating = false;
 		isAuthenticated = gameCenterAvailable ? Social.localUser.authenticated : false;
@@ -95,10 +106,15 @@ public class SocialAPI : MonoBehaviour {
 		// This call needs to be made before we can proceed to other calls in the Social API
 		if(!gameCenterAvailable) {
 			
-		  Debug.Log("Game center not available for this platform!");
+		  Debug.Log("DEBUG: Game center not available for this platform!");
 		}
 		else if(!isAuthenticated) {
-			Debug.Log("calling game center authentication..");
+			Debug.Log("DEBUG: calling game center authentication..");
+
+            #if UNITY_ANDROID && !UNITY_EDITOR
+			       // authenticate user:
+			      PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            #endif
 			Social.localUser.Authenticate(ProcessAuthentication);
 		}
 		else {
@@ -280,7 +296,7 @@ public class SocialAPI : MonoBehaviour {
 	public void AddAchievement(string id, float percentageCompleted) {
 		//TODO CHECK NAMES
 
-    #if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 		    string achieveId = ANDROID_DICTIONARY[id] as string;
 
 		    Social.ReportProgress(achieveId, 100.0f,result => {
@@ -291,7 +307,7 @@ public class SocialAPI : MonoBehaviour {
 		  		    Debug.Log ("Failed to report progress of: " + achieveId);
     	    });
 
-    #endif
+#endif
 
 #if UNITY_IPHONE || UNITY_IOS && !UNITY_EDITOR
 		IAchievement achievement =  Social.CreateAchievement();
@@ -318,9 +334,9 @@ public class SocialAPI : MonoBehaviour {
 	
 	public void LoadScores(string leaderBoardID) {
 
-    #if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 		    leaderBoardID = ANDROID_DICTIONARY[leaderBoardID] as string;
-    #endif
+#endif
 		Social.LoadScores(leaderBoardID,LoadScoresCallback);
 	}
 	
@@ -363,9 +379,9 @@ public class SocialAPI : MonoBehaviour {
 
 	public void ReportScore (long score, string leaderboardID) {
 
-    #if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 		    leaderboardID = ANDROID_DICTIONARY[leaderboardID] as string;
-    #endif
+#endif
 		Debug.Log ("Reporting score " + score + " on leaderboard " + leaderboardID);
 		Social.ReportScore (score, leaderboardID, ReportScoreCallback);
 	}
@@ -427,17 +443,15 @@ public class SocialAPI : MonoBehaviour {
 
 	public void ShowLeaderBoards() {
 
-	 #if UNITY_ANDROID && !UNITY_EDITOR
-	//	string toShow = GameConstants.ANDROID_DICTIONARY[GameConstants.LEADERBOARD_CLASSIC_MODE];
-	//	((PlayGamesPlatform) Social.Active).ShowLeaderboardUI(toShow);
-		
-	 Social.ShowLeaderboardUI();
-	 #endif
+#if UNITY_ANDROID && !UNITY_EDITOR
+	string toShow = ANDROID_DICTIONARY[GameConstants.LEADERBOARD_ID] as string;
+	((PlayGamesPlatform) Social.Active).ShowLeaderboardUI(toShow);
+#endif
 
-	 //#if UNITY_IPHONE && !UNITY_EDITOR
-	 Social.ShowLeaderboardUI();
-	 //#endif
-	
+#if UNITY_IPHONE && !UNITY_EDITOR
+		Social.ShowLeaderboardUI();
+#endif
+
 	}
 
 	public void ShowAchievements() {
