@@ -13,7 +13,6 @@
 //  See the License for the specific language governing permissions and
 //    limitations under the License.
 // </copyright>
-
 #if UNITY_ANDROID
 
 namespace GooglePlayGames.BasicApi
@@ -43,12 +42,12 @@ namespace GooglePlayGames.BasicApi
         /// </remarks>
         /// <param name="callback">Callback when completed.</param>
         /// <param name="silent">If set to <c>true</c> silent.</param>
-        public void Authenticate(bool silent, Action<SignInStatus> callback)
+        public void Authenticate(Action<bool, string> callback, bool silent)
         {
             LogUsage();
             if (callback != null)
             {
-                callback(SignInStatus.Failed);
+                callback(false, "Not implemented on this platform");
             }
         }
 
@@ -101,7 +100,7 @@ namespace GooglePlayGames.BasicApi
         }
 
         public void GetAnotherServerAuthCode(bool reAuthenticateIfNeeded,
-            Action<string> callback)
+                                             Action<string> callback)
         {
             LogUsage();
             callback(null);
@@ -307,8 +306,8 @@ namespace GooglePlayGames.BasicApi
             if (callback != null)
             {
                 callback(new LeaderboardScoreData(
-                    leaderboardId,
-                    ResponseStatus.LicenseCheckFailed));
+                        leaderboardId,
+                        ResponseStatus.LicenseCheckFailed));
             }
         }
 
@@ -331,8 +330,8 @@ namespace GooglePlayGames.BasicApi
             if (callback != null)
             {
                 callback(new LeaderboardScoreData(
-                    token.LeaderboardId,
-                    ResponseStatus.LicenseCheckFailed));
+                        token.LeaderboardId,
+                        ResponseStatus.LicenseCheckFailed));
             }
         }
 
@@ -371,28 +370,6 @@ namespace GooglePlayGames.BasicApi
             {
                 callback.Invoke(false);
             }
-        }
-
-        /// <summary>Asks user to give permissions for the given scopes.</summary>
-        /// <param name="scopes">Scope to ask permission for</param>
-        /// <param name="callback">Callback used to indicate the outcome of the operation.</param>
-        public void RequestPermissions(string[] scopes, Action<SignInStatus> callback)
-        {
-            LogUsage();
-            if (callback != null)
-            {
-                callback.Invoke(SignInStatus.Failed);
-            }
-        }
-
-        /// <summary>Returns whether or not user has given permissions for given scopes.</summary>
-        /// <seealso cref="GooglePlayGames.BasicApi.IPlayGamesClient.HasPermissions"/>
-        /// <param name="scopes">array of scopes</param>
-        /// <returns><c>true</c>, if given, <c>false</c> otherwise.</returns>
-        public bool HasPermissions(string[] scopes)
-        {
-            LogUsage();
-            return false;
         }
 
         /// <summary>
@@ -497,13 +474,22 @@ namespace GooglePlayGames.BasicApi
         }
 
         /// <summary>
+        /// Gets the Android API client. Returns null on non-Android players.
+        /// </summary>
+        /// <returns>The API client.</returns>
+        public IntPtr GetApiClient()
+        {
+            LogUsage();
+            return IntPtr.Zero;
+        }
+
+        /// <summary>
         /// Sets the gravity for popups (Android only).
         /// </summary>
         /// <remarks>This can only be called after authentication.  It affects
         /// popups for achievements and other game services elements.</remarks>
         /// <param name="gravity">Gravity for the popup.</param>
-        public void SetGravityForPopups(Gravity gravity)
-        {
+        public void SetGravityForPopups(Gravity gravity) {
             LogUsage();
         }
 

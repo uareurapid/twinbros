@@ -42,28 +42,23 @@ public class SocialAPI : MonoBehaviour {
 Google Play game services IDs.
 Save this file as res/values/games-ids.xml in your project.
 -->
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-Google Play game services IDs.
-Save this file as res/values/games-ids.xml in your project.
--->
 <resources>
   <!-- app_id -->
-  <string name="app_id" translatable="false">816823431309</string>
+  <string name="app_id" translatable="false">1063742711890</string>
   <!-- package_name -->
   <string name="package_name" translatable="false">com.crackedegggames.twins</string>
-  <!-- achievement twins_stage_1 -->
-  <string name="achievement_twins_stage_1" translatable="false">CgkIjeHh8-IXEAIQAg</string>
-  <!-- achievement twins_stage_2 -->
-  <string name="achievement_twins_stage_2" translatable="false">CgkIjeHh8-IXEAIQAw</string>
-  <!-- achievement twins_stage_3 -->
-  <string name="achievement_twins_stage_3" translatable="false">CgkIjeHh8-IXEAIQBA</string>
-  <!-- achievement twins_stage_4 -->
-  <string name="achievement_twins_stage_4" translatable="false">CgkIjeHh8-IXEAIQBQ</string>
-  <!-- achievement twins_stage_5 -->
-  <string name="achievement_twins_stage_5" translatable="false">CgkIjeHh8-IXEAIQBg</string>
-  <!-- leaderboard twins_high_cores -->
-  <string name="leaderboard_twins_high_cores" translatable="false">CgkIjeHh8-IXEAIQAQ</string>
+  <!-- achievement Cleared Stage 1 -->
+  <string name="achievement_cleared_stage_1" translatable="false">CgkI0tCG4PoeEAIQAg</string>
+  <!-- achievement Cleared Stage 2 -->
+  <string name="achievement_cleared_stage_2" translatable="false">CgkI0tCG4PoeEAIQAw</string>
+  <!-- achievement Cleared Stage 3 -->
+  <string name="achievement_cleared_stage_3" translatable="false">CgkI0tCG4PoeEAIQBA</string>
+  <!-- achievement Cleared Stage 4 -->
+  <string name="achievement_cleared_stage_4" translatable="false">CgkI0tCG4PoeEAIQBQ</string>
+  <!-- achievement Cleared Stage 5 -->
+  <string name="achievement_cleared_stage_5" translatable="false">CgkI0tCG4PoeEAIQBg</string>
+  <!-- leaderboard High Scores -->
+  <string name="leaderboard_high_scores" translatable="false">CgkI0tCG4PoeEAIQAQ</string>
 </resources>
 
 	*/
@@ -78,14 +73,14 @@ Save this file as res/values/games-ids.xml in your project.
 
 
 		//achievements
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_1_ID, "CgkIjeHh8-IXEAIQAg");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_2_ID, "CgkIjeHh8-IXEAIQAw");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_3_ID, "CgkIjeHh8-IXEAIQBA");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_4_ID, "CgkIjeHh8-IXEAIQBQ");
-		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_5_ID, "CgkIjeHh8-IXEAIQAQ");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_1_ID, "CgkI0tCG4PoeEAIQAg");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_2_ID, "CgkI0tCG4PoeEAIQAw");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_3_ID, "CgkI0tCG4PoeEAIQBA");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_4_ID, "CgkI0tCG4PoeEAIQBQ");
+		ANDROID_DICTIONARY.Add(GameConstants.ACHIEVEMENT_STAGE_5_ID, "CgkI0tCG4PoeEAIQBg");
 
 		//leaderboard
-		ANDROID_DICTIONARY.Add(GameConstants.LEADERBOARD_ID, "CgkIjeHh8-IXEAIQAA");
+		ANDROID_DICTIONARY.Add(GameConstants.LEADERBOARD_ID, "CgkI0tCG4PoeEAIQAQ");
 
 	     if(gameCenterAvailable) {
 			// Activate the Google Play Games platform
@@ -111,14 +106,11 @@ Save this file as res/values/games-ids.xml in your project.
 		else if(!isAuthenticated) {
 			Debug.Log("DEBUG: calling game center authentication..");
 
-            #if UNITY_ANDROID && !UNITY_EDITOR
-			       // authenticate user:
-			      PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-            #endif
 			Social.localUser.Authenticate(ProcessAuthentication);
 		}
 		else {
-		    //already authenticated
+			//already authenticated
+			Debug.Log("DEBUG: already authenticated..");
 			Social.LoadAchievements (ProcessLoadAchievements);
 		}
 	}
@@ -176,7 +168,7 @@ Save this file as res/values/games-ids.xml in your project.
 
 		if (success) {
 
-			Debug.Log ("Authentication successful");
+			Debug.Log ("DEBUG: Authentication successful");
 			isAuthenticated = true;
 			// Request loaded achievements, and register a callback for processing them
 			Social.LoadAchievements (ProcessLoadAchievements);
@@ -184,7 +176,7 @@ Save this file as res/values/games-ids.xml in your project.
 			//LoadScores();
 		}
 		else {
-			Debug.Log ("Failed to authenticate");
+			Debug.Log ("DEBUG: Failed to authenticate");
 			isAuthenticated = false;
 		}
 			
@@ -444,8 +436,8 @@ Save this file as res/values/games-ids.xml in your project.
 	public void ShowLeaderBoards() {
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-	string toShow = ANDROID_DICTIONARY[GameConstants.LEADERBOARD_ID] as string;
-	((PlayGamesPlatform) Social.Active).ShowLeaderboardUI(toShow);
+	//string toShow = ANDROID_DICTIONARY[GameConstants.LEADERBOARD_ID] as string;
+	((PlayGamesPlatform) Social.Active).ShowLeaderboardUI();
 #endif
 
 #if UNITY_IPHONE && !UNITY_EDITOR

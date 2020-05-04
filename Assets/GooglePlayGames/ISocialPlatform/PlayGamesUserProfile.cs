@@ -22,7 +22,7 @@ namespace GooglePlayGames
     using System.Collections;
     using GooglePlayGames.OurUtils;
     using UnityEngine;
-#if UNITY_2017_2_OR_NEWER
+#if UNITY_2017_1_OR_NEWER
     using UnityEngine.Networking;
 #endif
     using UnityEngine.SocialPlatforms;
@@ -46,7 +46,7 @@ namespace GooglePlayGames
         {
             mDisplayName = displayName;
             mPlayerId = playerId;
-            setAvatarUrl(avatarUrl);
+            mAvatarUrl = avatarUrl;
             mImageLoading = false;
         }
 
@@ -58,9 +58,8 @@ namespace GooglePlayGames
             if (mAvatarUrl != avatarUrl)
             {
                 mImage = null;
-                setAvatarUrl(avatarUrl);
+                mAvatarUrl = avatarUrl;
             }
-
             mImageLoading = false;
         }
 
@@ -68,27 +67,34 @@ namespace GooglePlayGames
 
         public string userName
         {
-            get { return mDisplayName; }
+            get
+            {
+                return mDisplayName;
+            }
         }
 
         public string id
         {
-            get { return mPlayerId; }
-        }
-
-        public string gameId
-        {
-            get { return mPlayerId; }
+            get
+            {
+                return mPlayerId;
+            }
         }
 
         public bool isFriend
         {
-            get { return true; }
+            get
+            {
+                return true;
+            }
         }
 
         public UserState state
         {
-            get { return UserState.Online; }
+            get
+            {
+                return UserState.Online;
+            }
         }
 
         public Texture2D image
@@ -110,7 +116,10 @@ namespace GooglePlayGames
 
         public string AvatarURL
         {
-            get { return mAvatarUrl; }
+            get
+            {
+                return mAvatarUrl;
+            }
         }
 
         /// <summary>
@@ -125,7 +134,7 @@ namespace GooglePlayGames
             // avatar configured.
             if (!string.IsNullOrEmpty(AvatarURL))
             {
-#if UNITY_2017_2_OR_NEWER
+#if UNITY_2017_1_OR_NEWER
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(AvatarURL);
                 www.SendWebRequest();
 #else
@@ -138,7 +147,7 @@ namespace GooglePlayGames
 
                 if (www.error == null)
                 {
-#if UNITY_2017_2_OR_NEWER
+#if UNITY_2017_1_OR_NEWER
                     this.mImage = DownloadHandlerTexture.GetContent(www);
 #else
                     this.mImage = www.texture;
@@ -189,14 +198,6 @@ namespace GooglePlayGames
         public override string ToString()
         {
             return string.Format("[Player: '{0}' (id {1})]", mDisplayName, mPlayerId);
-        }
-
-        private void setAvatarUrl(string avatarUrl) {
-            mAvatarUrl = avatarUrl;
-            if (!avatarUrl.StartsWith("https") && avatarUrl.StartsWith("http"))
-            {
-                mAvatarUrl = avatarUrl.Insert(4, "s");
-            }
         }
     }
 }

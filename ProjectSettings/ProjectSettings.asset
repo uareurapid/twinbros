@@ -164,7 +164,7 @@ PlayerSettings:
     iOS: com.crackedegggames.twins
   buildNumber:
     iOS: 1.0.0
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 9
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
