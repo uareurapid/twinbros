@@ -17,15 +17,15 @@ public class GameConstants : MonoBehaviour {
 	public const string TXT_EXTRA_MOVES_KEY = "buy_extra_moves";
 	public const string TXT_INFINITE_REVIVES_KEY = "buy_infinite_revives";
 
-	public const string LEADERBOARD_ID = "twins_high_cores";
+	public const string LEADERBOARD_ID = "grp.twins_high_cores";
 	public const string CURRENT_SCORE = "twins_current_cores";
 
-	public const string ACHIEVEMENT_STAGE_1_ID = "twins_stage_1";
-	public const string ACHIEVEMENT_STAGE_2_ID = "twins_stage_2";
-	public const string ACHIEVEMENT_STAGE_3_ID = "twins_stage_3";
-	public const string ACHIEVEMENT_STAGE_4_ID = "twins_stage_4";
-	public const string ACHIEVEMENT_STAGE_5_ID = "twins_stage_5";
-	public const string ACHIEVEMENT_STAGE_GENERIC_ID = "twins_stage_";
+	public const string ACHIEVEMENT_STAGE_1_ID = "grp.twins_stage_1";
+	public const string ACHIEVEMENT_STAGE_2_ID = "grp.twins_stage_2";
+	public const string ACHIEVEMENT_STAGE_3_ID = "grp.twins_stage_3";
+	public const string ACHIEVEMENT_STAGE_4_ID = "grp.twins_stage_4";
+	public const string ACHIEVEMENT_STAGE_5_ID = "grp.twins_stage_5";
+	public const string ACHIEVEMENT_STAGE_GENERIC_ID = "grp.twins_stage_";
 
 	public const string LEFT_DIRECTION = "left";
 	public const string RIGHT_DIRECTION = "right";

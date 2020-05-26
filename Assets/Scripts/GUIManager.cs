@@ -79,6 +79,9 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image stageClearedImage;
 	public UnityEngine.UI.Image levelClearedImage;
 	public UnityEngine.UI.Image stageLevelImage;
+    //close button, for desktop only
+	public UnityEngine.UI.Image closeButtonImage;
+
 	public GameObject titleScreenRedPart;
 	public GameObject titleScreenBluePart;
 
@@ -95,7 +98,10 @@ public class GUIManager : MonoBehaviour {
 	GoogleMobileAdsScript adsScript;
 
 	private LevelManager levelManager;
+
+	#if UNITY_ANDROID || UNITY_IPHONE
 	private MyStoreClass store;
+    #endif
 
 	private bool playPressed = false;
 	private int continueTimer = 0;
@@ -112,6 +118,8 @@ public class GUIManager : MonoBehaviour {
 	private bool isShowingTutorial = false;
 
     private GameManagerScript gameManager;
+
+	private PlatformManager platformManager;
 	// Use this for initialization
 	void Start () {
 		
@@ -120,27 +128,43 @@ public class GUIManager : MonoBehaviour {
 		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
 		translationManager = TextLocalizationManager.Instance;
 		translationManager.LoadSystemLanguage(Application.systemLanguage);
-		LoadAllGUITranslations();
+
+		#if UNITY_ANDROID || UNITY_IPHONE
 		store = scripts.GetComponent<MyStoreClass>();
+        #endif
 		levelManager = scripts.GetComponent<LevelManager>();
         gameManager = scripts.GetComponent<GameManagerScript>();
+		platformManager = scripts.GetComponent<PlatformManager>();
 
-		currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
-		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
+		if (!isArcadeOrSubscriptionMode && !platformManager.isMacOS)
+        {   //purchase buttons
+			LoadAllGUITranslations();
+		}	
 
-        //TODO remove me for PROD
-        if(levelManager.isTestMode) {
-            PlayerPrefs.DeleteAll();
-        }
 
-		if(levelManager.stage > 1) {
-			Invoke("DoStageTransitionEffect", 2f);
+        if(levelManager!=null)
+        {
+			currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
+			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
+
+			//TODO remove me for PROD
+			if (levelManager.isTestMode)
+			{
+				PlayerPrefs.DeleteAll();
+			}
+
+			if (levelManager.stage > 1)
+			{
+				Invoke("DoStageTransitionEffect", 2f);
+			}
 		}
 
+		#if UNITY_ANDROID || UNITY_IPHONE
         if(store!=null && !store.IsInitialized() )
         {
 			store.InitStore();
         }
+        #endif
 	}
 
     private void Awake()
@@ -163,7 +187,12 @@ public class GUIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	 if(levelManager.stage == 1) {
+		if (Input.GetKeyDown(KeyCode.Escape) == true)
+		{
+			Application.Quit();
+		}
+
+		if (levelManager!=null && levelManager.stage == 1) {
 
 		//title screen at center
 		/*MoveWayPoint red = titleScreenRedPart.GetComponent<MoveWayPoint>();
@@ -331,6 +360,12 @@ public class GUIManager : MonoBehaviour {
 		Time.timeScale = 0;
 
         playButton.enabled = false;
+
+        //show close button
+        if(isArcadeOrSubscriptionMode || platformManager.isMacOS)
+        {
+			closeButtonImage.enabled = true;
+        }
 	}
     
     public bool IsGamePaused() {
@@ -368,6 +403,12 @@ public class GUIManager : MonoBehaviour {
         if(!levelManager.IsGameStarted() && !levelManager.IsPlayerDead()) {
             ShowPlayButton(0f);
         }
+
+        //hide close button
+		if (isArcadeOrSubscriptionMode || platformManager.isMacOS)
+		{
+			closeButtonImage.enabled = false;
+		}
 	}
 
 	
@@ -1030,6 +1071,7 @@ public class GUIManager : MonoBehaviour {
 		purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[1];
 		//Debug.Log("PurchaseInfiniteRevivesPressed clicked");
 		StartCoroutine(PressDownPurchaseInfiniteRevives());
+		#if UNITY_ANDROID || UNITY_IPHONE
 		if(store!=null && store.IsInitialized() ) {
 
             
@@ -1045,6 +1087,7 @@ public class GUIManager : MonoBehaviour {
         {
 			store.InitStore();
         }
+        #endif
 	}
 
     
@@ -1072,6 +1115,8 @@ public class GUIManager : MonoBehaviour {
 		purchaseRemoveAdsImage.sprite = purchaseRemoveAdsSprites[1];
 		//Debug.Log("PRODUCT_REMOVE_ADS clicked");
 		StartCoroutine(PressDownPurchaseRemoveAds());
+
+		#if UNITY_ANDROID || UNITY_IPHONE
 		if(store!=null && store.IsInitialized() ) {
 
 			if (spinningWheelImage != null)
@@ -1087,6 +1132,7 @@ public class GUIManager : MonoBehaviour {
 		{
 			store.InitStore();
 		}
+        #endif
 	}
 
 	IEnumerator PressDownPurchaseRemoveAds() {
@@ -1109,6 +1155,7 @@ public class GUIManager : MonoBehaviour {
 		revivesImage.sprite = reviveImagesSprites[1];
         //change sprite, simulate press down
 		StartCoroutine(PressDownRevive());
+		#if UNITY_ANDROID || UNITY_IPHONE
 		if (store != null && store.IsInitialized())
 		{
 
@@ -1125,6 +1172,7 @@ public class GUIManager : MonoBehaviour {
 		{
 			store.InitStore();
 		}
+        #endif
 	}
 
 	public void PurchaseExtraMovesPressed() {
@@ -1136,7 +1184,7 @@ public class GUIManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[1];
-		//Debug.Log("PRODUCT_EXTRA_MOVES clicked");
+		#if UNITY_ANDROID || UNITY_IPHONE
 		if(store!=null && store.IsInitialized() ) {
 
 			if (spinningWheelImage != null)
@@ -1151,6 +1199,7 @@ public class GUIManager : MonoBehaviour {
 		{
 			store.InitStore();
 		}
+        #endif
 	}
 
 	IEnumerator PressDownPurchaseExtraMoves() {
@@ -1345,12 +1394,20 @@ public class GUIManager : MonoBehaviour {
         backPanelGameOver.enabled = false;
     }
 
+    //terminate
+    public void ClosePressed()
+    {
+		SoundEffectsHelper.Instance.PlayReplaySound();
+		Application.Quit(0);
+    }
+
     public void RestorePurchasesPressed()
     {
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 		restorePurchasesButton.sprite = restorePurchasesSprites[1];
 		StartCoroutine(RestorePurchasesImage());
 
+		#if UNITY_ANDROID || UNITY_IPHONE
         if(store!=null && store.IsInitialized())
         {
 			store.RestorePurchases(this);
@@ -1359,6 +1416,7 @@ public class GUIManager : MonoBehaviour {
 				spinningWheelImage.gameObject.SetActive(true);
 			}
 		}
+        #endif
 
     }
 

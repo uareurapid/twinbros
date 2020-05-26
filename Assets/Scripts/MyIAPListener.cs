@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_ANDROID || UNITY_IPHONE
 using UnityEngine.Purchasing;
 
 public class MyIAPListener : IAPListener {
@@ -15,3 +17,4 @@ public class MyIAPListener : IAPListener {
 		
 	}
 }
+#endif

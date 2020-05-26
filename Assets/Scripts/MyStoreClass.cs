@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if UNITY_ANDROID || UNITY_IPHONE
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -42,6 +43,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 	//https://unity3d.com/learn/tutorials/topics/ads-analytics/integrating-unity-iap-your-game
 	private void InitializePurchasing()
     {
+#if UNITY_ANDROID || UNITY_IPHONE
             StandardPurchasingModule module = StandardPurchasingModule.Instance();
            // module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
 
@@ -52,6 +54,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 			builder.AddProduct(GameConstants.PRODUCT_REMOVE_ADS, ProductType.NonConsumable);
 
             UnityPurchasing.Initialize(this, builder);
+#endif
      }
 
 	public bool IsInitialized() {
@@ -161,6 +164,8 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
 
     public void RestorePurchases(GUIManager gui)
     {
+
+#if UNITY_ANDROID || UNITY_IPHONE
         if(guiManager == null)
         {
             guiManager = gui;
@@ -186,5 +191,7 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
             }
             
         }
+#endif
     }
 }
+#endif

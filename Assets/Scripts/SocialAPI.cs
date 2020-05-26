@@ -38,7 +38,8 @@ public class SocialAPI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-	     gameCenterAvailable = (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android); 
+	     gameCenterAvailable = (Application.platform == RuntimePlatform.IPhonePlayer ||
+            Application.platform == RuntimePlatform.Android || (Application.platform == RuntimePlatform.OSXPlayer)); 
 
 		 #if UNITY_ANDROID && !UNITY_EDITOR
 	     if(gameCenterAvailable) {

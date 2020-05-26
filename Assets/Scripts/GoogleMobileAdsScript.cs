@@ -1,30 +1,38 @@
-﻿using GoogleMobileAds.Api;
+﻿#if UNITY_ANDROID || UNITY_IPHONE
+using GoogleMobileAds.Api;
+#endif
 using System;
 using UnityEngine;
 
 public class GoogleMobileAdsScript : MonoBehaviour {
 
+#if UNITY_ANDROID || UNITY_IPHONE
     //README https://developers.google.com/admob/unity/rewarded-video
+
 	private RewardBasedVideoAd rewardBasedVideo;
 
 	private InterstitialAd interstitial;
+#endif
 
-	private GUIManager guiManager;
+    private GUIManager guiManager;
 
 	private bool watchedRewardVideo = false;
 
+#if UNITY_ANDROID || UNITY_IPHONE
 	// Use this for initialization
 	public void Start()
     {
-        #if UNITY_ANDROID
+
+
+#if UNITY_ANDROID
             string appId = "ca-app-pub-3940256099942544~3347511713";
-        #elif UNITY_IPHONE
+#elif UNITY_IPHONE
             string appId = "ca-app-pub-9531252796858598~9251777791";
 			//"ca-app-pub-3940256099942544~1458002511";
-		#else
+#else
             string appId = "unexpected_platform";
 			return;
-		#endif
+#endif
 
 		// Initialize the Google Mobile Ads SDK.
 		MobileAds.Initialize(appId);
@@ -53,9 +61,13 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 		//also request interstitial
 		this.RequestInterstitialAd();
     }
+#endif
 
 	public bool IsRewardVideoReady() {
-		return GetIsAdsSupportingPlatform() && rewardBasedVideo !=null && rewardBasedVideo.IsLoaded();
+        #if UNITY_ANDROID || UNITY_IPHONE
+    		        return GetIsAdsSupportingPlatform() && rewardBasedVideo !=null && rewardBasedVideo.IsLoaded();
+        #endif
+        return false;
 	}
 
     public bool GetIsAdsSupportingPlatform() {
@@ -68,11 +80,14 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     }
 
 	public bool IsInterstitialReady() {
-		//Debug.Log("IsInterstitialReady????? "+ (this.interstitial == null));
-		if(this.interstitial == null) {
-			RequestInterstitialAd();
-		}
-		return this.interstitial!=null && this.interstitial.IsLoaded();
+
+        #if UNITY_ANDROID || UNITY_IPHONE
+		        if(this.interstitial == null) {
+			        RequestInterstitialAd();
+		        }
+		        return this.interstitial!=null && this.interstitial.IsLoaded();
+        #endif
+        return false;
 	}
 
 	public bool DecideIfShowInterstitial() {
@@ -83,28 +98,34 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	
 	public void ShowRewardVideo(GUIManager guiManager) {
 
-		this.watchedRewardVideo = false;
-		this.guiManager = guiManager;
-		this.rewardBasedVideo.Show();
+        #if UNITY_ANDROID || UNITY_IPHONE
+		    this.watchedRewardVideo = false;
+		    this.guiManager = guiManager;
+		    this.rewardBasedVideo.Show();
+        #endif
 	}
 
 	public void ShowInterstitialAd(GUIManager guiManager) {
 
-		this.guiManager = guiManager;
-		this.interstitial.Show();
+        #if UNITY_ANDROID || UNITY_IPHONE
+		    this.guiManager = guiManager;
+		    this.interstitial.Show();
+        #endif
 	}
+
+#if UNITY_ANDROID || UNITY_IPHONE
 
 	//TODO get the ids for Android (only after trying unique release on IOS)
 	private void RequestRewardBasedVideo()
     {
-		#if UNITY_ANDROID
+#if UNITY_ANDROID
             string adUnitId = "ca-app-pub-3940256099942544/5224354917";
-		#elif UNITY_IPHONE
+#elif UNITY_IPHONE
 			string adUnitId = "ca-app-pub-9531252796858598/3913311894";
 		//"ca-app-pub-3940256099942544/1712485313";
-        #else
+#else
             string adUnitId = "unexpected_platform";
-        #endif
+#endif
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
@@ -116,12 +137,12 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	public void RequestInterstitialAd() {
         string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
 		Debug.Log("RequestInterstitialAd() CALLED");
-		#if UNITY_IPHONE
+#if UNITY_IPHONE
 			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
 			//string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
-		#else
+#else
             string adUnitId = "unexpected_platform";
-        #endif
+#endif
 
 		// Initialize an InterstitialAd.
     		this.interstitial = new InterstitialAd(testAdsUnitId);
@@ -243,4 +264,5 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 			this.RequestInterstitialAd(); //request another one
 		}
     }
+#endif
 }
