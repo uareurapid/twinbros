@@ -29,7 +29,7 @@ public class LevelSelector : MonoBehaviour {
 	//TODO this should be done based on PlayerPrefs
 	void CheckLevelStatus() {
 		foreach(LevelStatus level in levels) {
-			if(level.locked) {
+			if(level.GetIsLocked()) {
 				level.GetComponent<UnityEngine.UI.Image>().sprite = levelLockedImage;
 			}
 			else {
@@ -40,7 +40,7 @@ public class LevelSelector : MonoBehaviour {
 
     public void LoadStageOne() {
 
-		if(!levels[0].locked) 
+		if(!levels[0].GetIsLocked()) 
 		{
 			StartCoroutine(LoadScene("Level1"));
 		}
@@ -54,7 +54,7 @@ public class LevelSelector : MonoBehaviour {
 
     public void LoadStageTwo()
     {
-		if (!levels[1].locked)
+		if (!levels[1].GetIsLocked())
 		{
 			StartCoroutine(LoadScene("Level2"));
 		}
@@ -69,7 +69,7 @@ public class LevelSelector : MonoBehaviour {
 
     public void LoadStageThree()
     {
-		if (!levels[2].locked)
+		if (!levels[2].GetIsLocked())
 		{
 			StartCoroutine(LoadScene("Level3"));
 		}
@@ -84,7 +84,7 @@ public class LevelSelector : MonoBehaviour {
 
     public void LoadStageFour()
     {
-		if (!levels[3].locked)
+		if (!levels[3].GetIsLocked())
 		{
 			StartCoroutine(LoadScene("Level4"));
 		}
@@ -100,7 +100,7 @@ public class LevelSelector : MonoBehaviour {
     public void LoadStageFive()
     {
 
-		if (!levels[4].locked)
+		if (!levels[4].GetIsLocked())
 		{
 			StartCoroutine(LoadScene("Level5"));
 		}

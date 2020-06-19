@@ -114,6 +114,17 @@ public class LevelManager : MonoBehaviour {
 
 		if(stage > 1) {
 			Invoke("StartGame", 1.5f);
+		} else
+        {
+            int numRuns = PlayerPrefs.GetInt(GameConstants.NUM_GAME_RUNS, 0);
+			numRuns += 1;
+			PlayerPrefs.SetInt(GameConstants.NUM_GAME_RUNS, numRuns);
+            //ask for review if IOS & 3rd run
+			if ( (RuntimePlatform.IPhonePlayer == Application.platform)  && (numRuns == 3 && !gameStarted) )
+            {
+				//ask for review
+				UnityEngine.iOS.Device.RequestStoreReview();
+            }
 		}
 	}
     
@@ -765,7 +776,10 @@ public class LevelManager : MonoBehaviour {
         if(gameManager.IsMobilePlatform()) {
             SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
         }
-		
+
+		//achieved stage 1 end
+		PlayerPrefs.SetInt(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage.ToString(), 1);
+
 		//add 500 extra points
 		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
 		currentScore += 500;

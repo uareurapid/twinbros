@@ -116,31 +116,7 @@ public class GUIManager : MonoBehaviour {
 	void Start () {
 		
 		playPressed = false;
-		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
-		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
-		translationManager = TextLocalizationManager.Instance;
-		translationManager.LoadSystemLanguage(Application.systemLanguage);
-		LoadAllGUITranslations();
-		store = scripts.GetComponent<MyStoreClass>();
-		levelManager = scripts.GetComponent<LevelManager>();
-        gameManager = scripts.GetComponent<GameManagerScript>();
-
-		currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
-		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
-
-        //TODO remove me for PROD
-        if(levelManager.isTestMode) {
-            PlayerPrefs.DeleteAll();
-        }
-
-		if(levelManager.stage > 1) {
-			Invoke("DoStageTransitionEffect", 2f);
-		}
-
-        if(store!=null && !store.IsInitialized() )
-        {
-			store.InitStore();
-        }
+		
 	}
 
     private void Awake()
@@ -151,6 +127,40 @@ public class GUIManager : MonoBehaviour {
         {
 			isArcadeOrSubscriptionMode = false;
         }
+
+		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
+		translationManager = TextLocalizationManager.Instance;
+		translationManager.LoadSystemLanguage(Application.systemLanguage);
+		LoadAllGUITranslations();
+		store = scripts.GetComponent<MyStoreClass>();
+		levelManager = scripts.GetComponent<LevelManager>();
+		gameManager = scripts.GetComponent<GameManagerScript>();
+
+		currentScoreText.text = "SC: " + levelManager.currentScore.ToString("000000");
+		highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
+
+		//TODO remove me for PROD
+		if (levelManager.isTestMode)
+		{
+			PlayerPrefs.DeleteAll();
+		}
+
+		if (levelManager.stage > 1)
+		{
+			Invoke("DoStageTransitionEffect", 2f);
+		}
+
+		if (store != null && !store.IsInitialized())
+		{
+			store.InitStore();
+		}
+
+		//if i am on stage 1, level 1 and have at least completed the 1st stage show the level selection / settings button
+		if (levelManager.stage == 1 && levelManager.currentLevel.level == 1 && (PlayerPrefs.GetInt(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + "1", 0) == 1))
+        {
+			gameSettingsButton.enabled = true;
+		}
 
 	}
 
@@ -440,6 +450,8 @@ public class GUIManager : MonoBehaviour {
         //TODO if show stage do not show level before stage image
         SoundEffectsHelper.Instance.PlayReplaySound();
 
+		//hide this button
+		gameSettingsButton.enabled = false;
 
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
 		levelManager = scripts.GetComponent<LevelManager>();
