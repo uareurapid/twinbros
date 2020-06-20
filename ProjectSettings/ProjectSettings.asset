@@ -122,7 +122,7 @@ PlayerSettings:
     16:10: 0
     16:9: 0
     Others: 0
-  bundleVersion: 1.0
+  bundleVersion: 1.0.3
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -162,7 +162,7 @@ PlayerSettings:
   applicationIdentifier:
     iOS: com.crackedegggames.twins
   buildNumber:
-    iOS: 1.0.20
+    iOS: 1.0.1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
