@@ -97,14 +97,14 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 	//TODO get the ids for Android (only after trying unique release on IOS)
 	private void RequestRewardBasedVideo()
     {
-		#if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-3940256099942544/5224354917";
-		#elif UNITY_IPHONE
+		//#if UNITY_ANDROID
+        //    string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+		//#elif UNITY_IPHONE
 			string adUnitId = "ca-app-pub-9531252796858598/3913311894";
 		//"ca-app-pub-3940256099942544/1712485313";
-        #else
-            string adUnitId = "unexpected_platform";
-        #endif
+        //#else
+        //    string adUnitId = "unexpected_platform";
+        //#endif
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
@@ -114,18 +114,18 @@ public class GoogleMobileAdsScript : MonoBehaviour {
 
 	//TODO change from test to configured
 	public void RequestInterstitialAd() {
-        string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
-		Debug.Log("RequestInterstitialAd() CALLED");
-		#if UNITY_IPHONE
-			string appUnitId = "ca-app-pub-9531252796858598/4268535114";
+        string appUnitId = "ca-app-pub-9531252796858598/4268535114";
+		//Debug.Log("RequestInterstitialAd() CALLED");
+		//#if UNITY_IPHONE
+		//	appUnitId = "ca-app-pub-9531252796858598/4268535114";
 			//string testAdsUnitId = "ca-app-pub-3940256099942544/4411468910";
-		#else
-            string adUnitId = "unexpected_platform";
-        #endif
+		//#else
+        //    string adUnitId = "unexpected_platform";
+        //#endif
 
 		// Initialize an InterstitialAd.
-    		this.interstitial = new InterstitialAd(testAdsUnitId);
-			Debug.Log("RequestInterstitialAd() IS IT NULL -> " + (this.interstitial == null) + ":" + testAdsUnitId);
+    		this.interstitial = new InterstitialAd(appUnitId);
+			Debug.Log("RequestInterstitialAd() IS IT NULL -> " + (this.interstitial == null) + ":" + appUnitId);
 
 			SetInterstitialEventsHandler();
     		// Create an empty ad request.
