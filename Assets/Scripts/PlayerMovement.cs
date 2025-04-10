@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float speed = 2.0f;
+	public float speed = 6.0f;//was 2.0
     Vector3 targetPosition;
     //adjustment to bounce back on tile and box collisions
     public float bounceAdjustment = 0.1f; //TODO put 0.09 on editor, before was 0.05
