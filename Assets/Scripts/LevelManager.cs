@@ -825,10 +825,13 @@ public class LevelManager : MonoBehaviour {
 		StartCoroutine("HideLevelClearedImage");
 	}
 
-	private void ReportIntermediaryScores() {
+	private void ReportIntermediaryScores()
+	{
 
-		int currScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
-		SocialAPI.Instance.AuthenticateAndReport(currScore, GameConstants.LEADERBOARD_ID);
+		//int currScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
+		//SocialAPI.Instance.AuthenticateAndReport(currScore, GameConstants.LEADERBOARD_ID);
+		int currentHighScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+		SocialAPI.Instance.AuthenticateAndReport(currentHighScore, GameConstants.LEADERBOARD_ID);
 	}
 
 	IEnumerator HideLevelNumImages() {

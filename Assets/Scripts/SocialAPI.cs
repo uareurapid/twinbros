@@ -148,18 +148,21 @@ public class SocialAPI : MonoBehaviour {
 	            //need to login first
 				Social.localUser.Authenticate (success => {
 
-				    if (success) {
-				        Debug.Log ("Authentication successful");
-				        string userInfo = "Username: " + Social.localUser.userName + 
-				            "\nUser ID: " + Social.localUser.id + 
-				            "\nIsUnderage: " + Social.localUser.underage;
-				        Debug.Log (userInfo);
+					if (success)
+					{
+						Debug.Log("Authentication successful");
+						string userInfo = "Username: " + Social.localUser.userName +
+							"\nUser ID: " + Social.localUser.id +
+							"\nIsUnderage: " + Social.localUser.underage;
+						Debug.Log(userInfo);
 
-				        ReportScore(score,leaderboardId);
+						ReportScore(score, leaderboardId);
+						isAuthenticated = true;
 				    }
-				    else {
-						Debug.Log ("Authentication failed");
-				    }
+					else
+					{
+						Debug.Log("Authentication failed");
+					}
 			        
 				});
 	    }
