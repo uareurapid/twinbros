@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: 6f241ce3f9b3442b7bbb4f31e272237a
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: block_broken_stone_0
-    21300002: block_broken_stone_1
-    21300004: block_broken_stone_2
-    21300006: block_broken_stone_3
-    21300008: block_broken_stone_4
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: block_broken_stone_0
+  - first:
+      213: 21300002
+    second: block_broken_stone_1
+  - first:
+      213: 21300004
+    second: block_broken_stone_2
+  - first:
+      213: 21300006
+    second: block_broken_stone_3
+  - first:
+      213: 21300008
+    second: block_broken_stone_4
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -25,9 +35,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -37,8 +50,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -59,11 +72,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -73,8 +92,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -84,8 +105,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -95,7 +118,22 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -115,6 +153,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1cd9b9220b8be448ba07f66f56becef8
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -135,6 +174,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3d5f32e1100d04902b0a14b7cd5f83f3
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -155,6 +195,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c120bb7fa187040fc90bf16f75fd9bb9
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -175,6 +216,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e66c80daec3de4ad4a8d5205c5f629ec
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -195,6 +237,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 411d8f6cfddba45168cacfb5776ab746
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -203,13 +246,20 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5f934412ec5a042ceb5304f4e61e1290
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: 
+    secondaryTextures: []
+    nameFileIdTable:
+      block_broken_stone_0: 21300000
+      block_broken_stone_1: 21300002
+      block_broken_stone_2: 21300004
+      block_broken_stone_3: 21300006
+      block_broken_stone_4: 21300008
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

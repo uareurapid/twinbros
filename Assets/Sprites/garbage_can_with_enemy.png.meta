@@ -1,15 +1,27 @@
 fileFormatVersion: 2
 guid: aab7f2ad4d22648c5986ebae8b2fbf6b
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: garbage_can_with_enemy_0
-    21300002: garbage_can_with_enemy_1
-    21300004: garbage_can_with_enemy_2
-    21300006: garbage_can_with_enemy_3
-    21300008: garbage_can_with_enemy_4
-    21300010: garbage_can_with_enemy_5
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: garbage_can_with_enemy_0
+  - first:
+      213: 21300002
+    second: garbage_can_with_enemy_1
+  - first:
+      213: 21300004
+    second: garbage_can_with_enemy_2
+  - first:
+      213: 21300006
+    second: garbage_can_with_enemy_3
+  - first:
+      213: 21300008
+    second: garbage_can_with_enemy_4
+  - first:
+      213: 21300010
+    second: garbage_can_with_enemy_5
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -26,7 +38,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -36,8 +53,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -58,11 +75,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -72,8 +95,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -83,8 +108,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -94,8 +121,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -105,8 +134,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -116,7 +147,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -136,6 +169,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6089d6efd9a3945d7993c542d0252032
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -156,6 +190,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ad08f2ef80a694e5fb45b68328366592
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -176,6 +211,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 25c71f27c88834f1e9bed28c2fb9852f
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -196,6 +232,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6720b3e9e63a6411e91902250eb34141
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -216,6 +253,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c3ee752ba381646b99ca086b1f49e576
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -236,6 +274,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7e63397a08a5b4d11917d348278fc2b0
+      internalID: 21300010
       vertices: []
       indices: 
       edges: []
@@ -244,11 +283,21 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: ce12fd89c93ff4663bcea37f1cde08d5
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: 
+    secondaryTextures: []
+    nameFileIdTable:
+      garbage_can_with_enemy_0: 21300000
+      garbage_can_with_enemy_1: 21300002
+      garbage_can_with_enemy_2: 21300004
+      garbage_can_with_enemy_3: 21300006
+      garbage_can_with_enemy_4: 21300008
+      garbage_can_with_enemy_5: 21300010
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

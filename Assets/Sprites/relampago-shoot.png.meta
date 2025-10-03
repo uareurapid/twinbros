@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: 0eed6536162fb438f9882c6680f149a9
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: relampago-shoot_0
-    21300002: relampago-shoot_1
-    21300004: relampago-shoot_2
-    21300006: relampago-shoot_3
-    21300008: relampago-shoot_4
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: relampago-shoot_0
+  - first:
+      213: 21300002
+    second: relampago-shoot_1
+  - first:
+      213: 21300004
+    second: relampago-shoot_2
+  - first:
+      213: 21300006
+    second: relampago-shoot_3
+  - first:
+      213: 21300008
+    second: relampago-shoot_4
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -25,9 +35,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -37,8 +50,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -59,11 +72,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 1024
     resizeAlgorithm: 0
@@ -73,8 +92,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 1024
     resizeAlgorithm: 0
@@ -84,8 +105,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 1024
     resizeAlgorithm: 0
@@ -95,7 +118,22 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -115,6 +153,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b1c180e1a31814ea6b946bedbe1587c7
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -135,6 +174,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: bc1e610b20b9c482ba1b39a17d70d9b4
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -155,6 +195,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6ee573444451b4addab0308d5d99ec5d
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -175,6 +216,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 01e3d8f3a08884abb9809b12250b1532
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -195,6 +237,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 97def0157657746e5af254e42111487e
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -203,13 +246,20 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5462bd6c01e73442090f9b754c7cd2a6
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: 
+    secondaryTextures: []
+    nameFileIdTable:
+      relampago-shoot_0: 21300000
+      relampago-shoot_1: 21300002
+      relampago-shoot_2: 21300004
+      relampago-shoot_3: 21300006
+      relampago-shoot_4: 21300008
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
