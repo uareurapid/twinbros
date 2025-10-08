@@ -70,115 +70,116 @@
     <Compile Include="Assets/Scripts/EnableDisableMonobehaviour.cs" />
     <Compile Include="Assets/Scripts/GameConstants.cs" />
     <Compile Include="Assets/Scripts/ElectricWire.cs" />
-    <Compile Include="Assets/Scripts/SoundEffectsHelper.cs" />
-    <Compile Include="Assets/Scripts/SpawnPosition.cs" />
-    <Compile Include="Assets/Scripts/DelegateHandler.cs" />
-    <Compile Include="Assets/Scripts/MyIAPListener.cs" />
     <Compile Include="Assets/Scripts/GridTileOccupier.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets/Scripts/Destroyable.cs" />
     <Compile Include="Assets/Scripts/DynamicTile.cs" />
     <Compile Include="Assets/Scripts/GridTile.cs" />
-    <Compile Include="Assets/Scripts/Patrol.cs" />
-    <Compile Include="Assets/Scripts/ShootingBox.cs" />
-    <Compile Include="Assets/SpriteChangerWithHits.cs" />
     <Compile Include="Assets/Scripts/GameManagerScript.cs" />
     <Compile Include="Assets/Scripts/LevelSelector.cs" />
     <Compile Include="Assets/Scripts/FlipSprite.cs" />
     <Compile Include="Assets/Scripts/LevelCheckPoint.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_ShurikenThreadFix.cs" />
-    <Compile Include="Assets/Scripts/TutorialController.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutodestructWhenNoChildren.cs" />
-    <Compile Include="Assets/Scripts/NewBehaviourScript.cs" />
-    <Compile Include="Assets/Scripts/PositionMarker.cs" />
-    <Compile Include="Assets/Scripts/AutoDestroy.cs" />
     <Compile Include="Assets/Scripts/MakeShrinkEnemy.cs" />
-    <Compile Include="Assets/Scripts/PlatformManager.cs" />
     <Compile Include="Assets/Scripts/RendererExtensions.cs" />
-    <Compile Include="Assets/Scripts/EnemyBox.cs" />
-    <Compile Include="Assets/Scripts/TeletransportPoint.cs" />
     <Compile Include="Assets/Scripts/Box.cs" />
     <Compile Include="Assets/Scripts/TextLocalizationManager.cs" />
     <Compile Include="Assets/Scripts/MoveTowardsScript.cs" />
-    <Compile Include="Assets/Scripts/GridTileDropper.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_New.cs" />
     <Compile Include="Assets/Scripts/FollowThePath.cs" />
-    <Compile Include="Assets/Scripts/SideCollider.cs" />
     <Compile Include="Assets/Scripts/CameraZoomInOutScript.cs" />
     <Compile Include="Assets/Scripts/Mover.cs" />
-    <Compile Include="Assets/Scripts/DSPixelPerfectCamera.cs" />
-    <Compile Include="Assets/Scripts/FixedScroll.cs" />
-    <Compile Include="Assets/Scripts/ResetablePosition.cs" />
     <Compile Include="Assets/Scripts/AutoRotate.cs" />
-    <Compile Include="Assets/Scripts/WayPoint.cs" />
-    <Compile Include="Assets/Scripts/GoogleMobileAdsScript.cs" />
     <Compile Include="Assets/Scripts/SwichPositionsElement.cs" />
-    <Compile Include="Assets/Scripts/Explodable.cs" />
     <Compile Include="Assets/Scripts/BlinkSpriteScript.cs" />
-    <Compile Include="Assets/Scripts/HandlePlayerCollision.cs" />
     <Compile Include="Assets/Scripts/Portal.cs" />
     <Compile Include="Assets/Scripts/UVScroll.cs" />
-    <Compile Include="Assets/Scripts/SceneLoader.cs" />
-    <Compile Include="Assets/Scripts/SoundManager.cs" />
-    <Compile Include="Assets/Scripts/SwipeDetector.cs" />
-    <Compile Include="Assets/Scripts/RepeatAnimationClip.cs" />
     <Compile Include="Assets/Scripts/UICounter.cs" />
-    <Compile Include="Assets/Scripts/MyStoreClass.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets/Scripts/ParticleSortingLayer.cs" />
-    <Compile Include="Assets/Scripts/FadeSpriteAlpha.cs" />
-    <Compile Include="Assets/Scripts/ShowHideSprite.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_RandomDirectionTranslate.cs" />
-    <Compile Include="Assets/Scripts/SwapSpriteScript.cs" />
     <Compile Include="Assets/Scripts/ShakeScript.cs" />
     <Compile Include="Assets/Zero Rare/Retro Sound Effects/Demo/Demo.cs" />
     <Compile Include="Assets/Scripts/SimpleTeleport.cs" />
     <Compile Include="Assets/Scripts/ObjectDeactivator.cs" />
     <Compile Include="Assets/Scripts/Tile.cs" />
-    <Compile Include="Assets/Scripts/SimpleMovementRestrictions.cs" />
     <Compile Include="Assets/Scripts/StopMovement.cs" />
-    <Compile Include="Assets/Scripts/Starfield.cs" />
-    <Compile Include="Assets/Scripts/Path.cs" />
     <Compile Include="Assets/Scripts/FruitSpawner.cs" />
-    <Compile Include="Assets/Scripts/SlugController.cs" />
-    <Compile Include="Assets/Scripts/ResetBehaviourScript.cs" />
     <Compile Include="Assets/Scripts/BossEnemy.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutoRotate.cs" />
     <Compile Include="Assets/Scripts/ResetableBehaviours.cs" />
     <Compile Include="Assets/Scripts/AnimationController.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutoDestructShuriken.cs" />
+    <Compile Include="Assets/Scripts/LevelStatus.cs" />
+    <Compile Include="Assets/Scripts/ObjectActivator.cs" />
+    <Compile Include="Assets/Scripts/SnapToPixelGrid.cs" />
+    <Compile Include="Assets/Scripts/FadeSprite.cs" />
+    <Compile Include="Assets/Scripts/DrawGizmoGrid.cs" />
+    <Compile Include="Assets/Scripts/VisibleOnScreen.cs" />
+    <Compile Include="Assets/Scripts/Fruit.cs" />
+    <Compile Include="Assets/Scripts/Bonus.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_InspectorHelp.cs" />
+    <Compile Include="Assets/Scripts/FriendlyShot.cs" />
+    <Compile Include="Assets/Scripts/ResetActiveState.cs" />
+    <Compile Include="Assets/Scripts/LevelManager.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Spawn System/CFX_SpawnSystem.cs" />
+    <Compile Include="Assets/Scripts/MoveWayPoint.cs" />
+    <Compile Include="Assets/Scripts/Level.cs" />
+    <Compile Include="Assets/Scripts/SpecialEffectsHelper.cs" />
+    <Compile Include="Assets/Scripts/SoundEffectsHelper.cs" />
+    <Compile Include="Assets/Scripts/SpawnPosition.cs" />
+    <Compile Include="Assets/Scripts/DelegateHandler.cs" />
+    <Compile Include="Assets/Scripts/MyIAPListener.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_AutoStopLoopedEffect.cs" />
+    <Compile Include="Assets/Scripts/Patrol.cs" />
+    <Compile Include="Assets/Scripts/ShootingBox.cs" />
+    <Compile Include="Assets/SpriteChangerWithHits.cs" />
+    <Compile Include="Assets/Scripts/LeaderboardsManager.cs" />
+    <Compile Include="Assets/Scripts/TutorialController.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutodestructWhenNoChildren.cs" />
+    <Compile Include="Assets/Scripts/NewBehaviourScript.cs" />
+    <Compile Include="Assets/Scripts/PositionMarker.cs" />
+    <Compile Include="Assets/Scripts/AutoDestroy.cs" />
+    <Compile Include="Assets/Scripts/PlatformManager.cs" />
+    <Compile Include="Assets/Scripts/EnemyBox.cs" />
+    <Compile Include="Assets/Scripts/TeletransportPoint.cs" />
+    <Compile Include="Assets/Scripts/GridTileDropper.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_New.cs" />
+    <Compile Include="Assets/Scripts/SideCollider.cs" />
+    <Compile Include="Assets/Scripts/DSPixelPerfectCamera.cs" />
+    <Compile Include="Assets/Scripts/FixedScroll.cs" />
+    <Compile Include="Assets/Scripts/ResetablePosition.cs" />
+    <Compile Include="Assets/Scripts/WayPoint.cs" />
+    <Compile Include="Assets/Scripts/GoogleMobileAdsScript.cs" />
+    <Compile Include="Assets/Scripts/Explodable.cs" />
+    <Compile Include="Assets/Scripts/HandlePlayerCollision.cs" />
+    <Compile Include="Assets/Scripts/SceneLoader.cs" />
+    <Compile Include="Assets/Scripts/SoundManager.cs" />
+    <Compile Include="Assets/Scripts/SwipeDetector.cs" />
+    <Compile Include="Assets/Scripts/RepeatAnimationClip.cs" />
+    <Compile Include="Assets/Scripts/MyStoreClass.cs" />
+    <Compile Include="Assets/Scripts/FadeSpriteAlpha.cs" />
+    <Compile Include="Assets/Scripts/ShowHideSprite.cs" />
+    <Compile Include="Assets/Scripts/SwapSpriteScript.cs" />
+    <Compile Include="Assets/Scripts/SimpleMovementRestrictions.cs" />
+    <Compile Include="Assets/Scripts/Starfield.cs" />
+    <Compile Include="Assets/Scripts/Path.cs" />
+    <Compile Include="Assets/Scripts/SlugController.cs" />
+    <Compile Include="Assets/Scripts/ResetBehaviourScript.cs" />
+    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutoRotate.cs" />
     <Compile Include="Assets/Scripts/FallenTreeScript.cs" />
     <Compile Include="Assets/Scripts/SocialAPI.cs" />
     <Compile Include="Assets/Scripts/EnlargeShrinkScript.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo.cs" />
     <Compile Include="Assets/Scripts/Shoot.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutoDestructShuriken.cs" />
     <Compile Include="Assets/Scripts/GUIManager.cs" />
-    <Compile Include="Assets/Scripts/LevelStatus.cs" />
-    <Compile Include="Assets/Scripts/ObjectActivator.cs" />
-    <Compile Include="Assets/Scripts/SnapToPixelGrid.cs" />
-    <Compile Include="Assets/Scripts/FadeSprite.cs" />
     <Compile Include="Assets/Scripts/ResetableGravityScale.cs" />
-    <Compile Include="Assets/Scripts/DrawGizmoGrid.cs" />
-    <Compile Include="Assets/Scripts/VisibleOnScreen.cs" />
-    <Compile Include="Assets/Scripts/Fruit.cs" />
-    <Compile Include="Assets/Scripts/Bonus.cs" />
     <Compile Include="Assets/Scripts/SliderBlock.cs" />
     <Compile Include="Assets/Scripts/SpeedIncrease.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_InspectorHelp.cs" />
     <Compile Include="Assets/Scripts/StarFieldManagerComponent.cs" />
-    <Compile Include="Assets/Scripts/FriendlyShot.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_Translate.cs" />
     <Compile Include="Assets/Scripts/PlayerMovement.cs" />
-    <Compile Include="Assets/Scripts/ResetActiveState.cs" />
     <Compile Include="Assets/Scripts/SpawnableItem.cs" />
-    <Compile Include="Assets/Scripts/LevelManager.cs" />
-    <Compile Include="Assets/JMO Assets/Cartoon FX/Spawn System/CFX_SpawnSystem.cs" />
     <Compile Include="Assets/Scripts/TileRow.cs" />
-    <Compile Include="Assets/Scripts/MoveWayPoint.cs" />
-    <Compile Include="Assets/Scripts/Level.cs" />
     <Compile Include="Assets/Scripts/AutoDisableSprite.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_RotateCamera.cs" />
-    <Compile Include="Assets/Scripts/SpecialEffectsHelper.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_LightIntensityFade.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1160,6 +1161,10 @@
       <HintPath>Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Services.Authentication.Editor.Shared">
+      <HintPath>Library/ScriptAssemblies/Unity.Services.Authentication.Editor.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
       <Private>False</Private>
@@ -1180,6 +1185,14 @@
       <HintPath>Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Services.Authentication">
+      <HintPath>Library/ScriptAssemblies/Unity.Services.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Services.Authentication.PlayerAccounts">
+      <HintPath>Library/ScriptAssemblies/Unity.Services.Authentication.PlayerAccounts.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1190,6 +1203,14 @@
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Services.Leaderboards">
+      <HintPath>Library/ScriptAssemblies/Unity.Services.Leaderboards.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Services.Leaderboards.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Services.Leaderboards.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

@@ -17,7 +17,10 @@ public class GameConstants : MonoBehaviour {
 	public const string TXT_EXTRA_MOVES_KEY = "buy_extra_moves";
 	public const string TXT_INFINITE_REVIVES_KEY = "buy_infinite_revives";
 
-	public const string LEADERBOARD_ID = "grp.twins_high_cores";
+	// for mobile (IOS and Android)
+	//public const string LEADERBOARD_ID = "grp.twins_high_cores";
+	// for webgl
+	public const string LEADERBOARD_ID = "twins_high_cores";
 	public const string CURRENT_SCORE = "twins_current_cores";
 
 	public const string ACHIEVEMENT_STAGE_1_ID = "grp.twins_stage_1";

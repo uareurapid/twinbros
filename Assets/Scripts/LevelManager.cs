@@ -785,11 +785,17 @@ public class LevelManager : MonoBehaviour {
 		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
 		guiManager.UpdateCurrentHighScore(highScore);
 
-        if (gameManager.IsMobilePlatform())
-        {
-            //also report it to the store
-            SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
-        }
+		if (gameManager.IsMobilePlatform())
+		{
+			//also report it to the store
+			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		}
+		else
+		{
+			Debug.Log("OH BOY!!!");
+			// use Unity Leaderboards SDK
+			LeaderboardsManager.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		}
             
 
 		guiManager.ShowStageClearedImage();
@@ -820,8 +826,20 @@ public class LevelManager : MonoBehaviour {
 		//also report it to the store
 		//TODO CHECK use ReportIntermediaryScores instead
 		//SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
-		//---------------------------
 		
+		if (gameManager.IsMobilePlatform())
+		{
+			//also report it to the store
+			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		}
+		else
+		{
+			Debug.Log("OH BOY!!!");
+			// use Unity Leaderboards SDK
+			LeaderboardsManager.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		}
+		//---------------------------
+
 		StartCoroutine("HideLevelClearedImage");
 	}
 
