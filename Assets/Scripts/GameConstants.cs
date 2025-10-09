@@ -23,6 +23,8 @@ public class GameConstants : MonoBehaviour {
 	public const string LEADERBOARD_ID = "twins_high_cores";
 	public const string CURRENT_SCORE = "twins_current_cores";
 
+
+	public const string ACHIEVEMENT_STAGE_STR = "achievement_stage_"; // append level num
 	public const string ACHIEVEMENT_STAGE_1_ID = "grp.twins_stage_1";
 	public const string ACHIEVEMENT_STAGE_2_ID = "grp.twins_stage_2";
 	public const string ACHIEVEMENT_STAGE_3_ID = "grp.twins_stage_3";

@@ -118,6 +118,7 @@
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_InspectorHelp.cs" />
     <Compile Include="Assets/Scripts/FriendlyShot.cs" />
     <Compile Include="Assets/Scripts/ResetActiveState.cs" />
+    <Compile Include="Assets/Scripts/Achievements.cs" />
     <Compile Include="Assets/Scripts/LevelManager.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Spawn System/CFX_SpawnSystem.cs" />
     <Compile Include="Assets/Scripts/MoveWayPoint.cs" />
