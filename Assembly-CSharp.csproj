@@ -71,6 +71,7 @@
     <Compile Include="Assets/Scripts/GameConstants.cs" />
     <Compile Include="Assets/Scripts/ElectricWire.cs" />
     <Compile Include="Assets/Scripts/GridTileOccupier.cs" />
+    <Compile Include="Assets/Scripts/GameDistributionAds.cs" />
     <Compile Include="Assets/Scripts/Destroyable.cs" />
     <Compile Include="Assets/Scripts/DynamicTile.cs" />
     <Compile Include="Assets/Scripts/GridTile.cs" />
@@ -92,8 +93,10 @@
     <Compile Include="Assets/Scripts/BlinkSpriteScript.cs" />
     <Compile Include="Assets/Scripts/Portal.cs" />
     <Compile Include="Assets/Scripts/UVScroll.cs" />
+    <Compile Include="Assets/GameDistribution/GameDistribution.cs" />
     <Compile Include="Assets/Scripts/UICounter.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_RandomDir.cs" />
+    <Compile Include="Assets/GameDistribution/GameData.cs" />
     <Compile Include="Assets/Scripts/ParticleSortingLayer.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_RandomDirectionTranslate.cs" />
     <Compile Include="Assets/Scripts/ShakeScript.cs" />
@@ -124,6 +127,8 @@
     <Compile Include="Assets/Scripts/MoveWayPoint.cs" />
     <Compile Include="Assets/Scripts/Level.cs" />
     <Compile Include="Assets/Scripts/SpecialEffectsHelper.cs" />
+    <Compile Include="Assets/Scripts/SceneSwitcher.cs" />
+    <Compile Include="Assets/GameDistribution/EventData.cs" />
     <Compile Include="Assets/Scripts/SoundEffectsHelper.cs" />
     <Compile Include="Assets/Scripts/SpawnPosition.cs" />
     <Compile Include="Assets/Scripts/DelegateHandler.cs" />
@@ -137,8 +142,10 @@
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutodestructWhenNoChildren.cs" />
     <Compile Include="Assets/Scripts/NewBehaviourScript.cs" />
     <Compile Include="Assets/Scripts/PositionMarker.cs" />
+    <Compile Include="Assets/Scripts/LevelCompletion.cs" />
     <Compile Include="Assets/Scripts/AutoDestroy.cs" />
     <Compile Include="Assets/Scripts/PlatformManager.cs" />
+    <Compile Include="Assets/GameDistribution/Demo/GameManager.cs" />
     <Compile Include="Assets/Scripts/EnemyBox.cs" />
     <Compile Include="Assets/Scripts/TeletransportPoint.cs" />
     <Compile Include="Assets/Scripts/GridTileDropper.cs" />
@@ -195,6 +202,7 @@
     <None Include="Assets/JMO Assets/Cartoon FX/Shaders/CFXM_MobileParticleAdd_Alpha8.shader" />
     <None Include="Assets/Resources/Language_pt.txt" />
     <None Include="Assets/JMO Assets/!JMO Assets Readme.txt" />
+    <None Include="Assets/GameDistribution/README_GD.txt" />
     <None Include="Assets/JMO Assets/Cartoon FX/Demo/Assets/CFX_Demo_WaterWiggle.shader" />
   </ItemGroup>
   <ItemGroup>

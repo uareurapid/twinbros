@@ -95,7 +95,8 @@ public class GUIManager : MonoBehaviour {
 	public UnityEngine.UI.Image continueImage;
 	public Sprite[] continueTimeImages;
 
-	GoogleMobileAdsScript adsScript;
+	//GoogleMobileAdsScript adsScript;
+	GameDistributionAds adsScript;
 
 	private LevelManager levelManager;
 
@@ -112,20 +113,22 @@ public class GUIManager : MonoBehaviour {
 	private bool stopTimer = false;
 
 	private TextLocalizationManager translationManager;
-    //for Apple arcade or desktop (no in-apps or ads)
-    public bool isArcadeOrSubscriptionMode = false;
 
 	private bool isShowingTutorial = false;
 
     private GameManagerScript gameManager;
 
 	private PlatformManager platformManager;
+
+	private SceneLoader sceneLoader;
+
+	public bool isWebVersion = false;
 	// Use this for initialization
 	void Start () {
 		
 		playPressed = false;
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
-		adsScript = scripts.GetComponent<GoogleMobileAdsScript>();
+		adsScript = scripts.GetComponent<GameDistributionAds>();
 		translationManager = TextLocalizationManager.Instance;
 		translationManager.LoadSystemLanguage(Application.systemLanguage);
 
@@ -136,11 +139,17 @@ public class GUIManager : MonoBehaviour {
         gameManager = scripts.GetComponent<GameManagerScript>();
 		platformManager = scripts.GetComponent<PlatformManager>();
 
-		if (!isArcadeOrSubscriptionMode && !platformManager.isMacOS)
-        {   //purchase buttons
-			LoadAllGUITranslations();
-		}	
+		// new one
+		sceneLoader = scripts.GetComponent<SceneLoader>();
 
+		if(!platformManager.isWebVersion() && !platformManager.isEditorVersion())
+        {
+            if (!platformManager.isArcadeOrSubscriptionMode || platformManager.IsMobilePlatform())
+			{   //purchase buttons
+				LoadAllGUITranslations();
+			}
+        }
+			
 
         if(levelManager!=null)
         {
@@ -169,12 +178,13 @@ public class GUIManager : MonoBehaviour {
 
     private void Awake()
     {
-        if(Application.platform == RuntimePlatform.OSXEditor ||
-            Application.platform == RuntimePlatform.IPhonePlayer ||
-            Application.platform == RuntimePlatform.Android)
-        {
-			isArcadeOrSubscriptionMode = false;
-        }
+		// if (Application.platform == RuntimePlatform.OSXEditor ||
+		// 	Application.platform == RuntimePlatform.IPhonePlayer ||
+		// 	// Application.platform == RuntimePlatform.WebGLPlayer || this one has ads
+		// 	Application.platform == RuntimePlatform.Android)
+		// {
+		// 	isArcadeOrSubscriptionMode = false; // means no ads and no in-app
+		// }
 
 	}
 
@@ -237,7 +247,7 @@ public class GUIManager : MonoBehaviour {
 
 	 }
 
-	 if (shouldShowInterstitial && !showedInterstitial && !isArcadeOrSubscriptionMode) {
+	 if (shouldShowInterstitial && !showedInterstitial && !platformManager.isArcadeOrSubscriptionMode) {
 			if (adsScript.IsInterstitialReady())
 			{
 				stopTimer = true;
@@ -326,7 +336,7 @@ public class GUIManager : MonoBehaviour {
         
         StartCoroutine(RestoreGameSettingsImage());
         
-		SceneLoader loader = gameSettingsButton.GetComponent<SceneLoader>();
+		SceneLoader loader = sceneLoader == null ? gameSettingsButton.GetComponent<SceneLoader>(): sceneLoader;
 		if(loader!=null) {
 			loader.enabled = true;
 			loader.LoadNextSceneNoLevelManager();
@@ -351,10 +361,13 @@ public class GUIManager : MonoBehaviour {
 
 		gameSettingsButton.enabled = (this.HasDoneAnyPurchase() || levelManager.isTestMode);
         //do not show settings panel on arcade mode
-        if(!isArcadeOrSubscriptionMode) {
-            ShowSettingsPanel(); 
-        } else {
+
+		if(platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
+        {
             ShowArcadeSettingsPanel();
+        }
+        else {
+            ShowSettingsPanel(); 
         }
 		
 		Time.timeScale = 0;
@@ -362,7 +375,7 @@ public class GUIManager : MonoBehaviour {
         playButton.enabled = false;
 
         //show close button
-        if(isArcadeOrSubscriptionMode || platformManager.isMacOS)
+        if(platformManager.isArcadeOrSubscriptionMode ||  platformManager.isWebVersion() || platformManager.isEditorVersion())
         {
 			closeButtonImage.enabled = true;
         }
@@ -386,10 +399,10 @@ public class GUIManager : MonoBehaviour {
         
 		gameSettingsButton.enabled = false;
 
-        if (!isArcadeOrSubscriptionMode) {
-            HideSettingsPanel();
-        } else {
+        if (platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion()) {
             HideArcadeSettingsPanel();
+        } else {
+            HideSettingsPanel();
         }
 
 		if(spinningWheelImage != null)
@@ -405,7 +418,7 @@ public class GUIManager : MonoBehaviour {
         }
 
         //hide close button
-		if (isArcadeOrSubscriptionMode || platformManager.isMacOS)
+		if (platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
 		{
 			closeButtonImage.enabled = false;
 		}
@@ -722,23 +735,26 @@ public class GUIManager : MonoBehaviour {
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
-		if(levelManager.isTestMode || levelManager.isDebugMode || isArcadeOrSubscriptionMode) {
+		if(levelManager.isTestMode || levelManager.isDebugMode || platformManager.isArcadeOrSubscriptionMode) {
 
-            //show play button even while counting down
+			Debug.Log("GAME OVER: StartCoroutine(ShowRestartText(1.0f));");
+			//show play button even while counting down
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		//check if purchased infite revives
 		else if (gameManager.HasPurchasedInfiniteRevives())
 		{
 
+			Debug.Log("GAME OVER: levelManager.respawnOnDyingLevel = true;");
 			// show the option to continue right away (the play button)
 			levelManager.respawnOnDyingLevel = true;
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		//if not purchased product and is time for ads
 		else if( !gameManager.HasPurchasedRemoveAds() && adsScript.IsInterstitialReady() && 
-                adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !isArcadeOrSubscriptionMode )  {
+                adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !platformManager.isArcadeOrSubscriptionMode )  {
 
+			Debug.Log("GAME OVER: shouldShowInterstitial = true;");
 			shouldShowInterstitial = true;
 
             //stop timer while watching AD, if watched then i can continue
@@ -754,15 +770,24 @@ public class GUIManager : MonoBehaviour {
 			
 		}
         // preferably show ads
-        else if(adsScript.IsRewardVideoReady() && adsScript.GetIsAdsSupportingPlatform() && !gameManager.HasPurchasedRemoveAds() && !isArcadeOrSubscriptionMode ) {
+        else if(adsScript.IsRewardVideoReady() &&
+				adsScript.GetIsAdsSupportingPlatform() &&
+				!gameManager.HasPurchasedRemoveAds() && !platformManager.isArcadeOrSubscriptionMode ) {
 
 			ShowVideoRewardToEnableContinue();
 
 		} else if(!gameManager.HasPurchasedInfiniteRevives() && !IsGamePaused() )
-        {
+		{
 			//will not pause the game for this
 			//will also stop the countdown when i press the button
-			ShowReviveImage();
+			if(platformManager.hasInAppPurchasesSupport())
+            {
+            	ShowReviveImage();
+            } else if(adsScript.IsInterstitialReady() && (platformManager.isEditorVersion() || platformManager.isWebVersion()) )
+            {
+				ShowReviveImage();
+            }
+			
         }
 		
 	}
@@ -859,9 +884,25 @@ public class GUIManager : MonoBehaviour {
 	{
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 
-		achievementsButtonImage.sprite = achievementsSprites[1];
-		SocialAPI.Instance.AuthenticateAndShowAchievements();
-		StartCoroutine(RestoreAchievementsImage());
+		if (!platformManager.IsMobilePlatform() &&
+				(
+					platformManager.isArcadeOrSubscriptionMode ||
+					platformManager.isWebVersion() ||
+					platformManager.isEditorVersion()
+				)
+			)
+		{
+			SceneLoader loader = sceneLoader;
+			loader.LoadAchievementsUI();
+			StartCoroutine(RestoreAchievementsImage());
+		}
+		else
+		{
+			achievementsButtonImage.sprite = achievementsSprites[1];
+			SocialAPI.Instance.AuthenticateAndShowAchievements();
+			StartCoroutine(RestoreAchievementsImage());
+		}
+		
 	}
 	
 	IEnumerator RestoreAchievementsImage() {
@@ -898,7 +939,7 @@ public class GUIManager : MonoBehaviour {
 			
 		}
 		PlayerPrefs.SetInt("MUSIC_OFF", musicOff);
-        if(isArcadeOrSubscriptionMode) {
+        if(platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion()) {
             arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
         } else {
             musicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];  
@@ -1153,7 +1194,7 @@ public class GUIManager : MonoBehaviour {
 		stopTimer = true;
 
 		revivesImage.sprite = reviveImagesSprites[1];
-        //change sprite, simulate press down
+		//change sprite, simulate press down
 		StartCoroutine(PressDownRevive());
 		#if UNITY_ANDROID || UNITY_IPHONE
 		if (store != null && store.IsInitialized())
@@ -1173,6 +1214,11 @@ public class GUIManager : MonoBehaviour {
 			store.InitStore();
 		}
         #endif
+		// also make it work with a reward video
+		if(!platformManager.hasInAppPurchasesSupport() && adsScript.IsInterstitialReady())
+        {
+			adsScript.ShowInterstitialAd(this);
+        }
 	}
 
 	public void PurchaseExtraMovesPressed() {
@@ -1218,7 +1264,6 @@ public class GUIManager : MonoBehaviour {
 		{
 
 			levelManager.respawnOnDyingLevel = true;
-
 			StartCoroutine(ShowRestartText(1.0f));
 		}
 		else
@@ -1229,7 +1274,6 @@ public class GUIManager : MonoBehaviour {
 		rewardVideoImage.enabled = false;
 
 		gameManager.StarMusic();
-
 
 	}
 
@@ -1394,11 +1438,30 @@ public class GUIManager : MonoBehaviour {
         backPanelGameOver.enabled = false;
     }
 
-    //terminate
-    public void ClosePressed()
-    {
+	//terminate
+	public void ClosePressed()
+	{
 		SoundEffectsHelper.Instance.PlayReplaySound();
-		Application.Quit(0);
+		if(platformManager.isArcadeOrSubscriptionMode && !IsGamePaused())
+        {
+            Application.Quit(0);
+        } else if(!platformManager.IsMobilePlatform() && IsGamePaused())
+        {
+			ClosePanelPressed();
+        }
+		
+	}
+
+	public void ClosePanelPressed()
+	{
+		Debug.Log("ClosePanelPressed()");
+		UnPausePressed();
+	}
+	
+	public void CloseCurrentScene()
+	{
+		Debug.Log("CloseCurrentScene()");
+		SceneSwitcher.UnLoadCurrentSceneFromTop();
     }
 
     public void RestorePurchasesPressed()

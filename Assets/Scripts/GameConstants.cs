@@ -45,6 +45,6 @@ public class GameConstants : MonoBehaviour {
     public const string SHOOT_DIRECTION_LEFT = "left";
     public const string SHOOT_DIRECTION_RIGHT = "right";
     public const string SHOOT_DIRECTION_UP = "up";
-    public const string SHOOT_DIRECTION_DOWN = "down";
+	public const string SHOOT_DIRECTION_DOWN = "down";
 
 }

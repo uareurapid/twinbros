@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour {
 
 	private GUIManager guiManager;
 
+	private PlatformManager platformManager;
 	private GameManagerScript gameManager;
 	private bool isDead = false;
 	private bool isDying = false;
@@ -81,6 +82,7 @@ public class LevelManager : MonoBehaviour {
 		scripts = GameObject.FindGameObjectWithTag("Scripts");
 		guiManager = scripts.GetComponent<GUIManager>();
 		gameManager = scripts.GetComponent<GameManagerScript>();
+		platformManager = scripts.GetComponent<PlatformManager>();
 		soundManager = scripts.GetComponent<SoundManager>();
 		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
 		if(musicOff == 0) {
@@ -762,7 +764,7 @@ public class LevelManager : MonoBehaviour {
 
 		//gameStarted = false;
 		//Report the achievement
-        if(gameManager.IsMobilePlatform()) {
+        if(platformManager.IsMobilePlatform()) {
             SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
         }
 		
@@ -785,7 +787,7 @@ public class LevelManager : MonoBehaviour {
 		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
 		guiManager.UpdateCurrentHighScore(highScore);
 
-		if (gameManager.IsMobilePlatform())
+		if (platformManager.IsMobilePlatform())
 		{
 			//also report it to the store
 			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
@@ -827,7 +829,7 @@ public class LevelManager : MonoBehaviour {
 		//TODO CHECK use ReportIntermediaryScores instead
 		//SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
 		
-		if (gameManager.IsMobilePlatform())
+		if (platformManager.IsMobilePlatform())
 		{
 			//also report it to the store
 			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);

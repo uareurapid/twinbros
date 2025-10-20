@@ -58,14 +58,30 @@ public class SceneLoader : MonoBehaviour {
 		
 	}
 
-    public void LoadNextSceneNoLevelManager()
-    {
-        if (nextScene != null && nextScene != "")
-        {
-            StartCoroutine(LoadSceneNoLevelManager());
-        }
+	public void LoadNextSceneNoLevelManager()
+	{
+		if (nextScene != null && nextScene != "")
+		{
+			StartCoroutine(LoadSceneNoLevelManager());
+		}
 
-    }
+	}
+
+	public void LoadAchievementsUI()
+	{
+		SceneSwitcher.LoadSceneOnTop("Achievements");
+	}
+
+	public void UnLoadCurrentScene()
+	{
+		SceneSwitcher.UnLoadCurrentSceneFromTop();
+	}
+
+	public void LoadLeaderboardsUI()
+	{
+		SceneSwitcher.LoadSceneOnTop("LeaderBoards");
+	}
+	
 
 	IEnumerator LoadScene(LevelManager levelManager) {
 
