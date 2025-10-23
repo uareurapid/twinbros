@@ -28,7 +28,7 @@ public class Portal : MonoBehaviour, HandlePlayerCollision {
 	public void MoveToNextLevel() {
 		if(nextLevel!=null) {
 			Debug.Log("MoveToNextLevel: " + nextLevel.level);
-			levelManager.LevelCleared();
+			levelManager.LevelCleared(nextLevel.level);
 			SoundEffectsHelper.Instance.PlayPowerupSound();
             StartCoroutine(GoToNextLevelAfterDelay(2f));
 			

@@ -247,16 +247,6 @@ public class GUIManager : MonoBehaviour {
 
 	 }
 
-	 if (shouldShowInterstitial && !showedInterstitial && !platformManager.isArcadeOrSubscriptionMode) {
-			if (adsScript.IsInterstitialReady())
-			{
-				stopTimer = true;
-				showedInterstitial = true;
-				shouldShowInterstitial = false;
-				adsScript.ShowInterstitialAd(this);
-			}
-
-	 }
 		
 	}
 
@@ -351,35 +341,52 @@ public class GUIManager : MonoBehaviour {
 		(PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES,0) == 1);
 	}
 
-	public void PausePressed() {
+	public void PausePressed()
+	{
 
-        SoundEffectsHelper.Instance.PlayReplaySound();
+		SoundEffectsHelper.Instance.PlayReplaySound();
 		pauseButton.enabled = false;
 		unpauseButton.enabled = true;
-        //if showing the revive button, hide it now
+		//if showing the revive button, hide it now
 		revivesImage.enabled = false;
 
 		gameSettingsButton.enabled = (this.HasDoneAnyPurchase() || levelManager.isTestMode);
-        //do not show settings panel on arcade mode
+		//do not show settings panel on arcade mode
 
-		if(platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
-        {
-            ShowArcadeSettingsPanel();
-        }
-        else {
-            ShowSettingsPanel(); 
-        }
-		
+		if (platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
+		{
+			ShowArcadeSettingsPanel();
+		}
+		else
+		{
+			ShowSettingsPanel();
+		}
+
 		Time.timeScale = 0;
 
-        playButton.enabled = false;
+		playButton.enabled = false;
 
-        //show close button
-        if(platformManager.isArcadeOrSubscriptionMode ||  platformManager.isWebVersion() || platformManager.isEditorVersion())
-        {
-			closeButtonImage.enabled = true;
-        }
+		//show close button
+		ShowClosePanelButton();
+
 	}
+
+	//show close button
+	void ShowClosePanelButton()
+	{
+		if (platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
+		{
+			closeButtonImage.enabled = true;
+		}
+	}
+	
+	void HideClosePanelButton()
+    {
+        if (platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
+		{
+			closeButtonImage.enabled = false;
+		}
+    }
     
     public bool IsGamePaused() {
         return Time.timeScale < 1f && unpauseButton.enabled;
@@ -417,11 +424,8 @@ public class GUIManager : MonoBehaviour {
             ShowPlayButton(0f);
         }
 
-        //hide close button
-		if (platformManager.isArcadeOrSubscriptionMode || platformManager.isWebVersion() || platformManager.isEditorVersion())
-		{
-			closeButtonImage.enabled = false;
-		}
+		//hide close button
+		HideClosePanelButton();
 	}
 
 	
@@ -464,6 +468,8 @@ public class GUIManager : MonoBehaviour {
 		}
 		backPanelImage.enabled = true;
 		settingsPanel.SetActive(true);
+
+		ShowClosePanelButton();
 	}
 
     public void ShowArcadeSettingsPanel()
@@ -471,23 +477,23 @@ public class GUIManager : MonoBehaviour {
         //set the music button On/Off
         int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
         arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
-        
         backPanelImage.enabled = true;
-        arcadeModeSettingsPanel.SetActive(true);
+		arcadeModeSettingsPanel.SetActive(true);
+		ShowClosePanelButton();
     }
 
 	public void HideSettingsPanel() {
         backPanelImage.enabled = false;
-
 		restorePurchasesButton.enabled = false;
-		
 		settingsPanel.SetActive(false);
+		HideClosePanelButton();
 	}
 
     public void HideArcadeSettingsPanel()
     {
         backPanelImage.enabled = false;
-        arcadeModeSettingsPanel.SetActive(false);
+		arcadeModeSettingsPanel.SetActive(false);
+		HideClosePanelButton();
     }
 
 	public void PlayPressed() {
@@ -500,7 +506,8 @@ public class GUIManager : MonoBehaviour {
 
 
 		//still counting time?
-		if (IsShowingCountDown() && !playPressed) {
+		if (IsShowingCountDown() && !playPressed)
+		{
 
 			//Debug.Log("############## DEBUG STILL COUNTIN OK RESPANW ON DYING? " + levelManager.ShouldRespawnOnDyingLevel());
 
@@ -508,22 +515,26 @@ public class GUIManager : MonoBehaviour {
 
 			CancelInvoke("IncreaseTimer");
 			HideContinueImageAndClearTimer();
-			if( gameManager.HasPurchasedInfiniteRevives() || levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode() ) {
+			if (gameManager.HasPurchasedInfiniteRevives() || levelManager.ShouldRespawnOnDyingLevel() || levelManager.GetIsTestMode())
+			{
 
 				//Debug.Log("########## DEBUG SHOULD BE RESTART OK HERE  ##############");
 
 				playButton.sprite = playButtonImages[1];
 				StartCoroutine(HidePlayButton());
 				levelManager.RestartFromDyingLevel();
-            } else {
+			}
+			else
+			{
 				//normal restart
-                //Debug.Log("########## DEBUG NORMAL RESTART ##############");
+				//Debug.Log("########## DEBUG NORMAL RESTART ##############");
 				levelManager.StartGame();
-            }
-			
+			}
+
 		}
 		//only if the button is opaque
-		else if(!playPressed) {
+		else if (!playPressed)
+		{
 
 			//Debug.Log("########## DEBUG NOT GOOD TIMER IS ");
 
@@ -532,14 +543,26 @@ public class GUIManager : MonoBehaviour {
 			highScoreText.text = "HI: " + levelManager.highScore.ToString("000000");
 
 			playButton.sprite = playButtonImages[1];
-            //TODO check removed this one
+			//TODO check removed this one
 			//levelManager.respawnOnDyingLevel = false;
 			StartCoroutine(StartGameRoutine());
-		} else if(!levelManager.IsGameStarted()) {
+		}
+		else if (!levelManager.IsGameStarted())
+		{
 
 			playPressed = true;
 			StartCoroutine(StartGameRoutine());
-		}	
+		}
+
+		//Make sure the settings panel is not on the scene
+		if (!platformManager.IsMobilePlatform() || platformManager.isArcadeOrSubscriptionMode)
+		{
+			HideArcadeSettingsPanel();
+		}
+		else
+		{
+			HideSettingsPanel();
+		}
 
 	}
 
@@ -757,15 +780,12 @@ public class GUIManager : MonoBehaviour {
 			Debug.Log("GAME OVER: shouldShowInterstitial = true;");
 			shouldShowInterstitial = true;
 
-            //stop timer while watching AD, if watched then i can continue
+			//stop timer while watching AD, if watched then i can continue
 			//TODO CHECK if i stop the timer here counter is still at 0 probably
-			stopTimer = true;
-			
-			showedInterstitial = true;
+			// stopTimer = true;
 
-			// avoid show it again
-			shouldShowInterstitial = false;
-			adsScript.ShowInterstitialAd(this);
+			showInterstitialBetweenLevels();
+			
 			gameManager.StopMusic();
 			
 		}
@@ -867,6 +887,7 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void ShowVideoRewardToEnableContinue() {
+		// its the revive image
 		rewardVideoImage.enabled = true;
 	}
 
@@ -876,14 +897,6 @@ public class GUIManager : MonoBehaviour {
 		SoundEffectsHelper.Instance.PlaySettingsSound();
 
 		leaderboardButtonImage.sprite = leaderboardsImages[1];
-		SocialAPI.Instance.AuthenticateAndShowLeaderboards();
-		StartCoroutine(RestoreLeaderBoardsImage());
-	}
-
-	public void AchievementsPressed()
-	{
-		SoundEffectsHelper.Instance.PlaySettingsSound();
-
 		if (!platformManager.IsMobilePlatform() &&
 				(
 					platformManager.isArcadeOrSubscriptionMode ||
@@ -892,17 +905,42 @@ public class GUIManager : MonoBehaviour {
 				)
 			)
 		{
+
 			SceneLoader loader = sceneLoader;
-			loader.LoadAchievementsUI();
-			StartCoroutine(RestoreAchievementsImage());
+			Debug.Log("Scene loader LoadLeaderboardsUI: ");
+			loader.LoadLeaderboardsUI();
 		}
 		else
 		{
-			achievementsButtonImage.sprite = achievementsSprites[1];
-			SocialAPI.Instance.AuthenticateAndShowAchievements();
-			StartCoroutine(RestoreAchievementsImage());
+			SocialAPI.Instance.AuthenticateAndShowLeaderboards();
 		}
 		
+		StartCoroutine(RestoreLeaderBoardsImage());
+	}
+
+	public void AchievementsPressed()
+	{
+		SoundEffectsHelper.Instance.PlaySettingsSound();
+		achievementsButtonImage.sprite = achievementsSprites[1];
+		if (!platformManager.IsMobilePlatform() &&
+				(
+					platformManager.isArcadeOrSubscriptionMode ||
+					platformManager.isWebVersion() ||
+					platformManager.isEditorVersion()
+				)
+			)
+		{
+
+			Debug.Log("Scene loader LoadAchievementsUI: ");
+			sceneLoader.LoadAchievementsUI();
+		}
+		else
+		{
+			//achievementsButtonImage.sprite = achievementsSprites[1];
+			SocialAPI.Instance.AuthenticateAndShowAchievements();
+		}
+		StartCoroutine(RestoreAchievementsImage());
+
 	}
 	
 	IEnumerator RestoreAchievementsImage() {
@@ -1032,14 +1070,36 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-	public void ShowLevelClearedImage() {
-        ShowBackLevelCompletion();
+	public void ShowLevelClearedImage()
+	{
+		ShowBackLevelCompletion();
 		levelClearedImage.enabled = true;
 		UnityEngine.UI.Image[] imgs = levelClearedImage.gameObject.GetComponentsInChildren<UnityEngine.UI.Image>();
-		foreach(UnityEngine.UI.Image img in imgs) {
+		foreach (UnityEngine.UI.Image img in imgs)
+		{
 			img.enabled = true;
 		}
+
+		// Show every 3 levels
+		if (levelManager.currentLevel.level % 3 == 0)
+		{
+			showInterstitialBetweenLevels();
+		}
 	}
+	
+	private void showInterstitialBetweenLevels()
+    {
+        if (shouldShowInterstitial && !showedInterstitial && !platformManager.isArcadeOrSubscriptionMode) {
+			if (adsScript.IsInterstitialReady())
+			{
+				stopTimer = true;
+				showedInterstitial = true;
+				shouldShowInterstitial = false;
+				adsScript.ShowInterstitialAd(this);
+			}
+
+	 }
+    }
 
 	public void HideLevelClearedImage() {
         HideBackLevelCompletion();
@@ -1215,9 +1275,9 @@ public class GUIManager : MonoBehaviour {
 		}
         #endif
 		// also make it work with a reward video
-		if(!platformManager.hasInAppPurchasesSupport() && adsScript.IsInterstitialReady())
+		if(!platformManager.hasInAppPurchasesSupport() && adsScript.IsRewardVideoReady())
         {
-			adsScript.ShowInterstitialAd(this);
+			adsScript.ShowRewardVideo(this);
         }
 	}
 
@@ -1442,13 +1502,13 @@ public class GUIManager : MonoBehaviour {
 	public void ClosePressed()
 	{
 		SoundEffectsHelper.Instance.PlayReplaySound();
-		if(platformManager.isArcadeOrSubscriptionMode && !IsGamePaused())
-        {
-            Application.Quit(0);
-        } else if(!platformManager.IsMobilePlatform() && IsGamePaused())
-        {
+		if (platformManager.isArcadeOrSubscriptionMode && !IsGamePaused())
+		{
+			Application.Quit(0);
+		} else if (!platformManager.IsMobilePlatform() && IsGamePaused())
+		{
 			ClosePanelPressed();
-        }
+		} else ClosePanelPressed();
 		
 	}
 
@@ -1457,12 +1517,6 @@ public class GUIManager : MonoBehaviour {
 		Debug.Log("ClosePanelPressed()");
 		UnPausePressed();
 	}
-	
-	public void CloseCurrentScene()
-	{
-		Debug.Log("CloseCurrentScene()");
-		SceneSwitcher.UnLoadCurrentSceneFromTop();
-    }
 
     public void RestorePurchasesPressed()
     {

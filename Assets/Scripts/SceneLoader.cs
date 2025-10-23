@@ -69,18 +69,20 @@ public class SceneLoader : MonoBehaviour {
 
 	public void LoadAchievementsUI()
 	{
+		Debug.Log("INSIDE SceneLoader LoadAchievementsUI()");
 		SceneSwitcher.LoadSceneOnTop("Achievements");
-	}
-
-	public void UnLoadCurrentScene()
-	{
-		SceneSwitcher.UnLoadCurrentSceneFromTop();
 	}
 
 	public void LoadLeaderboardsUI()
 	{
 		SceneSwitcher.LoadSceneOnTop("LeaderBoards");
 	}
+
+	public void CloseCurrentScene()
+	{
+		Debug.Log("CloseCurrentScene()");
+		SceneSwitcher.UnLoadCurrentSceneFromTop();
+    }
 	
 
 	IEnumerator LoadScene(LevelManager levelManager) {

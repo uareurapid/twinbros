@@ -7,7 +7,7 @@ public static class SceneSwitcher
 {
     public static void LoadSceneOnTop(string scene)
     {
-        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
     }
 
     public static void UnLoadSceneOnTop(string scene) // Scene scene && scene.ToString()

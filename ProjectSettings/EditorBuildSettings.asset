@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Achievements.unity
     guid: b210442da763dc4d781098ed72273f82
+  - enabled: 1
+    path: Assets/Scenes/Leaderboards.unity
+    guid: c9f4ce3fd9a56c31c86eea1ea3b1d84f
   m_configObjects: {}

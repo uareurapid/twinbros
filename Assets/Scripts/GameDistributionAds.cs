@@ -49,8 +49,15 @@ public class GameDistributionAds : MonoBehaviour
 
     private bool _isRewardVideoReady = false;
 
+    private PlatformManager platformManager;
+
     void Awake()
     {
+        GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+        if(scripts!=null)
+        {
+            platformManager = scripts.GetComponent<PlatformManager>();
+        }
         GameDistribution.OnResumeGame += OnResumeGame;
         GameDistribution.OnPauseGame += OnPauseGame;
         GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
@@ -141,7 +148,7 @@ public class GameDistributionAds : MonoBehaviour
 
     public bool GetIsAdsSupportingPlatform()
     {
-        return true; //throw new NotImplementedException();
+        return platformManager.isWebVersion() || platformManager.IsMobilePlatform() || !platformManager.isArcadeOrSubscriptionMode;
     }
 
     public void ShowInterstitialAd(GUIManager gUIManager)

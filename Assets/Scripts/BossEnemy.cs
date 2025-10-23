@@ -83,7 +83,7 @@ public class BossEnemy : MonoBehaviour {
 			//enable portals again
 			level.EnablePortals();
 			LevelManager levelManager = FindObjectOfType<LevelManager>();
-			levelManager.LevelCleared();
+			levelManager.LevelCleared(-1);
 		}
 	}
 }

@@ -752,21 +752,79 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	//show the num of the new level
-	public void ShowLevelNum() {
+	public void ShowLevelNum()
+	{
 
-        hasShownLevelNum = true;
+		hasShownLevelNum = true;
 		guiManager.ShowLevelNumImages(this.stage, this.currentLevel.level);
 		StartCoroutine(HideLevelNumImages());
 	}
+
+	// when we finish one level on a given stage
+	public void LevelCleared(int next)
+	{
+		//gameStarted = false;
+		guiManager.ShowLevelClearedImage();
+		//------------------ 100 points per level finished
+		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
+		currentScore += 100 * numMoves;
+		PlayerPrefs.SetInt(GameConstants.CURRENT_SCORE, currentScore);
+		guiManager.UpdateCurrentScore(currentScore);
+
+		//high score
+		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+
+		//new best
+		if (currentScore > highScore)
+		{
+			highScore = currentScore;
+		}
+
+		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
+		guiManager.UpdateCurrentHighScore(highScore);
+
+		//also report it to the store
+		//TODO CHECK use ReportIntermediaryScores instead
+		//SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+
+		if (platformManager.IsMobilePlatform())
+		{
+			//also report it to the store
+			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		}
+		else
+		{
+			Debug.Log("OH BOY!!!");
+			// use Unity Leaderboards SDK
+			LeaderboardsManager.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+		}
+
+		buildAchievement(next);
+
+		StartCoroutine("HideLevelClearedImage");
+	}
+	private void buildAchievement(int next)
+    {
+        int stageNum = stage;
+		int levelNum = next;
+		string ACHIVEMENT_STR = GameConstants.ACHIEVEMENT_STAGE_LEVEL_STR.Replace("{0}", stageNum.ToString()).Replace("{1}", levelNum.ToString());
+		Debug.Log("ACHIEVEMENT STR:" + ACHIVEMENT_STR);
+		PlayerPrefs.SetInt(ACHIVEMENT_STR, 1);
+		// Achievements.Instance.AddAchievement(ACHIVEMENT_STR, 1);
+    }
 
 	//when i finish all levels on 1 stage
 	public void StageCleared(SceneLoader sceneLoader) {
 
 		//gameStarted = false;
 		//Report the achievement
-        if(platformManager.IsMobilePlatform()) {
-            SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
-        }
+		if (platformManager.IsMobilePlatform())
+		{
+			SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
+		}
+
+		// always save locally (NOTE DIFFERENT CONSTANTS NAME)
+		buildAchievement(currentLevel.level);
 		
 		//add 500 extra points
 		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
@@ -805,53 +863,19 @@ public class LevelManager : MonoBehaviour {
 		StartCoroutine(HideStageClearedImage(sceneLoader));
 	}
 
-	public void LevelCleared() {
-		//gameStarted = false;
-		guiManager.ShowLevelClearedImage();
-		//------------------ 100 points per level finished
-		currentScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
-		currentScore += 100 * numMoves;
-		PlayerPrefs.SetInt(GameConstants.CURRENT_SCORE, currentScore);
-		guiManager.UpdateCurrentScore(currentScore);
-
-		//high score
-		highScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
-
-		//new best
-		if(currentScore > highScore) {
-			highScore = currentScore;
-		}
-
-		PlayerPrefs.SetInt(GameConstants.LEADERBOARD_ID, highScore);
-		guiManager.UpdateCurrentHighScore(highScore);
-
-		//also report it to the store
-		//TODO CHECK use ReportIntermediaryScores instead
-		//SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
-		
-		if (platformManager.IsMobilePlatform())
-		{
-			//also report it to the store
-			SocialAPI.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
-		}
-		else
-		{
-			Debug.Log("OH BOY!!!");
-			// use Unity Leaderboards SDK
-			LeaderboardsManager.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
-		}
-		//---------------------------
-
-		StartCoroutine("HideLevelClearedImage");
-	}
-
 	private void ReportIntermediaryScores()
 	{
 
 		//int currScore = PlayerPrefs.GetInt(GameConstants.CURRENT_SCORE, 0);
 		//SocialAPI.Instance.AuthenticateAndReport(currScore, GameConstants.LEADERBOARD_ID);
 		int currentHighScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
-		SocialAPI.Instance.AuthenticateAndReport(currentHighScore, GameConstants.LEADERBOARD_ID);
+		if (platformManager.IsMobilePlatform())
+		{
+			SocialAPI.Instance.AuthenticateAndReport(currentHighScore, GameConstants.LEADERBOARD_ID);
+		} else
+        {
+            LeaderboardsManager.Instance.AuthenticateAndReport(currentScore, GameConstants.LEADERBOARD_ID);
+        }
 	}
 
 	IEnumerator HideLevelNumImages() {

@@ -24,7 +24,7 @@ public class GameConstants : MonoBehaviour {
 	public const string CURRENT_SCORE = "twins_current_cores";
 
 
-	public const string ACHIEVEMENT_STAGE_STR = "achievement_stage_"; // append level num
+	public const string ACHIEVEMENT_STAGE_LEVEL_STR = "achievement_stage_{0}_level_{1}"; // append stage num and level num
 	public const string ACHIEVEMENT_STAGE_1_ID = "grp.twins_stage_1";
 	public const string ACHIEVEMENT_STAGE_2_ID = "grp.twins_stage_2";
 	public const string ACHIEVEMENT_STAGE_3_ID = "grp.twins_stage_3";
@@ -46,5 +46,8 @@ public class GameConstants : MonoBehaviour {
     public const string SHOOT_DIRECTION_RIGHT = "right";
     public const string SHOOT_DIRECTION_UP = "up";
 	public const string SHOOT_DIRECTION_DOWN = "down";
+
+	public const int NUM_STAGES = 4;
+	public const int NUM_LEVELS_PER_STAGE = 10;
 
 }

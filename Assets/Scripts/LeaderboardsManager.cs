@@ -148,7 +148,14 @@ public class LeaderboardsManager : MonoBehaviour
     {
         var versionScoresResponse =
             await LeaderboardsService.Instance.GetVersionScoresAsync(LeaderboardId, VersionId);
-    Debug.Log(JsonConvert.SerializeObject(versionScoresResponse));
+        Debug.Log(JsonConvert.SerializeObject(versionScoresResponse));
+    }
+    
+    public void CloseCurrentScene()
+    {
+        SoundEffectsHelper.Instance.PlayReplaySound();
+		Debug.Log("Leaderboards CloseCurrentScene()");
+		SceneSwitcher.UnLoadCurrentSceneFromTop();
     }
 }
 

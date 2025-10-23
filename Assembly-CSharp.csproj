@@ -110,6 +110,7 @@
     <Compile Include="Assets/Scripts/ResetableBehaviours.cs" />
     <Compile Include="Assets/Scripts/AnimationController.cs" />
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutoDestructShuriken.cs" />
+    <Compile Include="Assets/Scripts/StageCompletion.cs" />
     <Compile Include="Assets/Scripts/LevelStatus.cs" />
     <Compile Include="Assets/Scripts/ObjectActivator.cs" />
     <Compile Include="Assets/Scripts/SnapToPixelGrid.cs" />
@@ -142,7 +143,6 @@
     <Compile Include="Assets/JMO Assets/Cartoon FX/Scripts/CFX_AutodestructWhenNoChildren.cs" />
     <Compile Include="Assets/Scripts/NewBehaviourScript.cs" />
     <Compile Include="Assets/Scripts/PositionMarker.cs" />
-    <Compile Include="Assets/Scripts/LevelCompletion.cs" />
     <Compile Include="Assets/Scripts/AutoDestroy.cs" />
     <Compile Include="Assets/Scripts/PlatformManager.cs" />
     <Compile Include="Assets/GameDistribution/Demo/GameManager.cs" />
