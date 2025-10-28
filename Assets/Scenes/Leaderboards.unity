@@ -329,7 +329,6 @@ GameObject:
   - component: {fileID: 291135568}
   - component: {fileID: 291135571}
   - component: {fileID: 291135570}
-  - component: {fileID: 291135569}
   m_Layer: 5
   m_Name: 1st
   m_TagString: Untagged
@@ -357,31 +356,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200.9, y: -42}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &291135569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291135567}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapInterval: 2
-  sprites:
-  - {fileID: 82451840, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  - {fileID: 1343133356, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  canSwap: 1
-  swapDelay: 0
-  maxSwaps: 0
-  isUIImage: 1
-  isController: 0
-  controllerSwitchDelay: 0.5
-  pauseAfterEachCycle: 0
-  pauseTime: 0
-  ignoreTimeScale: 0
 --- !u!114 &291135570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &303323006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -530,7 +504,6 @@ GameObject:
   - component: {fileID: 311300878}
   - component: {fileID: 311300881}
   - component: {fileID: 311300880}
-  - component: {fileID: 311300879}
   m_Layer: 5
   m_Name: back_ranking
   m_TagString: Untagged
@@ -557,31 +530,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -86.7}
   m_SizeDelta: {x: 480, y: 158}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &311300879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311300877}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapInterval: 2
-  sprites:
-  - {fileID: 82451840, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  - {fileID: 1343133356, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  canSwap: 1
-  swapDelay: 0
-  maxSwaps: 0
-  isUIImage: 1
-  isController: 0
-  controllerSwitchDelay: 0.5
-  pauseAfterEachCycle: 0
-  pauseTime: 0
-  ignoreTimeScale: 0
 --- !u!114 &311300880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,7 +652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &437522914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,13 +775,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You: ------'
+  m_Text: NA
 --- !u!222 &484734279
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -931,8 +879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locked: 1
-  levelNumber: 0
-  stageNumber: 0
+  lockedImage: {fileID: 0}
+  unlockedImage: {fileID: 0}
 --- !u!1 &684878222
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &684878223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1099,7 +1047,6 @@ GameObject:
   - component: {fileID: 754201157}
   - component: {fileID: 754201160}
   - component: {fileID: 754201159}
-  - component: {fileID: 754201158}
   m_Layer: 5
   m_Name: 3rd
   m_TagString: Untagged
@@ -1127,31 +1074,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200.9, y: -100}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &754201158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754201156}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapInterval: 2
-  sprites:
-  - {fileID: 82451840, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  - {fileID: 1343133356, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  canSwap: 1
-  swapDelay: 0
-  maxSwaps: 0
-  isUIImage: 1
-  isController: 0
-  controllerSwitchDelay: 0.5
-  pauseAfterEachCycle: 0
-  pauseTime: 0
-  ignoreTimeScale: 0
 --- !u!114 &754201159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,7 +1123,6 @@ GameObject:
   - component: {fileID: 767537457}
   - component: {fileID: 767537460}
   - component: {fileID: 767537459}
-  - component: {fileID: 767537458}
   m_Layer: 5
   m_Name: 2nd
   m_TagString: Untagged
@@ -1229,31 +1150,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200.9, y: -74}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &767537458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767537456}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapInterval: 2
-  sprites:
-  - {fileID: 82451840, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  - {fileID: 1343133356, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  canSwap: 1
-  swapDelay: 0
-  maxSwaps: 0
-  isUIImage: 1
-  isController: 0
-  controllerSwitchDelay: 0.5
-  pauseAfterEachCycle: 0
-  pauseTime: 0
-  ignoreTimeScale: 0
 --- !u!114 &767537459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,7 +1349,6 @@ GameObject:
   - component: {fileID: 1116236230}
   - component: {fileID: 1116236233}
   - component: {fileID: 1116236232}
-  - component: {fileID: 1116236231}
   m_Layer: 5
   m_Name: you
   m_TagString: Untagged
@@ -1481,31 +1376,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200.9, y: -132}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1116236231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116236229}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 370fc8729608b4532aae12b1d9e4b9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapInterval: 2
-  sprites:
-  - {fileID: 82451840, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  - {fileID: 1343133356, guid: 5e25ee88f0af0e336b025688048ddd52, type: 3}
-  canSwap: 1
-  swapDelay: 0
-  maxSwaps: 0
-  isUIImage: 1
-  isController: 0
-  controllerSwitchDelay: 0.5
-  pauseAfterEachCycle: 0
-  pauseTime: 0
-  ignoreTimeScale: 0
 --- !u!114 &1116236232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1729,7 +1599,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1773077514}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: 
           m_MethodName: LoadStageFive
           m_Mode: 1
@@ -1862,13 +1732,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1st: ------'
+  m_Text: NA
 --- !u!222 &1568404317
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1960,13 +1830,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '2nd: ------'
+  m_Text: NA
 --- !u!222 &1753289393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1984,7 +1854,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773077515}
-  - component: {fileID: 1773077514}
   m_Layer: 0
   m_Name: LevelSelector
   m_TagString: Untagged
@@ -1992,31 +1861,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1773077514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773077513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4a84114fc004ef9a0a78557f4ea4be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  courtineDoors:
-  - {fileID: 303323007}
-  - {fileID: 684878224}
-  levelLockedImage: {fileID: 21300000, guid: 9a0052ad3e3924cad86ba50016123c3a, type: 3}
-  levelUnlockedImage: {fileID: 21300000, guid: 2e324affcb29149bcaa30813d98efe7c, type: 3}
-  loadingDotsImage: {fileID: 71064834}
-  levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 555265713}
-  levelLockedText: {fileID: 2123450766}
 --- !u!4 &1773077515
 Transform:
   m_ObjectHideFlags: 0
@@ -2048,7 +1892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1795809457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,6 +2083,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAuthenticated: 0
   isAuthenticating: 0
+  top3:
+  - {fileID: 1568404313}
+  - {fileID: 1753289389}
+  - {fileID: 1968971940}
+  - {fileID: 484734275}
 --- !u!1 &1968971940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,13 +2171,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '3rd: ------'
+  m_Text: NA
 --- !u!222 &1968971944
 CanvasRenderer:
   m_ObjectHideFlags: 0

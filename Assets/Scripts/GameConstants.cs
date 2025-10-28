@@ -22,8 +22,8 @@ public class GameConstants : MonoBehaviour {
 	// for webgl
 	public const string LEADERBOARD_ID = "twins_high_cores";
 	public const string CURRENT_SCORE = "twins_current_cores";
-
-
+	// when i opened level selection
+	public const string CURRENT_STAGE_OR_LEVEL = "current_stage_or_level";
 	public const string ACHIEVEMENT_STAGE_LEVEL_STR = "achievement_stage_{0}_level_{1}"; // append stage num and level num
 	public const string ACHIEVEMENT_STAGE_1_ID = "grp.twins_stage_1";
 	public const string ACHIEVEMENT_STAGE_2_ID = "grp.twins_stage_2";

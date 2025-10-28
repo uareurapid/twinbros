@@ -8,9 +8,13 @@ public class PlatformManager : MonoBehaviour
        //for Apple arcade or desktop (no in-apps or ads)
     public bool isArcadeOrSubscriptionMode = false;
     public bool isGooglePlayAndroid = false;
-    public bool isHuaweiAndroid = false;
+    //public bool isHuaweiAndroid = false;
     public bool isIOS = false;
     public bool isMacOS = false;
+
+    public bool isAdsTestPlatform = false;
+    public bool isLeaderboardsTestPlatform = false;
+    public bool isInAppPurchasesTestPlatform = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,22 +36,29 @@ public class PlatformManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    
+    public bool IsAdsTestPlatform()
+    {
+        return isAdsTestPlatform;
     }
 
     public bool IsAdsSupportingPlatform()
     {
-        return !isMacOS && !isHuaweiAndroid;
+        return Application.platform == RuntimePlatform.WebGLPlayer || isAdsTestPlatform;
     }
 
     public bool IsLeaderboardsSupportingPlatform()
     {
-        return !isHuaweiAndroid;
+        return Application.platform == RuntimePlatform.WebGLPlayer ||
+        Application.platform == RuntimePlatform.IPhonePlayer ||
+        Application.platform == RuntimePlatform.Android || isLeaderboardsTestPlatform;
     }
 
     public bool IsPurchasesSupportingPlatform()
     {
-        return !isMacOS && !isHuaweiAndroid;
+        return Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android || isInAppPurchasesTestPlatform;
     }
 
     //does not support any of these extra things
@@ -58,7 +69,7 @@ public class PlatformManager : MonoBehaviour
 
     public bool hasInAppPurchasesSupport()
     {
-        return IsMobilePlatform();
+        return IsMobilePlatform() || isInAppPurchasesTestPlatform;
     }
 
     public bool IsMobilePlatform()

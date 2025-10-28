@@ -145,6 +145,7 @@
     <Compile Include="Assets/Scripts/PositionMarker.cs" />
     <Compile Include="Assets/Scripts/AutoDestroy.cs" />
     <Compile Include="Assets/Scripts/PlatformManager.cs" />
+    <Compile Include="Assets/Scripts/GenericAdsManager.cs" />
     <Compile Include="Assets/GameDistribution/Demo/GameManager.cs" />
     <Compile Include="Assets/Scripts/EnemyBox.cs" />
     <Compile Include="Assets/Scripts/TeletransportPoint.cs" />

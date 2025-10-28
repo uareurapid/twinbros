@@ -116,6 +116,8 @@ public class GUIManager : MonoBehaviour {
 
 	private bool isShowingTutorial = false;
 
+	private bool isShowingAds = false;
+
     private GameManagerScript gameManager;
 
 	private PlatformManager platformManager;
@@ -545,7 +547,20 @@ public class GUIManager : MonoBehaviour {
 			playButton.sprite = playButtonImages[1];
 			//TODO check removed this one
 			//levelManager.respawnOnDyingLevel = false;
-			StartCoroutine(StartGameRoutine());
+
+			if(platformManager.IsAdsSupportingPlatform() &&
+					levelManager.currentLevel.level == 1 &&
+					!levelManager.IsGameStarted() &&
+					adsScript.IsSDKReady()) 
+			{
+				Debug.Log("PlayPressed() level 1, Show ADS HERE ON START: ");
+				adsScript.ShowInterstitialAd(this);
+				gameManager.StopMusic();
+            } else
+            {
+                StartCoroutine(StartGameRoutine());
+            }
+			
 		}
 		else if (!levelManager.IsGameStarted())
 		{
@@ -553,6 +568,26 @@ public class GUIManager : MonoBehaviour {
 			playPressed = true;
 			StartCoroutine(StartGameRoutine());
 		}
+
+		else if (!gameManager.HasPurchasedRemoveAds() &&
+					adsScript.IsInterstitialReady() &&
+					adsScript.DecideIfShowInterstitial() &&
+					adsScript.GetIsAdsSupportingPlatform() &&
+					!platformManager.isArcadeOrSubscriptionMode)
+		{
+
+			Debug.Log("GAME OVER: shouldShowInterstitial = true;");
+			shouldShowInterstitial = true;
+
+			//stop timer while watching AD, if watched then i can continue
+			//TODO CHECK if i stop the timer here counter is still at 0 probably
+			// stopTimer = true;
+
+			showInterstitialBetweenLevels();
+			// done inside,gameManager.StopMusic();
+
+		}
+
 
 		//Make sure the settings panel is not on the scene
 		if (!platformManager.IsMobilePlatform() || platformManager.isArcadeOrSubscriptionMode)
@@ -602,12 +637,15 @@ public class GUIManager : MonoBehaviour {
     }
 
     IEnumerator ShowPlayButton(float delay)
-    {
+	{		
+
         playButton.enabled = true;
 		yield return new WaitForSecondsRealtime(delay);
 		playButton.GetComponent<MoveWayPoint>().enabled = true;
 		playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
 		levelManager.StartButtonVisible(true);
+		// also hide the game over if present
+		gameOverImage.enabled = false;
     }
 
 	IEnumerator HidePlayButton() {
@@ -758,7 +796,9 @@ public class GUIManager : MonoBehaviour {
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
 		}
 
-		if(levelManager.isTestMode || levelManager.isDebugMode || platformManager.isArcadeOrSubscriptionMode) {
+		// mainly for testing purposes 
+		if (levelManager.isTestMode || levelManager.isDebugMode || platformManager.isArcadeOrSubscriptionMode)
+		{
 
 			Debug.Log("GAME OVER: StartCoroutine(ShowRestartText(1.0f));");
 			//show play button even while counting down
@@ -773,9 +813,14 @@ public class GUIManager : MonoBehaviour {
 			levelManager.respawnOnDyingLevel = true;
 			StartCoroutine(ShowRestartText(1.0f));
 		}
+		// TODO, HERE WE WILL GIVE PRIORITY TO REWARDED VIDEOS
 		//if not purchased product and is time for ads
-		else if( !gameManager.HasPurchasedRemoveAds() && adsScript.IsInterstitialReady() && 
-                adsScript.DecideIfShowInterstitial() && adsScript.GetIsAdsSupportingPlatform() && !platformManager.isArcadeOrSubscriptionMode )  {
+		else if (!gameManager.HasPurchasedRemoveAds() &&
+					adsScript.IsInterstitialReady() &&
+					adsScript.DecideIfShowInterstitial() &&
+					adsScript.GetIsAdsSupportingPlatform() &&
+					levelManager.currentLevel.level <=2 ) // if we are still on level 1 or 2, show an interstitial from time to time
+		{
 
 			Debug.Log("GAME OVER: shouldShowInterstitial = true;");
 			shouldShowInterstitial = true;
@@ -785,30 +830,40 @@ public class GUIManager : MonoBehaviour {
 			// stopTimer = true;
 
 			showInterstitialBetweenLevels();
-			
-			gameManager.StopMusic();
-			
-		}
-        // preferably show ads
-        else if(adsScript.IsRewardVideoReady() &&
-				adsScript.GetIsAdsSupportingPlatform() &&
-				!gameManager.HasPurchasedRemoveAds() && !platformManager.isArcadeOrSubscriptionMode ) {
+			// done inside. gameManager.StopMusic();
 
+		}
+		// preferably show ads. If we are over level 2
+		else if (adsScript.IsRewardVideoReady() &&
+				adsScript.GetIsAdsSupportingPlatform() &&
+				levelManager.currentLevel.level > 2 &&
+				!gameManager.HasPurchasedRemoveAds())
+		{
+
+			Debug.Log("GAME OVER: ShowVideoRewardToEnableContinue = true;");
+			// show the reward/revive button
 			ShowVideoRewardToEnableContinue();
 
-		} else if(!gameManager.HasPurchasedInfiniteRevives() && !IsGamePaused() )
+		}
+		else if (!gameManager.HasPurchasedInfiniteRevives() &&
+				!IsGamePaused() &&
+				levelManager.currentLevel.level > 2)
+		// revive only makes sense after level 3
 		{
+			Debug.Log("GAME OVER: Will show Revive Image = true;");
 			//will not pause the game for this
 			//will also stop the countdown when i press the button
-			if(platformManager.hasInAppPurchasesSupport())
-            {
-            	ShowReviveImage();
-            } else if(adsScript.IsInterstitialReady() && (platformManager.isEditorVersion() || platformManager.isWebVersion()) )
-            {
+			if (platformManager.hasInAppPurchasesSupport())
+			{
+				ShowReviveImage(); // could allow to buy if have support for in-app
+			}
+			// or could allow to show rewarded video to revive (same as above block if no in-app available)
+			else if (adsScript.IsSDKReady() && adsScript.GetIsAdsSupportingPlatform())
+			{
 				ShowReviveImage();
-            }
-			
-        }
+			}
+
+		}
 		
 	}
 
@@ -942,6 +997,13 @@ public class GUIManager : MonoBehaviour {
 		StartCoroutine(RestoreAchievementsImage());
 
 	}
+
+	public void LevelSelectionPressed()
+    {
+		SoundEffectsHelper.Instance.PlaySettingsSound();
+		Debug.Log("Scene loader LevelSelecttion: ");
+		StartCoroutine(sceneLoader.LoadSceneByName("LevelSelection",levelManager.currentLevel.level));
+    }
 	
 	IEnumerator RestoreAchievementsImage() {
 		//WaitForSecondsRealtime is not affected by timescale 0
@@ -993,11 +1055,12 @@ public class GUIManager : MonoBehaviour {
 		rewardVideoImage.sprite = watchRewardVideoImages[1];
 		if (adsScript != null && adsScript.IsRewardVideoReady())
 		{
+			Debug.Log("RewardVideoPressed(): Will Show Reward Video");
 			//stop it while watching it, but only add if i watch it
 			stopTimer = true;
+			gameManager.StopMusic();
 			adsScript.ShowRewardVideo(this);
 		}
-
 		StartCoroutine(HideRewardedVideoImageRoutine());
 		
 	}
@@ -1080,11 +1143,6 @@ public class GUIManager : MonoBehaviour {
 			img.enabled = true;
 		}
 
-		// Show every 3 levels
-		if (levelManager.currentLevel.level % 3 == 0)
-		{
-			showInterstitialBetweenLevels();
-		}
 	}
 	
 	private void showInterstitialBetweenLevels()
@@ -1092,10 +1150,12 @@ public class GUIManager : MonoBehaviour {
         if (shouldShowInterstitial && !showedInterstitial && !platformManager.isArcadeOrSubscriptionMode) {
 			if (adsScript.IsInterstitialReady())
 			{
+				Debug.Log("showInterstitialBetweenLevels() will show between levels");
 				stopTimer = true;
 				showedInterstitial = true;
 				shouldShowInterstitial = false;
 				adsScript.ShowInterstitialAd(this);
+				gameManager.StopMusic();
 			}
 
 	 }
@@ -1245,40 +1305,55 @@ public class GUIManager : MonoBehaviour {
     //check the logic of the reward video button pressed
     public void RevivePressed()
     {
-		if (gameManager.HasPurchasedInfiniteRevives())
-		{
-			return;
-		}
 		SoundEffectsHelper.Instance.PlaySettingsSound();
-        //stop the counter
-		stopTimer = true;
-
 		revivesImage.sprite = reviveImagesSprites[1];
 		//change sprite, simulate press down
 		StartCoroutine(PressDownRevive());
-		#if UNITY_ANDROID || UNITY_IPHONE
-		if (store != null && store.IsInitialized())
+
+		if (gameManager.HasPurchasedInfiniteRevives())
 		{
-
-
-			if (spinningWheelImage != null)
-			{
-				spinningWheelImage.gameObject.SetActive(true);
-			}
-
+			Debug.Log("HAS PURCHASED INIFITE REVIVES");
+			//stop the counter
 			stopTimer = true;
-			store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
+			PlayPressed();
+			return;
 		}
-		else if (!store.IsInitialized())
-		{
-			store.InitStore();
-		}
-        #endif
-		// also make it work with a reward video
-		if(!platformManager.hasInAppPurchasesSupport() && adsScript.IsRewardVideoReady())
+
+		if(platformManager.hasInAppPurchasesSupport())
         {
-			adsScript.ShowRewardVideo(this);
+        #if UNITY_ANDROID || UNITY_IPHONE
+			if (store != null && store.IsInitialized())
+			{
+
+
+				if (spinningWheelImage != null)
+				{
+					spinningWheelImage.gameObject.SetActive(true);
+				}
+
+				stopTimer = true;
+				store.PurchaseProduct(GameConstants.PRODUCT_INFINITE_REVIVES, this);
+			}
+			else if (!store.IsInitialized())
+			{
+				store.InitStore();
+			}
+		#endif
         }
+
+
+		// also make it work with a reward video
+		if (!platformManager.hasInAppPurchasesSupport() &&
+			platformManager.IsAdsSupportingPlatform() &&
+			adsScript.IsRewardVideoReady())
+		{
+			Debug.Log("RevivePressed() WILL SHOW REWARD VIDEO FOR REVIVE");
+			adsScript.ShowRewardVideo(this);
+			gameManager.StopMusic();
+			//stop the counter
+			stopTimer = true;
+			
+		}
 	}
 
 	public void PurchaseExtraMovesPressed() {
@@ -1332,20 +1407,31 @@ public class GUIManager : MonoBehaviour {
 		}
 		//else no reward, timer will continue as usual
 		rewardVideoImage.enabled = false;
-
 		gameManager.StarMusic();
 
 	}
 
 	//after an interstitial ad
-	public void AdFinished() {
+	public void AdFinished()
+	{
 
-        levelManager.respawnOnDyingLevel = true;
+		levelManager.respawnOnDyingLevel = true;
 
 		//continue the countdown
 		stopTimer = false;
 		//TODO CHECK
 		StartCoroutine(ShowRestartText(1.0f));
+		gameManager.StarMusic();
+	}
+	
+	public void InterstitialAdFinished() {
+
+        //levelManager.respawnOnDyingLevel = true;
+
+		//continue the countdown
+		//stopTimer = false;
+		//TODO CHECK
+		//StartCoroutine(ShowRestartText(1.0f));
 		gameManager.StarMusic();
 	}
 
@@ -1413,7 +1499,6 @@ public class GUIManager : MonoBehaviour {
 
 	IEnumerator HideRewardedVideoImageRoutine() {
 		yield return new WaitForSeconds(1.2f);
-		gameManager.StopMusic();
 		HideRewardedVideoImage();
 	}
 
@@ -1544,4 +1629,9 @@ public class GUIManager : MonoBehaviour {
 		restorePurchasesButton.sprite = restorePurchasesSprites[0];
 	}
 
+    public void setIsShowingAds(bool value)
+    {
+		this.isShowingAds = value;
+		Debug.Log("GUI MANAGER IS SHOWING ADS: " + value);
+    }
 }

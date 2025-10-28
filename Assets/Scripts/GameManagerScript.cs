@@ -185,14 +185,29 @@ public class GameManagerScript : MonoBehaviour {
         return PlayerPrefs.GetInt(GameConstants.PRODUCT_INFINITE_REVIVES, 0) == 1;
     }
 
+    public void RemoveInfiniteRevives()
+    {
+        PlayerPrefs.SetInt(GameConstants.PRODUCT_INFINITE_REVIVES, 0);
+    }
+
     public bool HasPurchasedExtraMoves()
     {
         return PlayerPrefs.GetInt(GameConstants.PRODUCT_EXTRA_MOVES, 0) == 1;
     }
 
+    public void RemoveExtraMoves()
+    {
+        PlayerPrefs.SetInt(GameConstants.PRODUCT_EXTRA_MOVES, 0);
+    }
+
     public bool HasPurchasedRemoveAds()
     {
         return PlayerPrefs.GetInt(GameConstants.PRODUCT_REMOVE_ADS, 0) == 1;
+    }
+
+    public void RemoveAdsPurchase()
+    {
+        PlayerPrefs.SetInt(GameConstants.PRODUCT_REMOVE_ADS, 0);
     }
 
     public void StopMusic()

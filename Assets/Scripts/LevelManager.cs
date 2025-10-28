@@ -52,6 +52,8 @@ public class LevelManager : MonoBehaviour {
 
 	private SoundManager soundManager;
 
+	private Achievements achievements;
+
     private bool hasShownLevelNum = false;
 
 	private long lastMovementTime = 0;
@@ -80,6 +82,7 @@ public class LevelManager : MonoBehaviour {
 		listOfDestroyables = new List<GameObject>();
 
 		scripts = GameObject.FindGameObjectWithTag("Scripts");
+		achievements = scripts.GetComponent<Achievements>();
 		guiManager = scripts.GetComponent<GUIManager>();
 		gameManager = scripts.GetComponent<GameManagerScript>();
 		platformManager = scripts.GetComponent<PlatformManager>();
@@ -822,6 +825,11 @@ public class LevelManager : MonoBehaviour {
 		{
 			SocialAPI.Instance.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage);
 		}
+
+		if(achievements!=null)
+        {
+			achievements.AddAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + stage, 1);
+        }
 
 		// always save locally (NOTE DIFFERENT CONSTANTS NAME)
 		buildAchievement(currentLevel.level);

@@ -36,82 +36,162 @@ Game audio is muted when the ad is displayed
 The game pauses when the ad is displayed
 Don’t worry about spamming users with ads by placing ad-calls on too many buttons: we regulate the ad-interval through the SDK, so users will only see an ad when the set time-frame has passed.
 */
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-public class GameDistributionAds : MonoBehaviour
+public class GameDistributionAds : GenericAdsManager
 {
 
-    private GUIManager guiManager;
+    // private GUIManager guiManager;
 
-    private bool watchedRewardVideo = false;
+    // private bool watchedRewardVideo = false;
 
-    private bool _isRewardVideoReady = false;
+    // private bool _isRewardVideoReady = false;
 
-    private PlatformManager platformManager;
+    // private PlatformManager platformManager;
+
+    // Triggered before an ad starts. Pause your game logic and mute any audio to ensure there is no overlap of audio.
+    const string EVENT_SDK_GAME_PAUSE = "SDK_GAME_PAUSE";
+
+    // Triggered after the ad finishes. Resume gameplay and unmute audio so the player can continue.
+    const string EVENT_SDK_GAME_START = "SDK_GAME_START";
+
+    const string EVENT_SDK_READY = "SDK_READY";
+
+    // watched the reward video
+    const string EVENT_SDK_REWARDED_WATCH_COMPLETE = "SDK_REWARDED_WATCH_COMPLETE";
+
+    // Fired when content should be paused. This usually happens right before an ad is about to cover the content.
+    const string EVENT_CONTENT_PAUSE_REQUESTED = "CONTENT_PAUSE_REQUESTED";
+
+    //Fired when content should be resumed. This usually happens when an ad finishes or collapses.
+    const string EVENT_CONTENT_RESUME_REQUESTED = "CONTENT_RESUME_REQUESTED";
+    
+    const string EVENT_AD_LOADED = "LOADED";
+    // public bool isSDKReady = false;
+    // public bool isAdsReady = false;
+    // public bool isAdsFinished = false;
+    
 
     void Awake()
     {
         GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
-        if(scripts!=null)
+        if (scripts != null)
         {
             platformManager = scripts.GetComponent<PlatformManager>();
         }
         GameDistribution.OnResumeGame += OnResumeGame;
         GameDistribution.OnPauseGame += OnPauseGame;
-        GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
+        //GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
         GameDistribution.OnRewardedVideoSuccess += OnRewardedVideoSuccess;
         GameDistribution.OnRewardedVideoFailure += OnRewardedVideoFailure;
         GameDistribution.OnRewardGame += OnRewardGame;
+        GameDistribution.OnEvent += OnEvent;
 
-        this.PreloadRewardedAd();
+        PreloadRewardedAd();
     }
+    
+    /**
+    SDK_GAME_PAUSE
+    Triggered before an ad starts. Pause your game logic and mute any audio to ensure there is no overlap of audio.
 
-    public bool DecideIfShowInterstitial() {
-		int rand = UnityEngine.Random.Range(0, 10); //between 0 and 9
-		//Debug.Log("Interstitial RAND ?" + rand);
-		return rand == 1 || rand == 5 || rand == 9;
-	}
+    SDK_GAME_START
+    Triggered after the ad finishes. Resume gameplay and unmute audio so the player can continue.
 
-    public void OnResumeGame()
+    Best practices
+    Pausing for Interstitial Ads
+    When showing an interstitial ad:
+
+    Mute game audio (sound effects, background music).
+
+    Pause the game completely — stop timers, animations, and user input.
+
+    Disable any buttons used to trigger the ad, so players can't click them multiple times.
+
+    Ad timers
+    The SDK automatically throttles ad requests to avoid showing too many ads too quickly.
+    If your game uses its own ad timer, try to match it with the SDK’s to keep things in sync.
+    */
+
+    // public bool DecideIfShowInterstitial() {
+	// 	int rand = UnityEngine.Random.Range(0, 10); //between 0 and 9
+	// 	//Debug.Log("Interstitial RAND ?" + rand);
+	// 	return rand == 1 || rand == 5 || rand == 9;
+	// }
+
+    // public void OnResumeGame()
+    // {
+    //     // RESUME MY GAME
+    // }
+
+    // public void OnPauseGame()
+    // {
+    //     // PAUSE MY GAME
+    // }
+
+    // public void OnRewardGame()
+    // {
+    //     // REWARD PLAYER HERE
+    // }
+
+    public void OnEvent(string eventData)
     {
-        // RESUME MY GAME
+        Debug.Log("RECEIVED EVENT: " + eventData);
+        if (eventData == EVENT_SDK_READY)
+        {
+            isSDKReady = true;
+            isAdsFinished = isAdsReady = false;
+
+        }
+        else if (eventData == EVENT_SDK_GAME_PAUSE)
+        {
+            isAdsReady = true;
+            isAdsFinished = false;
+            Debug.Log("ADS WILL START");
+        } else if(eventData == EVENT_AD_LOADED)
+        {
+            isAdsReady = true;
+            isAdsFinished = false;
+            _isRewardVideoReady = true;
+        }
+        else if (eventData == EVENT_SDK_GAME_START)
+        {
+            isAdsFinished = true;
+            isAdsReady = false;
+            Debug.Log("ADS FINISHED");
+            _isRewardVideoReady = false;
+            guiManager.InterstitialAdFinished();
+        }
+        else if(eventData == EVENT_SDK_REWARDED_WATCH_COMPLETE)
+        {
+            isAdsFinished = true;
+            isAdsReady = false;
+            Debug.Log("OnRewardedVideoSuccess");
+            OnRewardedVideoSuccess();
+        } 
     }
 
-    public void OnPauseGame()
-    {
-        // PAUSE MY GAME
-    }
+    // public void OnRewardedVideoSuccess()
+    // {
+    //     // Rewarded video succeeded/completed.;
+    //     this.watchedRewardVideo = true;
+    //     MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
+	// 	if(guiManager!=null) {
+	// 		guiManager.WatchedRewardedVideo(true);
+    //         //reset this for the next one
+    //         this.watchedRewardVideo = false;
+	// 	}
+    // }
 
-    public void OnRewardGame()
-    {
-        // REWARD PLAYER HERE
-    }
+    // public void OnRewardedVideoFailure()
+    // {
+    //     // Rewarded video failed.;
+    //     this.watchedRewardVideo = false;
+    //     MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
+    //     if(guiManager!=null) {
+	// 		guiManager.WatchedRewardedVideo(false);
+	// 	}
+    // }
 
-    public void OnRewardedVideoSuccess()
-    {
-        // Rewarded video succeeded/completed.;
-        this.watchedRewardVideo = true;
-        MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
-		if(guiManager!=null) {
-			guiManager.WatchedRewardedVideo(true);
-            //reset this for the next one
-            this.watchedRewardVideo = false;
-		}
-    }
-
-    public void OnRewardedVideoFailure()
-    {
-        // Rewarded video failed.;
-        this.watchedRewardVideo = false;
-        MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
-        if(guiManager!=null) {
-			guiManager.WatchedRewardedVideo(false);
-		}
-    }
-
-    public void OnPreloadRewardedVideo(int loaded)
+    /*public void OnPreloadRewardedVideo(int loaded)
     {
         // Feedback about preloading ad after called GameDistribution.Instance.PreloadRewardedAd
         // 0: SDK couldn't preload ad
@@ -124,16 +204,20 @@ public class GameDistributionAds : MonoBehaviour
         {
             this._isRewardVideoReady = true;
         }
-    }
+    }*/
 
-    public void ShowAd()
+    public override void ShowAd()
     {
         GameDistribution.Instance.ShowAd();
     }
 
-    public void ShowRewardedAd()
+    public override void ShowRewardedAd()
     {
-        GameDistribution.Instance.ShowRewardedAd();
+        if(this._isRewardVideoReady)
+        {
+            GameDistribution.Instance.ShowRewardedAd();
+        }
+        
     }
 
     public void PreloadRewardedAd()
@@ -141,30 +225,26 @@ public class GameDistributionAds : MonoBehaviour
         GameDistribution.Instance.PreloadRewardedAd();
     }
 
-    public bool IsInterstitialReady()
+    public override bool IsInterstitialReady()
     {
-        return true; //throw new NotImplementedException();
+        return isAdsReady || isSDKReady; //throw new NotImplementedException();
     }
 
-    public bool GetIsAdsSupportingPlatform()
+ 
+
+    public override bool IsRewardVideoReady()
     {
-        return platformManager.isWebVersion() || platformManager.IsMobilePlatform() || !platformManager.isArcadeOrSubscriptionMode;
+        return this._isRewardVideoReady || this.isSDKReady; //throw new NotImplementedException();
     }
 
-    public void ShowInterstitialAd(GUIManager gUIManager)
+    public override bool IsSDKReady()
     {
-        this.guiManager = gUIManager; //throw new NotImplementedException();
-        this.ShowAd();
+        return this.isSDKReady;
     }
 
-    public bool IsRewardVideoReady()
-    {
-        return this._isRewardVideoReady || true; //throw new NotImplementedException();
-    }
-
-    internal void ShowRewardVideo(GUIManager gUIManager)
-    {
-        this.guiManager = gUIManager;
-        this.ShowRewardedAd(); //throw new NotImplementedException();
-    }
+    // internal void ShowRewardVideo(GUIManager gUIManager)
+    // {
+    //     this.guiManager = gUIManager;
+    //     this.ShowRewardedAd(); //throw new NotImplementedException();
+    // }
 }

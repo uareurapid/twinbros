@@ -26,6 +26,7 @@ public class Achievements : MonoBehaviour
 
     }
 
+    // TODO SEPARATE LEVEL STATUS FROM STAGE STATUS (2 different scripts)
     void CheckAchievements()
     {
         foreach (StageCompletion stage in achievements)
@@ -50,15 +51,23 @@ public class Achievements : MonoBehaviour
                 }
             }
 
-            if(lastLevelUnlocked > 0)
+            if (lastLevelUnlocked > 0)
             {
                 levelStatus.unlockLevel();
                 stage.setLevelCompletionImage(lastLevelUnlocked); // first position is image 0
-            } else
+            }
+            else
             {
                 levelStatus.lockLevel();
                 stage.setLevelCompletionImage(1); // first position is image 0
+
+                if(stageNum == 1 && lastLevelUnlocked == 0)
+                {
+                    levelStatus.unlockLevel();
+                    stage.setLevelCompletionImage(1); // first stage is always unlocked
+                }
             }
+            
         }
     }
 

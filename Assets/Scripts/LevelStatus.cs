@@ -7,6 +7,8 @@ public class LevelStatus : MonoBehaviour
 {
 	//is the level locked or unlocked?
 	public bool locked = false;
+
+	public int number = 1; // level number
 	public Sprite lockedImage;
 	public Sprite unlockedImage;
 	// Use this for initialization

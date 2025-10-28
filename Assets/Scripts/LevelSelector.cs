@@ -16,9 +16,22 @@ public class LevelSelector : MonoBehaviour {
 
     public UnityEngine.UI.Text levelLockedText;
 
+    public Achievements achievements;
+
+    public bool isTestMode = false;
+
+    void Awake()
+    {
+        GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
+        if (scripts != null)
+        {
+            achievements = scripts.GetComponent<Achievements>();
+        }
+        CheckLevelStatus();
+    }
     // Use this for initialization
     void Start () {
-		CheckLevelStatus();
+		
 	}
 	
 	// Update is called once per frame
@@ -26,17 +39,44 @@ public class LevelSelector : MonoBehaviour {
 		
 	}
 
-	//TODO this should be done based on PlayerPrefs
-	void CheckLevelStatus() {
-		foreach(LevelStatus level in levels) {
-			if(level.locked) {
-				level.GetComponent<UnityEngine.UI.Image>().sprite = levelLockedImage;
-			}
-			else {
-				level.GetComponent<UnityEngine.UI.Image>().sprite = levelUnlockedImage;
-			}
-		}
-	}
+    //TODO this should be done based on PlayerPrefs
+    void CheckLevelStatus()
+    {
+        foreach (LevelStatus level in levels)
+        {
+            if (level.number == 1)
+            {
+                level.locked = false;
+            }
+            // check player prefs
+            else if (achievements != null)
+            {
+                level.locked = achievements.GetAchievement(GameConstants.ACHIEVEMENT_STAGE_GENERIC_ID + level.number) == 0;
+            }
+
+            // other logic
+            if (level.locked)
+            {
+                level.GetComponent<UnityEngine.UI.Image>().sprite = levelLockedImage;
+            }
+            else
+            {
+                level.GetComponent<UnityEngine.UI.Image>().sprite = levelUnlockedImage;
+            }
+            
+             if(isTestMode)
+            {
+                level.locked = false;
+            }
+            
+        }
+    }
+
+    public void CloseCurrentScene()
+    {
+        int level = PlayerPrefs.GetInt(GameConstants.CURRENT_STAGE_OR_LEVEL, 1);
+        StartCoroutine(LoadScene("Level" + level.ToString()));
+    }
 
     public void LoadStageOne() {
 
