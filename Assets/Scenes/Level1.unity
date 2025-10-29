@@ -131579,8 +131579,8 @@ MonoBehaviour:
   isArcadeOrSubscriptionMode: 0
   isGooglePlayAndroid: 0
   isIOS: 0
-  isMacOS: 1
-  isAdsTestPlatform: 0
+  isMacOS: 0
+  isAdsTestPlatform: 1
   isLeaderboardsTestPlatform: 0
   isInAppPurchasesTestPlatform: 0
 --- !u!114 &994518063
@@ -133718,7 +133718,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Extra Moves
+  m_Text: Get Extra Moves
 --- !u!222 &1013240730
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -222307,7 +222307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Unlimited revives
+  m_Text: Get Extra Revives
 --- !u!222 &1602949284
 CanvasRenderer:
   m_ObjectHideFlags: 0

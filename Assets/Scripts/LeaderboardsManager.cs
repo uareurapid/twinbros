@@ -10,6 +10,9 @@ using Unity.Services.Leaderboards.Models;
 using System.Linq;
 using UnityEngine.UI;
 using System.Diagnostics.Tracing;
+using System;
+using System.Dynamic;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardsManager : MonoBehaviour
 {
@@ -187,6 +190,11 @@ public class LeaderboardsManager : MonoBehaviour
 
     public async void GetScores()
     {
+        if (SceneManager.GetActiveScene().name != "Leaderboards")
+        {
+            Debug.Log("Ignore parsing entries if scene is not Leaderboards one!");
+            return;
+        }
         if (isAuthenticated || AuthenticationService.Instance.IsSignedIn)
         {
             LeaderboardScoresPage scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
@@ -260,19 +268,14 @@ public class LeaderboardsManager : MonoBehaviour
     {
 
         bool foundPlayer = false;
+        double playerScore = 0;
+        int playerScoreLocal = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+  
         for (int i = 0; i < entries.Count; i++)
         {
             LeaderboardEntry entry = entries[i];
             Debug.Log("PlayerID: " + playerID);
             Debug.Log("Entry. PlayerID: " + entry.PlayerId);
-
-            if (entry.PlayerId == playerID)
-            {
-                Text textField = top3[YOU_PLACE].GetComponent<Text>();
-                textField.text = "you => " + entry.Score + " pts";
-                foundPlayer = true;
-            }
-
 
             if (i == FIRST_PLACE)
             {
@@ -293,14 +296,50 @@ public class LeaderboardsManager : MonoBehaviour
                 textField.text = "3rd => " + entry.Score + " pts";
             }
 
+            if (entry.PlayerId == playerID)
+            {
+                Text textField = top3[YOU_PLACE].GetComponent<Text>();
+                textField.text = "you => " + entry.Score + " pts";
+                foundPlayer = true;
+                playerScore = entry.Score;
+            }
+
             if (i > top3.Count) break; // for now we only show top 3 + player
 
         }
-        if(!foundPlayer)
+        if (!foundPlayer)
         {
-            int currentHighScore = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+            int currentHighScore = playerScoreLocal;
             Text textField = top3[YOU_PLACE].GetComponent<Text>();
-            textField.text = "you => " + currentHighScore + " pts";            
+            textField.text = "you => " + currentHighScore + " pts";
+        }
+        else
+        {
+            playerScore = Math.Max(playerScore, playerScoreLocal);
+            Text textField = top3[YOU_PLACE].GetComponent<Text>();
+            textField.text = "you => " + playerScore + " pts";
+        }
+        
+        // if player is among the top 3, blink the score!
+        if(entries.Count >= 3)
+        {
+            Text playerPosition = null;
+            if(entries[FIRST_PLACE].Score == (double) playerScore)
+            {
+                playerPosition = top3[FIRST_PLACE].GetComponent<Text>();
+
+            } else if(entries[SECOND_PLACE].Score == (double) playerScore)
+            {
+                playerPosition = top3[SECOND_PLACE].GetComponent<Text>();
+
+            }if (entries[THIRD_PLACE].Score == (double)playerScore)
+            {
+                playerPosition = top3[THIRD_PLACE].GetComponent<Text>();
+            }
+            if(playerPosition!=null)
+            {
+                playerPosition.GetComponent<EnableDisableMonobehaviour>().enabled = true;
+            }
         }
     }
 

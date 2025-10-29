@@ -126035,7 +126035,10 @@ MonoBehaviour:
   isArcadeOrSubscriptionMode: 0
   isGooglePlayAndroid: 0
   isIOS: 0
-  isMacOS: 1
+  isMacOS: 0
+  isAdsTestPlatform: 0
+  isLeaderboardsTestPlatform: 0
+  isInAppPurchasesTestPlatform: 0
 --- !u!1 &994697899
 GameObject:
   m_ObjectHideFlags: 0

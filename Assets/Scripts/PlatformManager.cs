@@ -24,13 +24,18 @@ public class PlatformManager : MonoBehaviour
     
     void Awake() {
         if (
-			Application.platform == RuntimePlatform.LinuxPlayer ||
-			Application.platform == RuntimePlatform.WindowsPlayer ||
-			Application.platform == RuntimePlatform.OSXPlayer
-		)
-		{
-			isArcadeOrSubscriptionMode = true;
-		}    
+            Application.platform == RuntimePlatform.LinuxPlayer ||
+            Application.platform == RuntimePlatform.WindowsPlayer ||
+            Application.platform == RuntimePlatform.OSXPlayer
+        )
+        {
+            isArcadeOrSubscriptionMode = true;
+        }    
+        
+        if(Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            isAdsTestPlatform = true;
+        }
     }
 
     // Update is called once per frame

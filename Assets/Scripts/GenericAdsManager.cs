@@ -73,6 +73,8 @@ public abstract class GenericAdsManager : MonoBehaviour
     public bool isSDKReady = false;
     public bool isAdsReady = false;
     public bool isAdsFinished = false;
+
+    protected string triggerAction = null;
     
 
     void Awake()
@@ -112,7 +114,7 @@ public abstract class GenericAdsManager : MonoBehaviour
         this.watchedRewardVideo = true;
         MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
 		if(guiManager!=null) {
-			guiManager.WatchedRewardedVideo(true);
+			guiManager.WatchedRewardedVideo(true, this.triggerAction);
             //reset this for the next one
             this.watchedRewardVideo = false;
 		}
@@ -124,7 +126,7 @@ public abstract class GenericAdsManager : MonoBehaviour
         this.watchedRewardVideo = false;
         MonoBehaviour.print("HandleRewardBasedVideoClosed event received " + this.watchedRewardVideo);
         if(guiManager!=null) {
-			guiManager.WatchedRewardedVideo(false);
+			guiManager.WatchedRewardedVideo(false, this.triggerAction);
 		}
     }
 
@@ -156,9 +158,16 @@ public abstract class GenericAdsManager : MonoBehaviour
 
     public abstract bool IsSDKReady();
 
-    public void ShowRewardVideo(GUIManager gUIManager)
+    public void ShowRewardVideo(GUIManager gUIManager, string action=null)
     {
         this.guiManager = gUIManager;
+        if(action!=null)
+        {
+            this.triggerAction = action;
+        } else
+        {
+            triggerAction = null;
+        }
         this.ShowRewardedAd(); //throw new NotImplementedException();
     }
 }
