@@ -61,11 +61,7 @@ public class LeaderboardsManager : MonoBehaviour
 
         instance = this;
 
-        Debug.Log("STILL HERE:");
-
         await UnityServices.InitializeAsync();
-
-        Debug.Log("STILL HERE 2:");
 
         await SignInAnonymously();
     }
@@ -158,10 +154,20 @@ public class LeaderboardsManager : MonoBehaviour
                 }
 
                 isAuthenticating = false;
+                GetPlayerScoreLocal();
 
             };
             
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            try
+            {
+              await AuthenticationService.Instance.SignInAnonymouslyAsync(); 
+            }catch(Exception e)
+            {
+                Debug.Log("Error Signing In on Leaderoboards: " + e.Message);
+                GetPlayerScoreLocal();
+            }
+            
+            //await AuthenticationService.Instance.SignInAnonymouslyAsync();
             
 
         } else
@@ -176,7 +182,14 @@ public class LeaderboardsManager : MonoBehaviour
 
 
     }
-    
+
+    private void GetPlayerScoreLocal()
+    {
+        int playerScoreLocal = PlayerPrefs.GetInt(GameConstants.LEADERBOARD_ID, 0);
+        Text textField = top3[YOU_PLACE].GetComponent<Text>();
+        textField.text = "you => " + playerScoreLocal + " pts";
+    }
+
     // void OnApplicationQuit()
     // {
     // sent to all components, on quit, even if disabled
@@ -309,9 +322,7 @@ public class LeaderboardsManager : MonoBehaviour
         }
         if (!foundPlayer)
         {
-            int currentHighScore = playerScoreLocal;
-            Text textField = top3[YOU_PLACE].GetComponent<Text>();
-            textField.text = "you => " + currentHighScore + " pts";
+            GetPlayerScoreLocal();
         }
         else
         {

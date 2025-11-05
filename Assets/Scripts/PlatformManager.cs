@@ -13,6 +13,7 @@ public class PlatformManager : MonoBehaviour
     public bool isMacOS = false;
 
     public bool isAdsTestPlatform = false;
+    public bool canShowAds = false;
     public bool isLeaderboardsTestPlatform = false;
     public bool isInAppPurchasesTestPlatform = false;
 
@@ -32,7 +33,7 @@ public class PlatformManager : MonoBehaviour
             isArcadeOrSubscriptionMode = true;
         }    
         
-        if(Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.WebGLPlayer)
+        if( (Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.WebGLPlayer) && canShowAds)
         {
             isAdsTestPlatform = true;
         }
@@ -43,15 +44,10 @@ public class PlatformManager : MonoBehaviour
     {
 
     }
-    
-    public bool IsAdsTestPlatform()
-    {
-        return isAdsTestPlatform;
-    }
 
     public bool IsAdsSupportingPlatform()
     {
-        return Application.platform == RuntimePlatform.WebGLPlayer || isAdsTestPlatform;
+        return (Application.platform == RuntimePlatform.LinuxEditor || Application.platform == RuntimePlatform.WebGLPlayer) && (canShowAds || isAdsTestPlatform);
     }
 
     public bool IsLeaderboardsSupportingPlatform()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class GUIManager : MonoBehaviour {
 
@@ -126,6 +127,9 @@ public class GUIManager : MonoBehaviour {
 
 	public bool isWebVersion = false;
 	// Use this for initialization
+
+	// TODO idea here was to show an Ad right before starting to play (ignored for now!!!)
+	private bool seenPreGameInterstitial = false;
 	void Start () {
 		
 		playPressed = false;
@@ -474,15 +478,25 @@ public class GUIManager : MonoBehaviour {
 		ShowClosePanelButton();
 	}
 
-    public void ShowArcadeSettingsPanel()
-    {
-        //set the music button On/Off
-        int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
-        arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
-        backPanelImage.enabled = true;
+	public void ShowArcadeSettingsPanel()
+	{
+		//set the music button On/Off
+		int musicOff = PlayerPrefs.GetInt("MUSIC_OFF", 0);
+		arcadePanelMusicSettingsButton.sprite = (musicOff == 1) ? musicSettingsImages[1] : musicSettingsImages[0];
+		backPanelImage.enabled = true;
+
 		arcadeModeSettingsPanel.SetActive(true);
+		// make the buttons transparent if no ads are supported
+		if (!platformManager.IsAdsSupportingPlatform())
+		{
+			//purchaseRevivesImage.sprite = purchaseInfiniteRevivesSprites[0];
+			//purchaseExtraMovesImage.sprite = purchaseExtraMovesSprites[0];
+			ChangeImageAlpha(purchaseRevivesImage, 0.5f);
+			ChangeImageAlpha(purchaseExtraMovesImage, 0.5f);
+		}
+		
 		ShowClosePanelButton();
-    }
+	}
 
 	public void HideSettingsPanel() {
         backPanelImage.enabled = false;
@@ -491,14 +505,24 @@ public class GUIManager : MonoBehaviour {
 		HideClosePanelButton();
 	}
 
-    public void HideArcadeSettingsPanel()
-    {
-        backPanelImage.enabled = false;
+	public void HideArcadeSettingsPanel()
+	{
+		backPanelImage.enabled = false;
 		arcadeModeSettingsPanel.SetActive(false);
 		HideClosePanelButton();
+	}
+	
+	private void ChangeImageAlpha(Image img, float alpha)
+	{
+		Debug.Log("ChangeImageAlpha ");
+        Color tempColor = img.color;
+		tempColor.a = alpha;
+		img.color = tempColor;
     }
 
 	public void PlayPressed() {
+
+		Debug.Log("PLAY PRESSED!!!");
         //TODO if show stage do not show level before stage image
         SoundEffectsHelper.Instance.PlayReplaySound();
 
@@ -511,7 +535,7 @@ public class GUIManager : MonoBehaviour {
 		if (IsShowingCountDown() && !playPressed)
 		{
 
-			//Debug.Log("############## DEBUG STILL COUNTIN OK RESPANW ON DYING? " + levelManager.ShouldRespawnOnDyingLevel());
+			Debug.Log("############## DEBUG STILL COUNTIN OK RESPANW ON DYING? " + levelManager.ShouldRespawnOnDyingLevel());
 
 			playPressed = true;
 
@@ -533,6 +557,17 @@ public class GUIManager : MonoBehaviour {
 				levelManager.StartGame();
 			}
 
+			//for the next time we remove this (unless we add back after an Ad)
+			if (!gameManager.HasPurchasedInfiniteRevives())
+			{
+				levelManager.respawnOnDyingLevel = false;
+			}
+			if(!gameManager.HasPurchasedExtraMoves())
+			{
+				levelManager.hasExtraMoves = false;
+				DisableExtraMoves();
+			}
+
 		}
 		//only if the button is opaque
 		else if (!playPressed)
@@ -548,20 +583,35 @@ public class GUIManager : MonoBehaviour {
 			//TODO check removed this one
 			//levelManager.respawnOnDyingLevel = false;
 
-			if(platformManager.IsAdsSupportingPlatform() &&
+			// TODO idea here was to show an Ad right before starting to play (ignored for now!!!)
+			if(  (platformManager.IsAdsSupportingPlatform() && !seenPreGameInterstitial &&
 					levelManager.currentLevel.level == 1 &&
 					!levelManager.IsGameStarted() &&
-					adsScript.IsSDKReady()) 
+					adsScript.IsSDKReady()) || platformManager.isAdsTestPlatform) // if is test platform do not do it (it made me click twice on start)
 			{
 				Debug.Log("PlayPressed() level 1, Show ADS HERE ON START: ");
-				shouldShowInterstitial = false;
-				showedInterstitial = true;
-				adsScript.ShowInterstitialAd(this);
-				gameManager.StopMusic();
-            } else
-            {
-                StartCoroutine(StartGameRoutine());
-            }
+				if (platformManager.isAdsTestPlatform)
+				{
+					StartCoroutine(SimulateShowAds(2f));
+					seenPreGameInterstitial = true;
+				}
+				else
+				{
+					// actually show the ads
+					shouldShowInterstitial = false;
+					showedInterstitial = true;
+					adsScript.ShowInterstitialAd(this);
+					gameManager.StopMusic();
+					seenPreGameInterstitial = true;
+				}
+				// game needs to start anyway
+				StartCoroutine(StartGameRoutine());
+
+			} else
+			{
+				//just start normally
+				StartCoroutine(StartGameRoutine());
+         	}
 			
 		}
 		else if (!levelManager.IsGameStarted())
@@ -647,7 +697,14 @@ public class GUIManager : MonoBehaviour {
 		playButton.GetComponent<FadeSprite>().FadeSpriteNow(true);
 		levelManager.StartButtonVisible(true);
 		// also hide the game over if present
-		gameOverImage.enabled = false;
+		// only if not countin
+		 if (continueTimer >= 9 || continueTimer == 0)
+		 {
+		 	gameOverImage.enabled = false;
+		 	HideBackPanelGameOver();
+		 }
+		//else Debug.Log("TIMER: " + continueTimer);
+		
     }
 
 	IEnumerator HidePlayButton() {
@@ -667,6 +724,16 @@ public class GUIManager : MonoBehaviour {
 		titleScreenBluePart.SetActive(false);
 		StartCoroutine(HandleStageImageTransition());
 		levelManager.StartGame();
+		// for the next time we die, we respawn on dying level only if we change this by watching a video or by purchasing the revives
+		if (!gameManager.HasPurchasedInfiniteRevives())
+		{
+			levelManager.respawnOnDyingLevel = false;
+		}
+		// if(!gameManager.HasPurchasedExtraMoves())
+        // {
+		// 	levelManager.hasExtraMoves = false;
+		// 	DisableExtraMoves();
+        // }
 	}
 
 	IEnumerator HandleStageImageTransition() {
@@ -732,12 +799,35 @@ public class GUIManager : MonoBehaviour {
 		
 	}
 
-	public void UpdateMovesText(int remainining, bool hasExtraMoves, bool hasBonusMove) {
-		if(remainining >= 0 && remainining < 10 + 2) {
-            UnityEngine.UI.Image img = movesImage[remainining];
-            img.color = new Color(img.color.r,img.color.b,img.color.g,1);
-			movesImage[remainining].enabled = true;
+	public void UpdateMovesTextAfterReward(int remainining, bool hasExtraMoves) {
+
+		Debug.Log("REMAINING: " + remainining);
+		if( hasExtraMoves  && remainining > levelManager.MAX_MOVES) {
+        
+			// at MAX?
+			if(remainining == levelManager.MAX_MOVES + 2)
+            {
+				ResetExtraMoves();
+            } else
+            {
+				UnityEngine.UI.Image img = extraMovesImage[remainining - levelManager.MAX_MOVES];
+				// img.color = new Color(img.color.r,img.color.b,img.color.g,0.3f);
+				img.color = new Color(img.color.r, img.color.b, img.color.g, 1);
+				// img.color = new Color(img.color.r,img.color.b,img.color.g,1);
+				img.enabled = true; //was false
+            }
+            
 		}
+		else if(remainining >= 0) {
+			for(int i = 0; i < remainining; i++)
+            {
+                UnityEngine.UI.Image img = movesImage[i];
+            	img.color = new Color(img.color.r,img.color.b,img.color.g,1);
+				img.enabled = true; //was false
+            }
+            
+		}
+		
 		
 	}
 	//the default ones
@@ -776,18 +866,26 @@ public class GUIManager : MonoBehaviour {
 
 	public void ShowGameOver() {
 
-		if(gameOverImage!=null) {
-            ShowBackPanelGameOver();
-            gameOverImage.enabled = true;
+		if (gameOverImage != null)
+		{
+			ShowBackPanelGameOver();
+			gameOverImage.enabled = true;
 		}
 
+		Debug.Log("SOW GAME OVER:");
+
 		//by default say NO
-		levelManager.respawnOnDyingLevel = false;
-		// only via in-app
-		if(!gameManager.HasPurchasedExtraMoves())
+		// TODO CHECK BELLOW (*) levelManager.respawnOnDyingLevel = false;
+		if(gameManager.HasPurchasedInfiniteRevives())
         {
-			levelManager.hasExtraMoves = false;
-			DisableExtraMoves();
+			levelManager.respawnOnDyingLevel = true;
+        }
+		
+		// only via in-app
+		if(gameManager.HasPurchasedExtraMoves())
+        {
+			levelManager.hasExtraMoves = true;
+			ResetExtraMoves();  //DisableExtraMoves();
         }
 
 		//ONLY AFTER GAME OVER, AND IN CASE WE HAVE A VIDEO READY? (or also in app purchase???)
@@ -800,15 +898,21 @@ public class GUIManager : MonoBehaviour {
 			UpdateCountdownImage();
 			countdownImage.enabled = true;
 
-            //start countdown timer
+			//start countdown timer
 			InvokeRepeating("IncreaseTimer", 1.0f, 1.0f);
+			
+			// if(levelManager.ShouldRespawnOnDyingLevel())
+            // {
+			// 	stopTimer = true;
+			// 	return;
+            // }
 		}
 
 		// mainly for testing purposes 
 		if (levelManager.isTestMode ||
 			levelManager.isDebugMode ||
 			platformManager.isArcadeOrSubscriptionMode ||
-			levelManager.ShouldRespawnOnDyingLevel()) // maybe got revive from ads?
+			levelManager.ShouldRespawnOnDyingLevel()) // maybe got revive from ads? (*) SEE ABOVE!
 		{
 
 			Debug.Log("GAME OVER: StartCoroutine(ShowRestartText(1.0f));");
@@ -826,29 +930,43 @@ public class GUIManager : MonoBehaviour {
 		}
 		// TODO, HERE WE WILL GIVE PRIORITY TO REWARDED VIDEOS
 		//if not purchased product and is time for ads
-		else if (!gameManager.HasPurchasedRemoveAds() &&
-					adsScript.IsInterstitialReady() &&
+		else if (!gameManager.HasPurchasedRemoveAds() && !levelManager.respawnOnDyingLevel &&  // if i have the respawn, maybe i watched a video or purchased it
+
 					adsScript.DecideIfShowInterstitial() &&
-					adsScript.GetIsAdsSupportingPlatform() &&
-					levelManager.currentLevel.level <=2 ) // if we are still on level 1 or 2, show an interstitial from time to time
+
+					( (adsScript.GetIsAdsSupportingPlatform() && adsScript.IsInterstitialReady()) || platformManager.isAdsTestPlatform ) &&
+					
+					levelManager.currentLevel.level % 2 == 0 ) 
+					// if we are still on level 2, 4, 6, 8, 10, show an interstitial from time to time
 		{
 
 			Debug.Log("GAME OVER: shouldShowInterstitial = true;");
-			shouldShowInterstitial = true;
+			if (platformManager.isAdsTestPlatform)
+			{
+				StartCoroutine(SimulateShowAds(2f));
+			}
+			else
+			{
 
-			//stop timer while watching AD, if watched then i can continue
-			//TODO CHECK if i stop the timer here counter is still at 0 probably
-			// stopTimer = true;
+				shouldShowInterstitial = true;
 
-			showInterstitialBetweenLevels();
-			// done inside. gameManager.StopMusic();
+				//stop timer while watching AD, if watched then i can continue
+				//TODO CHECK if i stop the timer here counter is still at 0 probably
+				// stopTimer = true;
+
+				showInterstitialBetweenLevels();
+				// done inside. gameManager.StopMusic();
+			}
+			
 
 		}
 		// preferably show ads. If we are over level 2
-		else if (adsScript.IsRewardVideoReady() &&
-				adsScript.GetIsAdsSupportingPlatform() &&
-				levelManager.currentLevel.level > 2 &&
-				!gameManager.HasPurchasedRemoveAds())
+		else if (!gameManager.HasPurchasedRemoveAds() && !levelManager.respawnOnDyingLevel &&
+
+				 ((adsScript.GetIsAdsSupportingPlatform() && adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform) &&
+	
+				levelManager.currentLevel.level %5 == 0 )
+				// if we are on level 5, 10
 		{
 
 			Debug.Log("GAME OVER: ShowVideoRewardToEnableContinue = true;");
@@ -864,12 +982,11 @@ public class GUIManager : MonoBehaviour {
 			Debug.Log("GAME OVER: Will show Revive Image = true;");
 			//will not pause the game for this
 			//will also stop the countdown when i press the button
-			if (platformManager.hasInAppPurchasesSupport())
-			{
-				ShowReviveImage(); // could allow to buy if have support for in-app
-			}
+			// could allow to buy if have support for in-app
 			// or could allow to show rewarded video to revive (same as above block if no in-app available)
-			else if (adsScript.IsSDKReady() && adsScript.GetIsAdsSupportingPlatform())
+			if (platformManager.hasInAppPurchasesSupport() ||
+					(adsScript.IsSDKReady() && adsScript.GetIsAdsSupportingPlatform()) ||
+					platformManager.isAdsTestPlatform)
 			{
 				ShowReviveImage();
 			}
@@ -1125,7 +1242,11 @@ public class GUIManager : MonoBehaviour {
 					CanShowPlayButton();
 					purchaseRevivesImage.enabled = false;
 					rewardVideoImage.enabled = false;
-				    HideReviveImage();
+					HideReviveImage();
+					HideRewardedVideoImage();
+					// if the continue timer ended, back to 1st level
+					levelManager.respawnOnDyingLevel = false;
+					levelManager.hasExtraMoves = false;
 				}
 		}
 		
@@ -1287,9 +1408,9 @@ public class GUIManager : MonoBehaviour {
         }
         #endif
 
-		if(((!platformManager.hasInAppPurchasesSupport() &&
+		if((!platformManager.hasInAppPurchasesSupport() &&
 				platformManager.IsAdsSupportingPlatform() &&
-				adsScript.IsRewardVideoReady())) || platformManager.isAdsTestPlatform)
+				adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
 		{
 			
 			
@@ -1429,6 +1550,13 @@ public class GUIManager : MonoBehaviour {
 
 	}
 
+	IEnumerator SimulateShowAds(float delay)
+	{
+		Debug.Log("SimulateShowAds...");
+		yield return new WaitForSecondsRealtime(delay);
+		InterstitialAdFinished();
+	}
+
 	public void PurchaseExtraMovesPressed() {
 
 		if(gameManager.HasPurchasedExtraMoves()) {
@@ -1463,7 +1591,7 @@ public class GUIManager : MonoBehaviour {
 		{
 			if (platformManager.isAdsTestPlatform)
 			{
-				Debug.Log("DO IT");
+				// Debug.Log("DO IT");
 				StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO));
 			}
 			else
@@ -1473,7 +1601,7 @@ public class GUIManager : MonoBehaviour {
 			}
 
 		}
-		else Debug.Log("DO NOT!");
+		//else Debug.Log("DO NOT!");
 		
 	}
 
@@ -1492,33 +1620,69 @@ public class GUIManager : MonoBehaviour {
 		if (watched)
 		{
 			SoundEffectsHelper.Instance.PlayPowerupSound();
-			if(action!=null)
-            {
-                if(action == GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO)
+			if (action != null)
+			{
+				if (action == GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO)
 				{
 					levelManager.hasExtraMoves = true;
-					ResetExtraMoves();
-                    
-                } else if(action == GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO)
+					// TODO IF MIDDLE OF MOVES???
+					int currentMovesRemaining = levelManager.getRemainingPlayerMoves();
+					// if (currentMovesRemaining >= levelManager.MAX_MOVES)
+					// {
+					// 	ResetExtraMoves();
+					// }
+					levelManager.increaseMoves(2);
+					UpdateMovesTextAfterReward(levelManager.getRemainingPlayerMoves(), levelManager.hasExtraMoves);
+
+				}
+				else if (action == GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO)
 				{
 					// one respawn available
-                    levelManager.respawnOnDyingLevel = true;
-                }
-            } else
-            {
-                levelManager.respawnOnDyingLevel = true;
-            }
-			if(levelManager.IsPlayerDead() || !levelManager.IsGameStarted()) {
-				StartCoroutine(ShowRestartText(1.0f));
+					levelManager.respawnOnDyingLevel = true;
+					if(IsShowingCountDown() && levelManager.IsPlayerDead() && !levelManager.IsGameStarted())
+					{
+						HideReviveImage();
+						HideRewardedVideoImage();
+						PlayPressed();
+                    }
+				}
 			}
+			else
+			{
+				levelManager.respawnOnDyingLevel = true;
+				if(IsShowingCountDown() && levelManager.IsPlayerDead() && !levelManager.IsGameStarted())
+				{
+					HideReviveImage();
+					HideRewardedVideoImage();
+					PlayPressed();
+                }
+			}
+			// TODO CHECK THIS ONE!!
+			// if(levelManager.IsPlayerDead() || !levelManager.IsGameStarted() && !playButton.en) {
+			// 	StartCoroutine(ShowRestartText(1.0f));
+			// }
 			
 		}
 		else
 		{
-			levelManager.respawnOnDyingLevel = false;
+			if (action == GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO)
+			{
+				levelManager.respawnOnDyingLevel = false;
+			}
+
+			else if (action == GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO)
+			{
+				levelManager.hasExtraMoves = false;
+				DisableExtraMoves();
+			}
+			
+			// ELSE NO ACTION, NO IDEA THEN!
+			
+				
 		}
 		//else no reward, timer will continue as usual
-		rewardVideoImage.enabled = false;
+		HideReviveImage();
+		HideRewardedVideoImage();
 		gameManager.StarMusic();
 
 	}

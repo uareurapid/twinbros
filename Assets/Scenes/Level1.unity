@@ -85111,7 +85111,7 @@ GameObject:
   - component: {fileID: 650839101}
   - component: {fileID: 650839100}
   m_Layer: 5
-  m_Name: SETTINGS_PANEL_SHORTER
+  m_Name: SETTINGS_PANEL_ARCADE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131163,8 +131163,8 @@ MonoBehaviour:
   levelNumChildImages:
   - {fileID: 1813210966}
   - {fileID: 1770240956}
-  purchaseRevivesImage: {fileID: 2097823637}
-  purchaseExtraMovesImage: {fileID: 1818856944}
+  purchaseRevivesImage: {fileID: 1172936879}
+  purchaseExtraMovesImage: {fileID: 661398630}
   purchaseRemoveAdsImage: {fileID: 1090929424}
   restorePurchasesButton: {fileID: 663280394}
   gameSettingsButton: {fileID: 866098446}
@@ -131580,7 +131580,8 @@ MonoBehaviour:
   isGooglePlayAndroid: 0
   isIOS: 0
   isMacOS: 0
-  isAdsTestPlatform: 1
+  isAdsTestPlatform: 0
+  canShowAds: 0
   isLeaderboardsTestPlatform: 0
   isInAppPurchasesTestPlatform: 0
 --- !u!114 &994518063

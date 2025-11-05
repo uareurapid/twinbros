@@ -303,21 +303,46 @@ public class LevelManager : MonoBehaviour {
 		guiManager.ResetMoves(hasExtra, hasBonus);
 	}
 
+	public int getRemainingPlayerMoves()
+    {
+		return numMoves;
+    }
 	public void increaseMoves(int num)
 	{
-        if (numMoves + num <= MAX_MOVES + 2) //10 + 2
-        {
-            numMoves += num;
+		if (numMoves + num <= MAX_MOVES + 2) //10 + 2
+		{
+			numMoves += num;
+			Debug.Log("NUM MOVES: " + numMoves);
+			if(numMoves <= MAX_MOVES)
+			{
+				// array only has 10 places
+                Vector3 pos = guiManager.movesImage[numMoves - 1].gameObject.GetComponent<RectTransform>().position;
+				SpecialEffectsHelper.Instance.PlayRiseMovesEffect(pos);
+				
+            } else
+			{
+				Vector3 pos;
+				// up to MAX already??
+				if (numMoves == MAX_MOVES + 2)
+				{
+					// this array has 2 places
+					pos = guiManager.extraMovesImage[1].gameObject.GetComponent<RectTransform>().position;
+				}
+				else
+				{
+					pos = guiManager.extraMovesImage[0].gameObject.GetComponent<RectTransform>().position;
+				}
+				SpecialEffectsHelper.Instance.PlayRiseMovesEffect(pos);
+            }
 
-            Vector3 pos = guiManager.movesImage[numMoves - 1].gameObject.GetComponent<RectTransform>().position;
-            SpecialEffectsHelper.Instance.PlayRiseMovesEffect(pos);
-            Debug.Log("NUM MOVES: " + numMoves);
-            //guiManager.UpdateMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
-        } else
-        {
+			
+			//guiManager.UpdateMovesText(numMoves, CheckHasExtraMoves(), CheckHasBonusMove());
+		}
+		else
+		{
 			Debug.Log("SKIP MOVES FOR NOW");
-        }
-		
+		}
+
 	}
 
 	public void decreaseMove() {
