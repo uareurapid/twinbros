@@ -167,7 +167,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Standalone: com.crackedegggames.twins.macosx
-    iPhone: com.crackedegggames.twins
+    iPhone: com.Cracked-Egg-Games.Twin-Bros.
   buildNumber:
     Standalone: 11
     VisionOS: 0

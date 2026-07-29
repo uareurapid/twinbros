@@ -85599,68 +85599,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "3\u20AC"
---- !u!1001 &618838904
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1134998061469316, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_Name
-      value: GameDistribution
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987651733047190, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114328923287309288, guid: 225dcaec06282044993bb0c8b2a6c426,
-        type: 3}
-      propertyPath: GAME_KEY
-      value: 8cf7e61ce8b64e63b6d7cfbd120d4b91
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
 --- !u!1 &619065640
 GameObject:
   m_ObjectHideFlags: 0
@@ -126260,7 +126198,6 @@ GameObject:
   - component: {fileID: 994518047}
   - component: {fileID: 994518049}
   - component: {fileID: 994518050}
-  - component: {fileID: 994518053}
   - component: {fileID: 994518054}
   - component: {fileID: 994518055}
   - component: {fileID: 994518056}
@@ -126637,18 +126574,6 @@ MonoBehaviour:
   impactEffect: {fileID: 4087676479521502, guid: 447ad6488841e466fa4e620a3ff59bbb,
     type: 3}
   boxCollisionEffect: {fileID: 19800000, guid: 3d84922c38d7c444782fb1a791d97b21, type: 3}
---- !u!114 &994518053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994518046}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e25950de5d6d54a4bab19e31ef6d5b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &994518054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126661,10 +126586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aafaf42ddfe8445b807e76b19755471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_Name: 
-  m_Name: 
-  m_Name: 
+  guiManager: {fileID: 0}
 --- !u!114 &994518055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126778,6 +126700,7 @@ MonoBehaviour:
   isIOS: 0
   isMacOS: 0
   isAdsTestPlatform: 0
+  canShowAds: 0
   isLeaderboardsTestPlatform: 0
   isInAppPurchasesTestPlatform: 0
 --- !u!1 &996163599
@@ -282788,4 +282711,3 @@ SceneRoots:
   - {fileID: 876021142}
   - {fileID: 785707211}
   - {fileID: 482884817}
-  - {fileID: 618838904}

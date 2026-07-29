@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        GameDistribution.OnResumeGame += OnResumeGame;
-        GameDistribution.OnPauseGame += OnPauseGame;
-        GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
-        GameDistribution.OnRewardedVideoSuccess += OnRewardedVideoSuccess;
-        GameDistribution.OnRewardedVideoFailure += OnRewardedVideoFailure;
-        GameDistribution.OnRewardGame += OnRewardGame;
-        GameDistribution.OnEvent += OnEvent;
+        // GameDistribution.OnResumeGame += OnResumeGame;
+        // GameDistribution.OnPauseGame += OnPauseGame;
+        // GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
+        // GameDistribution.OnRewardedVideoSuccess += OnRewardedVideoSuccess;
+        // GameDistribution.OnRewardedVideoFailure += OnRewardedVideoFailure;
+        // GameDistribution.OnRewardGame += OnRewardGame;
+        // GameDistribution.OnEvent += OnEvent;
     }
 
     public void OnResumeGame()
@@ -61,17 +61,17 @@ public class GameManager : MonoBehaviour
 
     public void ShowAd()
     {
-        GameDistribution.Instance.ShowAd();
+        //GameDistribution.Instance.ShowAd();
     }
 
     public void ShowRewardedAd()
     {
-        GameDistribution.Instance.ShowRewardedAd();
+        //GameDistribution.Instance.ShowRewardedAd();
     }
 
     public void PreloadRewardedAd()
     {
-        GameDistribution.Instance.PreloadRewardedAd();
+        //GameDistribution.Instance.PreloadRewardedAd();
     }
 
     public void SendGameEvent()
@@ -93,6 +93,6 @@ public class GameManager : MonoBehaviour
         data.milestoneDescription = "Test Description";
         obj.data = data;
         obj.eventName = "track-milestone";
-        GameDistribution.Instance.SendEvent(JsonUtility.ToJson(obj));
+        //GameDistribution.Instance.SendEvent(JsonUtility.ToJson(obj));
     }
 }

@@ -193,5 +193,10 @@ public class MyStoreClass : MonoBehaviour, IStoreListener {
         }
 #endif
     }
+
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        throw new NotImplementedException();
+    }
 }
 #endif
