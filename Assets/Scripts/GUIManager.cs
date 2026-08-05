@@ -97,7 +97,7 @@ public class GUIManager : MonoBehaviour {
 	public Sprite[] continueTimeImages;
 
 	//GoogleMobileAdsScript adsScript;
-	GameDistributionAds adsScript;
+	//GameDistributionAds adsScript;
 
 	private LevelManager levelManager;
 
@@ -134,7 +134,7 @@ public class GUIManager : MonoBehaviour {
 		
 		playPressed = false;
 		GameObject scripts = GameObject.FindGameObjectWithTag("Scripts");
-		adsScript = scripts.GetComponent<GameDistributionAds>();
+		//adsScript = scripts.GetComponent<GameDistributionAds>();
 		translationManager = TextLocalizationManager.Instance;
 		translationManager.LoadSystemLanguage(Application.systemLanguage);
 
@@ -584,34 +584,34 @@ public class GUIManager : MonoBehaviour {
 			//levelManager.respawnOnDyingLevel = false;
 
 			// TODO idea here was to show an Ad right before starting to play (ignored for now!!!)
-			if(  (platformManager.IsAdsSupportingPlatform() && !seenPreGameInterstitial &&
-					levelManager.currentLevel.level == 1 &&
-					!levelManager.IsGameStarted() &&
-					adsScript.IsSDKReady()) || platformManager.isAdsTestPlatform) // if is test platform do not do it (it made me click twice on start)
-			{
-				Debug.Log("PlayPressed() level 1, Show ADS HERE ON START: ");
-				if (platformManager.isAdsTestPlatform)
-				{
-					StartCoroutine(SimulateShowAds(2f));
-					seenPreGameInterstitial = true;
-				}
-				else
-				{
-					// actually show the ads
-					shouldShowInterstitial = false;
-					showedInterstitial = true;
-					adsScript.ShowInterstitialAd(this);
-					gameManager.StopMusic();
-					seenPreGameInterstitial = true;
-				}
-				// game needs to start anyway
-				StartCoroutine(StartGameRoutine());
+			// if(  (platformManager.IsAdsSupportingPlatform() && !seenPreGameInterstitial &&
+			// 		levelManager.currentLevel.level == 1 &&
+			// 		!levelManager.IsGameStarted() &&
+			// 		adsScript.IsSDKReady()) || platformManager.isAdsTestPlatform) // if is test platform do not do it (it made me click twice on start)
+			// {
+			// 	Debug.Log("PlayPressed() level 1, Show ADS HERE ON START: ");
+			// 	if (platformManager.isAdsTestPlatform)
+			// 	{
+			// 		StartCoroutine(SimulateShowAds(2f));
+			// 		seenPreGameInterstitial = true;
+			// 	}
+			// 	else
+			// 	{
+			// 		// actually show the ads
+			// 		shouldShowInterstitial = false;
+			// 		showedInterstitial = true;
+			// 		adsScript.ShowInterstitialAd(this);
+			// 		gameManager.StopMusic();
+			// 		seenPreGameInterstitial = true;
+			// 	}
+			// 	// game needs to start anyway
+			// 	StartCoroutine(StartGameRoutine());
 
-			} else
-			{
+			// } else
+			//{
 				//just start normally
 				StartCoroutine(StartGameRoutine());
-         	}
+         	//}
 			
 		}
 		else if (!levelManager.IsGameStarted())
@@ -622,9 +622,9 @@ public class GUIManager : MonoBehaviour {
 		}
 
 		else if (!gameManager.HasPurchasedRemoveAds() &&
-					adsScript.IsInterstitialReady() &&
-					adsScript.DecideIfShowInterstitial() &&
-					adsScript.GetIsAdsSupportingPlatform() &&
+					//adsScript.IsInterstitialReady() &&
+					//adsScript.DecideIfShowInterstitial() &&
+					//adsScript.GetIsAdsSupportingPlatform() &&
 					!platformManager.isArcadeOrSubscriptionMode)
 		{
 
@@ -930,50 +930,50 @@ public class GUIManager : MonoBehaviour {
 		}
 		// TODO, HERE WE WILL GIVE PRIORITY TO REWARDED VIDEOS
 		//if not purchased product and is time for ads
-		else if (!gameManager.HasPurchasedRemoveAds() && !levelManager.respawnOnDyingLevel &&  // if i have the respawn, maybe i watched a video or purchased it
+		// else if (!gameManager.HasPurchasedRemoveAds() && !levelManager.respawnOnDyingLevel &&  // if i have the respawn, maybe i watched a video or purchased it
 
-					adsScript.DecideIfShowInterstitial() &&
+		// 			adsScript.DecideIfShowInterstitial() &&
 
-					( (adsScript.GetIsAdsSupportingPlatform() && adsScript.IsInterstitialReady()) || platformManager.isAdsTestPlatform ) &&
+		// 			( (adsScript.GetIsAdsSupportingPlatform() && adsScript.IsInterstitialReady()) || platformManager.isAdsTestPlatform ) &&
 					
-					levelManager.currentLevel.level % 2 == 0 ) 
-					// if we are still on level 2, 4, 6, 8, 10, show an interstitial from time to time
-		{
+		// 			levelManager.currentLevel.level % 2 == 0 ) 
+		// 			// if we are still on level 2, 4, 6, 8, 10, show an interstitial from time to time
+		// {
 
-			Debug.Log("GAME OVER: shouldShowInterstitial = true;");
-			if (platformManager.isAdsTestPlatform)
-			{
-				StartCoroutine(SimulateShowAds(2f));
-			}
-			else
-			{
+		// 	Debug.Log("GAME OVER: shouldShowInterstitial = true;");
+		// 	if (platformManager.isAdsTestPlatform)
+		// 	{
+		// 		StartCoroutine(SimulateShowAds(2f));
+		// 	}
+		// 	else
+		// 	{
 
-				shouldShowInterstitial = true;
+		// 		shouldShowInterstitial = true;
 
-				//stop timer while watching AD, if watched then i can continue
-				//TODO CHECK if i stop the timer here counter is still at 0 probably
-				// stopTimer = true;
+		// 		//stop timer while watching AD, if watched then i can continue
+		// 		//TODO CHECK if i stop the timer here counter is still at 0 probably
+		// 		// stopTimer = true;
 
-				showInterstitialBetweenLevels();
-				// done inside. gameManager.StopMusic();
-			}
+		// 		showInterstitialBetweenLevels();
+		// 		// done inside. gameManager.StopMusic();
+		// 	}
 			
 
-		}
-		// preferably show ads. If we are over level 2
-		else if (!gameManager.HasPurchasedRemoveAds() && !levelManager.respawnOnDyingLevel &&
+		// }
+		// // preferably show ads. If we are over level 2
+		// else if (!gameManager.HasPurchasedRemoveAds() && !levelManager.respawnOnDyingLevel &&
 
-				 ((adsScript.GetIsAdsSupportingPlatform() && adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform) &&
+		// 		 ((adsScript.GetIsAdsSupportingPlatform() && adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform) &&
 	
-				levelManager.currentLevel.level %5 == 0 )
-				// if we are on level 5, 10
-		{
+		// 		levelManager.currentLevel.level %5 == 0 )
+		// 		// if we are on level 5, 10
+		// {
 
-			Debug.Log("GAME OVER: ShowVideoRewardToEnableContinue = true;");
-			// show the reward/revive button
-			ShowVideoRewardToEnableContinue();
+		// 	Debug.Log("GAME OVER: ShowVideoRewardToEnableContinue = true;");
+		// 	// show the reward/revive button
+		// 	ShowVideoRewardToEnableContinue();
 
-		}
+		// }
 		else if (!gameManager.HasPurchasedInfiniteRevives() &&
 				!IsGamePaused() &&
 				levelManager.currentLevel.level > 2)
@@ -984,9 +984,9 @@ public class GUIManager : MonoBehaviour {
 			//will also stop the countdown when i press the button
 			// could allow to buy if have support for in-app
 			// or could allow to show rewarded video to revive (same as above block if no in-app available)
-			if (platformManager.hasInAppPurchasesSupport() ||
-					(adsScript.IsSDKReady() && adsScript.GetIsAdsSupportingPlatform()) ||
-					platformManager.isAdsTestPlatform)
+			if (platformManager.hasInAppPurchasesSupport() ) //||
+					//(adsScript.IsSDKReady() && adsScript.GetIsAdsSupportingPlatform()) ||
+					//platformManager.isAdsTestPlatform)
 			{
 				ShowReviveImage();
 			}
@@ -1178,29 +1178,29 @@ public class GUIManager : MonoBehaviour {
 
 	public void RewardVideoPressed() {
 
-		SoundEffectsHelper.Instance.PlaySettingsSound();
+		// SoundEffectsHelper.Instance.PlaySettingsSound();
 
-		rewardVideoImage.sprite = watchRewardVideoImages[1];
+		// rewardVideoImage.sprite = watchRewardVideoImages[1];
 
-		Debug.Log("RewardVideoPressed(): Will Show Reward Video");
-		if ((!platformManager.hasInAppPurchasesSupport() &&
-			platformManager.IsAdsSupportingPlatform() &&
-			adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
-		{
-			//stop it while watching it, but only add if i watch it
-			stopTimer = true;
-			gameManager.StopMusic();
+		// Debug.Log("RewardVideoPressed(): Will Show Reward Video");
+		// if ((!platformManager.hasInAppPurchasesSupport() &&
+		// 	platformManager.IsAdsSupportingPlatform() &&
+		// 	adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
+		// {
+		// 	//stop it while watching it, but only add if i watch it
+		// 	stopTimer = true;
+		// 	gameManager.StopMusic();
 			
-			if (platformManager.isAdsTestPlatform)
-			{
-				StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO));
-			}
-			else
-			{
-				adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO);
-			}
+		// 	if (platformManager.isAdsTestPlatform)
+		// 	{
+		// 		StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO));
+		// 	}
+		// 	else
+		// 	{
+		// 		adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO);
+		// 	}
 
-		}
+		// }
 		
 		// Debug.Log("RevivePressed() WILL SHOW REWARD VIDEO FOR REVIVE");
 		// 	if (platformManager.isAdsTestPlatform)
@@ -1306,15 +1306,15 @@ public class GUIManager : MonoBehaviour {
 	private void showInterstitialBetweenLevels()
     {
         if (shouldShowInterstitial && !showedInterstitial && !platformManager.isArcadeOrSubscriptionMode) {
-			if (adsScript.IsInterstitialReady())
-			{
-				Debug.Log("showInterstitialBetweenLevels() will show between levels");
-				stopTimer = true;
-				showedInterstitial = true;
-				shouldShowInterstitial = false;
-				adsScript.ShowInterstitialAd(this);
-				gameManager.StopMusic();
-			}
+			// if (adsScript.IsInterstitialReady())
+			// {
+			// 	Debug.Log("showInterstitialBetweenLevels() will show between levels");
+			// 	stopTimer = true;
+			// 	showedInterstitial = true;
+			// 	shouldShowInterstitial = false;
+			// 	adsScript.ShowInterstitialAd(this);
+			// 	gameManager.StopMusic();
+			// }
 
 	 }
     }
@@ -1408,22 +1408,22 @@ public class GUIManager : MonoBehaviour {
         }
         #endif
 
-		if((!platformManager.hasInAppPurchasesSupport() &&
-				platformManager.IsAdsSupportingPlatform() &&
-				adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
-		{
+		// if((!platformManager.hasInAppPurchasesSupport() &&
+		// 		platformManager.IsAdsSupportingPlatform() &&
+		// 		adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
+		// {
 			
 			
-			if (platformManager.isAdsTestPlatform)
-			{
-				StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO));
-			}
-			else
-			{
-				adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO);
-				gameManager.StopMusic();
-			}
-        }
+		// 	if (platformManager.isAdsTestPlatform)
+		// 	{
+		// 		StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO));
+		// 	}
+		// 	else
+		// 	{
+		// 		adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO);
+		// 		gameManager.StopMusic();
+		// 	}
+        // }
 	}
 
     
@@ -1518,27 +1518,27 @@ public class GUIManager : MonoBehaviour {
 
 
 		// also make it work with a reward video
-		if (!platformManager.hasInAppPurchasesSupport() &&
-			platformManager.IsAdsSupportingPlatform() &&
-			adsScript.IsRewardVideoReady() || platformManager.isAdsTestPlatform)
-		{
-			Debug.Log("RevivePressed() WILL SHOW REWARD VIDEO FOR REVIVE");
-			// stop music and timer
-			gameManager.StopMusic();
-			//stop the counter
-			stopTimer = true;
+		// if (!platformManager.hasInAppPurchasesSupport() &&
+		// 	platformManager.IsAdsSupportingPlatform() &&
+		// 	adsScript.IsRewardVideoReady() || platformManager.isAdsTestPlatform)
+		// {
+		// 	Debug.Log("RevivePressed() WILL SHOW REWARD VIDEO FOR REVIVE");
+		// 	// stop music and timer
+		// 	gameManager.StopMusic();
+		// 	//stop the counter
+		// 	stopTimer = true;
 
-			if (platformManager.isAdsTestPlatform)
-			{
-				StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO));
+		// 	if (platformManager.isAdsTestPlatform)
+		// 	{
+		// 		StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO));
 
-			}
-			else
-			{
-				adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO);
-			}
+		// 	}
+		// 	else
+		// 	{
+		// 		adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_REVIVES_REWARD_VIDEO);
+		// 	}
 
-		}
+		// }
 	}
 
 	// just simulate a delay, like if was watching a reward video
@@ -1585,22 +1585,22 @@ public class GUIManager : MonoBehaviour {
 			store.InitStore();
 		}
 #endif
-		if ((!platformManager.hasInAppPurchasesSupport() &&
-			platformManager.IsAdsSupportingPlatform() &&
-			adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
-		{
-			if (platformManager.isAdsTestPlatform)
-			{
-				// Debug.Log("DO IT");
-				StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO));
-			}
-			else
-			{
-				adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO);
-				gameManager.StopMusic();
-			}
+		// if ((!platformManager.hasInAppPurchasesSupport() &&
+		// 	platformManager.IsAdsSupportingPlatform() &&
+		// 	adsScript.IsRewardVideoReady()) || platformManager.isAdsTestPlatform)
+		// {
+		// 	if (platformManager.isAdsTestPlatform)
+		// 	{
+		// 		// Debug.Log("DO IT");
+		// 		StartCoroutine(SimulateRewardedVideo(2f, true, GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO));
+		// 	}
+		// 	else
+		// 	{
+		// 		adsScript.ShowRewardVideo(this, GameConstants.ACTION_INFINITE_EXTRA_MOVES_REWARD_VIDEO);
+		// 		gameManager.StopMusic();
+		// 	}
 
-		}
+		// }
 		//else Debug.Log("DO NOT!");
 		
 	}

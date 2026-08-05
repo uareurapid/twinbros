@@ -1,4 +1,5 @@
-﻿#if UNITY_ANDROID || UNITY_IPHONE
+﻿/*
+#if UNITY_ANDROID || UNITY_IPHONE
 using GoogleMobileAds.Api;
 #endif
 using System;
@@ -266,3 +267,4 @@ public class GoogleMobileAdsScript : MonoBehaviour {
     }
 #endif
 }
+*/

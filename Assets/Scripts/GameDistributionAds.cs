@@ -36,6 +36,7 @@ Game audio is muted when the ad is displayed
 The game pauses when the ad is displayed
 Don’t worry about spamming users with ads by placing ad-calls on too many buttons: we regulate the ad-interval through the SDK, so users will only see an ad when the set time-frame has passed.
 */
+/*
 using UnityEngine;
 public class GameDistributionAds : GenericAdsManager
 {
@@ -130,8 +131,8 @@ public class GameDistributionAds : GenericAdsManager
     // public void OnRewardGame()
     // {
     //     // REWARD PLAYER HERE
-    // }
-
+    // }*/
+/*
     public void OnEvent(string eventData)
     {
         Debug.Log("RECEIVED EVENT: " + eventData);
@@ -205,7 +206,7 @@ public class GameDistributionAds : GenericAdsManager
             this._isRewardVideoReady = true;
         }
     }*/
-
+/*
     public override void ShowAd()
     {
         GameDistribution.Instance.ShowAd();
@@ -248,3 +249,4 @@ public class GameDistributionAds : GenericAdsManager
     //     this.ShowRewardedAd(); //throw new NotImplementedException();
     // }
 }
+*/
